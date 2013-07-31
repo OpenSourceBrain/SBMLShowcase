@@ -1,1 +1,6 @@
+SBML/*LEMS*.*
+SBML/*.dat
+x86_64
+i386
+umac
 /SBML/jsbml.log
