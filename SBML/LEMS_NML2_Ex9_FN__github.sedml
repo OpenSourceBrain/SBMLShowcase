@@ -3,7 +3,7 @@
     <notes>
         <p xmlns="http://www.w3.org/1999/xhtml">
 
-SBML export for:
+SED-ML export for:
 Components:
     fn1 (Type: fitzHughNagumoCell:  I=0.8 (dimensionless) SEC=1.0 (SI time))
     net1 (Type: network)
