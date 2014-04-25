@@ -41,7 +41,7 @@ Components:
         </dataGenerator>
         <dataGenerator id="d1_x" name="d1_x">
             <listOfVariables>
-                <variable id="hr_regular_pop_0_x" taskReference="sim1_net1" target="hr_regular_pop[0]/x"/>
+                <variable id="hr_regular_pop_0_x" taskReference="sim1_net1" target="x"/>
             </listOfVariables>
             <math xmlns="http://www.w3.org/1998/Math/MathML">
                 <ci>hr_regular_pop_0_x</ci>

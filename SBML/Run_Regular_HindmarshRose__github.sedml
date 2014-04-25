@@ -5,9 +5,9 @@
 
 SBML export for:
 Components:
-    fn1 (Type: fitzHughNagumoCell:  I=0.8 (dimensionless) SEC=1.0 (SI time))
+    hr_regular (Type: hindmarshRoseCell:  a=1.0 (dimensionless) b=3.0 (dimensionless) c=-3.0 (dimensionless) d=5.0 (dimensionless) I=5.0 (dimensionless) r=0.002 (dimensionless) s=4.0 (dimensionless) x1=-1.3 (dimensionless) x0=-1.3 (dimensionless) y0=-1.0 (dimensionless) z0=1.0 (dimensionless) SEC=1.0 (SI ))
     net1 (Type: network)
-    sim1 (Type: Simulation:  length=200.0 (SI time) step=0.05 (SI time))
+    sim1 (Type: Simulation:  length=2000.0 (SI ) step=0.005 (SI ))
 
         </p>
     </notes>
@@ -16,14 +16,14 @@ Components:
 
     <listOfSimulations>
 
-        <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="200.0" numberOfPoints="4000">
+        <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="2000.0" numberOfPoints="400000">
             <algorithm kisaoID="KISAO:0000030"/>
         </uniformTimeCourse>
 
     </listOfSimulations>
 
     <listOfModels>
-        <model id="net1" language="urn:sedml:language:sbml" source="LEMS_NML2_Ex9_FN.sbml"/>
+        <model id="net1" language="urn:sedml:language:sbml" source="https://github.com/OpenSourceBrain/SBMLShowcase/raw/master/SBML/Run_Regular_HindmarshRose.sbml"/>
     </listOfModels>
 
     <listOfTasks>
@@ -39,20 +39,12 @@ Components:
                 <ci> var_time_0 </ci>
             </math>
         </dataGenerator>
-        <dataGenerator id="d1_V" name="d1_V">
+        <dataGenerator id="d1_x" name="d1_x">
             <listOfVariables>
-                <variable id="fnPop1_0_V" taskReference="sim1_net1" target="V"/>
+                <variable id="hr_regular_pop_0_x" taskReference="sim1_net1" target="x"/>
             </listOfVariables>
             <math xmlns="http://www.w3.org/1998/Math/MathML">
-                <ci>fnPop1_0_V</ci>
-            </math>
-        </dataGenerator>
-        <dataGenerator id="d1_W" name="d1_W">
-            <listOfVariables>
-                <variable id="fnPop1_0_W" taskReference="sim1_net1" target="W"/>
-            </listOfVariables>
-            <math xmlns="http://www.w3.org/1998/Math/MathML">
-                <ci>fnPop1_0_W</ci>
+                <ci>hr_regular_pop_0_x</ci>
             </math>
         </dataGenerator>
     </listOfDataGenerators>
@@ -60,8 +52,7 @@ Components:
     <listOfOutputs>
         <plot2D id="d1">
             <listOfCurves>
-                <curve id="V" logX="false" logY="false" xDataReference="time" yDataReference="d1_V"/>
-                <curve id="W" logX="false" logY="false" xDataReference="time" yDataReference="d1_W"/>
+                <curve id="x" logX="false" logY="false" xDataReference="time" yDataReference="d1_x"/>
             </listOfCurves>
         </plot2D>
     </listOfOutputs>

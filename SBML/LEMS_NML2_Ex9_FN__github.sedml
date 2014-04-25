@@ -41,7 +41,7 @@ Components:
         </dataGenerator>
         <dataGenerator id="d1_V" name="d1_V">
             <listOfVariables>
-                <variable id="fnPop1_0_V" taskReference="sim1_net1" target="fnPop1[0]/V"/>
+                <variable id="fnPop1_0_V" taskReference="sim1_net1" target="V"/>
             </listOfVariables>
             <math xmlns="http://www.w3.org/1998/Math/MathML">
                 <ci>fnPop1_0_V</ci>
@@ -49,7 +49,7 @@ Components:
         </dataGenerator>
         <dataGenerator id="d1_W" name="d1_W">
             <listOfVariables>
-                <variable id="fnPop1_0_W" taskReference="sim1_net1" target="fnPop1[0]/W"/>
+                <variable id="fnPop1_0_W" taskReference="sim1_net1" target="W"/>
             </listOfVariables>
             <math xmlns="http://www.w3.org/1998/Math/MathML">
                 <ci>fnPop1_0_W</ci>
