@@ -4,12 +4,13 @@ python: 2.7
 env:
     - OMV_ENGINE=jLEMS
     - OMV_ENGINE=PyLEMS
+    - OMV_ENGINE=jNeuroML
 
 install: 
     - pip install git+https://github.com/OpenSourceBrain/osb-model-validation
 
 script:
-    - omv all
+    - omv all -V
     - pwd
     - ls -alt
     - ls -alt LEMS
