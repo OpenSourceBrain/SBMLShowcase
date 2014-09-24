@@ -2,3 +2,16 @@
  
 target: BIOMD0000000184_LEMS.xml 
 engine: PyLEMS
+mep: .test.mep
+experiments:
+  Default:
+    observables:
+      spike times:
+        file: 
+          path: Lavrentovich2008_Ca_Oscillations.dat
+          columns: [0,1]
+          scaling: [1, 1]
+        spike detection: 
+          method: threshold
+          threshold: 0.4
+        tolerance: 7e-5
