@@ -5,3 +5,4 @@ i386
 umac
 /SBML/jsbml.log
 Brian/results/*.dat
+/NeuroML2/RS_v.dat
