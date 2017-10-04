@@ -1,0 +1,68 @@
+<Lems>
+
+    
+    <ComponentType name="Lavrentovich2008_Ca_Oscillations" standalone="false">
+        <Parameter name="vin" dimension="none"/>
+        <Parameter name="kout" dimension="none"/>
+        <Parameter name="vM3" dimension="none"/>
+        <Parameter name="k_CaA" dimension="none"/>
+        <Parameter name="n" dimension="none"/>
+        <Parameter name="k_CaI" dimension="none"/>
+        <Parameter name="m" dimension="none"/>
+        <Parameter name="kip3" dimension="none"/>
+        <Parameter name="vM2" dimension="none"/>
+        <Parameter name="k2" dimension="none"/>
+        <Parameter name="kf" dimension="none"/>
+        <Parameter name="vp" dimension="none"/>
+        <Parameter name="kp" dimension="none"/>
+        <Parameter name="kdeg" dimension="none"/>
+        <Exposure name="X" dimension="none"/>
+        <Exposure name="Y" dimension="none"/>
+        <Exposure name="Z" dimension="none"/>
+        <Dynamics simultaneous="false">
+            <DerivedVariable name="rate__R1" dimension="none" required="true" value="(compartment*vin)"/>
+            <DerivedVariable name="rate__R2" dimension="none" required="true" value="(compartment*kout* (X/compartment) )"/>
+            <DerivedVariable name="rate__R3" dimension="none" required="true" value="(ER*4*vM3*k_CaA^n* (X/compartment) ^n/(( (X/compartment) ^n+k_CaA^n)*( (X/compartment) ^n+k_CaI^n))* (Z/compartment) ^m/( (Z/compartment) ^m+kip3^m)*( ( (Y/ER) /ER) - (X/compartment) ))"/>
+            <DerivedVariable name="rate__R4" dimension="none" required="true" value="(compartment*vM2* (X/compartment) ^2/( (X/compartment) ^2+k2^2))"/>
+            <DerivedVariable name="rate__R5" dimension="none" required="true" value="(ER*kf*( ( (Y/ER) /ER) - (X/compartment) ))"/>
+            <DerivedVariable name="rate__R6" dimension="none" required="true" value="(compartment*vp* (X/compartment) ^2/( (X/compartment) ^2+kp^2))"/>
+            <DerivedVariable name="rate__R7" dimension="none" required="true" value="(compartment*kdeg* (Z/compartment) )"/>
+            <StateVariable name="X" dimension="none" exposure="X"/>
+            <StateVariable name="Y" dimension="none" exposure="Y"/>
+            <StateVariable name="Z" dimension="none" exposure="Z"/>
+            <TimeDerivative variable="Y" value="tscale * (-1*rate__R3 + rate__R4 - rate__R5) "/>
+            <TimeDerivative variable="X" value="tscale * (rate__R1 - rate__R2 + rate__R3 - rate__R4 + rate__R5) "/>
+            <TimeDerivative variable="Z" value="tscale * (rate__R6 - rate__R7) "/>
+            <OnStart>
+                <StateAssignment variable="X" value="init_X"/>
+                <StateAssignment variable="Y" value="init_Y"/>
+                <StateAssignment variable="Z" value="init_Z"/>
+            </OnStart>
+        </Dynamics>
+        <Constant name="compartment" value="1.0 " dimension="none"/>
+        <Constant name="ER" value="1.0 " dimension="none"/>
+        <Constant name="init_X" value="0.1 " dimension="none"/>
+        <Constant name="init_Y" value="1.5 " dimension="none"/>
+        <Constant name="init_Z" value="0.1 " dimension="none"/>
+        <Constant name="tscale" value="1per_s" dimension="per_time"/>
+    </ComponentType>
+    
+    
+    
+    <ComponentType  name="sbmlHelperCell"
+                   extends="baseCell"
+                   description="SBML model wrapped in a baseCell">
+
+
+        <Child name="sbml" type="Lavrentovich2008_Ca_Oscillations"/>
+
+    </ComponentType>
+    
+    <sbmlHelperCell id="Lavrentovich2008">
+        <sbml id="Lavrentovich2008_Ca_Oscillations_0" 
+                                      vin="0.05" kout="0.5" vM3="40.0" k_CaA="0.15" n="2.02" 
+                                      k_CaI="0.15" m="2.2" kip3="0.1" vM2="15.0" k2="0.1" 
+                                      kf="0.5" vp="0.05" kp="0.3" kdeg="0.08"/>
+    </sbmlHelperCell>
+</Lems>
+    

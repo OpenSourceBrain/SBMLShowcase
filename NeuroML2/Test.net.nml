@@ -5,6 +5,7 @@
          xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2  https://raw.githubusercontent.com/NeuroML/NeuroML2/master/Schemas/NeuroML2/NeuroML_v2beta4.xsd"   
          id="Test">
 
+    <include href="Lavrentovich2008.xml"/>
 
     <izhikevich2007Cell id="RS" v0 = "-60mV" C="100 pF" k = "0.7 nS_per_mV"
                             vr = "-60 mV" vt = "-40 mV" vpeak = "35 mV" 
@@ -24,7 +25,7 @@
                 <location x="0" y="0" z="0"/>
             </instance>
         </population>
-        <population id="testpop" component="RS" type="populationList" size="1">
+        <population id="testpop" component="Lavrentovich2008" type="populationList" size="1">
            <annotation>
                 <property tag="color" value="0 1 0"/>
             </annotation>
