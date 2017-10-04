@@ -1,7 +1,7 @@
 <Lems>
 
     
-    <ComponentType name="Lavrentovich2008_Ca_Oscillations" standalone="false">
+    <ComponentType name="Lavrentovich2008" standalone="false">
         <Parameter name="vin" dimension="none"/>
         <Parameter name="kout" dimension="none"/>
         <Parameter name="vM3" dimension="none"/>
@@ -54,12 +54,12 @@
                    description="SBML model wrapped in a baseCell">
 
 
-        <Child name="sbml" type="Lavrentovich2008_Ca_Oscillations"/>
+        <Child name="sbml" type="Lavrentovich2008"/>
 
     </ComponentType>
     
-    <sbmlHelperCell id="Lavrentovich2008">
-        <sbml id="Lavrentovich2008_Ca_Oscillations_0" 
+    <sbmlHelperCell id="LavrentovichSBML">
+        <sbml id="L2008" 
                                       vin="0.05" kout="0.5" vM3="40.0" k_CaA="0.15" n="2.02" 
                                       k_CaI="0.15" m="2.2" kip3="0.1" vM2="15.0" k2="0.1" 
                                       kf="0.5" vp="0.05" kp="0.3" kdeg="0.08"/>

@@ -25,7 +25,7 @@
                 <location x="0" y="0" z="0"/>
             </instance>
         </population>
-        <population id="testpop" component="Lavrentovich2008" type="populationList" size="1">
+        <population id="testpop" component="LavrentovichSBML" type="populationList" size="1">
            <annotation>
                 <property tag="color" value="0 1 0"/>
             </annotation>

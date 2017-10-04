@@ -6,3 +6,9 @@ umac
 /SBML/jsbml.log
 Brian/results/*.dat
 /NeuroML2/RS_v.dat
+/NeuroML2/LEMS_Test_nrn.py
+/NeuroML2/LavrentovichSBML.mod
+/NeuroML2/RS.mod
+/NeuroML2/RS_Iext.mod
+/NeuroML2/SBML.dat
+/NeuroML2/time.dat
