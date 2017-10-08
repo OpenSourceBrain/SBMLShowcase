@@ -24,9 +24,9 @@
     </Display>
     
     <Display id="sbml" title="SBML variables" timeScale="1ms" xmin="-100" xmax="2100" ymin="-.5" ymax="5">
-        <Line id ="X" quantity="testpop/0/LavrentovichSBML/L2008/X" scale="1"  color="#ff0000" timeScale="1ms"/>
-        <Line id ="Y" quantity="testpop/0/LavrentovichSBML/L2008/Y" scale="1"  color="#00ff00" timeScale="1ms"/>
-        <Line id ="Z" quantity="testpop/0/LavrentovichSBML/L2008/Z" scale="1"  color="#0000ff" timeScale="1ms"/>
+        <Line id ="X" quantity="testpop/0/LavrentovichSBML/sbml/X" scale="1"  color="#ff0000" timeScale="1ms"/>
+        <Line id ="Y" quantity="testpop/0/LavrentovichSBML/sbml/Y" scale="1"  color="#00ff00" timeScale="1ms"/>
+        <Line id ="Z" quantity="testpop/0/LavrentovichSBML/sbml/Z" scale="1"  color="#0000ff" timeScale="1ms"/>
     </Display>
    
 
@@ -36,9 +36,9 @@
     </OutputFile>
     
     <OutputFile id="of1" fileName="SBML.dat">
-        <OutputColumn id="X" quantity="testpop/0/LavrentovichSBML/L2008/X" />
-        <OutputColumn id="Y" quantity="testpop/0/LavrentovichSBML/L2008/Y" />
-        <OutputColumn id="Z" quantity="testpop/0/LavrentovichSBML/L2008/Z" />
+        <OutputColumn id="X" quantity="testpop/0/LavrentovichSBML/sbml/X" />
+        <OutputColumn id="Y" quantity="testpop/0/LavrentovichSBML/sbml/Y" />
+        <OutputColumn id="Z" quantity="testpop/0/LavrentovichSBML/sbml/Z" />
     </OutputFile>
       
 </Simulation>

@@ -12,3 +12,7 @@ Brian/results/*.dat
 /NeuroML2/RS_Iext.mod
 /NeuroML2/SBML.dat
 /NeuroML2/time.dat
+/NeuroML2/LEMS_Test2_nrn.py
+/NeuroML2/LavrentovichA.mod
+/NeuroML2/LavrentovichB.mod
+/NeuroML2/LavrentovichC.mod
