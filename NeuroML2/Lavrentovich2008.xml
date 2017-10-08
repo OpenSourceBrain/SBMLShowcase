@@ -50,7 +50,7 @@
     
     
     <ComponentType  name="sbmlHelperCell"
-                   extends="baseCellMembPot"
+                   extends="baseCellMembPotCap"
                    description="SBML model wrapped in a baseCell">
 
 
@@ -61,6 +61,7 @@
         <Constant name="MSEC" dimension="time" value="1ms"/>
         <Constant name="MVOLT" dimension="voltage" value="1mV"/>
         
+        
         <Dynamics simultaneous="false">
             
             <StateVariable name="v" dimension="voltage" exposure="v"/>
@@ -68,7 +69,7 @@
             <DerivedVariable name="x" dimension="none" select="sbml/X" reduce="add"/>
             <DerivedVariable name="targetv" dimension="voltage" exposure="targetv" value="((x * 200)-100) * MVOLT"/>
 
-            <TimeDerivative variable="v" value="(-.001 * (v-targetv))/MSEC"/>
+            <TimeDerivative variable="v" value="(-1 * (v-targetv))/MSEC"/>
 
             <OnStart>
                 <StateAssignment variable="v" value="targetv"/>
@@ -78,7 +79,7 @@
 
     </ComponentType>
     
-    <sbmlHelperCell id="LavrentovichSBML">
+    <sbmlHelperCell id="LavrentovichSBML"  C="100 pF">  <!-- C (capacitance) is just there to keep NEURON happy... -->
         <sbml id="sbml" 
                                       vin="0.05" kout="0.5" vM3="40.0" k_CaA="0.15" n="2.02" 
                                       k_CaI="0.15" m="2.2" kip3="0.1" vM2="15.0" k2="0.1" 
