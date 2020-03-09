@@ -19,3 +19,4 @@ Brian/results/*.dat
 /Brian/Lavrentovich2008_Ca_Oscillations.dat
 /LEMS/BIOMD0000000184_LEMS_brian.py
 /LEMS/BIOMD0000000184_LEMS_brian2.py
+/NEURON/*.dat

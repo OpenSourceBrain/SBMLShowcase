@@ -14,3 +14,6 @@ mv BIOMD0000000184_LEMS_brian.py ../Brian
 jnml BIOMD0000000184_LEMS.xml -brian2
 mv BIOMD0000000184_LEMS_brian2.py ../Brian
 
+
+jnml BIOMD0000000184_LEMS.xml -neuron
+mv BIOMD0000000184_LEMS_nrn.py Lavrentovich2008_Ca_Oscillations_0.mod ../NEURON

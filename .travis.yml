@@ -1,7 +1,18 @@
 # Framework for running automated tests on OSB using Travis-CI, see https://github.com/OpenSourceBrain/osb-model-validation
 
 dist: xenial
+sudo: false
 
+addons:
+  apt:
+    packages:
+       # Requirements for Brian
+    - python-numpy 
+    - python-scipy 
+    - python-matplotlib 
+    - python-sympy
+    
+    
 language: python
 python: 2.7
 
