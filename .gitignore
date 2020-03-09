@@ -20,3 +20,7 @@ Brian/results/*.dat
 /LEMS/BIOMD0000000184_LEMS_brian.py
 /LEMS/BIOMD0000000184_LEMS_brian2.py
 /NEURON/*.dat
+*.gv*
+/LEMS/BIOMD0000000184_LEMS.png
+/NeuroML2/*.png
+/tests.log

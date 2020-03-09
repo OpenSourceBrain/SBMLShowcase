@@ -128,7 +128,8 @@
         <Children name="displays" type="Display"/>
         <Children name="outputs" type="OutputFile"/>
         <Children name="events" type="EventOutputFile"/>
-        <ComponentReference name="target" type="Component" isAny="true" local="false" required="true"/>
+        <!-- TODO: figure out why local="false" is generated/used here... Annoys pylems... -->
+        <ComponentReference name="target" type="Component" isAny="true" required="true"/>
         <Dynamics simultaneous="false">
             <StateVariable name="t" dimension="time"/>
         </Dynamics>

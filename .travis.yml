@@ -12,10 +12,12 @@ addons:
     - python-matplotlib 
     - python-sympy
     
-    
 language: python
 python: 2.7
 
+virtualenv:
+    system_site_packages: true
+    
 env:
     - OMV_ENGINE=jLEMS
     - OMV_ENGINE=PyLEMS
