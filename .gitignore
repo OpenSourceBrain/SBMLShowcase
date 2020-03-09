@@ -16,3 +16,6 @@ Brian/results/*.dat
 /NeuroML2/LavrentovichA.mod
 /NeuroML2/LavrentovichB.mod
 /NeuroML2/LavrentovichC.mod
+/Brian/Lavrentovich2008_Ca_Oscillations.dat
+/LEMS/BIOMD0000000184_LEMS_brian.py
+/LEMS/BIOMD0000000184_LEMS_brian2.py
