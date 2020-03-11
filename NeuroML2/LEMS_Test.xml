@@ -13,20 +13,24 @@
 <Include file="Test.net.nml"/>
         
 
-<Simulation id="sim1" length="250s" step="0.5ms" target="Test">
+<Simulation id="sim1" length="50s" step="1ms" target="Test">
 
     
-    <Display id="d1" title="RS v" timeScale="1ms" xmin="-100" xmax="2100" ymin="-80" ymax="50">
+    <Display id="d1" title="RS v" timeScale="1ms" xmin="-100" xmax="4100" ymin="-80" ymax="50">
         <Line id ="RS v" quantity="izhpop/0/RS/v" scale="1mV"  color="#0000ff" timeScale="1ms"/>
     </Display>
-    <Display id="d2" title="RS u" timeScale="1ms" xmin="-100" xmax="2100" ymin="-80" ymax="80">
+    <Display id="d2" title="RS u" timeScale="1ms" xmin="-100" xmax="4100" ymin="-80" ymax="80">
         <Line id ="RS u" quantity="izhpop/0/RS/u" scale="1pA"  color="#ff0000" timeScale="1ms"/>
     </Display>
     
-    <Display id="sbml" title="SBML variables" timeScale="1ms" xmin="-100" xmax="2100" ymin="-.5" ymax="5">
+    <Display id="sbml" title="SBML variables" timeScale="1ms" xmin="-5000" xmax="105000" ymin="-.5" ymax="5">
         <Line id ="X" quantity="testpop/0/LavrentovichSBML/sbml/X" scale="1"  color="#ff0000" timeScale="1ms"/>
         <Line id ="Y" quantity="testpop/0/LavrentovichSBML/sbml/Y" scale="1"  color="#00ff00" timeScale="1ms"/>
         <Line id ="Z" quantity="testpop/0/LavrentovichSBML/sbml/Z" scale="1"  color="#0000ff" timeScale="1ms"/>
+    </Display>
+    
+    <Display id="not_v" title="sbml v helper variable" timeScale="1ms" xmin="-5000" xmax="105000" ymin="-.5" ymax="5">
+        <Line id ="v" quantity="testpop/0/LavrentovichSBML/v" scale="1"  color="#ff0000" timeScale="1ms"/>
     </Display>
    
 

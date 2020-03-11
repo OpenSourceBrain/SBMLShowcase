@@ -12,7 +12,7 @@
 <Include file="TestMulti.net.nml"/>
         
 
-<Simulation id="sim1" length="1000s" step="0.001s" target="Test">
+<Simulation id="sim1" length="1000s" step="0.01s" target="Test">
 
     
     <Display id="A" title="SBML A" timeScale="1s" xmin="-100" xmax="1100" ymin="-.5" ymax="5">

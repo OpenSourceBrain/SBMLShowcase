@@ -13,6 +13,8 @@
     <network id="Test">
         
         <notes>Testing...</notes>
+        <property tag="recommended_dt_ms" value="10"/>
+        <property tag="recommended_duration_ms" value="1000000"/>
     
 
         <population id="cellA" component="LavrentovichA" type="populationList" size="1">

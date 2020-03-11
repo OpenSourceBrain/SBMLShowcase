@@ -11,11 +11,13 @@
                             vr = "-60 mV" vt = "-40 mV" vpeak = "35 mV" 
                             a = "0.03 per_ms" b = "-2 nS" c = "-50 mV" d = "100 pA"/>
 
-    <pulseGenerator id="RS_Iext" delay="0ms" duration="520ms" amplitude="100 pA"/>
+    <pulseGenerator id="RS_Iext" delay="1s" duration="2s" amplitude="100 pA"/>
 
     <network id="Test">
         
-        <notes>Testing...</notes>
+        <notes>Test network with a NeuroML 2 based cell (izhikevich2007Cell) together with an SBML based one</notes>
+        <property tag="recommended_dt_ms" value="1"/>
+        <property tag="recommended_duration_ms" value="1000000"/>
     
         <population id="izhpop" component="RS" type="populationList" size="1">
            <annotation>
