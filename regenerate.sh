@@ -17,3 +17,8 @@ mv BIOMD0000000184_LEMS_brian2.py ../Brian
 
 jnml BIOMD0000000184_LEMS.xml -neuron
 mv BIOMD0000000184_LEMS_nrn.py Lavrentovich2008_Ca_Oscillations_0.mod ../NEURON
+
+cd ../NeuroML2
+
+jnml LEMS_NML2_Ex9_FN.xml -sedml
+mv *sedml ../SBML
