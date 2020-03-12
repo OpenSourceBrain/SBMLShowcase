@@ -20,5 +20,6 @@ mv BIOMD0000000184_LEMS_nrn.py Lavrentovich2008_Ca_Oscillations_0.mod ../NEURON
 
 cd ../NeuroML2
 
-jnml LEMS_NML2_Ex9_FN.xml -sedml
+jnml LEMS_NML2_Ex9_FN.xml -sbml-sedml
 mv *sedml ../SBML
+mv *sbml ../SBML
