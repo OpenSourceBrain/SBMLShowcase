@@ -5,7 +5,8 @@ set -e
 cd SBML
 
 jnml -sbml-import BIOMD0000000184.xml 1000 0.01
-mv BIOMD0000000184_LEMS.xml ../LEMS
+jnml -sbml-import BIOMD0000000127_url.xml  140 0.01
+mv BIOMD00000*_LEMS.xml ../LEMS
 
 cd ../LEMS
 

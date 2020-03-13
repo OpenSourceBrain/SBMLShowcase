@@ -28,6 +28,7 @@ env:
     - OMV_ENGINE=jNeuroML_Brian2
 install: 
     - pip install git+https://github.com/OpenSourceBrain/osb-model-validation
+    - pip install tellurium
 
 script:
     - omv all -V
@@ -35,6 +36,8 @@ script:
     - ls -alt
     - ls -alt LEMS
     - omv list -V
+    - cd SBML
+    - python test_tellurium.py
     
     
     
