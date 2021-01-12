@@ -21,5 +21,5 @@ Note these features can be accessed easily with the [jNeuroML](https://github.co
         jnml -sbml-import SBMLFile.sbml duration dt
 
 
-[![Build Status](https://travis-ci.org/OpenSourceBrain/SBMLShowcase.svg?branch=master)](https://travis-ci.org/OpenSourceBrain/SBMLShowcase)
+[![Build Status](https://travis-ci.com/OpenSourceBrain/SBMLShowcase.svg?branch=master)](https://travis-ci.com/OpenSourceBrain/SBMLShowcase)
 
