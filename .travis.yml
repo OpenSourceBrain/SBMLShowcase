@@ -35,7 +35,7 @@ script:
     - ls -alt LEMS
     - omv list -V
     - cd SBML
-    - python test_tellurium.py
+    #- python test_tellurium.py  # to be tested on py3
     
     
     
