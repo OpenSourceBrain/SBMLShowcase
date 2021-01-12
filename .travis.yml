@@ -25,7 +25,7 @@ env:
 install: 
     - pip install git+https://github.com/OpenSourceBrain/osb-model-validation
     - pip install pandas
-    - pip install tellurium
+    - pip install tellurium==2.1.5
 
 script:
     - omv all -V
