@@ -18,20 +18,26 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
+
     - name: Set up Python  ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version:  ${{ matrix.python-version }}
-        
+
     - name: Install OMV
       run: |
         pip install git+https://github.com/OpenSourceBrain/osb-model-validation
-        
+
     - name: Run tests
       run: |
         omv install jneuroml
         
+    - name: Test tellurium
+      run: |
+        pip install tellurium
+        cd tellurium
+        python simple.py -nogui
+
     - name: OMV final version info
       run: |
         omv list -V # list installed engines

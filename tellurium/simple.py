@@ -21,5 +21,9 @@ r = te.loada(model)
 
 # simulate from 0 to 50 with 100 steps
 r.simulate(0, 50, 100)
-# plot the simulation
-r.plot()
+print("Simulation finished...")
+
+import sys
+if not '-nogui' in sys.argv:
+    # plot the simulation
+    r.plot()
