@@ -1,4 +1,6 @@
-### Converting NeuroML2/LEMS to & from SBML
+# Converting NeuroML2/LEMS to & from SBML
+
+[![Continuous build using OMV](https://github.com/OpenSourceBrain/SBMLShowcase/actions/workflows/omv-ci.yml/badge.svg)](https://github.com/OpenSourceBrain/SBMLShowcase/actions/workflows/omv-ci.yml) [![Testing non OMV scripts](https://github.com/OpenSourceBrain/SBMLShowcase/actions/workflows/non-omv.yml/badge.svg)](https://github.com/OpenSourceBrain/SBMLShowcase/actions/workflows/non-omv.yml)
 
 Most of the interactions between SBML and LEMS/NeuroML showcased here are enabled by:
 
@@ -19,7 +21,4 @@ Note these features can be accessed easily with the [jNeuroML](https://github.co
 -   Load SBMLFile.sbml using jSBML, and convert it to LEMS format using values for duration & dt in ms
 
         jnml -sbml-import SBMLFile.sbml duration dt
-
-
-[![Build Status](https://travis-ci.com/OpenSourceBrain/SBMLShowcase.svg?branch=master)](https://travis-ci.com/OpenSourceBrain/SBMLShowcase)
 
