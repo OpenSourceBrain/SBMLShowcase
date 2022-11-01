@@ -8,17 +8,16 @@ Most of the interactions between SBML and LEMS/NeuroML showcased here are enable
 
 -   The LEMS/NeuroML to SBML export function in: [org.neuroml.export](https://github.com/NeuroML/org.neuroml.export/blob/master/src/main/java/org/neuroml/export/sbml/SBMLWriter.java)
 
-Note these features can be accessed easily with the [jNeuroML](https://github.com/NeuroML/jNeuroML) tool. For example:
+Note these features can be accessed easily with the [pyNeuroML](https://docs.neuroml.org/Userdocs/Software/pyNeuroML.html) tool. For example:
 
--   Load LEMSFile.xml using jLEMS, and convert it to SBML format:
+-   Load LEMSFile.xml using pyNeuroML, and convert it to SBML format:
 
-         jnml LEMSFile.xml -sbml
+         pynml LEMSFile.xml -sbml
 
--   Load LEMSFile.xml using jLEMS, and convert it to SBML format with a SED-ML specification for the experiment:
+-   Load LEMSFile.xml using pyNeuroML, and convert it to SBML format with a SED-ML specification for the experiment:
 
-         jnml LEMSFile.xml -sbml-sedml
+         pynml LEMSFile.xml -sbml-sedml
 
 -   Load SBMLFile.sbml using jSBML, and convert it to LEMS format using values for duration & dt in ms
 
-        jnml -sbml-import SBMLFile.sbml duration dt
-
+        pynml -sbml-import SBMLFile.sbml duration dt
