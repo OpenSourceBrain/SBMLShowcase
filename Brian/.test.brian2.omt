@@ -1,8 +1,8 @@
 # Script for running automated tests on OSB using Travis-CI, see https://github.com/OpenSourceBrain/osb-model-validation
 
-target: BIOMD0000000184_LEMS.xml
-engine: jNeuroML
-mep: .test.mep
+target: BIOMD0000000184_LEMS_brian2.py
+engine: Brian2
+mep: ../LEMS/.test.mep
 experiments:
   Default:
     observables:
