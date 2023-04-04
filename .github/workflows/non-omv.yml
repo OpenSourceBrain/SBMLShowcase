@@ -35,6 +35,7 @@ jobs:
     - name: Test tellurium
       run: |
         pip install tellurium
+        sudo apt-get install libncurses5 --fix-missing
         cd tellurium
         python simple.py -nogui
 
