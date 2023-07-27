@@ -21,7 +21,9 @@ import sys
 
 import hashlib
 h = neuron.h
-h.load_file("nrngui.hoc")
+h.load_file("stdlib.hoc")
+
+h.load_file("stdgui.hoc")
 
 h("objref p")
 h("p = new PythonObject()")
@@ -61,26 +63,26 @@ class NeuronSimulation():
             h.population_null[i].push()
             h(" population_null[%i]  { m_Lavrentovich2008_Ca_Oscillations_0_population_null[%i] = new Lavrentovich2008_Ca_Oscillations_0(0.5) } "%(i,i))
 
-            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].vin = 0.05
-            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].kout = 0.5
-            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].vM3 = 40.0
-            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].k_CaA = 0.15
-            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].n = 2.02
-            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].k_CaI = 0.15
-            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].m = 2.2
-            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].kip3 = 0.1
-            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].vM2 = 15.0
-            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].k2 = 0.1
-            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].kf = 0.5
-            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].vp = 0.05
-            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].kp = 0.3
-            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].kdeg = 0.08
-            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].tscale = 0.001
-            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].compartment = 1.0
-            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].ER = 1.0
-            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].init_X = 0.1
-            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].init_Y = 1.5
-            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].init_Z = 0.1
+            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].vin = 0.05 # NRN unit is: 
+            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].kout = 0.5 # NRN unit is: 
+            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].vM3 = 40.0 # NRN unit is: 
+            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].k_CaA = 0.15 # NRN unit is: 
+            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].n = 2.02 # NRN unit is: 
+            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].k_CaI = 0.15 # NRN unit is: 
+            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].m = 2.2 # NRN unit is: 
+            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].kip3 = 0.1 # NRN unit is: 
+            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].vM2 = 15.0 # NRN unit is: 
+            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].k2 = 0.1 # NRN unit is: 
+            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].kf = 0.5 # NRN unit is: 
+            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].vp = 0.05 # NRN unit is: 
+            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].kp = 0.3 # NRN unit is: 
+            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].kdeg = 0.08 # NRN unit is: 
+            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].tscale = 0.001 # NRN unit is: (kHz)
+            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].compartment = 1.0 # NRN unit is: 
+            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].ER = 1.0 # NRN unit is: 
+            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].init_X = 0.1 # NRN unit is: 
+            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].init_Y = 1.5 # NRN unit is: 
+            h.m_Lavrentovich2008_Ca_Oscillations_0_population_null[i].init_Z = 0.1 # NRN unit is: 
             h.pop_section()
 
             self.next_global_id+=1
@@ -94,18 +96,6 @@ class NeuronSimulation():
         h.dt = dt
 
         h.steps_per_ms = 1/h.dt
-
-        # ######################   Display: self.display_disp1
-        self.display_disp1 = h.Graph(0)
-        self.display_disp1.size(0,h.tstop,-80.0,50.0)
-        self.display_disp1.view(0, -80.0, h.tstop, 130.0, 80, 330, 330, 250)
-        h.graphList[0].append(self.display_disp1)
-        # Line, plotting: X
-        self.display_disp1.addexpr("m_Lavrentovich2008_Ca_Oscillations_0_population_null[0].X", "m_Lavrentovich2008_Ca_Oscillations_0_population_null[0].X", 1, 1, 0.8, 0.9, 2)
-        # Line, plotting: Y
-        self.display_disp1.addexpr("m_Lavrentovich2008_Ca_Oscillations_0_population_null[0].Y", "m_Lavrentovich2008_Ca_Oscillations_0_population_null[0].Y", 2, 1, 0.8, 0.9, 2)
-        # Line, plotting: Z
-        self.display_disp1.addexpr("m_Lavrentovich2008_Ca_Oscillations_0_population_null[0].Z", "m_Lavrentovich2008_Ca_Oscillations_0_population_null[0].Z", 3, 1, 0.8, 0.9, 2)
 
 
 
@@ -141,9 +131,6 @@ class NeuronSimulation():
         self.setup_time = setup_end - self.setup_start
         print("Setting up the network to simulate took %f seconds"%(self.setup_time))
 
-        h.nrncontrolmenu()
-
-
     def run(self):
 
         self.initialized = True
@@ -154,7 +141,7 @@ class NeuronSimulation():
             h.run()
         except Exception as e:
             print("Exception running NEURON: %s" % (e))
-            return
+            quit()
 
 
         self.sim_end = time.time()
@@ -165,7 +152,7 @@ class NeuronSimulation():
             self.save_results()
         except Exception as e:
             print("Exception saving results of NEURON simulation: %s" % (e))
-            return
+            quit()
 
 
     def advance(self):
@@ -200,7 +187,6 @@ class NeuronSimulation():
 
         if self.sim_end < 0: self.sim_end = time.time()
 
-        self.display_disp1.exec_menu("View = plot")
 
         # ######################   File to save: time.dat (time)
         py_v_time = [ t/1000 for t in h.v_time.to_python() ]  # Convert to Python list for speed...
@@ -231,6 +217,9 @@ class NeuronSimulation():
         print("Finished saving results in %f seconds"%(save_time))
 
         print("Done")
+
+        quit()
+
 
 if __name__ == '__main__':
 

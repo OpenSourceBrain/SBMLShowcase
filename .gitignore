@@ -26,3 +26,4 @@ Brian/results/*.dat
 /tests.log
 /NeuroML2/ex9.dat
 /LEMS/tmp
+arm64

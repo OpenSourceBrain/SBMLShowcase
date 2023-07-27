@@ -1,0 +1,17 @@
+# Script for running automated tests on OSB using Travis-CI, see https://github.com/OpenSourceBrain/osb-model-validation
+ 
+target: BIOMD0000000127_url_LEMS.xml
+engine: PyLEMS
+mep: .test.127.mep
+experiments:
+  Default:
+    observables:
+      spike times:
+        file: 
+          path: model_0000001.dat
+          columns: [0,2]
+          scaling: [1, 1]
+        spike detection: 
+          method: threshold
+          threshold: 0
+        tolerance: 0

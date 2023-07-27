@@ -1,0 +1,7 @@
+system: Testing an SBML derived model
+
+experiments:
+  Default:
+    expected:
+      spike times: [13.34999999999976, 30.500000000001968, 75.4600000000017, 120.30000000002464]
+
