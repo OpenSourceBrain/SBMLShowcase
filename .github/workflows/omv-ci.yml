@@ -17,7 +17,7 @@ jobs:
         engine: [ jLEMS, jNeuroML, jNeuroML_NEURON, PyLEMS, PyLEMS_NeuroML2, jNeuroML_Brian2, Brian2 ]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Set up Python  ${{ matrix.python-version }}
       uses: actions/setup-python@v3
