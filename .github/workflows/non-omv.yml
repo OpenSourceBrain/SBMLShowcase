@@ -39,6 +39,11 @@ jobs:
         cd tellurium
         python simple.py -nogui
 
+        cd ../SBML
+        pip install python-libsedml
+        python test_tellurium.py 
+
+
     - name: Final version info
       run: |
         omv list -V # list installed engines

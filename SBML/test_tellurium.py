@@ -10,7 +10,10 @@ if len(sys.argv)==2:
 
 # For technical reasons, any software which uses libSEDML
 # must provide a custom build - Tellurium uses tesedml
-import tesedml as libsedml
+try:
+    import libsedml
+except ImportError:
+    import tesedml as libsedml
 sedml_doc = libsedml.readSedML(sedml_file)
 n_errors = sedml_doc.getErrorLog().getNumFailsWithSeverity(libsedml.LIBSEDML_SEV_ERROR)
 print('Read SED-ML file %s, number of errors: %i'%(sedml_file,n_errors))
