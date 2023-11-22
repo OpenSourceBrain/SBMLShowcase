@@ -1,0 +1,31 @@
+<Lems>
+
+<!-- Specify which component to run -->
+<Target component="sim1"/>
+
+<!-- Include core NeuroML2 ComponentType definitions -->
+<Include file="Cells.xml"/>
+<Include file="Networks.xml"/>
+<Include file="Simulation.xml"/>
+
+<Include file="FN.net.nml"/>
+
+
+<Simulation id="sim1" length="400ms" step="0.01ms" target="net1">
+
+    <Display id="d1" title="Dynamical variable timeseries - V and W"
+        timeScale="1ms" xmin="-40" xmax="440" ymin="-2.5" ymax="2.5">
+        <Line id ="V" quantity="fn1pop[0]/V" scale="1"
+            color="#000000" timeScale="1ms"/>
+        <Line id ="W" quantity="fn1pop[0]/W" scale="1"
+            color="#ff0000" timeScale="1ms"/>
+    </Display>
+
+    <OutputFile id="of0" fileName="./fhn.dat">
+      <OutputColumn id="V" quantity="fn1pop[0]/V"/>
+      <OutputColumn id="W" quantity="fn1pop[0]/W"/>
+    </OutputFile>
+    
+</Simulation>
+
+</Lems>

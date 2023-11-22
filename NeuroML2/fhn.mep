@@ -1,0 +1,9 @@
+# Script for running automated tests on OSB using Travis-CI, see https://github.com/OpenSourceBrain/osb-model-validation
+
+system: The Fitzhugh-Nagumo model, classical parameters
+
+experiments:
+  experiment 1, free run:
+    expected:
+      spike times: [2.24, 39.82, 76.53, 113.24, 149.94, 186.65, 223.36, 260.07, 296.78, 333.49, 370.2]
+
