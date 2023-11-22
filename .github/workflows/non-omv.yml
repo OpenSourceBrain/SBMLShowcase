@@ -43,6 +43,11 @@ jobs:
         pip install python-libsedml
         python test_tellurium.py 
 
+    - name: Test validity of files
+      run: |
+        pip install pyNeuroML
+        cd SBML
+        ./validateAll.sh
 
     - name: Final version info
       run: |
