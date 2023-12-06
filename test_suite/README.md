@@ -1,6 +1,6 @@
 # Tabulates results of validation tests on SBML test suite
 
-The `process_test_suite.py` script currently runs three tests from pyneuroml on all SBML files that match the input glob argument given to it: validate SBML, validate SBML (with strict unit checks activated), validate SEDML. The SEDML file is assumed to have the same name as the SBML file except the `.xml` extension must to changed to `-sedml.xml`. The output is a markdown file containing a simple table of the results obtained on each file, where each test results is recorded as either a pass (True) or fail (False)
+The `process_test_suite.py` script currently runs three tests from pyneuroml on all SBML files that match the input glob argument given to it: validate SBML, validate SBML (with strict unit checks activated), validate SEDML. The SEDML file is assumed to have the same name as the SBML file except the `.xml` extension must to changed to `-sedml.xml`. The output is a markdown file containing a simple table of the results obtained on each file, where each test result is recorded as either a `pass` or `FAIL`.
 
 - First download the [zipfile](https://github.com/sbmlteam/sbml-test-suite/releases/download/3.4.0/semantic_tests_with_sedml_and_graphs.v3.4.0.zip) (or the latest equivalent) of the [SBML test suite](https://github.com/sbmlteam/sbml-test-suite) that includes [SEDML](https://github.com/SED-ML/sed-ml) files.
 
