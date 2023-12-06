@@ -50,6 +50,13 @@ def parse_arguments():
 
     return parser.parse_args()
 
+def porf(result):
+    '''
+    convert True into "pass" and False into "fail"
+    as otherwise it's not obvious in the table what True and False mean
+    '''
+    return "pass" if result else "FAIL"
+
 
 def process_cases(args):
     "process the test cases and write results out as a markdown table"
@@ -67,9 +74,9 @@ def process_cases(args):
             assert os.path.isfile(fpath)
             assert os.path.isfile(sedml_path)
             case = os.path.basename(fpath)
-            valid_sbml = validate_sbml_files([fpath], strict_units=False)
-            valid_sbml_units = validate_sbml_files([fpath], strict_units=True)
-            valid_sedml = validate_sedml_files([sedml_path])
+            valid_sbml = porf(validate_sbml_files([fpath], strict_units=False))
+            valid_sbml_units = porf(validate_sbml_files([fpath], strict_units=True))
+            valid_sedml = porf(validate_sedml_files([sedml_path]))
             fout.write(row.format(**locals()))
 
 
