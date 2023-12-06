@@ -55,11 +55,12 @@ def process_cases(args):
     "process the test cases and write results out as a markdown table"
 
     header = "|case|valid-sbml|valid-sbml-units|valid-sedml|\n"
+    sep = "|---|---|---|---|\n"
     row = "|{case}|{valid_sbml}|{valid_sbml_units}|{valid_sedml}|\n"
 
     with open(args.output_file, "w") as fout:
         os.chdir(args.suite_path)
-        fout.write(header)
+        fout.write(header+sep)
         for fpath in sorted(glob.glob(args.suite_glob)):
             sedml_path = fpath.replace(".xml", "-sedml.xml")
             print(fpath)
