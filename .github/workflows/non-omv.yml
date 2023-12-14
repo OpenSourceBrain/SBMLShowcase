@@ -49,6 +49,11 @@ jobs:
         cd SBML
         ./validateAll.sh
 
+    - name: Test test_suite output regeneration
+      run: |
+        cd test_suite
+        ./test_results_regeneration.sh
+
     - name: Final version info
       run: |
         omv list -V # list installed engines
