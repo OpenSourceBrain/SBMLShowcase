@@ -21,3 +21,5 @@ Note these features can be accessed easily with the [pyNeuroML](https://docs.neu
 -   Load SBMLFile.sbml using jSBML, and convert it to LEMS format using values for duration & dt in ms
 
         pynml -sbml-import SBMLFile.sbml duration dt
+
+See also https://github.com/ModECI/modelspec/blob/main/examples/COMBINE.md.
