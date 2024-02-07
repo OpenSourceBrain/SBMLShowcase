@@ -31,3 +31,4 @@ arm64
 /NeuroML2/*_brian2.py
 /NeuroML2/*_nrn.py
 /NeuroML2/*.dat
+/NeuroML2/report.*.txt

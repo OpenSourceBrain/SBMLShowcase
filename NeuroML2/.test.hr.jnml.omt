@@ -1,0 +1,21 @@
+# Script for running automated tests on OSB using Travis-CI, see https://github.com/OpenSourceBrain/osb-model-validation
+ 
+target: LEMS_Regular_HindmarshRose.xml
+engine: jNeuroML
+mep: .test.hr.mep
+experiments: 
+  x:
+    observables:
+      spike times:
+        file: 
+          path: hr.dat
+          columns: [0,1]
+        spike detection: 
+          method: threshold
+          threshold: 0
+        tolerance: 4.922820027490765e-07
+
+  
+
+
+    

@@ -30,5 +30,6 @@ mv BIOMD0000000184_LEMS_nrn.py Lavrentovich2008_Ca_Oscillations_0.mod ../NEURON
 ## Test converting a NeuroML+LEMS model to SBML+SED-ML
 cd ../NeuroML2
 jnml LEMS_NML2_Ex9_FN.xml -sbml-sedml
+jnml LEMS_Regular_HindmarshRose.xml -sbml-sedml
 mv *sedml ../SBML
 mv *sbml ../SBML
