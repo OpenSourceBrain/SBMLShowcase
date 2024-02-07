@@ -1,8 +1,16 @@
 #!/bin/bash
 set -ex
 
-### A script to validate SBML (& SED-ML) files using pyNeuroML
+### A script to validate SBML & SED-ML files using pyNeuroML
 
-pynml -validate-sbml LEMS_NML2_Ex9_FN.sbml
+pynml -validate-sbml *.sbml
 
-pynml -validate-sbml Run_Regular_HindmarshRose.sbml
+echo "All SBML files valid"
+
+pynml -validate-sbml *.xml
+
+echo "All XML files are valid SBML"
+
+pynml -validate-sedml *.sedml
+
+echo "All SEDML files are valid"
