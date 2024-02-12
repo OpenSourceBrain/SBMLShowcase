@@ -5,7 +5,7 @@ te.setDefaultPlottingEngine('matplotlib')
 import sys
 
 sedml_file='LEMS_NML2_Ex9_FN.sedml'
-if len(sys.argv)==2:
+if len(sys.argv)>1:
     sedml_file=sys.argv[1]
 
 # For technical reasons, any software which uses libSEDML
@@ -25,6 +25,7 @@ print(sedml_doc)
 print(dir(sedml_doc))
 print(sedml_doc.toSed())
 
+createOutputs = '-nogui' not in sys.argv
 
 # execute SED-ML using Tellurium
-te.executeSEDML(sedml_doc.toSed(), workingDir='.')
+te.executeSEDML(sedml_doc.toSed(), workingDir='.', saveOutputs=True, outputDir='.', createOutputs=createOutputs)
