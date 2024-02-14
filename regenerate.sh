@@ -33,3 +33,8 @@ jnml LEMS_NML2_Ex9_FN.xml -sbml-sedml
 jnml LEMS_Regular_HindmarshRose.xml -sbml-sedml
 mv *sedml ../SBML
 mv *sbml ../SBML
+
+cd ../SBML
+./validateAll.sh
+python test_tellurium.py LEMS_Regular_HindmarshRose.sedml -nogui
+python test_tellurium.py LEMS_NML2_Ex9_FN.sedml -nogui

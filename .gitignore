@@ -32,3 +32,6 @@ arm64
 /NeuroML2/*_nrn.py
 /NeuroML2/*.dat
 /NeuroML2/report.*.txt
+/SBML/*.pdf
+/SBML/ex9.csv
+/SBML/hr.csv
