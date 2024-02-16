@@ -12,6 +12,7 @@ import glob
 from pyneuroml.sbml import validate_sbml_files
 from pyneuroml.sedml import validate_sedml_files
 from pyneuroml import tellurium
+import matplotlib
 
 def parse_arguments():
     "Parse command line arguments"
@@ -27,7 +28,13 @@ def parse_arguments():
         action="store",
         type=int,
         default=0,
-        help="Limit to the first n test cases, 0 means no limit'",
+        help="Limit to the first n test cases, 0 means no limit",
+    )
+
+    parser.add_argument(
+        "--engine-errors",
+        action="store_true",
+        help="Print error messages from simulator engine(s) exceptions to stdout",
     )
 
     parser.add_argument(
@@ -91,17 +98,23 @@ def add_case_url(case,fpath,url_base):
     new_item = f'[{case}]({url})'
     return new_item
 
-def test_engine(engine,filename):
+def test_engine(engine,filename,engine_errors=False):
     'test running the file with the given engine'
 
-    if engine == "tellurium":
-        try:
+    try:
+        if engine == "tellurium":
             tellurium.run_from_sedml_file([filename],["-outputdir","none"])
             return True
-        except:
-            return False
-    else:
-        raise RuntimeError(f"unknown engine {engine}")
+        elif engine == "some_example_engine":
+            #run it here
+            return True
+    except Exception as e:
+        if engine_errors:
+            print(f">>> ENGINE ERROR for: {engine} with {filename}")
+            print(f"{e}")
+        return False
+        
+    raise RuntimeError(f"unknown engine {engine}")
 
 def process_cases(args):
     """
@@ -138,7 +151,7 @@ def process_cases(args):
             valid_sbml = pass_or_fail(validate_sbml_files([fpath], strict_units=False))
             valid_sbml_units = pass_or_fail(validate_sbml_files([fpath], strict_units=True))
             valid_sedml = pass_or_fail(validate_sedml_files([sedml_path]))
-            tellurium_okay = pass_or_fail(test_engine("tellurium",sedml_path))
+            tellurium_okay = pass_or_fail(test_engine("tellurium",sedml_path,args.engine_errors))
             output.append(row.format(**locals()))
 
             #tally results so we can provide a summary
@@ -148,6 +161,9 @@ def process_cases(args):
             if valid_sbml_units != okay: n_failing["valid_sbml_units"] += 1
             if valid_sedml != okay: n_failing["valid_sedml"] += 1
             if tellurium_okay != okay: n_failing["tellurium_okay"] += 1
+
+            #stop matplotlib plot from building up
+            matplotlib.pyplot.close()
 
         output[2] = summary.format(**locals())
         for line in output: fout.write(line+'\n')
