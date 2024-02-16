@@ -11,6 +11,7 @@ import os
 import glob
 from pyneuroml.sbml import validate_sbml_files
 from pyneuroml.sedml import validate_sedml_files
+from pyneuroml import tellurium
 
 def parse_arguments():
     "Parse command line arguments"
@@ -19,6 +20,14 @@ def parse_arguments():
 
     parser = argparse.ArgumentParser(
         description="Run various tests on the SBML Test Suite (or any similar set of SBML/SEDML files)"
+    )
+
+    parser.add_argument(
+        "--limit",
+        action="store",
+        type=int,
+        default=0,
+        help="Limit to the first n test cases, 0 means no limit'",
     )
 
     parser.add_argument(
@@ -82,6 +91,18 @@ def add_case_url(case,fpath,url_base):
     new_item = f'[{case}]({url})'
     return new_item
 
+def test_engine(engine,filename):
+    'test running the file with the given engine'
+
+    if engine == "tellurium":
+        try:
+            tellurium.run_from_sedml_file([filename],["-outputdir","none"])
+            return True
+        except:
+            return False
+    else:
+        raise RuntimeError(f"unknown engine {engine}")
+
 def process_cases(args):
     """
     process the test cases and write results out as a markdown table
@@ -89,23 +110,25 @@ def process_cases(args):
     with a summary of how many cases were tested and how many tests failed
     """
 
-    header = "|case|valid-sbml|valid-sbml-units|valid-sedml|"
-    sep = "|---|---|---|---|"
-    summary="|cases={n_cases}|fails={n_failing[valid_sbml]}|fails={n_failing[valid_sbml_units]}|fails={n_failing[valid_sedml]}|"
-    row = "|{case}|{valid_sbml}|{valid_sbml_units}|{valid_sedml}|"
+    header = "|case|valid-sbml|valid-sbml-units|valid-sedml|tellurium|"
+    sep = "|---|---|---|---|---|"
+    summary="|cases={n_cases}|fails={n_failing[valid_sbml]}|fails={n_failing[valid_sbml_units]}|fails={n_failing[valid_sedml]}|fails={n_failing[tellurium_okay]}|"
+    row = "|{case}|{valid_sbml}|{valid_sbml_units}|{valid_sedml}|{tellurium_okay}|"
 
     with open(args.output_file, "w") as fout:
-        #accumulate output in memory so we can put the nifty summary at the top
-        #instead of at the end of a very long table
+        #accumulate output in memory so we can put the summary at the top instead of at the end
         output = []
         output.append(header)
         output.append(sep)
         output.append("<results summary goes here>")
         n_cases = 0
-        n_failing = {"valid_sbml":0, "valid_sbml_units":0, "valid_sedml":0 }
+        n_failing = {"valid_sbml":0, "valid_sbml_units":0, "valid_sedml":0, "tellurium_okay":0 }
+        count = 0
 
         os.chdir(args.suite_path)
         for fpath in sorted(glob.glob(args.suite_glob)):
+            if args.limit and args.limit > 0 and count >= args.limit: break
+            count += 1
             sedml_path = fpath.replace(".xml", "-sedml.xml")
             print(fpath)
             assert os.path.isfile(fpath)
@@ -115,6 +138,7 @@ def process_cases(args):
             valid_sbml = pass_or_fail(validate_sbml_files([fpath], strict_units=False))
             valid_sbml_units = pass_or_fail(validate_sbml_files([fpath], strict_units=True))
             valid_sedml = pass_or_fail(validate_sedml_files([sedml_path]))
+            tellurium_okay = pass_or_fail(test_engine("tellurium",sedml_path))
             output.append(row.format(**locals()))
 
             #tally results so we can provide a summary
@@ -123,6 +147,7 @@ def process_cases(args):
             if valid_sbml != okay: n_failing["valid_sbml"] += 1
             if valid_sbml_units != okay: n_failing["valid_sbml_units"] += 1
             if valid_sedml != okay: n_failing["valid_sedml"] += 1
+            if tellurium_okay != okay: n_failing["tellurium_okay"] += 1
 
         output[2] = summary.format(**locals())
         for line in output: fout.write(line+'\n')
