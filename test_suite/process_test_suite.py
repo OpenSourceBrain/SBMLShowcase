@@ -13,6 +13,8 @@ from pyneuroml.sbml import validate_sbml_files
 from pyneuroml.sedml import validate_sedml_files
 from pyneuroml import tellurium
 import matplotlib
+from collections import defaultdict
+import re
 
 def parse_arguments():
     "Parse command line arguments"
@@ -98,21 +100,64 @@ def add_case_url(case,fpath,url_base):
     new_item = f'[{case}]({url})'
     return new_item
 
-def test_engine(engine,filename,engine_errors=False):
+def process_error(engine,error,engine_errors):
+    'reduce error to a short identified that can be displayed in the table'
+
+    global okay,fail
+
+    error_str = str(error)
+
+    error_categories=\
+    {
+        "tellurium":
+            {
+                "^Unable to support algebraic rules.":"algebraic",
+                "^Unable to support delay differential equations.":"delay",
+                "^Unknown ASTNode type of":"ASTNode",
+                "^Mutable stochiometry for species which appear multiple times in a single reaction":"stochiometry",
+                "^'float' object is not callable":"float",
+                "is not a named SpeciesReference":"SpeciesRef",
+                "reset":"reset",
+            },
+    }
+
+    cell_text = None
+    for pattern in error_categories[engine]:
+        if re.search(pattern,error_str):
+            error_tag = error_categories[engine][pattern]
+            engine_errors[error_tag] += 1
+            cell_text = f"{fail} ({error_tag})"
+            cell_text=f'''<details><summary>{fail} ({error_tag})</summary>{error_str}</details>'''
+            break
+    
+    if not cell_text:
+        engine_errors["other"] += 1
+        cell_text=f'''<details><summary>{fail} (other)</summary>{error_str}</details>'''
+
+
+    return cell_text
+
+def test_engine(engine,filename,engine_errors=None):
     'test running the file with the given engine'
+
+    global okay,fail
 
     try:
         if engine == "tellurium":
             tellurium.run_from_sedml_file([filename],["-outputdir","none"])
-            return True
+            return okay
         elif engine == "some_example_engine":
             #run it here
-            return True
+            return okay
     except Exception as e:
-        if engine_errors:
-            print(f">>> ENGINE ERROR for: {engine} with {filename}")
-            print(f"{e}")
-        return False
+        if engine_errors != None:
+            #return informative error identifier
+            return process_error(engine,e,engine_errors)
+            #print(f">>> ENGINE ERROR for: {engine} with {filename}")
+            #print(f"{e}")
+        else:
+            #return simple "FAIL" indicator
+            return fail
         
     raise RuntimeError(f"unknown engine {engine}")
 
@@ -138,6 +183,13 @@ def process_cases(args):
         n_failing = {"valid_sbml":0, "valid_sbml_units":0, "valid_sedml":0, "tellurium_okay":0 }
         count = 0
 
+        if args.engine_errors:
+            #dict to record frequency of each engine error type
+            engine_errors = defaultdict(int)
+        else:
+            #disable detailed error tracking
+            engine_errors = None
+
         os.chdir(args.suite_path)
         for fpath in sorted(glob.glob(args.suite_glob)):
             if args.limit and args.limit > 0 and count >= args.limit: break
@@ -151,7 +203,7 @@ def process_cases(args):
             valid_sbml = pass_or_fail(validate_sbml_files([fpath], strict_units=False))
             valid_sbml_units = pass_or_fail(validate_sbml_files([fpath], strict_units=True))
             valid_sedml = pass_or_fail(validate_sedml_files([sedml_path]))
-            tellurium_okay = pass_or_fail(test_engine("tellurium",sedml_path,args.engine_errors))
+            tellurium_okay = test_engine("tellurium",sedml_path,engine_errors)
             output.append(row.format(**locals()))
 
             #tally results so we can provide a summary
