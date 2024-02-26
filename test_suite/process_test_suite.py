@@ -16,6 +16,23 @@ import matplotlib
 from collections import defaultdict
 import re
 
+# define error categories for detailed error counting per engine
+# (currently only tellurium)
+error_categories=\
+{
+    "tellurium":
+        {
+            "^Unable to support algebraic rules.":"algebraic",
+            "^Unable to support delay differential equations.":"delay",
+            "^Unknown ASTNode type of":"ASTNode",
+            "^Mutable stochiometry for species which appear multiple times in a single reaction":"stochiometry",
+            "^'float' object is not callable":"float",
+            "is not a named SpeciesReference":"SpeciesRef",
+            "reset":"reset",
+        },
+}
+
+
 def parse_arguments():
     "Parse command line arguments"
 
@@ -31,12 +48,6 @@ def parse_arguments():
         type=int,
         default=0,
         help="Limit to the first n test cases, 0 means no limit",
-    )
-
-    parser.add_argument(
-        "--engine-errors",
-        action="store_true",
-        help="Print error messages from simulator engine(s) exceptions to stdout",
     )
 
     parser.add_argument(
@@ -101,40 +112,30 @@ def add_case_url(case,fpath,url_base):
     return new_item
 
 def make_md_error_string(error):
+    '''
+    make error string safe to insert into markdown table
+    note: it will later be wrapped in triple backquotes after RE pattern matching
+    '''
+
     return str(error).replace("\n"," ").replace("\r","").replace("\t"," ").replace("   "," ").replace("  "," ")
 
 def process_error(engine,error,engine_errors):
     'reduce error to a short identifier that can be displayed in the table'
 
-    global okay,fail
+    global okay,fail,error_categories
 
     error_str = make_md_error_string(error)
-
-    error_categories=\
-    {
-        "tellurium":
-            {
-                "^Unable to support algebraic rules.":"algebraic",
-                "^Unable to support delay differential equations.":"delay",
-                "^Unknown ASTNode type of":"ASTNode",
-                "^Mutable stochiometry for species which appear multiple times in a single reaction":"stochiometry",
-                "^'float' object is not callable":"float",
-                "is not a named SpeciesReference":"SpeciesRef",
-                "reset":"reset",
-            },
-    }
 
     cell_text = None
     for pattern in error_categories[engine]:
         if re.search(pattern,error_str):
             error_tag = error_categories[engine][pattern]
-            engine_errors[error_tag] += 1
-            #cell_text = f"{fail} (```{error_tag}```)"
-            cell_text=f"<details><summary>{fail} (```{error_tag}```)</summary>```{error_str}```</details>"
+            engine_errors[engine][error_tag] += 1
+            cell_text=f"<details><summary>{fail} ({error_tag})</summary>```{error_str}```</details>"
             break
     
     if not cell_text:
-        engine_errors["other"] += 1
+        engine_errors[engine]["other"] += 1
         cell_text=f"<details><summary>{fail} (other)</summary>```{error_str}```</details>"
 
 
@@ -156,13 +157,23 @@ def test_engine(engine,filename,engine_errors=None):
         if engine_errors != None:
             #return informative error identifier
             return process_error(engine,e,engine_errors)
-            #print(f">>> ENGINE ERROR for: {engine} with {filename}")
-            #print(f"{e}")
         else:
             #return simple "FAIL" indicator
             return fail
         
     raise RuntimeError(f"unknown engine {engine}")
+
+
+def insert_engine_error_summaries(summary,engine_errors):
+    'insert engine error summary counts into table header line'
+
+    for engine in engine_errors:
+        total_errors = sum([ count for error_tag,count in engine_errors[engine].items() ])
+        details = ' '.join([ f'{error_tag}={count}' for error_tag,count in engine_errors[engine].items() ])
+        element = f"<details><summary>fails={total_errors}</summary>{details}</details>"
+        summary = summary.replace('{'+engine+'_summary}',element)
+
+    return summary
 
 def process_cases(args):
     """
@@ -171,10 +182,23 @@ def process_cases(args):
     with a summary of how many cases were tested and how many tests failed
     """
 
+    global error_categories
+
     header = "|case|valid-sbml|valid-sbml-units|valid-sedml|tellurium|"
     sep = "|---|---|---|---|---|"
-    summary="|cases={n_cases}|fails={n_failing[valid_sbml]}|fails={n_failing[valid_sbml_units]}|fails={n_failing[valid_sedml]}|fails={n_failing[tellurium_okay]}|"
-    row = "|{case}|{valid_sbml}|{valid_sbml_units}|{valid_sedml}|{tellurium_okay}|"
+    summary="|cases={n_cases}|fails={n_failing[valid_sbml]}|fails={n_failing[valid_sbml_units]}|fails={n_failing[valid_sedml]}|{tellurium_summary}|"
+    row = "|{case}|{valid_sbml}|{valid_sbml_units}|{valid_sedml}|{tellurium_outcome}|"
+
+    #dict to record frequency of each engine error type
+    engine_errors = {}
+
+    #make sure engine errors is ready to receive error counts from all engines
+    for engine in error_categories:
+        engine_errors[engine] = {}
+        engine_errors[engine]['other'] = 0
+        for pattern,error_tag in error_categories[engine].items():
+            engine_errors[engine][error_tag] = 0
+
 
     with open(args.output_file, "w") as fout:
         #accumulate output in memory so we can put the summary at the top instead of at the end
@@ -183,20 +207,13 @@ def process_cases(args):
         output.append(sep)
         output.append("<results summary goes here>")
         n_cases = 0
-        n_failing = {"valid_sbml":0, "valid_sbml_units":0, "valid_sedml":0, "tellurium_okay":0 }
-        count = 0
+        n_failing = {"valid_sbml":0, "valid_sbml_units":0, "valid_sedml":0, "tellurium":0 }
 
-        if args.engine_errors:
-            #dict to record frequency of each engine error type
-            engine_errors = defaultdict(int)
-        else:
-            #disable detailed error tracking
-            engine_errors = None
 
         os.chdir(args.suite_path)
         for fpath in sorted(glob.glob(args.suite_glob)):
-            if args.limit and args.limit > 0 and count >= args.limit: break
-            count += 1
+            if args.limit and args.limit > 0 and n_cases >= args.limit: break
+            n_cases +=1
             sedml_path = fpath.replace(".xml", "-sedml.xml")
             print(fpath)
             assert os.path.isfile(fpath)
@@ -206,21 +223,26 @@ def process_cases(args):
             valid_sbml = pass_or_fail(validate_sbml_files([fpath], strict_units=False))
             valid_sbml_units = pass_or_fail(validate_sbml_files([fpath], strict_units=True))
             valid_sedml = pass_or_fail(validate_sedml_files([sedml_path]))
-            tellurium_okay = test_engine("tellurium",sedml_path,engine_errors)
+            tellurium_outcome = test_engine("tellurium",sedml_path,engine_errors)
             output.append(row.format(**locals()))
 
             #tally results so we can provide a summary
             global okay,fail
-            n_cases +=1
             if valid_sbml != okay: n_failing["valid_sbml"] += 1
             if valid_sbml_units != okay: n_failing["valid_sbml_units"] += 1
             if valid_sedml != okay: n_failing["valid_sedml"] += 1
-            if tellurium_okay != okay: n_failing["tellurium_okay"] += 1
+            if tellurium_outcome != okay: n_failing["tellurium"] += 1
 
             #stop matplotlib plot from building up
             matplotlib.pyplot.close()
 
+        #add detailed error statistics to tellurium summary element
+        summary = insert_engine_error_summaries(summary,engine_errors)
+
+        #complete the header
         output[2] = summary.format(**locals())
+
+        #write to output file
         for line in output: fout.write(line+'\n')
 
 
