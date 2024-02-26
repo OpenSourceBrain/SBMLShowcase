@@ -101,7 +101,7 @@ def add_case_url(case,fpath,url_base):
     return new_item
 
 def process_error(engine,error,engine_errors):
-    'reduce error to a short identified that can be displayed in the table'
+    'reduce error to a short identifier that can be displayed in the table'
 
     global okay,fail
 
@@ -126,13 +126,13 @@ def process_error(engine,error,engine_errors):
         if re.search(pattern,error_str):
             error_tag = error_categories[engine][pattern]
             engine_errors[error_tag] += 1
-            cell_text = f"{fail} ({error_tag})"
-            cell_text=f'''<details><summary>{fail} ({error_tag})</summary>{error_str}</details>'''
+            #cell_text = f"{fail} (```{error_tag}```)"
+            cell_text=f"<details><summary>{fail} (```{error_tag}```)</summary>```{error_str}```</details>"
             break
     
     if not cell_text:
         engine_errors["other"] += 1
-        cell_text=f'''<details><summary>{fail} (other)</summary>{error_str}</details>'''
+        cell_text=f"<details><summary>{fail} (other)</summary>```{error_str}```</details>"
 
 
     return cell_text
