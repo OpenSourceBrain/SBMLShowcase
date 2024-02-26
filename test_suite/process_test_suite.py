@@ -207,7 +207,7 @@ def process_cases(args):
         output.append(sep)
         output.append("<results summary goes here>")
         n_cases = 0
-        n_failing = {"valid_sbml":0, "valid_sbml_units":0, "valid_sedml":0, "tellurium":0 }
+        n_failing = {"valid_sbml":0, "valid_sbml_units":0, "valid_sedml":0}
 
 
         os.chdir(args.suite_path)
@@ -223,7 +223,7 @@ def process_cases(args):
             valid_sbml = pass_or_fail(validate_sbml_files([fpath], strict_units=False))
             valid_sbml_units = pass_or_fail(validate_sbml_files([fpath], strict_units=True))
             valid_sedml = pass_or_fail(validate_sedml_files([sedml_path]))
-            tellurium_outcome = test_engine("tellurium",sedml_path,engine_errors)
+            tellurium_outcome = test_engine("tellurium",sedml_path,engine_errors) #note: used in row.format below via locals()
             output.append(row.format(**locals()))
 
             #tally results so we can provide a summary
@@ -231,12 +231,11 @@ def process_cases(args):
             if valid_sbml != okay: n_failing["valid_sbml"] += 1
             if valid_sbml_units != okay: n_failing["valid_sbml_units"] += 1
             if valid_sedml != okay: n_failing["valid_sedml"] += 1
-            if tellurium_outcome != okay: n_failing["tellurium"] += 1
 
             #stop matplotlib plot from building up
             matplotlib.pyplot.close()
 
-        #add detailed error statistics to tellurium summary element
+        #add detailed error statistics to engine column header summary cells
         summary = insert_engine_error_summaries(summary,engine_errors)
 
         #complete the header
