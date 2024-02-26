@@ -100,12 +100,15 @@ def add_case_url(case,fpath,url_base):
     new_item = f'[{case}]({url})'
     return new_item
 
+def make_md_error_string(error):
+    return str(error).replace("\n"," ").replace("\r","").replace("\t"," ").replace("   "," ").replace("  "," ")
+
 def process_error(engine,error,engine_errors):
     'reduce error to a short identifier that can be displayed in the table'
 
     global okay,fail
 
-    error_str = str(error)
+    error_str = make_md_error_string(error)
 
     error_categories=\
     {
