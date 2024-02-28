@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
 import requests
+import re
+import os
+import urllib
 
 API_URL: str = "https://www.ebi.ac.uk/biomodels"
 
@@ -27,14 +30,32 @@ def get_model_info(model_id):
     return output
 
 
+def download_file(model_id,filename,output_file):
+    qfilename = urllib.parse.quote_plus(filename)
+    response = requests.get(f'{API_URL}/model/download/{model_id}?filename={qfilename}')
+    response.raise_for_status()
+
+    with open(output_file,"wb") as fout:
+        fout.write(response.content)
+
+def replace_model_xml(sedml_path,sbml_filename):
+    with open(sedml_path,encoding='utf-8') as f:
+        data = f.read()
+
+    data = data.replace('source="model.xml"',f'source="{sbml_filename}"')
+
+    with open(f'{sedml_path}.fixed',"w",encoding="utf-8") as fout:
+        fout.write(data)
+
 def main():
+    max_count = 0 #0 for unlimited
+    tmpdir = "tmpdir1234"
+
     #get list of all available models
     model_ids = get_model_identifiers() 
 
-    max_count = 0 #0 for unlimited
-    count = 0
-
-    #models_with_sedml = []
+    os.makedirs(tmpdir,exist_ok=True)
+    remove_tmpdir = False
 
     header = "|Model|SBML|SEDML|valid-sbml|valid-sbml-units|valid-sedml|tellurium|"
     sep = "|---|---|---|---|---|---|---|"
@@ -43,11 +64,14 @@ def main():
     output = []
     output.append(header)
     output.append(sep)
+    count = 0
 
     for model_id in model_ids:
+        model_id = "BIOMD0000001027"
         #allow testing on a small sample of models
         if max_count > 0 and count >= max_count: break
         count +=1
+        print(f"\r{count}/{len(model_ids)}       ",end='')
 
         #BIOMD ids should be the curated models
         if not 'BIOMD' in model_id: continue
@@ -63,34 +87,34 @@ def main():
 
         model_link = f'[{model_id}]({API_URL}/{model_id})' #used via locals()
         model_name = info['name']                          #used via locals()
-        sbml_file = info['files']['main'][0]
+        sbml_file = info['files']['main'][0]['name']
 
         sedml_file = []
         for file_info in info['files']['additional']:
-            if 'SED-ML' in file_info['name'] or 'SED-ML' in file_info['description']:
+            pattern = 'SED[-]?ML'
+            target = f"{file_info['name']}|{file_info['description']}".upper()
+            if re.search(pattern,target):
                 sedml_file.append(file_info['name'])
 
         #require exactly one SEDML file
         if len(sedml_file) != 1: continue
         sedml_file = sedml_file[0]
 
-        #models_with_sedml.append(model_id)
+        #make temporary downloads of the sbml and sedml files
+        os.makedirs(f'{tmpdir}/{model_id}',exist_ok=True)
+        #download_file(model_id,sbml_file,f'{tmpdir}/{model_id}/{sbml_file}')
+        #download_file(model_id,sedml_file,f'{tmpdir}/{model_id}/{sedml_file}')
 
-        #sedml_link = f'[{file["name"]}]({API_URL}/{model_id}#Files)' #used via locals()
+        #if the sedml file contains 'source="model.xml"' replace it with the sbml filename
+        replace_model_xml(f'{tmpdir}/{model_id}/{sedml_file}',sbml_file)
 
         output.append(row.format(**locals()))
 
-        # print("=======================")
-        # print(f"{model_id}: {info['name']}")
-        # print(f"   SBML file:  {sbml_file}")
-        # print(f"   SEDML file: {sedml_file}")
+    print()
 
-
-    #write out to file
+        #write out to file
     with open('README.md', "w") as fout:
         for line in output: fout.write(line+'\n')
-
-    #print("Found %i/%i containing SED-ML: %s"%(len(models_with_sedml), count, models_with_sedml))
 
 if __name__ == "__main__":
     main()
