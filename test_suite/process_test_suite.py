@@ -199,7 +199,8 @@ def process_cases(args):
         for pattern,error_tag in error_categories[engine].items():
             engine_errors[engine][error_tag] = 0
 
-
+    #open file now to make sure output path is with respect to initial working directory
+    #not the test suite folder
     with open(args.output_file, "w") as fout:
         #accumulate output in memory so we can put the summary at the top instead of at the end
         output = []
