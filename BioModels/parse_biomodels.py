@@ -6,15 +6,22 @@ import os
 import urllib
 import shutil
 from hashlib import sha256
+import pickle
 
 API_URL: str = "https://www.ebi.ac.uk/biomodels"
 
 out_format="json"
 max_count = 0 #0 for unlimited
 
+#caching is used to prevent the need to download the same responses from the remote server multiple times during testing
 #"off" to not use caching at all, "setup" to wipe and store fresh results in the cache, "reuse" to reuse the existing cache
-cache_mode = "setup"
+cache_mode = "reuse"
 cache_dir = "cache"
+
+#local temporary storage of the model files
+#this is independent of caching, and still happens when caching is turned off
+#this allows the model to be executed and the files manually examined etc
+tmp_dir = "tmp1234"
 
 def setup_cache_dir():
     'wipe any existing cache directory and setup a new empty one'
@@ -28,37 +35,26 @@ def get_cache_path(request):
     return path to cached request response
     '''
 
-    return f"{cache_dir}/{sha256(request).hexdigest()}"
+    return f"{cache_dir}/{sha256(request.encode('UTF-8')).hexdigest()}"
 
 
-def get_cache_entry(request,encoding="UTF-8"):
+def get_cache_entry(request):
     '''
     load cached response from cache_dir
+    note this should only be used in a context where you trust the integrity of the files being loaded
     '''
 
-    #read in binary mode
     with open(get_cache_path(request),"rb") as f:
-        response = f.read()
-
-    if encoding == None:
-        #return data in raw binary form
-        return response
-    else:
-        #decode to string
-        return response.decode(encoding)
+        return pickle.load(f)
     
 
-def set_cache_entry(request,response,encoding="UTF-8"):
+def set_cache_entry(request,response):
     '''
     save a response to the cache
-    must either provide an encoding
-    or binary data as the response
     '''
 
-    if encoding: response = response.encode(encoding)
-
     with open(get_cache_path(request),"wb") as fout:
-        fout.write(response)
+        pickle.dump(response,fout)
 
 
 def get_model_identifiers():
@@ -69,7 +65,7 @@ def get_model_identifiers():
     request = f"{API_URL}/model/identifiers?format={out_format}"
     if cache_mode == "reuse": return get_cache_entry(request)
 
-    response = requests.get()
+    response = requests.get(request)
     response.raise_for_status()
     response = response.json()['models']
 
@@ -95,38 +91,56 @@ def download_file(model_id,filename,output_file):
     request = f'{API_URL}/model/download/{model_id}?filename={qfilename}'
 
     if cache_mode == "reuse":
-        response = get_cache_entry(request,encoding=None)
+        response = get_cache_entry(request)
     else:
         response = requests.get(request)
         response.raise_for_status()
         response = response.content
 
     if cache_mode == "setup":
-         set_cache_entry(request,response,encoding=None)
+         set_cache_entry(request,response)
 
     with open(output_file,"wb") as fout:
         fout.write(response)
 
 def replace_model_xml(sedml_path,sbml_filename):
+    '''
+    if the SEDML refers to a generic "model.xml" file
+    and the SBML file is not called this
+    replace the SEDML reference with the actual SBML filename
+
+    method used assumes 'source="model.xml"' will only
+    occur in the SBML file reference
+    which was true at time of testing on current BioModels release
+
+    returns True if the SBML reference had to be fixed
+    '''
+
+    if sbml_filename == "model.xml": return False
+
     with open(sedml_path,encoding='utf-8') as f:
         data = f.read()
 
+    if not 'source="model.xml"' in data: return False
+
     data = data.replace('source="model.xml"',f'source="{sbml_filename}"')
 
-    with open(f'{sedml_path}.fixed',"w",encoding="utf-8") as fout:
+    with open(f'{sedml_path}',"w",encoding="utf-8") as fout:
         fout.write(data)
 
-def main():
+    return True
 
+def main():
+    #wipe any existing cache entries
     if cache_mode == "setup":  setup_cache_dir()
 
     #get list of all available models
     model_ids = get_model_identifiers() 
 
 
-    header = "|Model|SBML|SEDML|valid-sbml|valid-sbml-units|valid-sedml|tellurium|"
-    sep = "|---|---|---|---|---|---|---|"
-    row = "|{model_link}<br/><sup>{model_name}</sup>|{sbml_file}|{sedml_file}| | | |"
+    header = "|Model|SBML|SEDML|broken-ref|valid-sbml|valid-sbml-units|valid-sedml|tellurium|"
+    sep = "|---|---|---|---|---|---|---|---|"
+    row = "|{model_link}<br/><sup>{model_name}</sup>|{sbml_file}|{sedml_file}|{broken_ref}| | | |"
 
     output = []
     output.append(header)
@@ -167,12 +181,12 @@ def main():
         sedml_file = sedml_file[0]
 
         #make temporary downloads of the sbml and sedml files
-        os.makedirs(f'{tmpdir}/{model_id}',exist_ok=True)
-        download_file(model_id,sbml_file,f'{tmpdir}/{model_id}/{sbml_file}')
-        download_file(model_id,sedml_file,f'{tmpdir}/{model_id}/{sedml_file}')
+        os.makedirs(f'{tmp_dir}/{model_id}',exist_ok=True)
+        download_file(model_id,sbml_file,f'{tmp_dir}/{model_id}/{sbml_file}')
+        download_file(model_id,sedml_file,f'{tmp_dir}/{model_id}/{sedml_file}')
 
         #if the sedml file contains 'source="model.xml"' replace it with the sbml filename
-        replace_model_xml(f'{tmpdir}/{model_id}/{sedml_file}',sbml_file)
+        broken_ref = replace_model_xml(f'{tmp_dir}/{model_id}/{sedml_file}',sbml_file) #used via locals()
 
         output.append(row.format(**locals()))
 
