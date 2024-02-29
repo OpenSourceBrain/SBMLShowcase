@@ -206,10 +206,11 @@ def main():
         #if the sedml file contains a generic 'source="model.xml"' replace it with the sbml filename
         broken_ref = replace_model_xml(f'{tmp_dir}/{model_id}/{sedml_file}',sbml_file) #used via locals()
 
-
+        #run the validation functions on the sbml and sedml files
         valid_sbml = pass_or_fail(validate_sbml_files([f'{tmp_dir}/{model_id}/{sbml_file}'], strict_units=False))
         valid_sbml_units = pass_or_fail(validate_sbml_files([f'{tmp_dir}/{model_id}/{sbml_file}'], strict_units=True))
         valid_sedml = pass_or_fail(validate_sedml_files([f'{tmp_dir}/{model_id}/{sedml_file}']))
+
 
         output.append(row.format(**locals()))
 
