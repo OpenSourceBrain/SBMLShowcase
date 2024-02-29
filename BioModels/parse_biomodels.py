@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+from pyneuroml.sbml import validate_sbml_files
+from pyneuroml.sedml import validate_sedml_files
+from pyneuroml import tellurium
+
 import requests
 import re
 import os
@@ -23,6 +27,18 @@ cache_dir = "cache"
 #this allows the model to be executed and the files manually examined etc
 tmp_dir = "tmp1234"
 
+#strings to use to represent passed and failed tests
+okay = "pass"
+fail = "FAIL"
+def pass_or_fail(result):
+    '''
+    convert True into "pass" and False into "fail"
+    as otherwise it's not obvious in the table what True and False mean
+    '''
+    global okay,fail
+
+    return okay if result else fail
+
 def setup_cache_dir():
     'wipe any existing cache directory and setup a new empty one'
 
@@ -41,7 +57,9 @@ def get_cache_path(request):
 def get_cache_entry(request):
     '''
     load cached response from cache_dir
-    note this should only be used in a context where you trust the integrity of the files being loaded
+    note this should only be used in a context where you trust the integrity of the cache files
+    due to using pickle
+    note also: no handling of cache misses yet implemented
     '''
 
     with open(get_cache_path(request),"rb") as f:
@@ -140,7 +158,7 @@ def main():
 
     header = "|Model|SBML|SEDML|broken-ref|valid-sbml|valid-sbml-units|valid-sedml|tellurium|"
     sep = "|---|---|---|---|---|---|---|---|"
-    row = "|{model_link}<br/><sup>{model_name}</sup>|{sbml_file}|{sedml_file}|{broken_ref}| | | |"
+    row = "|{model_link}<br/><sup>{model_name}</sup>|{sbml_file}|{sedml_file}|{broken_ref}|{valid_sbml}|{valid_sbml_units}|{valid_sedml}||"
 
     output = []
     output.append(header)
@@ -185,8 +203,13 @@ def main():
         download_file(model_id,sbml_file,f'{tmp_dir}/{model_id}/{sbml_file}')
         download_file(model_id,sedml_file,f'{tmp_dir}/{model_id}/{sedml_file}')
 
-        #if the sedml file contains 'source="model.xml"' replace it with the sbml filename
+        #if the sedml file contains a generic 'source="model.xml"' replace it with the sbml filename
         broken_ref = replace_model_xml(f'{tmp_dir}/{model_id}/{sedml_file}',sbml_file) #used via locals()
+
+
+        valid_sbml = pass_or_fail(validate_sbml_files([f'{tmp_dir}/{model_id}/{sbml_file}'], strict_units=False))
+        valid_sbml_units = pass_or_fail(validate_sbml_files([f'{tmp_dir}/{model_id}/{sbml_file}'], strict_units=True))
+        valid_sedml = pass_or_fail(validate_sedml_files([f'{tmp_dir}/{model_id}/{sedml_file}']))
 
         output.append(row.format(**locals()))
 
