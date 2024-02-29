@@ -148,23 +148,83 @@ def replace_model_xml(sedml_path,sbml_filename):
 
     return True
 
+class MarkdownTable:
+    '''
+    helper class to accumulate rows of data with a header and optional summary row
+    to be written to file as a markdown table
+    '''
+    def __init__(self,labels:str,keys:str,splitter='|'):
+        'specify column headers and variable names'
+        self.labels = [x.strip() for x in labels.split(splitter)]
+        self.keys = [x.strip() for x in keys.split(splitter)]
+        assert len(self.keys) == len(self.labels)
+        self.data = {key:[] for key in self.keys}
+        self.summary = None
+
+    def append_row(self,vars):
+        'ingest the next row from a variables dict (eg locals())'
+        for key in self.keys:
+            self.data[key].append(vars[key])
+
+    def get_column(self,key):
+        'return the named column'
+        return self.data[key]
+    
+    def __getitem__(self,key):
+        'convenience wrapper to allow square brackets access to columns'
+        return self.get_column(key)
+    
+    def n_rows(self):
+        'return number of data rows'
+        return len(self.data[self.keys[0]])
+
+    def n_cols(self):
+        'return number of data columns'
+        return len(self.data)
+
+    def add_summary(self,key,value):
+        'fill in the optional summary cell for the named column'
+        if not self.summary:
+            self.summary = {key:"" for key in self.keys}
+
+        self.summary[key] = value
+
+    def add_count(self,key,func,format='n={count}'):
+        'add a basic summary counting how many times the function is true'
+        count = len([ x for x in self.data[key] if func(x) ])
+
+        self.add_summary(key,format.format(count=count))
+
+    def transform_column(self,key,func):
+        'pass all column values through a function'
+        for i in range(len(self.data[key])):
+            self.data[key][i] = func(self.data[key][i])
+
+    def write(self,fout,sep='|',end='\n'):
+        'write the markdown table to file'
+        fout.write(sep + sep.join(self.labels) + sep + end)
+        fout.write(sep + sep.join(['---' for x in self.labels]) + sep + end)
+        if self.summary:
+            fout.write(sep + sep.join([ str(self.summary[key]) for key in self.keys ]) + sep + end)
+
+        for i in range(self.n_rows()):
+            fout.write(sep + sep.join([ str(self.data[key][i]) for key in self.keys ])  + sep + end)
+
+
 def main():
     #wipe any existing cache entries
     if cache_mode == "setup":  setup_cache_dir()
 
+    #accumulate results in columns defined by keys which correspond to the local variable names to be used below
+    #to allow automated loading into the columns
+    column_labels = "Model     |SBML     |SEDML     |broken-ref|valid-sbml|valid-sbml-units|valid-sedml|tellurium"
+    column_keys  =  "model_desc|sbml_file|sedml_file|broken_ref|valid_sbml|valid_sbml_units|valid_sedml|tellurium_outcome"
+
+    mtab = MarkdownTable(column_labels,column_keys)
+
     #get list of all available models
     model_ids = get_model_identifiers() 
-
-
-    header = "|Model|SBML|SEDML|broken-ref|valid-sbml|valid-sbml-units|valid-sedml|tellurium|"
-    sep = "|---|---|---|---|---|---|---|---|"
-    row = "|{model_link}<br/><sup>{model_name}</sup>|{sbml_file}|{sedml_file}|{broken_ref}|{valid_sbml}|{valid_sbml_units}|{valid_sedml}||"
-
-    output = []
-    output.append(header)
-    output.append(sep)
     count = 0
-
     for model_id in model_ids:
         #allow testing on a small sample of models
         if max_count > 0 and count >= max_count: break
@@ -183,8 +243,7 @@ def main():
         #must have a SEDML file as well in order to be executed
         if not 'additional' in info['files']: continue
 
-        model_link = f'[{model_id}]({API_URL}/{model_id})' #used via locals()
-        model_name = info['name']                          #used via locals()
+        model_desc = f"[{model_id}]({API_URL}/{model_id})<br/><sup>{info['name']}</sup>"
         sbml_file = info['files']['main'][0]['name']
 
         sedml_file = []
@@ -207,18 +266,27 @@ def main():
         broken_ref = replace_model_xml(f'{tmp_dir}/{model_id}/{sedml_file}',sbml_file) #used via locals()
 
         #run the validation functions on the sbml and sedml files
-        valid_sbml = pass_or_fail(validate_sbml_files([f'{tmp_dir}/{model_id}/{sbml_file}'], strict_units=False))
-        valid_sbml_units = pass_or_fail(validate_sbml_files([f'{tmp_dir}/{model_id}/{sbml_file}'], strict_units=True))
-        valid_sedml = pass_or_fail(validate_sedml_files([f'{tmp_dir}/{model_id}/{sedml_file}']))
+        valid_sbml = validate_sbml_files([f'{tmp_dir}/{model_id}/{sbml_file}'], strict_units=False)
+        valid_sbml_units = validate_sbml_files([f'{tmp_dir}/{model_id}/{sbml_file}'], strict_units=True)
+        valid_sedml = validate_sedml_files([f'{tmp_dir}/{model_id}/{sedml_file}'])
 
+        tellurium_outcome = 'stub'
 
-        output.append(row.format(**locals()))
+        mtab.append_row(locals())
 
-    print()
+    print() #go to next line after the progress counter
 
-        #write out to file
+    #show total cases processed
+    mtab.add_summary('model_desc',f'n={mtab.n_rows()}')
+
+    #give failure counts
+    for key in ['valid_sbml','valid_sbml_units','valid_sedml','broken_ref']:
+        mtab.add_count(key,lambda x:x==False,'n_fail={count}')
+        mtab.transform_column(key,lambda x:'pass' if x else 'FAIL')
+
+    #write out to file
     with open('README.md', "w") as fout:
-        for line in output: fout.write(line+'\n')
+        mtab.write(fout)
 
 if __name__ == "__main__":
     main()
