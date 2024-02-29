@@ -4,39 +4,108 @@ import requests
 import re
 import os
 import urllib
+import shutil
+from hashlib import sha256
 
 API_URL: str = "https://www.ebi.ac.uk/biomodels"
 
 out_format="json"
+max_count = 0 #0 for unlimited
+
+#"off" to not use caching at all, "setup" to wipe and store fresh results in the cache, "reuse" to reuse the existing cache
+cache_mode = "setup"
+cache_dir = "cache"
+
+def setup_cache_dir():
+    'wipe any existing cache directory and setup a new empty one'
+
+    shutil.rmtree(cache_dir,ignore_errors=True)
+    os.makedirs(cache_dir,exist_ok=True)
+
+
+def get_cache_path(request):
+    '''
+    return path to cached request response
+    '''
+
+    return f"{cache_dir}/{sha256(request).hexdigest()}"
+
+
+def get_cache_entry(request,encoding="UTF-8"):
+    '''
+    load cached response from cache_dir
+    '''
+
+    #read in binary mode
+    with open(get_cache_path(request),"rb") as f:
+        response = f.read()
+
+    if encoding == None:
+        #return data in raw binary form
+        return response
+    else:
+        #decode to string
+        return response.decode(encoding)
+    
+
+def set_cache_entry(request,response,encoding="UTF-8"):
+    '''
+    save a response to the cache
+    must either provide an encoding
+    or binary data as the response
+    '''
+
+    if encoding: response = response.encode(encoding)
+
+    with open(get_cache_path(request),"wb") as fout:
+        fout.write(response)
+
 
 def get_model_identifiers():
     '''
     get list of all model ids
     '''
 
-    response = requests.get(f"{API_URL}/model/identifiers?format={out_format}")
-    response.raise_for_status()
-    output = response.json()
+    request = f"{API_URL}/model/identifiers?format={out_format}"
+    if cache_mode == "reuse": return get_cache_entry(request)
 
-    return output['models']
+    response = requests.get()
+    response.raise_for_status()
+    response = response.json()['models']
+
+    if cache_mode == "setup": set_cache_entry(request,response)
+    return response
 
 
 def get_model_info(model_id):
 
-    response = requests.get(f"{API_URL}/{model_id}?format={out_format}")
-    response.raise_for_status()
-    output = response.json()
+    request = f"{API_URL}/{model_id}?format={out_format}"
+    if cache_mode == "reuse": return get_cache_entry(request)
 
-    return output
+    response = requests.get(request)
+    response.raise_for_status()
+    response = response.json()
+
+    if cache_mode == "setup": set_cache_entry(request,response)
+    return response
 
 
 def download_file(model_id,filename,output_file):
     qfilename = urllib.parse.quote_plus(filename)
-    response = requests.get(f'{API_URL}/model/download/{model_id}?filename={qfilename}')
-    response.raise_for_status()
+    request = f'{API_URL}/model/download/{model_id}?filename={qfilename}'
+
+    if cache_mode == "reuse":
+        response = get_cache_entry(request,encoding=None)
+    else:
+        response = requests.get(request)
+        response.raise_for_status()
+        response = response.content
+
+    if cache_mode == "setup":
+         set_cache_entry(request,response,encoding=None)
 
     with open(output_file,"wb") as fout:
-        fout.write(response.content)
+        fout.write(response)
 
 def replace_model_xml(sedml_path,sbml_filename):
     with open(sedml_path,encoding='utf-8') as f:
@@ -48,14 +117,12 @@ def replace_model_xml(sedml_path,sbml_filename):
         fout.write(data)
 
 def main():
-    max_count = 0 #0 for unlimited
-    tmpdir = "tmpdir1234"
+
+    if cache_mode == "setup":  setup_cache_dir()
 
     #get list of all available models
     model_ids = get_model_identifiers() 
 
-    os.makedirs(tmpdir,exist_ok=True)
-    remove_tmpdir = False
 
     header = "|Model|SBML|SEDML|valid-sbml|valid-sbml-units|valid-sedml|tellurium|"
     sep = "|---|---|---|---|---|---|---|"
@@ -67,7 +134,6 @@ def main():
     count = 0
 
     for model_id in model_ids:
-        model_id = "BIOMD0000001027"
         #allow testing on a small sample of models
         if max_count > 0 and count >= max_count: break
         count +=1
@@ -102,8 +168,8 @@ def main():
 
         #make temporary downloads of the sbml and sedml files
         os.makedirs(f'{tmpdir}/{model_id}',exist_ok=True)
-        #download_file(model_id,sbml_file,f'{tmpdir}/{model_id}/{sbml_file}')
-        #download_file(model_id,sedml_file,f'{tmpdir}/{model_id}/{sedml_file}')
+        download_file(model_id,sbml_file,f'{tmpdir}/{model_id}/{sbml_file}')
+        download_file(model_id,sedml_file,f'{tmpdir}/{model_id}/{sedml_file}')
 
         #if the sedml file contains 'source="model.xml"' replace it with the sbml filename
         replace_model_xml(f'{tmpdir}/{model_id}/{sedml_file}',sbml_file)
