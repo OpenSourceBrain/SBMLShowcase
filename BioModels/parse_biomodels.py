@@ -2,16 +2,16 @@
 
 from pyneuroml.sbml import validate_sbml_files
 from pyneuroml.sedml import validate_sedml_files
-from pyneuroml import tellurium
 
 import requests
 import re
 import os
 import urllib
 import sys
+import matplotlib
 
 sys.path.append("..")
-from utils import RequestCache, MarkdownTable, SuppressOutput
+import utils
 
 
 API_URL: str = "https://www.ebi.ac.uk/biomodels"
@@ -21,15 +21,20 @@ max_count = 0 #0 for unlimited
 
 #caching is used to prevent the need to download the same responses from the remote server multiple times during testing
 #"off" to not use caching at all, "store" to wipe and store fresh results in the cache, "reuse" to reuse the existing cache
-cache = RequestCache(mode="reuse",direc="cache")
+cache = utils.RequestCache(mode="reuse",direc="cache")
 
 #local temporary storage of the model files
 #this is independent of caching, and still happens when caching is turned off
 #this allows the model to be executed and the files manually examined etc
 tmp_dir = "tmp1234"
 
-#suppress stdout output from validation functions to make progress counter readable
+#suppress stdout/err output from validation functions to make progress counter readable
 suppress_stdout = True
+suppress_stderr = True
+
+#skip tests that cause the script to be killed
+skip = {}
+#skip = {800,921,924}
 
 def get_model_identifiers():
     '''
@@ -110,20 +115,23 @@ def main():
     #to allow automated loading into the columns
     column_labels = "Model     |SBML     |SEDML     |broken-ref|valid-sbml|valid-sbml-units|valid-sedml|tellurium"
     column_keys  =  "model_desc|sbml_file|sedml_file|broken_ref|valid_sbml|valid_sbml_units|valid_sedml|tellurium_outcome"
-    mtab = MarkdownTable(column_labels,column_keys)
+    mtab = utils.MarkdownTable(column_labels,column_keys)
 
     #allow stdout/stderr from validation tests to be suppressed to improve progress count visibility
-    sup = SuppressOutput(stdout=suppress_stdout)
+    sup = utils.SuppressOutput(stdout=suppress_stdout,stderr=suppress_stderr)
 
 
     #get list of all available models
     model_ids = get_model_identifiers() 
     count = 0
+    starting_dir = os.getcwd()
+
     for model_id in model_ids:
         #allow testing on a small sample of models
         if max_count > 0 and count >= max_count: break
-        count +=1
+        count += 1
         print(f"\r{count}/{len(model_ids)}       ",end='')
+        if count in skip: continue
 
         #BIOMD ids should be the curated models
         if not 'BIOMD' in model_id: continue
@@ -151,24 +159,27 @@ def main():
         sedml_file = sedml_file[0]
 
         #make temporary downloads of the sbml and sedml files
-        os.makedirs(f'{tmp_dir}/{model_id}',exist_ok=True)
-        download_file(model_id,sbml_file,f'{tmp_dir}/{model_id}/{sbml_file}')
-        download_file(model_id,sedml_file,f'{tmp_dir}/{model_id}/{sedml_file}')
+        model_dir = os.path.join(starting_dir,tmp_dir,model_id)
+        os.makedirs(model_dir,exist_ok=True)
+        os.chdir(model_dir)
+        download_file(model_id,sbml_file,sbml_file)
+        download_file(model_id,sedml_file,sedml_file)
 
         #if the sedml file contains a generic 'source="model.xml"' replace it with the sbml filename
-        broken_ref = replace_model_xml(f'{tmp_dir}/{model_id}/{sedml_file}',sbml_file) #used via locals()
+        broken_ref = replace_model_xml(sedml_file,sbml_file)
 
         #run the validation functions on the sbml and sedml files
         sup.suppress()
-        valid_sbml = validate_sbml_files([f'{tmp_dir}/{model_id}/{sbml_file}'], strict_units=False)
-        valid_sbml_units = validate_sbml_files([f'{tmp_dir}/{model_id}/{sbml_file}'], strict_units=True)
-        valid_sedml = validate_sedml_files([f'{tmp_dir}/{model_id}/{sedml_file}'])
+        valid_sbml = validate_sbml_files([sbml_file], strict_units=False)
+        valid_sbml_units = validate_sbml_files([sbml_file], strict_units=True)
+        valid_sedml = validate_sedml_files([sedml_file])
+        tellurium_outcome = utils.test_engine("tellurium",sedml_file)
         sup.restore()
 
-
-        tellurium_outcome = 'stub'
-
         mtab.append_row(locals())
+
+        #stop matplotlib plots from building up
+        matplotlib.pyplot.close()
 
     print() #go to next line after the progress counter
 
@@ -180,7 +191,11 @@ def main():
         mtab.add_count(key,lambda x:x==False,'n_fail={count}')
         mtab.transform_column(key,lambda x:'pass' if x else 'FAIL')
 
+    mtab.process_engine_outcomes('tellurium','tellurium_outcome')
+
+
     #write out to file
+    os.chdir(starting_dir)
     with open('README.md', "w") as fout:
         mtab.write(fout)
 

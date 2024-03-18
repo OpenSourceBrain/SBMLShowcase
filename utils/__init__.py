@@ -10,6 +10,7 @@ import re
 #define error categories for detailed error counting per engine
 # (currently only tellurium)
 # key is regex match an error message, value is the tag/category used to report it
+# see MarkdownTable.process_engine_outcomes
 error_categories=\
 {
     "tellurium":
@@ -87,7 +88,7 @@ class RequestCache:
         direc: the directory used to store the cache
         '''
         self.mode = mode
-        self.direc = direc
+        self.absolute_dir = os.path.join(os.getcwd(),direc)
 
         if mode == "store": self.wipe()
 
@@ -95,16 +96,17 @@ class RequestCache:
     def wipe(self):
         'wipe any existing cache directory and setup a new empty one'
 
-        shutil.rmtree(self.direc,ignore_errors=True)
-        os.makedirs(self.direc,exist_ok=True)
+        shutil.rmtree(self.absolute_dir,ignore_errors=True)
+        os.makedirs(self.absolute_dir,exist_ok=True)
 
 
-    def get_path(self,request):
+    def get_path(self,request=None):
         '''
         return path to cached request response
+        or just the cache base directory for a null request
         '''
 
-        return f"{self.direc}/{hashlib.sha256(request.encode('UTF-8')).hexdigest()}"
+        return f"{self.absolute_dir}/{hashlib.sha256(request.encode('UTF-8')).hexdigest()}"
 
 
     def get_entry(self,request):

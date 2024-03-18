@@ -12,8 +12,6 @@ import glob
 from pyneuroml.sbml import validate_sbml_files
 from pyneuroml.sedml import validate_sedml_files
 import matplotlib
-from collections import defaultdict
-import re
 import sys
 
 sys.path.append("..")
@@ -127,7 +125,7 @@ def process_cases(args):
             valid_sbml = validate_sbml_files([fpath], strict_units=False)
             valid_sbml_units = validate_sbml_files([fpath], strict_units=True)
             valid_sedml = validate_sedml_files([sedml_path])
-            tellurium_outcome = utils.test_engine("tellurium",sedml_path) #note: used in row.format below via locals()
+            tellurium_outcome = utils.test_engine("tellurium",sedml_path)
             sup.restore()
             mtab.append_row(locals())
 
