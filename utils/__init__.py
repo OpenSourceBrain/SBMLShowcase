@@ -22,6 +22,13 @@ error_categories=\
             "^'float' object is not callable":"float",
             "is not a named SpeciesReference":"SpeciesRef",
             "reset":"reset",
+            "^failed to validate SEDML file":"SEDMLfile",
+            "^No sbml element exists":"noSBMLelement",
+            "CV_ERR_FAILURE":"CV_ERR_FAILURE",
+            "CV_TOO_MUCH_WORK":"CV_TOO_MUCH_WORK",
+            "CV_CONV_FAILURE":"CV_CONV_FAILURE",
+            "CV_ILL_INPUT":"CV_ILL_INPUT",
+            "list index out of range":"outOfRange",
         },
 }
 

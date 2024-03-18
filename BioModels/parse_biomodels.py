@@ -32,9 +32,9 @@ tmp_dir = "tmp1234"
 suppress_stdout = True
 suppress_stderr = True
 
-#skip tests that cause the script to be killed
+#skip tests that cause the script to be killed due to lack of RAM
+#needs at least 8GB
 skip = {}
-#skip = {800,921,924}
 
 def get_model_identifiers():
     '''
@@ -158,6 +158,7 @@ def main():
         if len(sedml_file) != 1: continue
         sedml_file = sedml_file[0]
 
+        print(f'testing {sbml_file}...               ',end='')
         #make temporary downloads of the sbml and sedml files
         model_dir = os.path.join(starting_dir,tmp_dir,model_id)
         os.makedirs(model_dir,exist_ok=True)
