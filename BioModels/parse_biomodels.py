@@ -8,9 +8,8 @@ import requests
 import re
 import os
 import urllib
-import shutil
-from hashlib import sha256
-import pickle
+from .. import utils
+
 
 API_URL: str = "https://www.ebi.ac.uk/biomodels"
 
@@ -18,9 +17,8 @@ out_format="json"
 max_count = 0 #0 for unlimited
 
 #caching is used to prevent the need to download the same responses from the remote server multiple times during testing
-#"off" to not use caching at all, "setup" to wipe and store fresh results in the cache, "reuse" to reuse the existing cache
-cache_mode = "reuse"
-cache_dir = "cache"
+#"off" to not use caching at all, "store" to wipe and store fresh results in the cache, "reuse" to reuse the existing cache
+cache = utils.RequestCache(mode="reuse",direc="cache")
 
 #local temporary storage of the model files
 #this is independent of caching, and still happens when caching is turned off
@@ -39,41 +37,6 @@ def pass_or_fail(result):
 
     return okay if result else fail
 
-def setup_cache_dir():
-    'wipe any existing cache directory and setup a new empty one'
-
-    shutil.rmtree(cache_dir,ignore_errors=True)
-    os.makedirs(cache_dir,exist_ok=True)
-
-
-def get_cache_path(request):
-    '''
-    return path to cached request response
-    '''
-
-    return f"{cache_dir}/{sha256(request.encode('UTF-8')).hexdigest()}"
-
-
-def get_cache_entry(request):
-    '''
-    load cached response from cache_dir
-    note this should only be used in a context where you trust the integrity of the cache files
-    due to using pickle
-    note also: no handling of cache misses yet implemented
-    '''
-
-    with open(get_cache_path(request),"rb") as f:
-        return pickle.load(f)
-    
-
-def set_cache_entry(request,response):
-    '''
-    save a response to the cache
-    '''
-
-    with open(get_cache_path(request),"wb") as fout:
-        pickle.dump(response,fout)
-
 
 def get_model_identifiers():
     '''
@@ -81,26 +44,26 @@ def get_model_identifiers():
     '''
 
     request = f"{API_URL}/model/identifiers?format={out_format}"
-    if cache_mode == "reuse": return get_cache_entry(request)
+    if cache.mode == "reuse": return cache.get_entry(request)
 
     response = requests.get(request)
     response.raise_for_status()
     response = response.json()['models']
 
-    if cache_mode == "setup": set_cache_entry(request,response)
+    if cache.mode == "store": cache.set_entry(request,response)
     return response
 
 
 def get_model_info(model_id):
 
     request = f"{API_URL}/{model_id}?format={out_format}"
-    if cache_mode == "reuse": return get_cache_entry(request)
+    if cache.mode == "reuse": return cache.get_entry(request)
 
     response = requests.get(request)
     response.raise_for_status()
     response = response.json()
 
-    if cache_mode == "setup": set_cache_entry(request,response)
+    if cache.mode == "store": cache.set_entry(request,response)
     return response
 
 
@@ -108,15 +71,15 @@ def download_file(model_id,filename,output_file):
     qfilename = urllib.parse.quote_plus(filename)
     request = f'{API_URL}/model/download/{model_id}?filename={qfilename}'
 
-    if cache_mode == "reuse":
-        response = get_cache_entry(request)
+    if cache.mode == "reuse":
+        response = cache.get_entry(request)
     else:
         response = requests.get(request)
         response.raise_for_status()
         response = response.content
 
-    if cache_mode == "setup":
-         set_cache_entry(request,response)
+    if cache.mode == "store":
+         cache.set_entry(request,response)
 
     with open(output_file,"wb") as fout:
         fout.write(response)
@@ -212,9 +175,6 @@ class MarkdownTable:
 
 
 def main():
-    #wipe any existing cache entries
-    if cache_mode == "setup":  setup_cache_dir()
-
     #accumulate results in columns defined by keys which correspond to the local variable names to be used below
     #to allow automated loading into the columns
     column_labels = "Model     |SBML     |SEDML     |broken-ref|valid-sbml|valid-sbml-units|valid-sedml|tellurium"
