@@ -90,17 +90,6 @@ def add_case_url(case,fpath,url_base):
     return new_item
 
 
-def insert_engine_error_summaries(summary,engine_errors):
-    'insert engine error summary counts into table header line'
-
-    for engine in engine_errors:
-        total_errors = sum([ count for error_tag,count in engine_errors[engine].items() ])
-        details = ' '.join([ f'{error_tag}={count}' for error_tag,count in engine_errors[engine].items() ])
-        element = f"<details><summary>fails={total_errors}</summary>{details}</details>"
-        summary = summary.replace('{'+engine+'_summary}',element)
-
-    return summary
-
 
 def process_cases(args):
     """
@@ -115,16 +104,6 @@ def process_cases(args):
     column_labels = "case|valid-sbml|valid-sbml-units|valid-sedml|tellurium"
     column_keys  =  "case|valid_sbml|valid_sbml_units|valid_sedml|tellurium_outcome"
     mtab = utils.MarkdownTable(column_labels,column_keys)
-
-    #dict to record frequency of each engine error type
-    #engine_errors = {}
-
-    #make sure engine errors is ready to receive error counts from all engines
-    # for engine in utils.error_categories:
-    #     engine_errors[engine] = {}
-    #     engine_errors[engine]['other'] = 0
-    #     for pattern,error_tag in utils.error_categories[engine].items():
-    #         engine_errors[engine][error_tag] = 0
 
     #open file now to make sure output path is with respect to initial working directory
     #not the test suite folder
@@ -159,6 +138,9 @@ def process_cases(args):
         for key in ['valid_sbml','valid_sbml_units','valid_sedml']:
             mtab.add_count(key,lambda x:x==False,'n_fail={count}')
             mtab.transform_column(key,lambda x:'pass' if x else 'FAIL')
+
+        #process engine outcomes column(s)
+        mtab.process_engine_outcomes('tellurium','tellurium_outcome')
             
         #write out to file
         mtab.write(fout)
