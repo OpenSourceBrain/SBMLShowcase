@@ -2,6 +2,101 @@ import shutil
 import os
 import pickle
 import hashlib
+import sys
+from dataclasses import dataclass
+
+@dataclass
+class SuppressOutput:
+    '''
+    redirect stdout and/or stderr to os.devnull
+    stdout: whether to suppress stdout
+    stderr: whether to suppress stderr
+    '''
+
+    stdout: bool = False
+    stderr: bool = False
+
+    def suppress(self):
+        'begin to suppress output(s)'
+        if self.stdout:
+            self.orig_stdout = sys.stdout
+            sys.stdout = open(os.devnull,"w")
+        if self.stderr:
+            self.orig_stderr = sys.stderr
+            sys.stderr = open(os.devnull,"w")
+
+    def restore(self):
+        'restore output(s)'
+        if self.stdout:
+            sys.stdout.close()
+            sys.stdout = self.orig_stdout
+        if self.stderr:
+            sys.stderr.close()
+            sys.stderr = self.orig_stderr
+
+
+class MarkdownTable:
+    '''
+    helper class to accumulate rows of data with a header and optional summary row
+    to be written to file as a markdown table
+    '''
+    def __init__(self,labels:str,keys:str,splitter='|'):
+        'specify column headers and variable names'
+        self.labels = [x.strip() for x in labels.split(splitter)]
+        self.keys = [x.strip() for x in keys.split(splitter)]
+        assert len(self.keys) == len(self.labels)
+        self.data = {key:[] for key in self.keys}
+        self.summary = None
+
+    def append_row(self,vars):
+        'ingest the next row from a variables dict (eg locals())'
+        for key in self.keys:
+            self.data[key].append(vars[key])
+
+    def get_column(self,key):
+        'return the named column'
+        return self.data[key]
+    
+    def __getitem__(self,key):
+        'convenience wrapper to allow square brackets access to columns'
+        return self.get_column(key)
+    
+    def n_rows(self):
+        'return number of data rows'
+        return len(self.data[self.keys[0]])
+
+    def n_cols(self):
+        'return number of data columns'
+        return len(self.data)
+
+    def add_summary(self,key,value):
+        'fill in the optional summary cell for the named column'
+        if not self.summary:
+            self.summary = {key:"" for key in self.keys}
+
+        self.summary[key] = value
+
+    def add_count(self,key,func,format='n={count}'):
+        'add a basic summary counting how many times the function is true'
+        count = len([ x for x in self.data[key] if func(x) ])
+
+        self.add_summary(key,format.format(count=count))
+
+    def transform_column(self,key,func):
+        'pass all column values through a function'
+        for i in range(len(self.data[key])):
+            self.data[key][i] = func(self.data[key][i])
+
+    def write(self,fout,sep='|',end='\n'):
+        'write the markdown table to file'
+        fout.write(sep + sep.join(self.labels) + sep + end)
+        fout.write(sep + sep.join(['---' for x in self.labels]) + sep + end)
+        if self.summary:
+            fout.write(sep + sep.join([ str(self.summary[key]) for key in self.keys ]) + sep + end)
+
+        for i in range(self.n_rows()):
+            fout.write(sep + sep.join([ str(self.data[key][i]) for key in self.keys ])  + sep + end)
+
 
 class RequestCache:
     '''
