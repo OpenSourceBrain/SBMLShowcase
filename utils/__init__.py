@@ -4,6 +4,70 @@ import pickle
 import hashlib
 import sys
 from dataclasses import dataclass
+from pyneuroml import tellurium
+import re
+
+#define error categories for detailed error counting per engine
+# (currently only tellurium)
+error_categories=\
+{
+    "tellurium":
+        {
+            "^Unable to support algebraic rules.":"algebraic",
+            "^Unable to support delay differential equations.":"delay",
+            "^Unknown ASTNode type of":"ASTNode",
+            "^Mutable stochiometry for species which appear multiple times in a single reaction":"stochiometry",
+            "^'float' object is not callable":"float",
+            "is not a named SpeciesReference":"SpeciesRef",
+            "reset":"reset",
+        },
+}
+
+def make_md_error_string(error):
+    '''
+    make error string safe to insert into markdown table
+    note: it will later be wrapped in triple backquotes after RE pattern matching
+    '''
+
+    return str(error).replace("\n"," ").replace("\r","").replace("\t"," ").replace("   "," ").replace("  "," ")
+
+def process_error(engine,error,engine_errors):
+    'reduce error to a short identifier that can be displayed in the table'
+
+    global okay,fail,error_categories
+
+    error_str = make_md_error_string(error)
+
+    cell_text = None
+    for pattern in error_categories[engine]:
+        if re.search(pattern,error_str):
+            error_tag = error_categories[engine][pattern]
+            engine_errors[engine][error_tag] += 1
+            cell_text=f"<details><summary>{fail} ({error_tag})</summary>```{error_str}```</details>"
+            break
+    
+    if not cell_text:
+        engine_errors[engine]["other"] += 1
+        cell_text=f"<details><summary>{fail} (other)</summary>```{error_str}```</details>"
+
+
+    return cell_text
+
+def test_engine(engine,filename):
+    'test running the file with the given engine'
+
+    try:
+        if engine == "tellurium":
+            tellurium.run_from_sedml_file([filename],["-outputdir","none"])
+            return True
+        elif engine == "some_example_engine":
+            #run it here
+            return True
+    except Exception as e:
+        #return error object
+        return e
+        
+    raise RuntimeError(f"unknown engine {engine}")
 
 @dataclass
 class SuppressOutput:
