@@ -240,12 +240,11 @@ def main():
         if not info['format']['name'] == "SBML": continue
         if not len(info['files']['main']) == 1: continue
 
-        #must have a SEDML file as well in order to be executed
-        if not 'additional' in info['files']: continue
-
         model_desc = f"[{model_id}]({API_URL}/{model_id})<br/><sup>{info['name']}</sup>"
         sbml_file = info['files']['main'][0]['name']
 
+        #must have a SEDML file as well in order to be executed
+        if not 'additional' in info['files']: continue
         sedml_file = []
         for file_info in info['files']['additional']:
             pattern = 'SED[-]?ML'
