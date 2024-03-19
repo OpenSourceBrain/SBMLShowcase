@@ -38,3 +38,5 @@ arm64
 /test_suite/semantic/
 /test_suite/semantic_tests_with_sedml_and_graphs.v*.zip*
 .vscode
+/BioModels/cache
+/BioModels/tmplocalfiles

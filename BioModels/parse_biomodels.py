@@ -21,7 +21,7 @@ max_count = 0 #0 for unlimited
 #local temporary storage of the model files
 #this is independent of caching, and still happens when caching is turned off
 #this allows the model to be executed and the files manually examined etc
-tmp_dir = "tmp1234"
+tmp_dir = "tmplocalfiles"
 
 #suppress stdout/err output from validation functions to make progress counter readable
 suppress_stdout = True
