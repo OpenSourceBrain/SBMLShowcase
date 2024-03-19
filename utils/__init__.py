@@ -136,6 +136,17 @@ class RequestCache:
         with open(self.get_path(request),"wb") as fout:
             pickle.dump(response,fout)
 
+    def do_request(self,call_back,request,*args,**kwargs):
+        '''
+        automatically handle the cache operations for the call_back function
+        '''
+
+        if self.mode == "reuse": return self.get_entry(request)
+
+        response = call_back(request,*args,**kwargs)
+
+        if self.mode == "store": self.set_entry(request,response)
+        return response
 
 class MarkdownTable:
     '''
