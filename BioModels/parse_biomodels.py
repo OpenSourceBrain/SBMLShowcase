@@ -13,7 +13,6 @@ import matplotlib
 sys.path.append("..")
 import utils
 
-
 API_URL: str = "https://www.ebi.ac.uk/biomodels"
 
 out_format="json"
@@ -34,59 +33,14 @@ fix_broken_ref = True
 #needs at least 8GB
 skip = {}
 
-# def get_model_identifiers():
-#     '''
-#     get list of all model ids
-#     '''
-
-#     request = f"{API_URL}/model/identifiers?format={out_format}"
-#     if cache.mode == "reuse": return cache.get_entry(request)
-
-#     response = requests.get(request)
-#     response.raise_for_status()
-#     response = response.json()['models']
-
-#     if cache.mode == "store": cache.set_entry(request,response)
-#     return response
-
-
-def get_model_identifiers(request):
-    '''
-    get list of all model ids
-    '''
-
-    response = requests.get(request)
-    response.raise_for_status()
-    return response.json()['models']
-
-
-# def get_model_info(model_id):
-
-#     request = f"{API_URL}/{model_id}?format={out_format}"
-#     if cache.mode == "reuse": return cache.get_entry(request)
-
-#     response = requests.get(request)
-#     response.raise_for_status()
-#     response = response.json()
-
-#     if cache.mode == "store": cache.set_entry(request,response)
-#     return response
-
-def get_model_info(request):
-    'return the request in json format'
-    response = requests.get(request)
-    response.raise_for_status()
-    return response.json()
-
-def request_file(request):
-    response = requests.get(request)
-    response.raise_for_status()
-    return response.content
-
 def download_file(model_id,filename,output_file,cache):
+    '''
+    request the given file and save it to disk
+    '''
+
     qfilename = urllib.parse.quote_plus(filename)
 
-    response = cache.do_request(request_file,f'{API_URL}/model/download/{model_id}?filename={qfilename}')
+    response = cache.do_request(f'{API_URL}/model/download/{model_id}?filename={qfilename}').content
 
     with open(output_file,"wb") as fout:
         fout.write(response)
@@ -134,7 +88,7 @@ def main():
     sup = utils.SuppressOutput(stdout=suppress_stdout,stderr=suppress_stderr)
 
     #get list of all available models
-    model_ids = cache.do_request(get_model_identifiers,f"{API_URL}/model/identifiers?format={out_format}")
+    model_ids = cache.do_request(f"{API_URL}/model/identifiers?format={out_format}").json()['models']
     count = 0
     starting_dir = os.getcwd()
 
@@ -148,7 +102,7 @@ def main():
         #BIOMD ids should be the curated models
         if not 'BIOMD' in model_id: continue
 
-        info = cache.do_request(get_model_info,f"{API_URL}/{model_id}?format={out_format}")
+        info = cache.do_request(f"{API_URL}/{model_id}?format={out_format}").json()
 
         #handle only single SBML files (some are Open Neural Network Exchange, or "Other" such as Docker)
         if not info['format']['name'] == "SBML": continue

@@ -6,6 +6,7 @@ import sys
 from dataclasses import dataclass
 from pyneuroml import tellurium
 import re
+import requests
 
 #define error categories for detailed error counting per engine
 # (currently only tellurium)
@@ -136,14 +137,15 @@ class RequestCache:
         with open(self.get_path(request),"wb") as fout:
             pickle.dump(response,fout)
 
-    def do_request(self,call_back,request,*args,**kwargs):
+    def do_request(self,request):
         '''
         automatically handle the cache operations for the call_back function
         '''
 
         if self.mode == "reuse": return self.get_entry(request)
 
-        response = call_back(request,*args,**kwargs)
+        response = requests.get(request)
+        response.raise_for_status()
 
         if self.mode == "store": self.set_entry(request,response)
         return response
