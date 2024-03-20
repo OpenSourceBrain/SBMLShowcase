@@ -40,3 +40,4 @@ arm64
 .vscode
 /BioModels/cache
 /BioModels/tmplocalfiles
+__pycache__

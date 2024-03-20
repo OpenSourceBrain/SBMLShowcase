@@ -3,7 +3,6 @@
 from pyneuroml.sbml import validate_sbml_files
 from pyneuroml.sedml import validate_sedml_files
 
-import requests
 import re
 import os
 import urllib
@@ -27,6 +26,7 @@ tmp_dir = "tmplocalfiles"
 suppress_stdout = True
 suppress_stderr = True
 
+#whether to replace "model.xml" in the sedml file with the name of the actual sbml file
 fix_broken_ref = True
 
 #skip tests that cause the script to be killed due to lack of RAM
@@ -72,16 +72,31 @@ def replace_model_xml(sedml_path,sbml_filename):
 
     return True
 
+def format_cell(cell):
+    '''
+    produce the final fully formatted markdown table cell contents
+    cell[0] is the boolean validation outcome
+    cell[1] is the sbml/sedml filename
+    cell[2] is the model_id
+    '''
+
+    cell[0] = 'pass' if cell[0] else 'FAIL'
+    return f"<details><summary>{cell[0]}</summary>[{cell[1]}]({API_URL}/{cell[2]}#Files)</details>"
 
 def main():
+    '''
+    download the BioModel model files, run various validation steps
+    report the results as a markdown table README file with a summary row at the top
+    '''
+
     #caching is used to prevent the need to download the same responses from the remote server multiple times during testing
-    #"off" to not use caching at all, "store" to wipe and store fresh results in the cache, "reuse" to reuse the existing cache
+    #mode="off" to disable caching, "store" to wipe and store fresh results, "reuse" to use the stored cache
     cache = utils.RequestCache(mode="reuse",direc="cache")
 
     #accumulate results in columns defined by keys which correspond to the local variable names to be used below
     #to allow automated loading into the columns
-    column_labels = "Model     |SBML     |SEDML     |broken-ref|valid-sbml|valid-sbml-units|valid-sedml|tellurium"
-    column_keys  =  "model_desc|sbml_file|sedml_file|broken_ref|valid_sbml|valid_sbml_units|valid_sedml|tellurium_outcome"
+    column_labels = "Model     |valid-sbml|valid-sbml-units|valid-sedml|broken-ref|tellurium"
+    column_keys  =  "model_desc|valid_sbml|valid_sbml_units|valid_sedml|broken_ref|tellurium_outcome"
     mtab = utils.MarkdownTable(column_labels,column_keys)
 
     #allow stdout/stderr from validation tests to be suppressed to improve progress count visibility
@@ -140,27 +155,36 @@ def main():
 
         #run the validation functions on the sbml and sedml files
         sup.suppress()
-        valid_sbml = validate_sbml_files([sbml_file], strict_units=False)
+        valid_sbml = [validate_sbml_files([sbml_file], strict_units=False), sbml_file, model_id] #store outcome, filename, model_id
         valid_sbml_units = validate_sbml_files([sbml_file], strict_units=True)
-        valid_sedml = validate_sedml_files([sedml_file])
+        valid_sedml = [validate_sedml_files([sedml_file]), sedml_file, model_id] #store outcome, filename, model_id
         tellurium_outcome = utils.test_engine("tellurium",sedml_file)
         sup.restore()
 
+        #append the row values to their respective table columns
         mtab.append_row(locals())
 
         #stop matplotlib plots from building up
         matplotlib.pyplot.close()
 
-    print() #go to next line after the progress counter
+    print() #end progress counter, go to next line of stdout
 
     #show total cases processed
     mtab.add_summary('model_desc',f'n={mtab.n_rows()}')
 
-    #give failure counts
-    for key in ['valid_sbml','valid_sbml_units','valid_sedml','broken_ref']:
+    #give failure count summaries in summary row, convert boolean values to pass/FAIL
+    for key in ['valid_sbml_units','broken_ref']:
         mtab.add_count(key,lambda x:x==False,'n_fail={count}')
         mtab.transform_column(key,lambda x:'pass' if x else 'FAIL')
 
+    #give failure count summaries in summary row, convert boolean to pass/FAIL for compound cells
+    #add hideable full filenames with link to #Files tab of BioModels
+    for key in ['valid_sbml','valid_sedml']:
+        mtab.add_count(key,lambda x:x[0]==False,'n_fail={count}')
+        mtab.transform_column(key,format_cell)
+
+    #convert engine error messages to foldable readable form
+    #calculate error category counts for summary row
     mtab.process_engine_outcomes('tellurium','tellurium_outcome')
 
     #write out to file

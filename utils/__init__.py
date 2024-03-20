@@ -85,6 +85,7 @@ class SuppressOutput:
 class RequestCache:
     '''
     caching is used to prevent the need to download the same responses from the remote server multiple times during testing
+    currently no handling of unexpected cache misses
     '''
 
     def __init__(self,mode="off",direc="cache"):
@@ -93,9 +94,12 @@ class RequestCache:
             "off" to disable caching (does not wipe any existing cache data)
             "store" to wipe and store fresh results in the cache
             "reuse" to reuse an existing cache
+            could also implement "auto" mode that only downloads on a cache miss
         direc: the directory used to store the cache
         '''
         self.mode = mode
+
+        #store absolute cache dir path to ensure it is found regardless of current directory
         self.absolute_dir = os.path.join(os.getcwd(),direc)
 
         if mode == "store": self.wipe()
@@ -155,13 +159,14 @@ class MarkdownTable:
     helper class to accumulate rows of data with a header and optional summary row
     to be written to file as a markdown table
     '''
-    def __init__(self,labels:str,keys:str,splitter='|'):
+    def __init__(self,labels:str,keys:str,splitter='|',pass_fail=["pass","FAIL"]):
         'specify column headers and variable names'
         self.labels = [x.strip() for x in labels.split(splitter)]
         self.keys = [x.strip() for x in keys.split(splitter)]
         assert len(self.keys) == len(self.labels)
         self.data = {key:[] for key in self.keys}
         self.summary = None
+        self.pass_fail = pass_fail
 
     def append_row(self,vars):
         'ingest the next row from a variables dict (eg locals())'
