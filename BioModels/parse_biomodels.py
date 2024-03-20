@@ -72,13 +72,31 @@ def replace_model_xml(sedml_path,sbml_filename):
 
     return True
 
-def format_cell(cell):
+def format_simple_cell(key,cell):
+    '''
+    produce the final fully formatted markdown table cell contents
+    convert boolean to pass / FAIL
+    '''
+
+    conv = {True:'pass',False:'FAIL',None:'N/A'}
+
+    if cell == True:
+        return 'pass'
+    elif cell == False:
+        return 'FAIL'
+    else:
+        return 'N/A'
+
+def format_list_cell(key,cell):
     '''
     produce the final fully formatted markdown table cell contents
     cell[0] is the boolean validation outcome
     cell[1] is the sbml/sedml filename
     cell[2] is the model_id
     '''
+
+    #if file is not present
+    if not cell: return 'N/A'
 
     cell[0] = 'pass' if cell[0] else 'FAIL'
     return f"<details><summary>{cell[0]}</summary>[{cell[1]}]({API_URL}/{cell[2]}#Files)</details>"
@@ -111,19 +129,24 @@ def main():
         #allow testing on a small sample of models
         if max_count > 0 and count >= max_count: break
         count += 1
-        print(f"\r{count}/{len(model_ids)}       ",end='')
-        if count in skip: continue
+        print(f"\r{model_id} {count}/{len(model_ids)}       ",end='')
 
+        #only process curated models
         #BIOMD ids should be the curated models
-        if not 'BIOMD' in model_id: continue
+        if not 'BIOMD' in model_id:
+            #mtab.append_row({"model_desc":model_desc})
+            continue
+
+        #skip if on the list to be skipped
+        if count in skip or model_id in skip: continue
 
         info = cache.do_request(f"{API_URL}/{model_id}?format={out_format}").json()
+        model_desc = f"[{model_id}]({API_URL}/{model_id})<br/><sup>{info['name']}</sup>"
 
         #handle only single SBML files (some are Open Neural Network Exchange, or "Other" such as Docker)
         if not info['format']['name'] == "SBML": continue
         if not len(info['files']['main']) == 1: continue
 
-        model_desc = f"[{model_id}]({API_URL}/{model_id})<br/><sup>{info['name']}</sup>"
         sbml_file = info['files']['main'][0]['name']
 
         #must have a SEDML file as well in order to be executed
@@ -172,16 +195,18 @@ def main():
     #show total cases processed
     mtab.add_summary('model_desc',f'n={mtab.n_rows()}')
 
+    #for simple table cells
     #give failure count summaries in summary row, convert boolean values to pass/FAIL
     for key in ['valid_sbml_units','broken_ref']:
         mtab.add_count(key,lambda x:x==False,'n_fail={count}')
-        mtab.transform_column(key,lambda x:'pass' if x else 'FAIL')
+        mtab.transform_column(key,format_simple_cell)
 
-    #give failure count summaries in summary row, convert boolean to pass/FAIL for compound cells
+    #for compound (list containing) table cells
+    #give failure count summaries in summary row, convert boolean to pass/FAIL
     #add hideable full filenames with link to #Files tab of BioModels
     for key in ['valid_sbml','valid_sedml']:
         mtab.add_count(key,lambda x:x[0]==False,'n_fail={count}')
-        mtab.transform_column(key,format_cell)
+        mtab.transform_column(key,format_list_cell)
 
     #convert engine error messages to foldable readable form
     #calculate error category counts for summary row

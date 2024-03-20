@@ -168,10 +168,13 @@ class MarkdownTable:
         self.summary = None
         self.pass_fail = pass_fail
 
-    def append_row(self,vars):
+    def append_row(self,vars,missing=None):
         'ingest the next row from a variables dict (eg locals())'
         for key in self.keys:
-            self.data[key].append(vars[key])
+            if not key in vars:
+                self.data[key].append(missing)
+            else:
+                self.data[key].append(vars[key])
 
     def get_column(self,key):
         'return the named column'
@@ -205,7 +208,7 @@ class MarkdownTable:
     def transform_column(self,key,func):
         'pass all column values through a function'
         for i in range(len(self.data[key])):
-            self.data[key][i] = func(self.data[key][i])
+            self.data[key][i] = func(key,self.data[key][i])
 
 
     def write(self,fout,sep='|',end='\n'):
