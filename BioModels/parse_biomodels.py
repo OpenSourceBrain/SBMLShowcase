@@ -100,9 +100,6 @@ def validate_sbml_file(model_id,mtab,info,cache,sup):
         mtab['valid_sbml'] = ['DownloadFail',f"{sbml_file} {e}"]
         return None
 
-    #
-    #    return f"<details><summary>summary</summary>details</details>"
-
     #validate the sbml file
     sup.suppress() #suppress validation warning/error messages  
     valid_sbml = pyneuroml.sbml.validate_sbml_files([sbml_file], strict_units=False)
@@ -110,7 +107,7 @@ def validate_sbml_file(model_id,mtab,info,cache,sup):
     sup.restore()
 
     mtab['valid_sbml'] = ['pass' if valid_sbml else 'FAIL', f'[{sbml_file}]({API_URL}/{model_id}#Files)']
-    mtab['valid_sbml_units'] = ['pass' if valid_sbml_units else 'FAIL', None]
+    mtab['valid_sbml_units'] = 'pass' if valid_sbml_units else 'FAIL'
 
     return sbml_file
 
@@ -171,11 +168,8 @@ def format_cell(key,cell):
 
     if type(cell) == list:
         assert len(cell) == 2
-        if cell[1]:
-            summary = utils.safe_md_string(cell[1])
-            return f"<details><summary>{cell[0]}</summary>{summary}</details>"
-        else:
-            return cell[0]
+        summary = utils.safe_md_string(cell[1])
+        return f"<details><summary>{cell[0]}</summary>{summary}</details>"
         
     return str(cell)
 

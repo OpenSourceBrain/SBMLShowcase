@@ -325,10 +325,9 @@ class MarkdownTable:
         self.add_summary(key,summary_text)
 
 
-def safe_md_string(error):
+def safe_md_string(value):
     '''
-    make error string safe to insert into markdown table
-    note: it will later be wrapped in triple backquotes after RE pattern matching
+    make a string safe to insert into markdown table
     '''
 
-    return str(error).replace("\n"," ").replace("\r","").replace("\t"," ").replace("   "," ").replace("  "," ")
+    return str(value).replace("\n"," ").replace("\r","").replace("\t"," ").replace("   "," ").replace("  "," ")
