@@ -72,35 +72,6 @@ def replace_model_xml(sedml_path,sbml_filename):
 
     return False
 
-def format_simple_cell(key,cell):
-    '''
-    produce the final fully formatted markdown table cell contents
-    convert boolean to pass / FAIL
-    '''
-
-    conv = {True:'pass',False:'FAIL',None:'N/A'}
-
-    if cell == True:
-        return 'pass'
-    elif cell == False:
-        return 'FAIL'
-    else:
-        return 'N/A'
-
-def format_list_cell(key,cell):
-    '''
-    produce the final fully formatted markdown table cell contents
-    cell[0] is the boolean validation outcome
-    cell[1] is the sbml/sedml filename
-    cell[2] is the model_id
-    '''
-
-    #if file is not present
-    if not cell: return 'N/A'
-
-    cell[0] = 'pass' if cell[0] else 'FAIL'
-    return f"<details><summary>{cell[0]}</summary>[{cell[1]}]({API_URL}/{cell[2]}#Files)</details>"
-
 def validate_sbml_file(model_id,mtab,info,cache,sup):
     '''
     tasks relating to validating the SBML file
@@ -181,9 +152,10 @@ def validate_sedml_file(model_id,mtab,info,cache,sup,sbml_file):
 
     #if the sedml file contains a generic 'source="model.xml"' replace it with the sbml filename
     if fix_broken_ref:
-        mtab['broken_ref'] = replace_model_xml(sedml_file,sbml_file)
+        broken_ref = replace_model_xml(sedml_file,sbml_file)
+        mtab['broken_ref'] = 'pass' if broken_ref else 'FAIL'
     else:
-        mtab['broken_ref'] = None
+        mtab['broken_ref'] = 'NA'
 
     sup.suppress()
     valid_sedml = pyneuroml.sedml.validate_sedml_files([sedml_file])
@@ -197,14 +169,11 @@ def format_cell(key,cell):
     produce the final fully formatted markdown table cell contents
     '''
 
-    if cell == None: return 'NA'
-    if cell == True: return 'pass'
-    if cell == False: return 'FAIL'
-
     if type(cell) == list:
         assert len(cell) == 2
         if cell[1]:
-            return f"<details><summary>{cell[0]}</summary>{cell[1]}</details>"
+            summary = utils.safe_md_string(cell[1])
+            return f"<details><summary>{cell[0]}</summary>{summary}</details>"
         else:
             return cell[0]
         
@@ -250,7 +219,7 @@ def main():
             continue
 
         #from this point the model will create an output row even if not all tests are run
-        mtab.new_row() #append empty placeholder row
+        mtab.new_row(missing='NA') #append empty placeholder row
         info = cache.do_request(f"{API_URL}/{model_id}?format={out_format}").json()
         mtab['model_desc'] = f"[{model_id}]({API_URL}/{model_id})<br/><sup>{info['name']}</sup>"
 
@@ -280,35 +249,10 @@ def main():
     #show total cases processed
     mtab.add_summary('model_desc',f'n={mtab.n_rows()}')
 
-    # #for simple table cells
-    # #give failure count summaries in summary row, convert boolean values to pass/FAIL
-    # for key in ['broken_ref']:
-    #     mtab.add_count(key,lambda x:x==False,'n_fail={count}')
-    #     mtab.transform_column(key,format_simple_cell)
-
-    # #for compound (list containing) table cells
-    # #give failure count summaries in summary row, convert boolean to pass/FAIL
-    # #add hideable full filenames with link to #Files tab of BioModels
-    # sbml_sedml_patterns = \
-    # {
-    #     "^DownloadFail":"DownloadFail",
-    #     "^NonSBML":"NonSBML",
-    #     "^NoSBMLs":"NoSBMLs",
-    #     "^MultipleSBMLs":"MultipleSBMLs",
-    #     "^NoSEDML":"NoSEDML",
-    #     "^MultipleSEDMLs":"MultipleSEDMLs",
-    #     "True":"pass",
-    #     "False":"FAILED"
-    # }
-
     #count occurrences of each cell value, convert to final form
     for key in ['valid_sbml','valid_sbml_units','valid_sedml','broken_ref']:
         mtab.simple_summary(key)
         mtab.transform_column(key,format_cell)
-
-    #mtab.regex_summary('valid_sedml',sbml_sedml_patterns)
-    #for key in ['valid_sbml','valid_sedml']:
-        #mtab.add_count(key,lambda x:x[0]==False,'n_fail={count}')
 
     #convert engine error messages to foldable readable form
     #calculate error category counts for summary row
