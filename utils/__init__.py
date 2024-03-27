@@ -183,7 +183,7 @@ class MarkdownTable:
         assert len(self.data[key]) > 0
         self.data[key][-1] = value
 
-    def new_row(self,vars,missing=None):
+    def new_row(self,vars={},missing=None):
         'ingest the next row from a variables dict (eg locals())'
         for key in self.keys:
             if not key in vars:
@@ -199,27 +199,6 @@ class MarkdownTable:
             else:
                 self.data[key][-1] = vars[key]
 
-    def delete_variables(self,vars,missing=None):
-        'delete all row variables (eg when vars = locals())'
-        for key in self.keys:
-            if key in vars:
-                del vars[key]
-
-    def blank_row(self,missing=None):
-        'generate a new blank row dictionary'
-        row = {}
-        for key in self.keys:
-            row[key] = missing            
-        return row
-
-    def get_column(self,key):
-        'return the named column'
-        return self.data[key]
-    
-    def __getitem__(self,key):
-        'convenience wrapper to allow square brackets access to columns'
-        return self.get_column(key)
-    
     def n_rows(self):
         'return number of data rows'
         return len(self.data[self.keys[0]])
@@ -241,23 +220,42 @@ class MarkdownTable:
 
         self.add_summary(key,format.format(count=count))
 
-    def regex_summary(self,key,patterns,format='{summary}'):
+    def regex_summary(self,key,patterns,format='{summary}',func=None):
+        '''
+        count how many cells match each pattern
+        transform cell contents with optional callback function
+        '''
         counts = defaultdict(int)
 
+        for i,cell in enumerate(self.data[key]):
+            if type(cell) == list:
+                value = str(cell[0])
+            else:
+                value = str(cell)
+
+            match=None
+            for regex,tag in patterns.items():
+                if re.search(regex,value):
+                    match = tag
+                    break
+            if not match: match = "other"
+            counts[match] += 1
+
+            if func: self.data[key][i] = func(key,self.data[key][i],match)
+
+        summary = ' '.join([f'n_{tag}={counts[tag]}' for tag in counts])
+        self.add_summary(key,format.format(summary=summary))
+
+    def simple_summary(self,key,format='{summary}'):
+        'count how many cells contain each distinct value'
+        counts = defaultdict(int)
         for cell in self.data[key]:
             if type(cell) == list:
                 value = str(cell[0])
             else:
                 value = str(cell)
 
-            match=False
-            for regex,tag in patterns.items():
-                if re.search(regex,value):
-                    counts[tag] += 1
-                    match = True
-                    break
-            if not match: counts["other"] += 1
-
+            counts[value] += 1
 
         summary = ' '.join([f'n_{tag}={counts[tag]}' for tag in counts])
         self.add_summary(key,format.format(summary=summary))
