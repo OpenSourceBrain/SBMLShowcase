@@ -94,7 +94,8 @@ class RequestCache:
         mode:
             "off" to disable caching (does not wipe any existing cache data)
             "store" to wipe and store fresh results in the cache
-            "reuse" to reuse an existing cache
+            "reuse" to only use existing cache files
+            "auto" to download only if missing
             could also implement "auto" mode that only downloads on a cache miss
         direc: the directory used to store the cache
         '''
@@ -147,12 +148,13 @@ class RequestCache:
         automatically handle the cache operations for the call_back function
         '''
 
-        if self.mode == "reuse": return self.get_entry(request)
+        if self.mode == "reuse" or (self.mode == "auto" and os.path.isfile(self.get_path(request))):
+            return self.get_entry(request)
 
         response = requests.get(request)
         response.raise_for_status()
 
-        if self.mode == "store": self.set_entry(request,response)
+        if self.mode == "store" or self.mode == "auto": self.set_entry(request,response)
         return response
 
 class MarkdownTable:
@@ -169,7 +171,19 @@ class MarkdownTable:
         self.summary = None
         self.pass_fail = pass_fail
 
-    def append_row(self,vars,missing=None):
+    def __getitem__(self,key):
+        'get last row of named column'
+        assert key in self.keys
+        assert len(self.data[key]) > 0
+        return self.data[key][-1]
+
+    def __setitem__(self,key,value):
+        'set (ie overwrite) last row of named column'
+        assert key in self.keys
+        assert len(self.data[key]) > 0
+        self.data[key][-1] = value
+
+    def new_row(self,vars,missing=None):
         'ingest the next row from a variables dict (eg locals())'
         for key in self.keys:
             if not key in vars:
@@ -190,6 +204,13 @@ class MarkdownTable:
         for key in self.keys:
             if key in vars:
                 del vars[key]
+
+    def blank_row(self,missing=None):
+        'generate a new blank row dictionary'
+        row = {}
+        for key in self.keys:
+            row[key] = missing            
+        return row
 
     def get_column(self,key):
         'return the named column'

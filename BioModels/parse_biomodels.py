@@ -109,7 +109,7 @@ def main():
 
     #caching is used to prevent the need to download the same responses from the remote server multiple times during testing
     #mode="off" to disable caching, "store" to wipe and store fresh results, "reuse" to use the stored cache
-    cache = utils.RequestCache(mode="reuse",direc="cache")
+    cache = utils.RequestCache(mode="auto",direc="cache")
 
     #accumulate results in columns defined by keys which correspond to the local variable names to be used below
     #to allow automated loading into the columns
@@ -126,11 +126,6 @@ def main():
     starting_dir = os.getcwd()
 
     for model_id in model_ids:
-        #mtab.print_last_row()
-        #mtab.print_col_lengths()
-        #delete any stale row variables from last iteration
-        mtab.delete_variables(locals())
-
         #allow testing on a small sample of models
         if max_count > 0 and count >= max_count: break
         count += 1
@@ -146,9 +141,9 @@ def main():
             continue
 
         #from this point the model will create an output row even if not all tests are run
-        mtab.append_row({}) #append empty placeholder row
+        mtab.new_row({}) #append empty placeholder row
         info = cache.do_request(f"{API_URL}/{model_id}?format={out_format}").json()
-        model_desc = f"[{model_id}]({API_URL}/{model_id})<br/><sup>{info['name']}</sup>"
+        mtab['model_desc'] = f"[{model_id}]({API_URL}/{model_id})<br/><sup>{info['name']}</sup>"
 
         #make temporary downloads of the sbml and sedml files
         model_dir = os.path.join(starting_dir,tmp_dir,model_id)
@@ -157,16 +152,15 @@ def main():
 
         #handle only single SBML files (some are Open Neural Network Exchange, or "Other" such as Docker)
         if not info['format']['name'] == "SBML":
-            valid_sbml = f"NonSBML:{info['format']['name']}:{info['files']['main']}"
-            mtab.update_row(locals())
+            mtab['valid_sbml'] = f"NonSBML:{info['format']['name']}:{info['files']['main']}"
             continue
+
         if len(info['files']['main']) > 1:
-            valid_sbml = f"MultipleSBMLs:{info['files']['main']}"
-            mtab.update_row(locals())
+            mtab['valid_sbml'] = f"MultipleSBMLs:{info['files']['main']}"
             continue
+
         if len(info['files']['main']) < 1:
-            valid_sbml = f"NoSBMLs:{info['files']['main']}"
-            mtab.update_row(locals())
+            mtab['valid_sbml'] = f"NoSBMLs:{info['files']['main']}"
             continue
 
         #download the sbml file
@@ -174,21 +168,18 @@ def main():
         try:
             download_file(model_id,sbml_file,sbml_file,cache)
         except Exception as e:
-            valid_sbml = f"DownloadFail:{sbml_file} {e}"
-            mtab.update_row(locals())
+            mtab['valid_sbml'] = f"DownloadFail:{sbml_file} {e}"
             continue
 
         #validate the sbml file
         sup.suppress() #suppress validation warning/error messages
-        valid_sbml = [validate_sbml_files([sbml_file], strict_units=False), sbml_file, model_id] #store True/False outcome, filename, model_id
-        valid_sbml_units = validate_sbml_files([sbml_file], strict_units=True) #store True/False outcome
+        mtab['valid_sbml'] = [validate_sbml_files([sbml_file], strict_units=False), sbml_file, model_id] #store True/False outcome, filename, model_id
+        mtab['valid_sbml_units'] = validate_sbml_files([sbml_file], strict_units=True) #store True/False outcome
         sup.restore()
-        mtab.update_row(locals())
 
         #must have a SEDML file as well in order to be executed
         if not 'additional' in info['files']:
-            valid_sedml = f"NoSEDML"
-            mtab.update_row(locals())
+            mtab['valid_sedml'] = f"NoSEDML"
             continue
 
         sedml_file = []
@@ -200,12 +191,11 @@ def main():
 
         #require exactly one SEDML file
         if len(sedml_file) == 0:
-            valid_sedml = f"NoSEDML"
-            mtab.update_row(locals())
+            mtab['valid_sedml'] = f"NoSEDML"
             continue
+
         if len(sedml_file) > 1:
-            valid_sedml = f"MultipleSEDMLs:{sedml_file}"
-            mtab.update_row(locals())
+            mtab['valid_sedml'] = f"MultipleSEDMLs:{sedml_file}"
             continue
 
         #download sedml file
@@ -213,26 +203,22 @@ def main():
         try:
             download_file(model_id,sedml_file,sedml_file,cache)
         except:
-            valid_sedml = f"DownloadFail:{sedml_file}"
-            mtab.update_row(locals())
+            mtab['valid_sedml'] = f"DownloadFail:{sedml_file}"
             continue
 
 
         #if the sedml file contains a generic 'source="model.xml"' replace it with the sbml filename
         if fix_broken_ref:
-            broken_ref = replace_model_xml(sedml_file,sbml_file)
+            mtab['broken_ref'] = replace_model_xml(sedml_file,sbml_file)
         else:
-            broken_ref = False
-        mtab.update_row(locals())
+            mtab['broken_ref'] = False
 
         #run the validation functions on the sbml and sedml files
         print(f'testing {sbml_file}...               ',end='')
         sup.suppress()
-        valid_sedml = [validate_sedml_files([sedml_file]), sedml_file, model_id] #store outcome, filename, model_id
-        tellurium_outcome = utils.test_engine("tellurium",sedml_file)
+        mtab['valid_sedml'] = [validate_sedml_files([sedml_file]), sedml_file, model_id] #store outcome, filename, model_id
+        mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_file)
         sup.restore()
-
-        mtab.update_row(locals())
 
         #stop matplotlib plots from building up
         matplotlib.pyplot.close()
