@@ -113,6 +113,8 @@ def process_cases(args):
         fpath_list = sorted(glob.glob(args.suite_glob))
         for fpath in fpath_list:
             if args.limit and args.limit > 0 and n_cases >= args.limit: break
+
+            mtab.new_row()
             n_cases +=1
             sedml_path = fpath.replace(".xml", "-sedml.xml")
             print(f"{n_cases}/{len(fpath_list)} {fpath}")
@@ -120,14 +122,15 @@ def process_cases(args):
             assert os.path.isfile(sedml_path)
             case = os.path.basename(fpath)
             if args.suite_url_base != '': case = add_case_url(case,fpath,args.suite_url_base)
+            mtab['case'] = case
 
             sup.suppress() #suppress printing warnings to stdout
-            valid_sbml = validate_sbml_files([fpath], strict_units=False)
-            valid_sbml_units = validate_sbml_files([fpath], strict_units=True)
-            valid_sedml = validate_sedml_files([sedml_path])
-            tellurium_outcome = utils.test_engine("tellurium",sedml_path)
+            mtab['valid_sbml'] = validate_sbml_files([fpath], strict_units=False)
+            mtab['valid_sbml_units'] = validate_sbml_files([fpath], strict_units=True)
+            mtab['valid_sedml'] = validate_sedml_files([sedml_path])
+            mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_path)
             sup.restore()
-            mtab.append_row(locals())
+            #mtab.append_row(locals())
 
             #stop matplotlib plots from building up
             matplotlib.pyplot.close()

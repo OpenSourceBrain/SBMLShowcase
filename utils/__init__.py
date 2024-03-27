@@ -263,7 +263,7 @@ class MarkdownTable:
     def transform_column(self,key,func):
         'pass all column values through a function'
         for i in range(len(self.data[key])):
-            self.data[key][i] = func(key,self.data[key][i])
+            self.data[key][i] = func(self.data[key][i])
 
     def print_last_row(self):
         if self.n_rows() == 0:

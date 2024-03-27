@@ -161,7 +161,7 @@ def validate_sedml_file(model_id,mtab,info,cache,sup,sbml_file):
 
     return sedml_file
 
-def format_cell(key,cell):
+def format_cell(cell):
     '''
     produce the final fully formatted markdown table cell contents
     '''
