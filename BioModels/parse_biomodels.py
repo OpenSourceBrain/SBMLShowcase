@@ -126,6 +126,11 @@ def main():
     starting_dir = os.getcwd()
 
     for model_id in model_ids:
+        #mtab.print_last_row()
+        #mtab.print_col_lengths()
+        #delete any stale row variables from last iteration
+        mtab.delete_variables(locals())
+
         #allow testing on a small sample of models
         if max_count > 0 and count >= max_count: break
         count += 1
@@ -134,23 +139,58 @@ def main():
         #only process curated models
         #BIOMD ids should be the curated models
         if not 'BIOMD' in model_id:
-            #mtab.append_row({"model_desc":model_desc})
             continue
 
         #skip if on the list to be skipped
-        if count in skip or model_id in skip: continue
+        if count in skip or model_id in skip:
+            continue
 
+        #from this point the model will create an output row even if not all tests are run
+        mtab.append_row({}) #append empty placeholder row
         info = cache.do_request(f"{API_URL}/{model_id}?format={out_format}").json()
         model_desc = f"[{model_id}]({API_URL}/{model_id})<br/><sup>{info['name']}</sup>"
 
-        #handle only single SBML files (some are Open Neural Network Exchange, or "Other" such as Docker)
-        if not info['format']['name'] == "SBML": continue
-        if not len(info['files']['main']) == 1: continue
+        #make temporary downloads of the sbml and sedml files
+        model_dir = os.path.join(starting_dir,tmp_dir,model_id)
+        os.makedirs(model_dir,exist_ok=True)
+        os.chdir(model_dir)
 
+        #handle only single SBML files (some are Open Neural Network Exchange, or "Other" such as Docker)
+        if not info['format']['name'] == "SBML":
+            valid_sbml = f"NonSBML:{info['format']['name']}:{info['files']['main']}"
+            mtab.update_row(locals())
+            continue
+        if len(info['files']['main']) > 1:
+            valid_sbml = f"MultipleSBMLs:{info['files']['main']}"
+            mtab.update_row(locals())
+            continue
+        if len(info['files']['main']) < 1:
+            valid_sbml = f"NoSBMLs:{info['files']['main']}"
+            mtab.update_row(locals())
+            continue
+
+        #download the sbml file
         sbml_file = info['files']['main'][0]['name']
+        try:
+            download_file(model_id,sbml_file,sbml_file,cache)
+        except Exception as e:
+            valid_sbml = f"DownloadFail:{sbml_file} {e}"
+            mtab.update_row(locals())
+            continue
+
+        #validate the sbml file
+        sup.suppress() #suppress validation warning/error messages
+        valid_sbml = [validate_sbml_files([sbml_file], strict_units=False), sbml_file, model_id] #store True/False outcome, filename, model_id
+        valid_sbml_units = validate_sbml_files([sbml_file], strict_units=True) #store True/False outcome
+        sup.restore()
+        mtab.update_row(locals())
 
         #must have a SEDML file as well in order to be executed
-        if not 'additional' in info['files']: continue
+        if not 'additional' in info['files']:
+            valid_sedml = f"NoSEDML"
+            mtab.update_row(locals())
+            continue
+
         sedml_file = []
         for file_info in info['files']['additional']:
             pattern = 'SED[-]?ML'
@@ -159,33 +199,40 @@ def main():
                 sedml_file.append(file_info['name'])
 
         #require exactly one SEDML file
-        if len(sedml_file) != 1: continue
-        sedml_file = sedml_file[0]
+        if len(sedml_file) == 0:
+            valid_sedml = f"NoSEDML"
+            mtab.update_row(locals())
+            continue
+        if len(sedml_file) > 1:
+            valid_sedml = f"MultipleSEDMLs:{sedml_file}"
+            mtab.update_row(locals())
+            continue
 
-        print(f'testing {sbml_file}...               ',end='')
-        #make temporary downloads of the sbml and sedml files
-        model_dir = os.path.join(starting_dir,tmp_dir,model_id)
-        os.makedirs(model_dir,exist_ok=True)
-        os.chdir(model_dir)
-        download_file(model_id,sbml_file,sbml_file,cache)
-        download_file(model_id,sedml_file,sedml_file,cache)
+        #download sedml file
+        sedml_file = sedml_file[0]
+        try:
+            download_file(model_id,sedml_file,sedml_file,cache)
+        except:
+            valid_sedml = f"DownloadFail:{sedml_file}"
+            mtab.update_row(locals())
+            continue
+
 
         #if the sedml file contains a generic 'source="model.xml"' replace it with the sbml filename
         if fix_broken_ref:
             broken_ref = replace_model_xml(sedml_file,sbml_file)
         else:
             broken_ref = False
+        mtab.update_row(locals())
 
         #run the validation functions on the sbml and sedml files
+        print(f'testing {sbml_file}...               ',end='')
         sup.suppress()
-        valid_sbml = [validate_sbml_files([sbml_file], strict_units=False), sbml_file, model_id] #store outcome, filename, model_id
-        valid_sbml_units = validate_sbml_files([sbml_file], strict_units=True)
         valid_sedml = [validate_sedml_files([sedml_file]), sedml_file, model_id] #store outcome, filename, model_id
         tellurium_outcome = utils.test_engine("tellurium",sedml_file)
         sup.restore()
 
-        #append the row values to their respective table columns
-        mtab.append_row(locals())
+        mtab.update_row(locals())
 
         #stop matplotlib plots from building up
         matplotlib.pyplot.close()
@@ -204,9 +251,22 @@ def main():
     #for compound (list containing) table cells
     #give failure count summaries in summary row, convert boolean to pass/FAIL
     #add hideable full filenames with link to #Files tab of BioModels
-    for key in ['valid_sbml','valid_sedml']:
-        mtab.add_count(key,lambda x:x[0]==False,'n_fail={count}')
-        mtab.transform_column(key,format_list_cell)
+    sbml_sedml_patterns = \
+    {
+        "^DownloadFail":"DownloadFail",
+        "^NonSBML":"NonSBML",
+        "^NoSBMLs":"NoSBMLs",
+        "^MultipleSBMLs":"MultipleSBMLs",
+        "^NoSEDML":"NoSEDML",
+        "^MultipleSEDMLs":"MultipleSEDMLs",
+        "True":"pass",
+        "False":"FAILED"
+    }
+    mtab.regex_summary('valid_sbml',sbml_sedml_patterns)
+    mtab.regex_summary('valid_sedml',sbml_sedml_patterns)
+    #for key in ['valid_sbml','valid_sedml']:
+        #mtab.add_count(key,lambda x:x[0]==False,'n_fail={count}')
+        #mtab.transform_column(key,format_list_cell)
 
     #convert engine error messages to foldable readable form
     #calculate error category counts for summary row

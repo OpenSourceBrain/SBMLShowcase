@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from pyneuroml import tellurium
 import re
 import requests
+from collections import defaultdict
 
 #define error categories for detailed error counting per engine
 # (currently only tellurium)
@@ -176,6 +177,20 @@ class MarkdownTable:
             else:
                 self.data[key].append(vars[key])
 
+    def update_row(self,vars,missing=None):
+        'update the last row from a variables dict (eg locals())'
+        for key in self.keys:
+            if not key in vars:
+                self.data[key][-1] = missing
+            else:
+                self.data[key][-1] = vars[key]
+
+    def delete_variables(self,vars,missing=None):
+        'delete all row variables (eg when vars = locals())'
+        for key in self.keys:
+            if key in vars:
+                del vars[key]
+
     def get_column(self,key):
         'return the named column'
         return self.data[key]
@@ -205,11 +220,40 @@ class MarkdownTable:
 
         self.add_summary(key,format.format(count=count))
 
+    def regex_summary(self,key,patterns,format='{summary}'):
+        counts = defaultdict(int)
+
+        for cell in self.data[key]:
+            if type(cell) == list:
+                value = str(cell[0])
+            else:
+                value = str(cell)
+
+            match=False
+            for regex,tag in patterns.items():
+                if re.search(regex,value):
+                    counts[tag] += 1
+                    match = True
+                    break
+            if not match: counts["other"] += 1
+
+
+        summary = ' '.join([f'n_{tag}={counts[tag]}' for tag in counts])
+        self.add_summary(key,format.format(summary=summary))
+
     def transform_column(self,key,func):
         'pass all column values through a function'
         for i in range(len(self.data[key])):
             self.data[key][i] = func(key,self.data[key][i])
 
+    def print_last_row(self):
+        if self.n_rows() == 0:
+            print('-')
+            return
+        print(' '.join([str(self.data[key][-1]) for key in self.data]))
+
+    def print_col_lengths(self):
+        print(' '.join([str(len(self.data[key])) for key in self.data]))
 
     def write(self,fout,sep='|',end='\n'):
         'write the markdown table to file'
