@@ -1,6 +1,6 @@
 |case|valid-sbml|valid-sbml-units|valid-sedml|tellurium|
 |---|---|---|---|---|
-|cases=1690|fails=1|fails=5|fails=0|<details><summary>fails=869</summary>other=0 algebraic=108 delay=44 ASTNode=58 stochiometry=6 float=14 SpeciesRef=3 reset=636</details>|
+||n_fail=1|n_fail=5|n_fail=0|<details><summary>fails=869</summary>other=0 algebraic=108 delay=44 ASTNode=58 stochiometry=6 float=14 SpeciesRef=3 reset=636 SEDMLfile=0 noSBMLelement=0 CV_ERR_FAILURE=0 CV_TOO_MUCH_WORK=0 CV_CONV_FAILURE=0 CV_ILL_INPUT=0 outOfRange=0</details>|
 |[00001-sbml-l3v2.xml](https://github.com/sbmlteam/sbml-test-suite/blob/release/cases/semantic/00001/00001-sbml-l3v2.xml)|pass|pass|pass|pass|
 |[00002-sbml-l3v2.xml](https://github.com/sbmlteam/sbml-test-suite/blob/release/cases/semantic/00002/00002-sbml-l3v2.xml)|pass|pass|pass|pass|
 |[00003-sbml-l3v2.xml](https://github.com/sbmlteam/sbml-test-suite/blob/release/cases/semantic/00003/00003-sbml-l3v2.xml)|pass|pass|pass|pass|
