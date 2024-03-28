@@ -1,5 +1,17 @@
 #!/usr/bin/env python3
 
+md_description = \
+'''
+Download and run validation tests on all the curated models from BioModels https://www.ebi.ac.uk/biomodels.
+The final step is to run the model in tellurium,
+only models specified in SBML with a matching SEDML file are run in tellurium.
+Errors or validation failures are reported at each step.
+Outputs to the Markdown Table below.
+
+'valid-sbml-units' enforces strict unit checking, 'broken-ref' indicates that the SEDML file contained
+a broken source='model.xml' reference which was corrected to the name of the model's provided SBML file.
+'''
+
 import pyneuroml.sbml #for validate_sbml_files
 import pyneuroml.sedml #for validate_sedml_files
 
@@ -161,18 +173,6 @@ def validate_sedml_file(model_id,mtab,info,cache,sup,sbml_file):
 
     return sedml_file
 
-def format_cell(cell):
-    '''
-    produce the final fully formatted markdown table cell contents
-    '''
-
-    if type(cell) == list:
-        assert len(cell) == 2
-        summary = utils.safe_md_string(cell[1])
-        return f"<details><summary>{cell[0]}</summary>{summary}</details>"
-        
-    return str(cell)
-
 def main():
     '''
     download the BioModel model files, run various validation steps
@@ -213,9 +213,15 @@ def main():
             continue
 
         #from this point the model will create an output row even if not all tests are run
-        mtab.new_row(missing='NA') #append empty placeholder row
+        mtab.new_row() #append empty placeholder row
         info = cache.do_request(f"{API_URL}/{model_id}?format={out_format}").json()
-        mtab['model_desc'] = f"[{model_id}]({API_URL}/{model_id})<br/><sup>{info['name']}</sup>"
+
+        if len(info['name']) > 36:
+            model_summary = f"[{model_id}]({API_URL}/{model_id})<br/><sup>{info['name'][:30]}</sup>"
+            model_details = f"<sup>{info['name']}</sup>"
+            mtab['model_desc'] = mtab.make_fold(model_summary,model_details)
+        else:
+            mtab['model_desc'] = f"[{model_id}]({API_URL}/{model_id})<br/><sup>{info['name']}</sup>"
 
         #make temporary downloads of the sbml and sedml files
         model_dir = os.path.join(starting_dir,tmp_dir,model_id)
@@ -244,17 +250,18 @@ def main():
     mtab.add_summary('model_desc',f'n={mtab.n_rows()}')
 
     #count occurrences of each cell value, convert to final form
-    for key in ['valid_sbml','valid_sbml_units','valid_sedml','broken_ref']:
+    for key in ['valid_sbml','valid_sbml_units','valid_sedml','broken_ref','tellurium_outcome']:
         mtab.simple_summary(key)
-        mtab.transform_column(key,format_cell)
+        mtab.transform_column(key)
 
     #convert engine error messages to foldable readable form
     #calculate error category counts for summary row
-    mtab.process_engine_outcomes('tellurium','tellurium_outcome')
+    #mtab.process_engine_outcomes('tellurium','tellurium_outcome')
 
     #write out to file
     os.chdir(starting_dir)
     with open('README.md', "w") as fout:
+        fout.write(md_description)
         mtab.write(fout)
 
 if __name__ == "__main__":
