@@ -108,7 +108,6 @@ def process_cases(args):
     with open(args.output_file, "w") as fout:
         n_cases = 0
 
-
         os.chdir(args.suite_path)
         fpath_list = sorted(glob.glob(args.suite_glob))
         for fpath in fpath_list:
@@ -140,8 +139,10 @@ def process_cases(args):
             mtab.add_count(key,lambda x:x==False,'n_fail={count}')
             mtab.transform_column(key,lambda x:'pass' if x else 'FAIL')
 
+        mtab.simple_summary('tellurium_outcome')
+        mtab.transform_column('tellurium_outcome')
         #process engine outcomes column(s)
-        mtab.process_engine_outcomes('tellurium','tellurium_outcome')
+        #mtab.process_engine_outcomes('tellurium','tellurium_outcome')
             
         #write out to file
         mtab.write(fout)
