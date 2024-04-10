@@ -8,6 +8,10 @@ from pyneuroml import tellurium
 import re
 import requests
 from collections import defaultdict
+from pathlib import Path
+import random
+from pymetadata.omex import EntryFormat, ManifestEntry, Omex
+import docker
 
 #define error categories for detailed error counting per engine
 # (currently only tellurium)
@@ -33,6 +37,51 @@ error_categories=\
             "OutOfRange":"list index out of range",
         },
 }
+
+def run_biosimulators(engine,sedml_file,sbml_file):
+    '''
+    test on the requested engine using biosimulators through docker
+    '''
+
+    #make temporary directory
+    temp_name = "tmp" + str(random.randrange(999999))
+    cwd = Path.cwd()
+    temp_dir = cwd / temp_name
+    os.makedirs(temp_dir,exist_ok=False)
+
+    #wrap sedml+sbml files into an omex combine archive
+    omex = Omex()
+    omex.add_entry(
+        entry = ManifestEntry(
+            location = sbml_file,
+            format = EntryFormat.SBML_L3V2,
+            master = False,
+        ),
+        entry_path = temp_dir / os.path.basename(sbml_file)
+    )
+    omex.add_entry(
+        entry = ManifestEntry(
+            location = sedml_file,
+            format = EntryFormat.SEDML,
+            master = False,
+        ),
+        entry_path = temp_dir / os.path.basename(sedml_file)
+    )
+    omex_path = temp_dir / f"{temp_name}.omex"
+    omex.to_omex(omex_path)
+
+    #run through a biosimulators docker image
+    client = docker.from_env()
+    client.containers.run(f"ghcr.io/biosimulators/{engine}",
+                          mounts=[Mount(source=temp_dir,target="/root/data"),
+                                  Mount(source=temp_dir,target="/root/data")],
+                          command=f"-i /root/data/{temp_name}.omex -o /root/data")
+
+    # --mount type=bind,source="$(pwd)",target=/root/in,readonly \
+    # --mount type=bind,source="$(pwd)",target=/root/out \
+    # ghcr.io/biosimulators/tellurium:latest \
+    # -i /root/in/modeling-study.omex \
+    # -o /root/out
 
 def test_engine(engine,filename,error_categories=error_categories):
     '''
