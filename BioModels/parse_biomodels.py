@@ -237,9 +237,10 @@ def main():
 
         #run the validation functions on the sbml and sedml files
         print(f'testing {sbml_file}...               ',end='')
-        sup.suppress()
-        mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_file)
-        sup.restore()
+        #sup.suppress()
+        #mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_file)
+        #sup.restore()
+        mtab['tellurium_outcome'] = utils.run_biosimulators("tellurium",sedml_file,sbml_file)
 
         #stop matplotlib plots from building up
         matplotlib.pyplot.close()

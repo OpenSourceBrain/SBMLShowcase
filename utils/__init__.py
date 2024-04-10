@@ -43,11 +43,14 @@ def run_biosimulators(engine,sedml_file,sbml_file):
     test on the requested engine using biosimulators through docker
     '''
 
-    #make temporary directory
-    temp_name = "tmp" + str(random.randrange(999999))
-    cwd = Path.cwd()
-    temp_dir = cwd / temp_name
-    os.makedirs(temp_dir,exist_ok=False)
+    # was originally making a temporary directory
+    # cwd = Path.cwd()
+    # temp_dir = cwd / temp_name
+    # os.makedirs(temp_dir,exist_ok=False)
+
+    data_dir = os.path.dirname(sedml_file)
+    print(data_dir)
+    omex_file = Path(sedml_file+f'{random.randrange(999999)}.omex')
 
     #wrap sedml+sbml files into an omex combine archive
     omex = Omex()
@@ -57,7 +60,7 @@ def run_biosimulators(engine,sedml_file,sbml_file):
             format = EntryFormat.SBML_L3V2,
             master = False,
         ),
-        entry_path = temp_dir / os.path.basename(sbml_file)
+        entry_path = Path(os.path.basename(sbml_file))
     )
     omex.add_entry(
         entry = ManifestEntry(
@@ -65,17 +68,17 @@ def run_biosimulators(engine,sedml_file,sbml_file):
             format = EntryFormat.SEDML,
             master = False,
         ),
-        entry_path = temp_dir / os.path.basename(sedml_file)
+        entry_path = Path(os.path.basename(sedml_file))
     )
-    omex_path = temp_dir / f"{temp_name}.omex"
-    omex.to_omex(omex_path)
+    omex.to_omex(Path(omex_file))
 
     #run through a biosimulators docker image
+    mount_in = docker.types.Mount("/root/in",data_dir,type="bind",read_only=True)
+    mount_out = docker.types.Mount("/root/out",data_dir,type="bind")
     client = docker.from_env()
     client.containers.run(f"ghcr.io/biosimulators/{engine}",
-                          mounts=[Mount(source=temp_dir,target="/root/data"),
-                                  Mount(source=temp_dir,target="/root/data")],
-                          command=f"-i /root/data/{temp_name}.omex -o /root/data")
+                          mounts=[mount_in,mount_out],
+                          command=f"-i /root/data/{omex_file} -o /root/data")
 
     # --mount type=bind,source="$(pwd)",target=/root/in,readonly \
     # --mount type=bind,source="$(pwd)",target=/root/out \
