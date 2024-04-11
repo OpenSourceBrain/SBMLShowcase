@@ -38,14 +38,8 @@ error_categories=\
             "CV_ILL_INPUT":"CV_ILL_INPUT",
             "OutOfRange":"list index out of range",
         },
+    "copasi":{},
 }
-
-# def fix_format(format):
-#     'adjust the URI prefix to end with a slash not a colon'
-
-#     PREFIX1 = "http://identifiers.org/combine.specifications:"
-#     PREFIX2 = "http://identifiers.org/combine.specifications/"
-#     return re.sub(PREFIX1, PREFIX2, format)
 
 def create_omex(sedml_file,sbml_file):
     '''
@@ -74,19 +68,18 @@ def create_omex(sedml_file,sbml_file):
     )
     om.to_omex(Path(omex_file))
 
-    print("\n")
-    console.print(om)
-    print("\n")
-    #exit()
-
     data_dir = os.path.dirname(os.path.abspath(sedml_file))
 
     return data_dir,omex_file
 
-def biosimulators_stub(engine,sedml_file,sbml_file):
+def run_biosimulators_docker(engine,sedml_file,sbml_file,error_categories=error_categories):
     '''
-    just run the container without setting up the mounts
-    to check we can access docker
+    try to run the sedml+sbml combo using biosimulators
+    after wrapping the input files into a combine archive
+    calls biosimulators via docker locally
+    assumes local docker is setup
+    engine can be any string that matches a biosimulators docker "URI":
+    ghcr.io/biosimulators/{engine}
     '''
 
     #put the sedml and sbml into a combine archive
@@ -97,57 +90,22 @@ def biosimulators_stub(engine,sedml_file,sbml_file):
     mount_out = docker.types.Mount("/root/out",data_dir,type="bind")
 
     client = docker.from_env()
-    client.containers.run(f"ghcr.io/biosimulators/{engine}",
-                          mounts=[mount_in,mount_out],
-                          command=f"-i /root/in/{omex_file} -o /root/out")
 
-def run_biosimulators(engine,sedml_file,sbml_file):
-    '''
-    test on the requested engine using biosimulators through docker
-    '''
+    try:
+        client.containers.run(f"ghcr.io/biosimulators/{engine}",
+                            mounts=[mount_in,mount_out],
+                            command=f"-i /root/in/{omex_file} -o /root/out")
+        return "pass" #no errors
+    except Exception as e:
+        #make an error string which doesn't break markdown tabless
+        error_str = safe_md_string(e)
 
-    # was originally making a temporary directory
-    # cwd = Path.cwd()
-    # temp_dir = cwd / temp_name
-    # os.makedirs(temp_dir,exist_ok=False)
-
-    data_dir = os.path.dirname(sedml_file)
-    print(data_dir)
-    omex_file = Path(sedml_file+f'{random.randrange(999999)}.omex')
-
-    #wrap sedml+sbml files into an omex combine archive
-    omex = Omex()
-    omex.add_entry(
-        entry = ManifestEntry(
-            location = sbml_file,
-            format = EntryFormat.SBML_L3V2,
-            master = False,
-        ),
-        entry_path = Path(os.path.basename(sbml_file))
-    )
-    omex.add_entry(
-        entry = ManifestEntry(
-            location = sedml_file,
-            format = EntryFormat.SEDML,
-            master = False,
-        ),
-        entry_path = Path(os.path.basename(sedml_file))
-    )
-    omex.to_omex(Path(omex_file))
-
-    #run through a biosimulators docker image
-    mount_in = docker.types.Mount("/root/in",data_dir,type="bind",read_only=True)
-    mount_out = docker.types.Mount("/root/out",data_dir,type="bind")
-    client = docker.from_env()
-    client.containers.run(f"ghcr.io/biosimulators/{engine}",
-                          mounts=[mount_in,mount_out],
-                          command=f"-i /root/data/{omex_file} -o /root/data")
-
-    # --mount type=bind,source="$(pwd)",target=/root/in,readonly \
-    # --mount type=bind,source="$(pwd)",target=/root/out \
-    # ghcr.io/biosimulators/tellurium:latest \
-    # -i /root/in/modeling-study.omex \
-    # -o /root/out
+    #categorise the error string
+    for tag in error_categories[engine]:
+        if re.search(error_categories[engine][tag],error_str):
+            return [tag,f"```{error_str}```"]
+    
+    return ["other",f"```{error_str}```"]
 
 def test_engine(engine,filename,error_categories=error_categories):
     '''
@@ -169,7 +127,7 @@ def test_engine(engine,filename,error_categories=error_categories):
         #return error object
         error_str = safe_md_string(e)
 
-    if unknown_engine:        
+    if unknown_engine:
         raise RuntimeError(f"unknown engine {engine}")
 
     for tag in error_categories[engine]:
