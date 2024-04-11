@@ -38,6 +38,55 @@ error_categories=\
         },
 }
 
+def create_omex(sedml_file,sbml_file):
+    '''
+    wrap a sedml and an sbml filin a combine archive omex file
+    '''
+
+    omex_file = Path(sedml_file+f'{random.randrange(999999)}.omex')
+
+    #wrap sedml+sbml files into an omex combine archive
+    omex = Omex()
+    omex.add_entry(
+        entry = ManifestEntry(
+            location = sbml_file,
+            format = EntryFormat.SBML_L3V2,
+            master = False,
+        ),
+        entry_path = Path(os.path.basename(sbml_file))
+    )
+    omex.add_entry(
+        entry = ManifestEntry(
+            location = sedml_file,
+            format = EntryFormat.SEDML,
+            master = False,
+        ),
+        entry_path = Path(os.path.basename(sedml_file))
+    )
+    omex.to_omex(Path(omex_file))
+
+    data_dir = os.path.dirname(os.path.abspath(sedml_file))
+
+    return data_dir,omex_file
+
+def biosimulators_stub(engine,sedml_file,sbml_file):
+    '''
+    just run the container without setting up the mounts
+    to check we can access docker
+    '''
+
+    #put the sedml and sbml into a combine archive
+    data_dir,omex_file = create_omex(sedml_file,sbml_file)
+
+    #create mounts to share files with the container
+    mount_in = docker.types.Mount("/root/in",data_dir,type="bind",read_only=True)
+    mount_out = docker.types.Mount("/root/out",data_dir,type="bind")
+
+    client = docker.from_env()
+    client.containers.run(f"ghcr.io/biosimulators/{engine}",
+                          mounts=[mount_in,mount_out],
+                          command=f"-i /root/in/{omex_file} -o /root/out")
+
 def run_biosimulators(engine,sedml_file,sbml_file):
     '''
     test on the requested engine using biosimulators through docker
