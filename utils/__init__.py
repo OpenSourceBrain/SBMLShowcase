@@ -11,7 +11,8 @@ from collections import defaultdict
 from pathlib import Path
 import random
 from pymetadata.console import console
-from pymetadata.omex import EntryFormat, ManifestEntry, Omex
+from pymetadata import omex
+
 import docker
 
 #define error categories for detailed error counting per engine
@@ -39,6 +40,13 @@ error_categories=\
         },
 }
 
+# def fix_format(format):
+#     'adjust the URI prefix to end with a slash not a colon'
+
+#     PREFIX1 = "http://identifiers.org/combine.specifications:"
+#     PREFIX2 = "http://identifiers.org/combine.specifications/"
+#     return re.sub(PREFIX1, PREFIX2, format)
+
 def create_omex(sedml_file,sbml_file):
     '''
     wrap a sedml and an sbml filin a combine archive omex file
@@ -47,27 +55,27 @@ def create_omex(sedml_file,sbml_file):
     omex_file = Path(sedml_file+f'{random.randrange(999999)}.omex')
 
     #wrap sedml+sbml files into an omex combine archive
-    omex = Omex()
-    omex.add_entry(
-        entry = ManifestEntry(
+    om = omex.Omex()
+    om.add_entry(
+        entry = omex.ManifestEntry(
             location = sedml_file,
-            format = EntryFormat.SEDML,
+            format = omex.EntryFormat.SEDML,
             master = True,
         ),
         entry_path = Path(os.path.basename(sedml_file))
     )
-    omex.add_entry(
-        entry = ManifestEntry(
+    om.add_entry(
+        entry = omex.ManifestEntry(
             location = sbml_file,
-            format = EntryFormat.SBML_L3V2,
+            format = omex.EntryFormat.SBML_L3V2,
             master = False,
         ),
         entry_path = Path(os.path.basename(sbml_file))
     )
-    omex.to_omex(Path(omex_file))
+    om.to_omex(Path(omex_file))
 
     print("\n")
-    console.print(omex)
+    console.print(om)
     print("\n")
     #exit()
 
