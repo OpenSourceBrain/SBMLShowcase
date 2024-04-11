@@ -10,6 +10,7 @@ import requests
 from collections import defaultdict
 from pathlib import Path
 import random
+from pymetadata.console import console
 from pymetadata.omex import EntryFormat, ManifestEntry, Omex
 import docker
 
@@ -49,21 +50,26 @@ def create_omex(sedml_file,sbml_file):
     omex = Omex()
     omex.add_entry(
         entry = ManifestEntry(
+            location = sedml_file,
+            format = EntryFormat.SEDML,
+            master = True,
+        ),
+        entry_path = Path(os.path.basename(sedml_file))
+    )
+    omex.add_entry(
+        entry = ManifestEntry(
             location = sbml_file,
             format = EntryFormat.SBML_L3V2,
             master = False,
         ),
         entry_path = Path(os.path.basename(sbml_file))
     )
-    omex.add_entry(
-        entry = ManifestEntry(
-            location = sedml_file,
-            format = EntryFormat.SEDML,
-            master = False,
-        ),
-        entry_path = Path(os.path.basename(sedml_file))
-    )
     omex.to_omex(Path(omex_file))
+
+    print("\n")
+    console.print(omex)
+    print("\n")
+    #exit()
 
     data_dir = os.path.dirname(os.path.abspath(sedml_file))
 
