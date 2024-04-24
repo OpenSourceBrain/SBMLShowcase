@@ -12,8 +12,8 @@ from pathlib import Path
 import random
 from pymetadata.console import console
 from pymetadata import omex
-
 import docker
+import yaml
 
 #define error categories for detailed error counting per engine
 # (currently only tellurium)
@@ -73,7 +73,12 @@ def create_omex(sedml_file,sbml_file):
     return data_dir,omex_file
 
 def read_log_yml(data_dir):
-    return None
+    log_yml = os.path.join(data_dir,"log.yml")
+    if not os.path.isfile(log_yml):
+        return None
+    with open(log_yml) as f:
+        ym = yaml.safe_load(f)
+    return ym['exception']['message']
 
 def run_biosimulators_docker(engine,sedml_file,sbml_file,error_categories=error_categories):
     '''
