@@ -203,7 +203,8 @@ class RequestCache:
         or just the cache base directory for a null request
         '''
 
-        return f"{self.absolute_dir}/{hashlib.sha256(request.encode('UTF-8')).hexdigest()}"
+        return os.path.join(f"{self.absolute_dir}",hashlib.sha256(request.encode('UTF-8')).hexdigest())
+        #return f"{self.absolute_dir}/{hashlib.sha256(request.encode('UTF-8')).hexdigest()}"
 
 
     def get_entry(self,request):
