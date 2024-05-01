@@ -21,7 +21,7 @@
             color="#ff0000" timeScale="1ms"/>
     </Display>
 
-    <OutputFile id="of0" fileName="./fhn.dat">
+    <OutputFile id="of0" fileName="fhn.dat">
       <OutputColumn id="V" quantity="fn1pop[0]/V"/>
       <OutputColumn id="W" quantity="fn1pop[0]/W"/>
     </OutputFile>
