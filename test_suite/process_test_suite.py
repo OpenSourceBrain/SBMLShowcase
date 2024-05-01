@@ -104,8 +104,8 @@ def process_cases(args):
     #allow stdout/stderr from validation tests to be suppressed to improve progress count readability
     sup = utils.SuppressOutput(stdout=suppress_stdout)
 
-    column_labels = "case|valid-sbml|valid-sbml-units|valid-sedml|tellurium"#|copasi"
-    column_keys  =  "case|valid_sbml|valid_sbml_units|valid_sedml|tellurium_outcome"#|copasi_outcome"
+    column_labels = "case|valid-sbml|valid-sbml-units|valid-sedml|tellurium|copasi"
+    column_keys  =  "case|valid_sbml|valid_sbml_units|valid_sedml|tellurium_outcome|copasi_outcome"
     mtab = utils.MarkdownTable(column_labels,column_keys)
 
     #open file now to make sure output path is with respect to initial working directory
@@ -147,7 +147,7 @@ def process_cases(args):
 
         # run tellurium and copasi using biosimulators
         mtab['tellurium_outcome'] = utils.run_biosimulators_docker("tellurium",sedml_file,sbml_file)
-        # mtab['copasi_outcome'] = utils.run_biosimulators_docker("copasi",sedml_file,sbml_file)
+        mtab['copasi_outcome'] = utils.run_biosimulators_docker("copasi",sedml_file,sbml_file)
 
         #stop matplotlib plots from building up
         matplotlib.pyplot.close()
@@ -160,8 +160,8 @@ def process_cases(args):
     #process engine outcomes column(s)
     mtab.simple_summary('tellurium_outcome')
     mtab.transform_column('tellurium_outcome')
-    # mtab.simple_summary('copasi_outcome')
-    # mtab.transform_column('copasi_outcome')
+    mtab.simple_summary('copasi_outcome')
+    mtab.transform_column('copasi_outcome')
         
     #write out to file
     os.chdir(starting_dir)
