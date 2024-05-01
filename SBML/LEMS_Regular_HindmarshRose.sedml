@@ -42,50 +42,50 @@ Components:
         </dataGenerator>
         <dataGenerator id="DISPLAY__d1_x" name="DISPLAY__d1_x">
             <listOfVariables>
-                <variable id="hr_regular_pop_0_x" taskReference="sim1_net1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='x']"/>
+                <variable id="DISPLAY__d1_x_hr_regular_pop_0_x" taskReference="sim1_net1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='x']"/>
             </listOfVariables>
             <math xmlns="http://www.w3.org/1998/Math/MathML">
-                <ci>hr_regular_pop_0_x</ci>
+                <ci>DISPLAY__d1_x_hr_regular_pop_0_x</ci>
             </math>
         </dataGenerator>
         <dataGenerator id="DISPLAY__d2_y" name="DISPLAY__d2_y">
             <listOfVariables>
-                <variable id="hr_regular_pop_0_y" taskReference="sim1_net1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='y']"/>
+                <variable id="DISPLAY__d2_y_hr_regular_pop_0_y" taskReference="sim1_net1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='y']"/>
             </listOfVariables>
             <math xmlns="http://www.w3.org/1998/Math/MathML">
-                <ci>hr_regular_pop_0_y</ci>
+                <ci>DISPLAY__d2_y_hr_regular_pop_0_y</ci>
             </math>
         </dataGenerator>
         <dataGenerator id="DISPLAY__d3_z" name="DISPLAY__d3_z">
             <listOfVariables>
-                <variable id="hr_regular_pop_0_z" taskReference="sim1_net1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='z']"/>
+                <variable id="DISPLAY__d3_z_hr_regular_pop_0_z" taskReference="sim1_net1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='z']"/>
             </listOfVariables>
             <math xmlns="http://www.w3.org/1998/Math/MathML">
-                <ci>hr_regular_pop_0_z</ci>
+                <ci>DISPLAY__d3_z_hr_regular_pop_0_z</ci>
             </math>
         </dataGenerator>
         <dataGenerator id="OUTPUT__of0_x" name="OUTPUT__of0_x">
             <listOfVariables>
-                <variable id="hr_regular_pop_0_x" taskReference="sim1_net1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='x']"/>
+                <variable id="OUTPUT__of0_x_hr_regular_pop_0_x" taskReference="sim1_net1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='x']"/>
             </listOfVariables>
             <math xmlns="http://www.w3.org/1998/Math/MathML">
-                <ci>hr_regular_pop_0_x</ci>
+                <ci>OUTPUT__of0_x_hr_regular_pop_0_x</ci>
             </math>
         </dataGenerator>
         <dataGenerator id="OUTPUT__of0_y" name="OUTPUT__of0_y">
             <listOfVariables>
-                <variable id="hr_regular_pop_0_y" taskReference="sim1_net1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='y']"/>
+                <variable id="OUTPUT__of0_y_hr_regular_pop_0_y" taskReference="sim1_net1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='y']"/>
             </listOfVariables>
             <math xmlns="http://www.w3.org/1998/Math/MathML">
-                <ci>hr_regular_pop_0_y</ci>
+                <ci>OUTPUT__of0_y_hr_regular_pop_0_y</ci>
             </math>
         </dataGenerator>
         <dataGenerator id="OUTPUT__of0_z" name="OUTPUT__of0_z">
             <listOfVariables>
-                <variable id="hr_regular_pop_0_z" taskReference="sim1_net1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='z']"/>
+                <variable id="OUTPUT__of0_z_hr_regular_pop_0_z" taskReference="sim1_net1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='z']"/>
             </listOfVariables>
             <math xmlns="http://www.w3.org/1998/Math/MathML">
-                <ci>hr_regular_pop_0_z</ci>
+                <ci>OUTPUT__of0_z_hr_regular_pop_0_z</ci>
             </math>
         </dataGenerator>
     </listOfDataGenerators>
@@ -108,10 +108,10 @@ Components:
         </plot2D>
         <report id="hr">
             <listOfDataSets>
-                <dataSet id="time" name="time" dataReference="time" label="time"/>
-                <dataSet id="x" name="OUTPUT__of0_x" dataReference="OUTPUT__of0_x" label="OUTPUT__of0_x"/>
-                <dataSet id="y" name="OUTPUT__of0_y" dataReference="OUTPUT__of0_y" label="OUTPUT__of0_y"/>
-                <dataSet id="z" name="OUTPUT__of0_z" dataReference="OUTPUT__of0_z" label="OUTPUT__of0_z"/>
+                <dataSet id="hr_time" name="time" dataReference="time" label="time"/>
+                <dataSet id="hr_x" name="OUTPUT__of0_x" dataReference="OUTPUT__of0_x" label="OUTPUT__of0_x"/>
+                <dataSet id="hr_y" name="OUTPUT__of0_y" dataReference="OUTPUT__of0_y" label="OUTPUT__of0_y"/>
+                <dataSet id="hr_z" name="OUTPUT__of0_z" dataReference="OUTPUT__of0_z" label="OUTPUT__of0_z"/>
             </listOfDataSets>
         </report>
     </listOfOutputs>

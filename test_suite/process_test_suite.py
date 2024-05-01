@@ -104,8 +104,8 @@ def process_cases(args):
     #allow stdout/stderr from validation tests to be suppressed to improve progress count readability
     sup = utils.SuppressOutput(stdout=suppress_stdout)
 
-    column_labels = "case|valid-sbml|valid-sbml-units|valid-sedml|tellurium"#|copasi"
-    column_keys  =  "case|valid_sbml|valid_sbml_units|valid_sedml|tellurium_outcome"#|copasi_outcome"
+    column_labels = "case|valid-sbml|valid-sbml-units|valid-sedml|tellurium|copasi"
+    column_keys  =  "case|valid_sbml|valid_sbml_units|valid_sedml|tellurium_outcome|copasi_outcome"
     mtab = utils.MarkdownTable(column_labels,column_keys)
 
     #open file now to make sure output path is with respect to initial working directory
@@ -142,11 +142,12 @@ def process_cases(args):
         mtab['valid_sbml'] = validate_sbml_files([sbml_file], strict_units=False)
         mtab['valid_sbml_units'] = validate_sbml_files([sbml_file], strict_units=True)
         mtab['valid_sedml'] = validate_sedml_files([sedml_file])
-        #mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_file)
+        #mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_file) # run tellurium directly
         sup.restore()
 
+        # run tellurium and copasi using biosimulators
         mtab['tellurium_outcome'] = utils.run_biosimulators_docker("tellurium",sedml_file,sbml_file)
-        #mtab['copasi_outcome'] = utils.run_biosimulators_docker("copasi",sedml_file,sbml_file)
+        mtab['copasi_outcome'] = utils.run_biosimulators_docker("copasi",sedml_file,sbml_file)
 
         #stop matplotlib plots from building up
         matplotlib.pyplot.close()
