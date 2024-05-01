@@ -41,34 +41,34 @@ Components:
         </dataGenerator>
         <dataGenerator id="DISPLAY__d1_V" name="DISPLAY__d1_V">
             <listOfVariables>
-                <variable id="fnPop1_0_V" taskReference="sim1_net1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='V']"/>
+                <variable id="DISPLAY__d1_V_fnPop1_0_V" taskReference="sim1_net1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='V']"/>
             </listOfVariables>
             <math xmlns="http://www.w3.org/1998/Math/MathML">
-                <ci>fnPop1_0_V</ci>
+                <ci>DISPLAY__d1_V_fnPop1_0_V</ci>
             </math>
         </dataGenerator>
         <dataGenerator id="DISPLAY__d1_W" name="DISPLAY__d1_W">
             <listOfVariables>
-                <variable id="fnPop1_0_W" taskReference="sim1_net1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='W']"/>
+                <variable id="DISPLAY__d1_W_fnPop1_0_W" taskReference="sim1_net1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='W']"/>
             </listOfVariables>
             <math xmlns="http://www.w3.org/1998/Math/MathML">
-                <ci>fnPop1_0_W</ci>
+                <ci>DISPLAY__d1_W_fnPop1_0_W</ci>
             </math>
         </dataGenerator>
         <dataGenerator id="OUTPUT__of1_V" name="OUTPUT__of1_V">
             <listOfVariables>
-                <variable id="fnPop1_0_V" taskReference="sim1_net1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='V']"/>
+                <variable id="OUTPUT__of1_V_fnPop1_0_V" taskReference="sim1_net1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='V']"/>
             </listOfVariables>
             <math xmlns="http://www.w3.org/1998/Math/MathML">
-                <ci>fnPop1_0_V</ci>
+                <ci>OUTPUT__of1_V_fnPop1_0_V</ci>
             </math>
         </dataGenerator>
         <dataGenerator id="OUTPUT__of1_W" name="OUTPUT__of1_W">
             <listOfVariables>
-                <variable id="fnPop1_0_W" taskReference="sim1_net1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='W']"/>
+                <variable id="OUTPUT__of1_W_fnPop1_0_W" taskReference="sim1_net1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='W']"/>
             </listOfVariables>
             <math xmlns="http://www.w3.org/1998/Math/MathML">
-                <ci>fnPop1_0_W</ci>
+                <ci>OUTPUT__of1_W_fnPop1_0_W</ci>
             </math>
         </dataGenerator>
     </listOfDataGenerators>
@@ -82,9 +82,9 @@ Components:
         </plot2D>
         <report id="ex9">
             <listOfDataSets>
-                <dataSet id="time" name="time" dataReference="time" label="time"/>
-                <dataSet id="V" name="OUTPUT__of1_V" dataReference="OUTPUT__of1_V" label="OUTPUT__of1_V"/>
-                <dataSet id="W" name="OUTPUT__of1_W" dataReference="OUTPUT__of1_W" label="OUTPUT__of1_W"/>
+                <dataSet id="ex9_time" name="time" dataReference="time" label="time"/>
+                <dataSet id="ex9_V" name="OUTPUT__of1_V" dataReference="OUTPUT__of1_V" label="OUTPUT__of1_V"/>
+                <dataSet id="ex9_W" name="OUTPUT__of1_W" dataReference="OUTPUT__of1_W" label="OUTPUT__of1_W"/>
             </listOfDataSets>
         </report>
     </listOfOutputs>
