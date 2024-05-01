@@ -27,7 +27,7 @@ import utils
 API_URL: str = "https://www.ebi.ac.uk/biomodels"
 
 out_format="json"
-max_count = 0 #0 for unlimited
+max_count = 10 #0 for unlimited
 
 #local temporary storage of the model files
 #this is independent of caching, and still happens when caching is turned off
