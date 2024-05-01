@@ -17,6 +17,11 @@ import sys
 sys.path.append("..")
 import utils
 
+md_description = \
+'''
+Markdown file description goes here.
+'''
+
 
 #suppress stdout output from validation functions to make progress counter readable
 suppress_stdout = True
@@ -105,46 +110,59 @@ def process_cases(args):
 
     #open file now to make sure output path is with respect to initial working directory
     #not the test suite folder
+    starting_dir = os.getcwd()
+
+    n_cases = 0
+
+    os.chdir(args.suite_path)
+    suite_path_abs = os.getcwd()
+    sbml_list = sorted(glob.glob(args.suite_glob))
+
+    for sbml_path in sbml_list:
+        if args.limit and args.limit > 0 and n_cases >= args.limit: break
+
+        mtab.new_row()
+        n_cases +=1
+
+        case_dir = os.path.dirname(sbml_path)
+        os.chdir(suite_path_abs)
+        os.chdir(case_dir)
+
+        sbml_file = os.path.basename(sbml_path)
+        sedml_file = sbml_file.replace(".xml", "-sedml.xml")
+
+        print(f"{n_cases}/{len(sbml_list)} {sbml_file}")
+        assert os.path.isfile(sbml_file)
+        assert os.path.isfile(sedml_file)
+        case = sbml_file
+        if args.suite_url_base != '': case = add_case_url(case,sbml_path,args.suite_url_base)
+        mtab['case'] = case
+
+        sup.suppress() #suppress printing warnings to stdout
+        mtab['valid_sbml'] = validate_sbml_files([sbml_file], strict_units=False)
+        mtab['valid_sbml_units'] = validate_sbml_files([sbml_file], strict_units=True)
+        mtab['valid_sedml'] = validate_sedml_files([sedml_file])
+        mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_file)
+        sup.restore()
+        #mtab.append_row(locals())
+
+        #stop matplotlib plots from building up
+        matplotlib.pyplot.close()
+
+    #give failure counts
+    for key in ['valid_sbml','valid_sbml_units','valid_sedml']:
+        mtab.add_count(key,lambda x:x==False,'n_fail={count}')
+        mtab.transform_column(key,lambda x:'pass' if x else 'FAIL')
+
+    mtab.simple_summary('tellurium_outcome')
+    mtab.transform_column('tellurium_outcome')
+    #process engine outcomes column(s)
+    #mtab.process_engine_outcomes('tellurium','tellurium_outcome')
+        
+    #write out to file
+    os.chdir(starting_dir)
     with open(args.output_file, "w") as fout:
-        n_cases = 0
-
-        os.chdir(args.suite_path)
-        fpath_list = sorted(glob.glob(args.suite_glob))
-        for fpath in fpath_list:
-            if args.limit and args.limit > 0 and n_cases >= args.limit: break
-
-            mtab.new_row()
-            n_cases +=1
-            sedml_path = fpath.replace(".xml", "-sedml.xml")
-            print(f"{n_cases}/{len(fpath_list)} {fpath}")
-            assert os.path.isfile(fpath)
-            assert os.path.isfile(sedml_path)
-            case = os.path.basename(fpath)
-            if args.suite_url_base != '': case = add_case_url(case,fpath,args.suite_url_base)
-            mtab['case'] = case
-
-            sup.suppress() #suppress printing warnings to stdout
-            mtab['valid_sbml'] = validate_sbml_files([fpath], strict_units=False)
-            mtab['valid_sbml_units'] = validate_sbml_files([fpath], strict_units=True)
-            mtab['valid_sedml'] = validate_sedml_files([sedml_path])
-            mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_path)
-            sup.restore()
-            #mtab.append_row(locals())
-
-            #stop matplotlib plots from building up
-            matplotlib.pyplot.close()
-
-        #give failure counts
-        for key in ['valid_sbml','valid_sbml_units','valid_sedml']:
-            mtab.add_count(key,lambda x:x==False,'n_fail={count}')
-            mtab.transform_column(key,lambda x:'pass' if x else 'FAIL')
-
-        mtab.simple_summary('tellurium_outcome')
-        mtab.transform_column('tellurium_outcome')
-        #process engine outcomes column(s)
-        #mtab.process_engine_outcomes('tellurium','tellurium_outcome')
-            
-        #write out to file
+        fout.write(md_description)
         mtab.write(fout)
         
 
