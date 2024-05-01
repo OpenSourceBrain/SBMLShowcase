@@ -53,7 +53,7 @@ def create_omex(sedml_file,sbml_file):
     om.add_entry(
         entry = omex.ManifestEntry(
             location = sedml_file,
-            format = omex.EntryFormat.SEDML,
+            format = omex.EntryFormat.SEDML,#do version numbers exist?
             master = True,
         ),
         entry_path = Path(os.path.basename(sedml_file))
@@ -61,7 +61,7 @@ def create_omex(sedml_file,sbml_file):
     om.add_entry(
         entry = omex.ManifestEntry(
             location = sbml_file,
-            format = omex.EntryFormat.SBML_L3V2,
+            format = omex.EntryFormat.SBML_L3V2,#note: version number is hardcoded here, but should extract version from sbml file
             master = False,
         ),
         entry_path = Path(os.path.basename(sbml_file))
