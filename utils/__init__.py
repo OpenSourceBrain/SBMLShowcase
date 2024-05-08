@@ -44,9 +44,17 @@ error_categories=\
 def create_omex(sedml_file,sbml_file):
     '''
     wrap a sedml and an sbml filin a combine archive omex file
+    overwrite any existing omex file
     '''
 
-    omex_file = Path(sedml_file+f'{random.randrange(999999)}.omex')
+    if sedml_file.endswith('.sedml'):
+        omex_file = Path(sedml_file[:-6] + '.omex')
+    elif sedml_file.endswith('.xml'):
+        omex_file = Path(sedml_file[:-4] + '.omex')
+    else:
+        omex_file = Path(sedml_file+'.omex')
+
+    #omex_file = Path(sedml_file+f'{random.randrange(999999)}.omex')
 
     #wrap sedml+sbml files into an omex combine archive
     om = omex.Omex()
