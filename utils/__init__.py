@@ -54,8 +54,6 @@ def create_omex(sedml_file,sbml_file):
     else:
         omex_file = Path(sedml_file+'.omex')
 
-    #omex_file = Path(sedml_file+f'{random.randrange(999999)}.omex')
-
     #wrap sedml+sbml files into an omex combine archive
     om = omex.Omex()
     om.add_entry(
@@ -69,7 +67,8 @@ def create_omex(sedml_file,sbml_file):
     om.add_entry(
         entry = omex.ManifestEntry(
             location = sbml_file,
-            format = omex.EntryFormat.SBML_L3V2,#note: version number is hardcoded here, but should extract version from sbml file
+            #format = omex.EntryFormat.SBML_L3V2,#note: version number is hardcoded here, but should extract version from sbml file
+            format = omex.EntryFormat.SBML_L2V2,#note: version number is hardcoded here, but should extract version from sbml file
             master = False,
         ),
         entry_path = Path(os.path.basename(sbml_file))
