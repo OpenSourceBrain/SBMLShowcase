@@ -14,6 +14,8 @@ from pymetadata.console import console
 from pymetadata import omex
 import docker
 import yaml
+import libsbml
+import libsedml
 
 #define error categories for detailed error counting per engine
 # (currently only tellurium)
@@ -41,7 +43,37 @@ error_categories=\
     "copasi":{},
 }
 
-def create_omex(sedml_file,sbml_file):
+def get_entry_format(file, file_type):
+    '''
+    Get the entry format for a file.
+
+    Args:
+        file_path (:obj:`str`): path to the file
+        file_type (:obj:`str`): type of the file
+
+    Returns:
+        :obj:`str`: entry format
+    '''
+    # get filepath relative to the current working directory
+    file_path = os.path.join(os.getcwd(), file)
+
+    if file_type == 'SBML':
+        file_l = libsbml.readSBML(file_path).getLevel()
+        file_v = libsbml.readSBML(file_path).getVersion()
+    elif file_type == 'SEDML':
+        file_l = libsedml.readSedML(file_path).getLevel()
+        file_v = libsedml.readSedML(file_path).getVersion()
+    else:
+        raise ValueError(f"Invalid file type: {file_type}")
+
+    file_entry_format = f"{file_type}_L{file_l}V{file_v}"
+    entry_formats = [f.name for f in omex.EntryFormat]
+    if file_entry_format not in entry_formats:
+        file_entry_format = file_type
+
+    return file_entry_format
+
+def create_omex(sedml_file, sbml_file):
     '''
     wrap a sedml and an sbml filin a combine archive omex file
     overwrite any existing omex file
@@ -54,12 +86,15 @@ def create_omex(sedml_file,sbml_file):
     else:
         omex_file = Path(sedml_file+'.omex')
 
+    sbml_file_entry_format = get_entry_format(sbml_file, 'SBML')
+    sedml_file_entry_format = get_entry_format(sedml_file, 'SEDML')
+
     #wrap sedml+sbml files into an omex combine archive
     om = omex.Omex()
     om.add_entry(
         entry = omex.ManifestEntry(
             location = sedml_file,
-            format = omex.EntryFormat.SEDML,#do version numbers exist?
+            format = getattr(omex.EntryFormat, sedml_file_entry_format),
             master = True,
         ),
         entry_path = Path(os.path.basename(sedml_file))
@@ -67,8 +102,7 @@ def create_omex(sedml_file,sbml_file):
     om.add_entry(
         entry = omex.ManifestEntry(
             location = sbml_file,
-            #format = omex.EntryFormat.SBML_L3V2,#note: version number is hardcoded here, but should extract version from sbml file
-            format = omex.EntryFormat.SBML_L2V2,#note: version number is hardcoded here, but should extract version from sbml file
+            format = getattr(omex.EntryFormat, sbml_file_entry_format),
             master = False,
         ),
         entry_path = Path(os.path.basename(sbml_file))
@@ -77,7 +111,7 @@ def create_omex(sedml_file,sbml_file):
 
     data_dir = os.path.dirname(os.path.abspath(sedml_file))
 
-    return data_dir,omex_file
+    return data_dir, omex_file
 
 def read_log_yml(data_dir):
     log_yml = os.path.join(data_dir,"log.yml")
