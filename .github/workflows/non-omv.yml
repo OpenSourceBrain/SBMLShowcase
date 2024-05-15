@@ -51,8 +51,13 @@ jobs:
 
     - name: Test test_suite output regeneration
       run: |
-        cd test_suite
-        pip install pymetadata
+        cd SBML
+        pip install pymetadata docker
+        python create_minimal_omex_archive.py
+
+    - name: Test test_suite output regeneration
+      run: |
+        cd test_suite        
         ./test_results_regeneration.sh
 
     - name: Final version info
