@@ -52,6 +52,7 @@ jobs:
     - name: Test test_suite output regeneration
       run: |
         cd test_suite
+        pip install pymetadata
         ./test_results_regeneration.sh
 
     - name: Final version info
