@@ -43,7 +43,7 @@ error_categories=\
     "copasi":{},
 }
 
-def get_entry_format(file, file_type):
+def get_entry_format(file_path, file_type):
     '''
     Get the entry format for a file.
 
@@ -54,8 +54,6 @@ def get_entry_format(file, file_type):
     Returns:
         :obj:`str`: entry format
     '''
-    # get filepath relative to the current working directory
-    file_path = os.path.join(os.getcwd(), file)
 
     if file_type == 'SBML':
         file_l = libsbml.readSBML(file_path).getLevel()
