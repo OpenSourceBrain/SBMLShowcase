@@ -27,7 +27,7 @@ import utils
 API_URL: str = "https://www.ebi.ac.uk/biomodels"
 
 out_format="json"
-max_count = 10 #0 for unlimited
+max_count = 0 #0 for unlimited
 
 #local temporary storage of the model files
 #this is independent of caching, and still happens when caching is turned off
@@ -185,8 +185,8 @@ def main():
 
     #accumulate results in columns defined by keys which correspond to the local variable names to be used below
     #to allow automated loading into the columns
-    column_labels = "Model     |valid-sbml|valid-sbml-units|valid-sedml|broken-ref|tellurium|copasi"
-    column_keys  =  "model_desc|valid_sbml|valid_sbml_units|valid_sedml|broken_ref|tellurium_outcome|copasi_outcome"
+    column_labels = "Model     |valid-sbml|valid-sbml-units|valid-sedml|broken-ref|tellurium"
+    column_keys  =  "model_desc|valid_sbml|valid_sbml_units|valid_sedml|broken_ref|tellurium_outcome"
     mtab = utils.MarkdownTable(column_labels,column_keys)
 
     #allow stdout/stderr from validation tests to be suppressed to improve progress count visibility
@@ -237,13 +237,9 @@ def main():
 
         #run the validation functions on the sbml and sedml files
         print(f'\ntesting {sbml_file}...')
-        #sup.suppress()
-        #mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_file)
-        #sup.restore()
-
-        #mtab['tellurium_outcome'] = utils.run_biosimulators("tellurium",sedml_file,sbml_file)
-        mtab['tellurium_outcome'] = utils.run_biosimulators_docker("tellurium",sedml_file,sbml_file)
-        mtab['copasi_outcome'] = utils.run_biosimulators_docker("copasi",sedml_file,sbml_file)
+        sup.suppress()
+        mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_file)
+        sup.restore()
 
         #stop matplotlib plots from building up
         matplotlib.pyplot.close()
@@ -255,7 +251,7 @@ def main():
 
     #count occurrences of each cell value, convert to final form
     for key in ['valid_sbml','valid_sbml_units','valid_sedml','broken_ref',
-                'tellurium_outcome','copasi_outcome']:
+                'tellurium_outcome']:
         mtab.simple_summary(key)
         mtab.transform_column(key)
 
