@@ -160,6 +160,32 @@ def run_biosimulators_docker(engine,sedml_file,sbml_file,error_categories=error_
     
     return ["other",f"```{error_str}```"]
 
+def biosimulators_core(engine,omex_filepath,output_dir=None):
+    '''
+    run the omex file using biosimulators
+    calls biosimulators via docker locally
+    assumes local docker is setup
+    engine can be any string that matches a biosimulators docker "URI":
+    ghcr.io/biosimulators/{engine}
+    '''
+
+    #directory containing omex file needs mapping into the container as the input folders
+    omex_dir = os.path.dirname(os.path.abspath(omex_filepath))
+    omex_file = os.path.basename(os.path.abspath(omex_filepath))
+    mount_in = docker.types.Mount("/root/in",omex_dir,type="bind",read_only=True)
+
+    #we want the output folder to be different to the input folder
+    #to avoid the "file already exists" type error
+    if not output_dir:
+        output_dir = os.path.join(omex_dir,'output')
+        os.makedirs(output_dir,exist_ok=True)
+
+    mount_out = docker.types.Mount("/root/out",output_dir,type="bind")
+    client = docker.from_env()
+    client.containers.run(f"ghcr.io/biosimulators/{engine}",
+                        mounts=[mount_in,mount_out],
+                        command=f"-i /root/in/{omex_file} -o /root/out")
+
 def test_engine(engine,filename,error_categories=error_categories):
     '''
     test running the file with the given engine
