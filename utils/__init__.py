@@ -71,84 +71,76 @@ def get_entry_format(file_path, file_type):
 
     return file_entry_format
 
-def create_omex(sedml_file, sbml_file):
+def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None):
     '''
-    wrap a sedml and an sbml filin a combine archive omex file
+    wrap a sedml and an sbml file in a combine archive omex file
     overwrite any existing omex file
     '''
 
-    if sedml_file.endswith('.sedml'):
-        omex_file = Path(sedml_file[:-6] + '.omex')
-    elif sedml_file.endswith('.xml'):
-        omex_file = Path(sedml_file[:-4] + '.omex')
-    else:
-        omex_file = Path(sedml_file+'.omex')
+    #provide an omex filepath if not specified
+    if not omex_filepath:
+        if sedml_filepath.endswith('.sedml'):
+            omex_filepath = Path(sedml_filepath[:-6] + '.omex')
+        elif sedml_filepath.endswith('.xml'):
+            omex_filepath = Path(sedml_filepath[:-4] + '.omex')
+        else:
+            omex_filepath = Path(sedml_filepath+'.omex')
 
-    sbml_file_entry_format = get_entry_format(sbml_file, 'SBML')
-    sedml_file_entry_format = get_entry_format(sedml_file, 'SEDML')
+    sbml_file_entry_format = get_entry_format(sbml_filepath, 'SBML')
+    sedml_file_entry_format = get_entry_format(sedml_filepath, 'SEDML')
 
     #wrap sedml+sbml files into an omex combine archive
     om = omex.Omex()
     om.add_entry(
         entry = omex.ManifestEntry(
-            location = sedml_file,
+            location = sedml_filepath,
             format = getattr(omex.EntryFormat, sedml_file_entry_format),
             master = True,
         ),
-        entry_path = Path(os.path.basename(sedml_file))
+        entry_path = Path(os.path.basename(sedml_filepath))
     )
     om.add_entry(
         entry = omex.ManifestEntry(
-            location = sbml_file,
+            location = sbml_filepath,
             format = getattr(omex.EntryFormat, sbml_file_entry_format),
             master = False,
         ),
-        entry_path = Path(os.path.basename(sbml_file))
+        entry_path = Path(os.path.basename(sbml_filepath))
     )
-    om.to_omex(Path(omex_file))
+    om.to_omex(Path(omex_filepath))
 
-    data_dir = os.path.dirname(os.path.abspath(sedml_file))
+    return omex_filepath
 
-    return data_dir, omex_file
-
-def read_log_yml(data_dir):
-    log_yml = os.path.join(data_dir,"log.yml")
-    if not os.path.isfile(log_yml):
+def read_log_yml(log_filepath):
+    '''
+    read the log YAML file if it exists
+    return the exception message as a string
+    '''
+    if not os.path.isfile(log_filepath):
         return None
-    with open(log_yml) as f:
+    with open(log_filepath) as f:
         ym = yaml.safe_load(f)
     return ym['exception']['message']
 
-def run_biosimulators_docker(engine,sedml_file,sbml_file,error_categories=error_categories):
+def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir=None,error_categories=error_categories):
     '''
-    try to run the sedml+sbml combo using biosimulators
-    after wrapping the input files into a combine archive
-    calls biosimulators via docker locally
-    assumes local docker is setup
-    engine can be any string that matches a biosimulators docker "URI":
-    ghcr.io/biosimulators/{engine}
+    put the sedml and sbml file into an omex archive
+    run it locally using a biosimulators docker
+    categorise an error message in the log file
     '''
 
     #put the sedml and sbml into a combine archive
-    data_dir,omex_file = create_omex(sedml_file,sbml_file)
-
-    #create mounts to share files with the container
-    mount_in = docker.types.Mount("/root/in",data_dir,type="bind",read_only=True)
-    mount_out = docker.types.Mount("/root/out",data_dir,type="bind")
-
-    client = docker.from_env()
+    omex_filepath = create_omex(sedml_filepath,sbml_filepath)
 
     try:
-        client.containers.run(f"ghcr.io/biosimulators/{engine}",
-                            mounts=[mount_in,mount_out],
-                            command=f"-i /root/in/{omex_file} -o /root/out")
+        biosimulators_core(engine,omex_filepath,output_dir=output_dir)
         return "pass" #no errors
     except Exception as e:
         #capture the error as a string which won't break markdown tables
         error_str = safe_md_string(e)
 
     #try to load the cleaner error message from the log.yml file
-    log_str = read_log_yml(data_dir)
+    log_str = read_log_yml(os.path.join(os.path.dirname(omex_filepath),"log.yml"))
 
     if log_str:
         error_str = safe_md_string(log_str)
