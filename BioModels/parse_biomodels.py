@@ -236,7 +236,7 @@ def main():
         if not sedml_file: continue # no further tests possible
 
         #run the validation functions on the sbml and sedml files
-        print(f'testing {sbml_file}...               ',end='')
+        print(f'\ntesting {sbml_file}...')
         sup.suppress()
         mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_file)
         sup.restore()
@@ -250,7 +250,8 @@ def main():
     mtab.add_summary('model_desc',f'n={mtab.n_rows()}')
 
     #count occurrences of each cell value, convert to final form
-    for key in ['valid_sbml','valid_sbml_units','valid_sedml','broken_ref','tellurium_outcome']:
+    for key in ['valid_sbml','valid_sbml_units','valid_sedml','broken_ref',
+                'tellurium_outcome']:
         mtab.simple_summary(key)
         mtab.transform_column(key)
 

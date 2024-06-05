@@ -41,3 +41,4 @@ arm64
 /BioModels/cache
 /BioModels/tmplocalfiles
 __pycache__
+venv

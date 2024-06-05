@@ -3,9 +3,9 @@ name: Testing non OMV scripts
 
 on:
   push:
-    branches: [ master, development, experimental ]
+    branches: [ master, development, experimental, test* ]
   pull_request:
-    branches: [ master, development, experimental ]
+    branches: [ master, development, experimental, test* ]
 
 jobs:
   build:
@@ -51,7 +51,13 @@ jobs:
 
     - name: Test test_suite output regeneration
       run: |
-        cd test_suite
+        cd SBML
+        pip install pymetadata docker "requests<2.32.0"
+        python create_minimal_omex_archive.py
+
+    - name: Test test_suite output regeneration
+      run: |
+        cd test_suite        
         ./test_results_regeneration.sh
 
     - name: Final version info

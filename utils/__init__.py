@@ -8,6 +8,14 @@ from pyneuroml import tellurium
 import re
 import requests
 from collections import defaultdict
+from pathlib import Path
+import random
+from pymetadata.console import console
+from pymetadata import omex
+import docker
+import yaml
+import libsbml
+import libsedml
 
 #define error categories for detailed error counting per engine
 # (currently only tellurium)
@@ -32,7 +40,125 @@ error_categories=\
             "CV_ILL_INPUT":"CV_ILL_INPUT",
             "OutOfRange":"list index out of range",
         },
+    "copasi":{},
 }
+
+def get_entry_format(file_path, file_type):
+    '''
+    Get the entry format for a file.
+
+    Args:
+        file_path (:obj:`str`): path to the file
+        file_type (:obj:`str`): type of the file
+
+    Returns:
+        :obj:`str`: entry format
+    '''
+
+    if file_type == 'SBML':
+        file_l = libsbml.readSBML(file_path).getLevel()
+        file_v = libsbml.readSBML(file_path).getVersion()
+    elif file_type == 'SEDML':
+        file_l = libsedml.readSedML(file_path).getLevel()
+        file_v = libsedml.readSedML(file_path).getVersion()
+    else:
+        raise ValueError(f"Invalid file type: {file_type}")
+
+    file_entry_format = f"{file_type}_L{file_l}V{file_v}"
+    entry_formats = [f.name for f in omex.EntryFormat]
+    if file_entry_format not in entry_formats:
+        file_entry_format = file_type
+
+    return file_entry_format
+
+def create_omex(sedml_file, sbml_file):
+    '''
+    wrap a sedml and an sbml filin a combine archive omex file
+    overwrite any existing omex file
+    '''
+
+    if sedml_file.endswith('.sedml'):
+        omex_file = Path(sedml_file[:-6] + '.omex')
+    elif sedml_file.endswith('.xml'):
+        omex_file = Path(sedml_file[:-4] + '.omex')
+    else:
+        omex_file = Path(sedml_file+'.omex')
+
+    sbml_file_entry_format = get_entry_format(sbml_file, 'SBML')
+    sedml_file_entry_format = get_entry_format(sedml_file, 'SEDML')
+
+    #wrap sedml+sbml files into an omex combine archive
+    om = omex.Omex()
+    om.add_entry(
+        entry = omex.ManifestEntry(
+            location = sedml_file,
+            format = getattr(omex.EntryFormat, sedml_file_entry_format),
+            master = True,
+        ),
+        entry_path = Path(os.path.basename(sedml_file))
+    )
+    om.add_entry(
+        entry = omex.ManifestEntry(
+            location = sbml_file,
+            format = getattr(omex.EntryFormat, sbml_file_entry_format),
+            master = False,
+        ),
+        entry_path = Path(os.path.basename(sbml_file))
+    )
+    om.to_omex(Path(omex_file))
+
+    data_dir = os.path.dirname(os.path.abspath(sedml_file))
+
+    return data_dir, omex_file
+
+def read_log_yml(data_dir):
+    log_yml = os.path.join(data_dir,"log.yml")
+    if not os.path.isfile(log_yml):
+        return None
+    with open(log_yml) as f:
+        ym = yaml.safe_load(f)
+    return ym['exception']['message']
+
+def run_biosimulators_docker(engine,sedml_file,sbml_file,error_categories=error_categories):
+    '''
+    try to run the sedml+sbml combo using biosimulators
+    after wrapping the input files into a combine archive
+    calls biosimulators via docker locally
+    assumes local docker is setup
+    engine can be any string that matches a biosimulators docker "URI":
+    ghcr.io/biosimulators/{engine}
+    '''
+
+    #put the sedml and sbml into a combine archive
+    data_dir,omex_file = create_omex(sedml_file,sbml_file)
+
+    #create mounts to share files with the container
+    mount_in = docker.types.Mount("/root/in",data_dir,type="bind",read_only=True)
+    mount_out = docker.types.Mount("/root/out",data_dir,type="bind")
+
+    client = docker.from_env()
+
+    try:
+        client.containers.run(f"ghcr.io/biosimulators/{engine}",
+                            mounts=[mount_in,mount_out],
+                            command=f"-i /root/in/{omex_file} -o /root/out")
+        return "pass" #no errors
+    except Exception as e:
+        #capture the error as a string which won't break markdown tables
+        error_str = safe_md_string(e)
+
+    #try to load the cleaner error message from the log.yml file
+    log_str = read_log_yml(data_dir)
+
+    if log_str:
+        error_str = safe_md_string(log_str)
+
+    #categorise the error string
+    for tag in error_categories[engine]:
+        if re.search(error_categories[engine][tag],error_str):
+            return [tag,f"```{error_str}```"]
+    
+    return ["other",f"```{error_str}```"]
 
 def test_engine(engine,filename,error_categories=error_categories):
     '''
@@ -54,7 +180,7 @@ def test_engine(engine,filename,error_categories=error_categories):
         #return error object
         error_str = safe_md_string(e)
 
-    if unknown_engine:        
+    if unknown_engine:
         raise RuntimeError(f"unknown engine {engine}")
 
     for tag in error_categories[engine]:
@@ -130,7 +256,8 @@ class RequestCache:
         or just the cache base directory for a null request
         '''
 
-        return f"{self.absolute_dir}/{hashlib.sha256(request.encode('UTF-8')).hexdigest()}"
+        return os.path.join(f"{self.absolute_dir}",hashlib.sha256(request.encode('UTF-8')).hexdigest())
+        #return f"{self.absolute_dir}/{hashlib.sha256(request.encode('UTF-8')).hexdigest()}"
 
 
     def get_entry(self,request):
