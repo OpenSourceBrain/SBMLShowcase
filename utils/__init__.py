@@ -71,7 +71,7 @@ def get_entry_format(file_path, file_type):
 
     return file_entry_format
 
-def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None):
+def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None, silent_overwrite=True):
     '''
     wrap a sedml and an sbml file in a combine archive omex file
     overwrite any existing omex file
@@ -85,6 +85,10 @@ def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None):
             omex_filepath = Path(sedml_filepath[:-4] + '.omex')
         else:
             omex_filepath = Path(sedml_filepath+'.omex')
+
+    #suppress pymetadata "file exists" warning by preemptively removing existing omex file
+    if os.path.exists(omex_filepath) and silent_overwrite:
+        os.remove(omex_filepath)
 
     sbml_file_entry_format = get_entry_format(sbml_filepath, 'SBML')
     sedml_file_entry_format = get_entry_format(sedml_filepath, 'SEDML')
