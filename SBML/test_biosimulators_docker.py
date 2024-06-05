@@ -9,12 +9,10 @@ import sys
 sys.path.append("..")
 import utils
 
-sbml_file = 'LEMS_NML2_Ex9_FN.sbml'
-sedml_file = 'LEMS_NML2_Ex9_FN.sedml'
+sbml_filepath = 'LEMS_NML2_Ex9_FN.sbml'
+sedml_filepath = 'LEMS_NML2_Ex9_FN.sedml'
+omex_filepath = utils.create_omex(sedml_filepath,sbml_filepath)
 
-
-utils.create_omex(sedml_file,sbml_file)
-
-utils.biosimulators_core('tellurium',sedml_file,sbml_file)[1][3:-3]
+utils.biosimulators_core('tellurium',omex_filepath)
 
 print('Finished')
