@@ -16,6 +16,7 @@ import docker
 import yaml
 import libsbml
 import libsedml
+import tempfile
 
 #define error categories for detailed error counting per engine
 # (currently only tellurium)
@@ -71,84 +72,165 @@ def get_entry_format(file_path, file_type):
 
     return file_entry_format
 
-def create_omex(sedml_file, sbml_file):
+
+def add_xmlns_sbml_attribute_if_missing(sedml_filepath, sbml_filepath):
+    # read the sedml file as a string
+    with open(sedml_filepath, 'r') as file:
+        sedstr = file.read()
+    # read the sbml file as a string to add the xmlns attribute if it is missing
+    if "xmlns:sbml" not in re.search(r'<sedML[^>]*', sedstr).group():
+        with open(sbml_filepath, 'r') as file:
+            sbml_str = file.read()
+        sbml_xmlns = re.search(r'xmlns="([^"]*)"', sbml_str).group(1)
+        missing_sbml_attribute = ' xmlns:sbml="' + sbml_xmlns + '"'
+        sedstr = re.sub(r'<sedML ', r'<sedML' + missing_sbml_attribute + ' ', sedstr)
+    return sedstr 
+
+
+def add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, output_filepath=None):
     '''
-    wrap a sedml and an sbml filin a combine archive omex file
+    add an xmlns:sbml attribute to the sedml file that matches the sbml file
+    raise an error if the attribute is already present
+    output fixed file to output_filepath which defaults to sedml_filepath
+    '''
+
+    # read the sedml file as a string
+    with open(sedml_filepath, 'r') as file:
+        sedstr = file.read()
+
+    m = re.search(r'<sedML[^>]*>', sedstr)
+
+    if m == None:
+        raise ValueError(f'Invalid SedML file: main <sedML> tag not found in {sedml_filepath}')
+
+    # read the sbml file as a string to add the xmlns attribute if it is missing
+    if "xmlns:sbml" in m.group():
+        raise ValueError(f'xmlns:sbml attribute already present in file {sedml_filepath}')
+
+    with open(sbml_filepath, 'r') as file:
+        sbml_str = file.read()
+
+    sbml_xmlns = re.search(r'xmlns="([^"]*)"', sbml_str).group(1)
+    missing_sbml_attribute = 'xmlns:sbml="' + sbml_xmlns + '"'
+
+    sedstr = re.sub(r'<sedML ', r'<sedML ' + missing_sbml_attribute + ' ', sedstr)
+
+    if output_filepath == None:
+        output_filepath = sedml_filepath
+
+    with open(output_filepath,"w") as fout:
+        fout.write(sedstr)
+
+
+def xmlns_sbml_attribute_missing(sedml_filepath):
+    '''
+    report True if the xmlns:sbml attribute is missing from the main sedml tag
+    '''
+
+    with open(sedml_filepath, 'r') as file:
+        sedstr = file.read()
+
+    m = re.search(r'<sedML[^>]*>', sedstr)
+
+    if m == None:
+        raise ValueError(f'Invalid SedML file: main <sedML> tag not found in {sedml_filepath}')
+    
+    if "xmlns:sbml" not in m.group():
+        return True
+    else:
+        return False
+
+def get_temp_file():
+    '''
+    create a temporary filename in the current working directory
+    '''
+    return f"tmp{random.randrange(1000000)}"
+
+def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None, silent_overwrite=True, add_missing_xmlns=True):
+    '''
+    wrap a sedml and an sbml file in a combine archive omex file
     overwrite any existing omex file
     '''
 
-    if sedml_file.endswith('.sedml'):
-        omex_file = Path(sedml_file[:-6] + '.omex')
-    elif sedml_file.endswith('.xml'):
-        omex_file = Path(sedml_file[:-4] + '.omex')
-    else:
-        omex_file = Path(sedml_file+'.omex')
+    #provide an omex filepath if not specified
+    if not omex_filepath:
+        if sedml_filepath.endswith('.sedml'):
+            omex_filepath = Path(sedml_filepath[:-6] + '.omex')
+        elif sedml_filepath.endswith('.xml'):
+            omex_filepath = Path(sedml_filepath[:-4] + '.omex')
+        else:
+            omex_filepath = Path(sedml_filepath+'.omex')
 
-    sbml_file_entry_format = get_entry_format(sbml_file, 'SBML')
-    sedml_file_entry_format = get_entry_format(sedml_file, 'SEDML')
+    #suppress pymetadata "file exists" warning by preemptively removing existing omex file
+    if os.path.exists(omex_filepath) and silent_overwrite:
+        os.remove(omex_filepath)
+
+    tmp_sedml_filepath = None
+    if add_missing_xmlns:
+        if xmlns_sbml_attribute_missing(sedml_filepath):
+            #create a temporary sedml file with the missing attribute added
+            tmp_sedml_filepath = get_temp_file()
+            add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, tmp_sedml_filepath)
+            sedml_filepath = tmp_sedml_filepath
+
+    sbml_file_entry_format = get_entry_format(sbml_filepath, 'SBML')
+    sedml_file_entry_format = get_entry_format(sedml_filepath, 'SEDML')
 
     #wrap sedml+sbml files into an omex combine archive
     om = omex.Omex()
     om.add_entry(
         entry = omex.ManifestEntry(
-            location = sedml_file,
+            location = sedml_filepath,
             format = getattr(omex.EntryFormat, sedml_file_entry_format),
             master = True,
         ),
-        entry_path = Path(os.path.basename(sedml_file))
+        entry_path = Path(os.path.basename(sedml_filepath))
     )
     om.add_entry(
         entry = omex.ManifestEntry(
-            location = sbml_file,
+            location = sbml_filepath,
             format = getattr(omex.EntryFormat, sbml_file_entry_format),
             master = False,
         ),
-        entry_path = Path(os.path.basename(sbml_file))
+        entry_path = Path(os.path.basename(sbml_filepath))
     )
-    om.to_omex(Path(omex_file))
+    om.to_omex(Path(omex_filepath))
 
-    data_dir = os.path.dirname(os.path.abspath(sedml_file))
+    if tmp_sedml_filepath:
+        os.remove(tmp_sedml_filepath)
 
-    return data_dir, omex_file
+    return omex_filepath
 
-def read_log_yml(data_dir):
-    log_yml = os.path.join(data_dir,"log.yml")
-    if not os.path.isfile(log_yml):
+def read_log_yml(log_filepath):
+    '''
+    read the log YAML file if it exists
+    return the exception message as a string
+    '''
+    if not os.path.isfile(log_filepath):
         return None
-    with open(log_yml) as f:
+    with open(log_filepath) as f:
         ym = yaml.safe_load(f)
     return ym['exception']['message']
 
-def run_biosimulators_docker(engine,sedml_file,sbml_file,error_categories=error_categories):
+def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir=None,error_categories=error_categories):
     '''
-    try to run the sedml+sbml combo using biosimulators
-    after wrapping the input files into a combine archive
-    calls biosimulators via docker locally
-    assumes local docker is setup
-    engine can be any string that matches a biosimulators docker "URI":
-    ghcr.io/biosimulators/{engine}
+    put the sedml and sbml file into an omex archive
+    run it locally using a biosimulators docker
+    categorise an error message in the log file
     '''
 
     #put the sedml and sbml into a combine archive
-    data_dir,omex_file = create_omex(sedml_file,sbml_file)
-
-    #create mounts to share files with the container
-    mount_in = docker.types.Mount("/root/in",data_dir,type="bind",read_only=True)
-    mount_out = docker.types.Mount("/root/out",data_dir,type="bind")
-
-    client = docker.from_env()
+    omex_filepath = create_omex(sedml_filepath,sbml_filepath)
 
     try:
-        client.containers.run(f"ghcr.io/biosimulators/{engine}",
-                            mounts=[mount_in,mount_out],
-                            command=f"-i /root/in/{omex_file} -o /root/out")
+        biosimulators_core(engine,omex_filepath,output_dir=output_dir)
         return "pass" #no errors
     except Exception as e:
         #capture the error as a string which won't break markdown tables
         error_str = safe_md_string(e)
 
     #try to load the cleaner error message from the log.yml file
-    log_str = read_log_yml(data_dir)
+    log_str = read_log_yml(os.path.join(os.path.dirname(omex_filepath),"log.yml"))
 
     if log_str:
         error_str = safe_md_string(log_str)
@@ -159,6 +241,32 @@ def run_biosimulators_docker(engine,sedml_file,sbml_file,error_categories=error_
             return [tag,f"```{error_str}```"]
     
     return ["other",f"```{error_str}```"]
+
+def biosimulators_core(engine,omex_filepath,output_dir=None):
+    '''
+    run the omex file using biosimulators
+    calls biosimulators via docker locally
+    assumes local docker is setup
+    engine can be any string that matches a biosimulators docker "URI":
+    ghcr.io/biosimulators/{engine}
+    '''
+
+    #directory containing omex file needs mapping into the container as the input folders
+    omex_dir = os.path.dirname(os.path.abspath(omex_filepath))
+    omex_file = os.path.basename(os.path.abspath(omex_filepath))
+    mount_in = docker.types.Mount("/root/in",omex_dir,type="bind",read_only=True)
+
+    #we want the output folder to be different to the input folder
+    #to avoid the "file already exists" type error
+    if not output_dir:
+        output_dir = os.path.join(omex_dir,'output')
+        os.makedirs(output_dir,exist_ok=True)
+
+    mount_out = docker.types.Mount("/root/out",output_dir,type="bind")
+    client = docker.from_env()
+    client.containers.run(f"ghcr.io/biosimulators/{engine}",
+                        mounts=[mount_in,mount_out],
+                        command=f"-i /root/in/{omex_file} -o /root/out")
 
 def test_engine(engine,filename,error_categories=error_categories):
     '''
