@@ -140,6 +140,16 @@ def xmlns_sbml_attribute_missing(sedml_filepath):
     else:
         return False
 
+def get_temp_file():
+    '''
+    get a temporary filepath but don't keep the file open
+    '''
+    # f = tempfile.NamedTemporaryFile(delete=False)
+    # filepath = f.name
+    # f.close()
+    # return filepath
+    return f"tmp{random.randrange(100000)}"
+
 def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None, silent_overwrite=True, add_missing_xmlns=True):
     '''
     wrap a sedml and an sbml file in a combine archive omex file
@@ -163,7 +173,7 @@ def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None, silent_overwr
     if add_missing_xmlns:
         if xmlns_sbml_attribute_missing(sedml_filepath):
             #create a temporary sedml file with the missing attribute added
-            tmp_sedml_filepath = tempfile.NamedTemporaryFile(delete=False, delete_on_close=False)
+            tmp_sedml_filepath = get_temp_file()
             add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, tmp_sedml_filepath)
             sedml_filepath = tmp_sedml_filepath
 
