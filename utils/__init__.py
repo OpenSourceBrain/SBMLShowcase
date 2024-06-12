@@ -142,13 +142,9 @@ def xmlns_sbml_attribute_missing(sedml_filepath):
 
 def get_temp_file():
     '''
-    get a temporary filepath but don't keep the file open
+    create a temporary filename in the current working directory
     '''
-    # f = tempfile.NamedTemporaryFile(delete=False)
-    # filepath = f.name
-    # f.close()
-    # return filepath
-    return f"tmp{random.randrange(100000)}"
+    return f"tmp{random.randrange(1000000)}"
 
 def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None, silent_overwrite=True, add_missing_xmlns=True):
     '''
