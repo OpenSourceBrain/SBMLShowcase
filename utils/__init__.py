@@ -16,6 +16,7 @@ import docker
 import yaml
 import libsbml
 import libsedml
+import tempfile
 
 #define error categories for detailed error counting per engine
 # (currently only tellurium)
@@ -86,7 +87,60 @@ def add_xmlns_sbml_attribute_if_missing(sedml_filepath, sbml_filepath):
     return sedstr 
 
 
-def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None, silent_overwrite=True):
+def add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, output_filepath=None):
+    '''
+    add an xmlns:sbml attribute to the sedml file that matches the sbml file
+    raise an error if the attribute is already present
+    output fixed file to output_filepath which defaults to sedml_filepath
+    '''
+
+    # read the sedml file as a string
+    with open(sedml_filepath, 'r') as file:
+        sedstr = file.read()
+
+    m = re.search(r'<sedML[^>]*>', sedstr)
+
+    if m == None:
+        raise ValueError(f'Invalid SedML file: main <sedML> tag not found in {sedml_filepath}')
+
+    # read the sbml file as a string to add the xmlns attribute if it is missing
+    if "xmlns:sbml" in m.group():
+        raise ValueError(f'xmlns:sbml attribute already present in file {sedml_filepath}')
+
+    with open(sbml_filepath, 'r') as file:
+        sbml_str = file.read()
+
+    sbml_xmlns = re.search(r'xmlns="([^"]*)"', sbml_str).group(1)
+    missing_sbml_attribute = 'xmlns:sbml="' + sbml_xmlns + '"'
+
+    sedstr = re.sub(r'<sedML ', r'<sedML ' + missing_sbml_attribute + ' ', sedstr)
+
+    if output_filepath == None:
+        output_filepath = sedml_filepath
+
+    with open(output_filepath,"w") as fout:
+        fout.write(sedstr)
+
+
+def xmlns_sbml_attribute_missing(sedml_filepath):
+    '''
+    report True if the xmlns:sbml attribute is missing from the main sedml tag
+    '''
+
+    with open(sedml_filepath, 'r') as file:
+        sedstr = file.read()
+
+    m = re.search(r'<sedML[^>]*>', sedstr)
+
+    if m == None:
+        raise ValueError(f'Invalid SedML file: main <sedML> tag not found in {sedml_filepath}')
+    
+    if "xmlns:sbml" not in m.group():
+        return True
+    else:
+        return False
+
+def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None, silent_overwrite=True, add_missing_xmlns=True):
     '''
     wrap a sedml and an sbml file in a combine archive omex file
     overwrite any existing omex file
@@ -104,6 +158,14 @@ def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None, silent_overwr
     #suppress pymetadata "file exists" warning by preemptively removing existing omex file
     if os.path.exists(omex_filepath) and silent_overwrite:
         os.remove(omex_filepath)
+
+    tmp_sedml_filepath = None
+    if add_missing_xmlns:
+        if xmlns_sbml_attribute_missing(sedml_filepath):
+            #create a temporary sedml file with the missing attribute added
+            tmp_sedml_filepath = tempfile.NamedTemporaryFile(delete=False, delete_on_close=False)
+            add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, tmp_sedml_filepath)
+            sedml_filepath = tmp_sedml_filepath
 
     sbml_file_entry_format = get_entry_format(sbml_filepath, 'SBML')
     sedml_file_entry_format = get_entry_format(sedml_filepath, 'SEDML')
@@ -127,6 +189,9 @@ def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None, silent_overwr
         entry_path = Path(os.path.basename(sbml_filepath))
     )
     om.to_omex(Path(omex_filepath))
+
+    if tmp_sedml_filepath:
+        os.remove(tmp_sedml_filepath)
 
     return omex_filepath
 
