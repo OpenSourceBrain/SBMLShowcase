@@ -13,6 +13,7 @@ from pyneuroml.sbml import validate_sbml_files
 from pyneuroml.sedml import validate_sedml_files
 import matplotlib
 import sys
+import warnings
 
 sys.path.append("..")
 import utils
@@ -120,6 +121,8 @@ def process_cases(args):
 
     for sbml_path in sbml_list:
         if args.limit and args.limit > 0 and n_cases >= args.limit: break
+        matplotlib.use("agg")
+        warnings.filterwarnings("ignore", message="FigureCanvasAgg is non-interactive, and thus cannot be shown")
 
         mtab.new_row()
         n_cases +=1
@@ -146,7 +149,9 @@ def process_cases(args):
         sup.restore()
 
         #stop matplotlib plots from building up
-        matplotlib.pyplot.close()
+        matplotlib.pyplot.close() # TODO: test on MAC whether this is still necessary after switching to Agg
+        # switch agg off
+        matplotlib.use("TkAgg")
 
     #give failure counts
     for key in ['valid_sbml','valid_sbml_units','valid_sedml']:
