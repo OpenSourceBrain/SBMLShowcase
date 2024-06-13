@@ -49,16 +49,18 @@ jobs:
         cd SBML
         ./validateAll.sh
 
-    - name: Test test_suite output regeneration
-      run: |
-        cd test_suite        
-        ./test_results_regeneration.sh
-
     - name: test omex file creation
       run: |
         pip install pymetadata docker "requests<2.32.0"
         cd SBML        
         ./test_biosimulators_docker.py
+
+
+    - name: Test test_suite output regeneration
+      run: |
+        cd test_suite        
+        ./test_results_regeneration.sh
+
 
     - name: Final version info
       run: |
