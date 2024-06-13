@@ -196,6 +196,9 @@ def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None, silent_overwr
     )
     om.to_omex(Path(omex_filepath))
 
+    if tmp_sedml_filepath:
+        os.remove(tmp_sedml_filepath)
+
     return omex_filepath
 
 def read_log_yml(log_filepath):
