@@ -93,65 +93,50 @@ def add_case_url(case,fpath,url_base):
     new_item = f'[{case}]({url})'
     return new_item
 
-
-
 def process_cases(args):
     """
     process the test cases and write results out as a markdown table
     with links to the test case files online (as noted above the sedml files are actually in a zip file)
     with a summary of how many cases were tested and how many tests failed
     """
+    # set up the markdown table 
+    column_labels = "case|valid-sbml|valid-sbml-units|valid-sedml|tellurium|sedml-xmlns-sbml-attribute-missing"
+    column_keys  =  "case|valid_sbml|valid_sbml_units|valid_sedml|tellurium_outcome|sedml_xmlns_sbml_attribute_missing"
+    mtab = utils.MarkdownTable(column_labels, column_keys)  
 
-    #allow stdout/stderr from validation tests to be suppressed to improve progress count readability
+    # set the path to the test suite
+    starting_dir = os.getcwd() # where results will be written
+    os.chdir(args.suite_path) # change to test suite directory
+    suite_path_abs = os.getcwd() # absolute path to test suite
+
+    # suppress interactive plots and load sup module to suppress stdout
     sup = utils.SuppressOutput(stdout=suppress_stdout)
+    sup.suppress() 
+    matplotlib.use("agg") 
+    # Suppress specific UserWarning caused by matplotlib (required to suppress interactive plots)
+    warnings.filterwarnings("ignore", category=UserWarning, message="FigureCanvasAgg is non-interactive, and thus cannot be shown")
+        
+    for subfolder in os.listdir(suite_path_abs)[:args.limit]:
 
-    column_labels = "case|valid-sbml|valid-sbml-units|valid-sedml|tellurium"
-    column_keys  =  "case|valid_sbml|valid_sbml_units|valid_sedml|tellurium_outcome"
-    mtab = utils.MarkdownTable(column_labels,column_keys)
+        # find relevant files in the subfolder
+        sbml_file_path = glob.glob(os.path.join(subfolder, "*-sbml-l3v2.xml"))
+        sedml_file_path = glob.glob(os.path.join(subfolder, "*-sbml-l3v2-sedml.xml"))
+        omex_file_path = glob.glob(os.path.join(subfolder, "*.omex"))
 
-    #open file now to make sure output path is with respect to initial working directory
-    #not the test suite folder
-    starting_dir = os.getcwd()
-
-    n_cases = 0
-
-    os.chdir(args.suite_path)
-    suite_path_abs = os.getcwd()
-    sbml_list = sorted(glob.glob(args.suite_glob))
-
-    for sbml_path in sbml_list:
-        if args.limit and args.limit > 0 and n_cases >= args.limit: break
-        matplotlib.use("agg")
-        warnings.filterwarnings("ignore", message="FigureCanvasAgg is non-interactive, and thus cannot be shown")
-
+        # create table with results
         mtab.new_row()
-        n_cases +=1
-
-        case_dir = os.path.dirname(sbml_path)
-        os.chdir(suite_path_abs)
-        os.chdir(case_dir)
-
-        sbml_file = os.path.basename(sbml_path)
-        sedml_file = sbml_file.replace(".xml", "-sedml.xml")
-
-        print(f"{n_cases}/{len(sbml_list)} {sbml_file}")
-        assert os.path.isfile(sbml_file)
-        assert os.path.isfile(sedml_file)
-        case = sbml_file
-        if args.suite_url_base != '': case = add_case_url(case,sbml_path,args.suite_url_base)
-        mtab['case'] = case
-
-        sup.suppress() #suppress printing warnings to stdout
-        mtab['valid_sbml'] = validate_sbml_files([sbml_file], strict_units=False)
-        mtab['valid_sbml_units'] = validate_sbml_files([sbml_file], strict_units=True)
-        mtab['valid_sedml'] = validate_sedml_files([sedml_file])
-        mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_file) # run tellurium directly
-        sup.restore()
-
-        #stop matplotlib plots from building up
-        matplotlib.pyplot.close() # TODO: test on MAC whether this is still necessary after switching to Agg
-        # switch agg off
-        matplotlib.use("TkAgg")
+        mtab['case'] = add_case_url(sbml_file_path[0], sbml_file_path[0], args.suite_url_base) \
+            if args.suite_url_base != '' else sbml_file_path[0]
+        mtab['valid_sbml'] = validate_sbml_files(sbml_file_path, strict_units=False)
+        mtab['valid_sbml_units'] = validate_sbml_files(sbml_file_path, strict_units=True)
+        mtab['valid_sedml'] = validate_sedml_files(sedml_file_path)
+        mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_file_path[0]) # run tellurium directly        
+        mtab['sedml_xmlns_sbml_attribute_missing'] = utils.xmlns_sbml_attribute_missing(sedml_file_path[0])
+        matplotlib.pyplot.close('all')   # supresses error from building up plots
+    
+    # restore stdout and interactive plots
+    sup.restore()
+    matplotlib.use("TkAgg") # switch agg off             
 
     #give failure counts
     for key in ['valid_sbml','valid_sbml_units','valid_sedml']:
@@ -167,7 +152,6 @@ def process_cases(args):
     with open(args.output_file, "w") as fout:
         fout.write(md_description)
         mtab.write(fout)
-        
 
 if __name__ == "__main__":
     args = parse_arguments()
