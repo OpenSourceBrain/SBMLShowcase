@@ -51,7 +51,7 @@ jobs:
 
     - name: test omex file creation
       run: |
-        pip install pymetadata docker "requests<2.32.0"
+        pip install "pymetadata>=0.4.2" docker "requests<2.32.0"
         cd SBML        
         ./test_biosimulators_docker.py
 
