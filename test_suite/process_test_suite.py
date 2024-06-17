@@ -53,11 +53,11 @@ def parse_arguments():
     )
 
     parser.add_argument(
-        "--suite-glob",
+        "--sbml-level_version",
         action="store",
         type=str,
-        default="000*/*-sbml-l3v2.xml",
-        help="Shell-style glob matching test suite file(s) within suite_path, eg '000*/*-sbml-l3v2.xml'",
+        default="sbml-l3v2",
+        help="SBML level and version to test, default is 'sbml-l3v2'",
     )
 
     parser.add_argument(
