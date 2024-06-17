@@ -127,13 +127,15 @@ def process_cases(args):
         mtab.new_row()
         mtab['case'] = add_case_url(sbml_file_path[0], sbml_file_path[0], args.suite_url_base) \
             if args.suite_url_base != '' else sbml_file_path[0]
+        sup.suppress() 
         mtab['valid_sbml'] = validate_sbml_files(sbml_file_path, strict_units=False)
         mtab['valid_sbml_units'] = validate_sbml_files(sbml_file_path, strict_units=True)
         mtab['valid_sedml'] = validate_sedml_files(sedml_file_path)
         mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_file_path[0]) # run tellurium directly        
-        mtab['sedml_xmlns_sbml_attribute_missing'] = utils.xmlns_sbml_attribute_missing(sedml_file_path[0])
+        sup.restore() 
+        mtab['xmlns_sbml_missing'] = utils.xmlns_sbml_attribute_missing(sedml_file_path[0])
         matplotlib.pyplot.close('all')   # supresses error from building up plots
-    
+        
     # restore stdout and interactive plots
     sup.restore()       
 
