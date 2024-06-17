@@ -115,9 +115,9 @@ def process_cases(args):
     matplotlib.use("agg") 
     # Suppress specific UserWarning caused by matplotlib (required to suppress interactive plots)
     warnings.filterwarnings("ignore", category=UserWarning, message="FigureCanvasAgg is non-interactive, and thus cannot be shown")
-        
-    for subfolder in os.listdir(suite_path_abs)[:args.limit]:
-
+    subfolders = os.listdir(suite_path_abs) if args.limit == 0 else os.listdir(suite_path_abs)[:args.limit]    
+    
+    for subfolder in subfolders:
         # find relevant files in the subfolder
         sbml_file_name = f"*-{args.sbml_level_version}.xml"
         sedml_file_name = f"*-{args.sbml_level_version}-sedml.xml"
