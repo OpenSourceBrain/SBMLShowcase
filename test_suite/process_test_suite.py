@@ -14,6 +14,7 @@ from pyneuroml.sedml import validate_sedml_files
 import matplotlib
 import sys
 import warnings
+import re
 
 sys.path.append("..")
 import utils
@@ -121,36 +122,50 @@ def process_cases(args):
         # find relevant files in the subfolder
         sbml_file_name = f"*-{args.sbml_level_version}.xml"
         sedml_file_name = f"*-{args.sbml_level_version}-sedml.xml"
-        sbml_file_path = glob.glob(os.path.join(subfolder, sbml_file_name))
-        sedml_file_path = glob.glob(os.path.join(subfolder, sedml_file_name))
-        
-        # omex_file_path = glob.glob(os.path.join(subfolder, "*.omex"))
+        sbml_file_path = glob.glob(os.path.join(subfolder, sbml_file_name))[0] if len(glob.glob(os.path.join(subfolder, sbml_file_name))) > 0 else []
+        sedml_file_path = glob.glob(os.path.join(subfolder, sedml_file_name))[0] if len(glob.glob(os.path.join(subfolder, sedml_file_name))) > 0 else []
+
+        # if no files found with the specified sbml_level_version, try to find any sbml or sedml files
+        if sbml_file_path == [] or sedml_file_path == []:
+            print(f"Folder {subfolder} has no {args.sbml_level_version} SBML or SED-ML files")
+            sedml_file_paths = glob.glob(os.path.join(subfolder, "*-sbml-*sedml.xml"))
+            # get last entry in list of sedml_file_paths (because it has the highest level and version number considering the alphabetical order and naming convention)
+            sedml_file_path = sedml_file_paths[-1] if sedml_file_paths != [] else []
+            sbml_file_path = sedml_file_path.replace("-sedml.xml",".xml") if sedml_file_path != [] else []
+            if sbml_file_path == [] or sedml_file_path == []:
+                print(f"Folder {subfolder} has no SBML or SED-ML files")
+                continue
+        print(f"Processing {sbml_file_path} and {sedml_file_path}")
         
         # create table with results
         mtab.new_row()
-        mtab['case'] = add_case_url(sbml_file_path[0], sbml_file_path[0], args.suite_url_base) \
-            if args.suite_url_base != '' else sbml_file_path[0]
-        sup.suppress() 
-        mtab['valid_sbml'] = validate_sbml_files(sbml_file_path, strict_units=False)
-        mtab['valid_sbml_units'] = validate_sbml_files(sbml_file_path, strict_units=True)
-        mtab['valid_sedml'] = validate_sedml_files(sedml_file_path)
-        mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_file_path[0]) # run tellurium directly        
-        sup.restore() 
-        mtab['xmlns_sbml_missing'] = utils.xmlns_sbml_attribute_missing(sedml_file_path[0])
-        matplotlib.pyplot.close('all')   # supresses error from building up plots
+        mtab['case'] = add_case_url(sbml_file_path, sbml_file_path, args.suite_url_base) \
+            if args.suite_url_base != '' else sbml_file_path
         
-    # restore stdout and interactive plots
-    sup.restore()       
+        # suppress stdout output from validation functions to make progress counter readable
+        sup.suppress() 
+        mtab['valid_sbml'] = validate_sbml_files([sbml_file_path], strict_units=False)
+        mtab['valid_sbml_units'] = validate_sbml_files([sbml_file_path], strict_units=True)
+        mtab['valid_sedml'] = validate_sedml_files([sedml_file_path])
+        mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_file_path) # run tellurium directly        
+        sup.restore() 
+
+        mtab['xmlns_sbml_missing'] = utils.xmlns_sbml_attribute_missing(sedml_file_path)
+        matplotlib.pyplot.close('all')   # supresses error from building up plots  
 
     #give failure counts
     for key in ['valid_sbml','valid_sbml_units','valid_sedml']:
         mtab.add_count(key,lambda x:x==False,'n_fail={count}')
         mtab.transform_column(key,lambda x:'pass' if x else 'FAIL')
 
+    # add counts for cases and missing xmlns_sbml attributes
+    mtab.add_count('case',lambda _:True,'n={count}')
+    mtab.add_count('xmlns_sbml_missing',lambda x:x==True,'n={count}')
+
     #process engine outcomes column(s)
     mtab.simple_summary('tellurium_outcome')
     mtab.transform_column('tellurium_outcome')
-        
+
     #write out to file
     os.chdir(starting_dir)
     with open(args.output_file, "w") as fout:
