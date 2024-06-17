@@ -135,8 +135,7 @@ def process_cases(args):
         matplotlib.pyplot.close('all')   # supresses error from building up plots
     
     # restore stdout and interactive plots
-    sup.restore()
-    matplotlib.use("TkAgg") # switch agg off             
+    sup.restore()       
 
     #give failure counts
     for key in ['valid_sbml','valid_sbml_units','valid_sedml']:
