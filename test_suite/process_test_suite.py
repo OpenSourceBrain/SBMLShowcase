@@ -111,7 +111,7 @@ def process_cases(args):
 
     # suppress interactive plots and load sup module to suppress stdout
     sup = utils.SuppressOutput(stdout=suppress_stdout)
-    sup.suppress() 
+ 
     matplotlib.use("agg") 
     # Suppress specific UserWarning caused by matplotlib (required to suppress interactive plots)
     warnings.filterwarnings("ignore", category=UserWarning, message="FigureCanvasAgg is non-interactive, and thus cannot be shown")
@@ -119,10 +119,13 @@ def process_cases(args):
     for subfolder in os.listdir(suite_path_abs)[:args.limit]:
 
         # find relevant files in the subfolder
-        sbml_file_path = glob.glob(os.path.join(subfolder, "*-sbml-l3v2.xml"))
-        sedml_file_path = glob.glob(os.path.join(subfolder, "*-sbml-l3v2-sedml.xml"))
-        omex_file_path = glob.glob(os.path.join(subfolder, "*.omex"))
-
+        sbml_file_name = f"*-{args.sbml_level_version}.xml"
+        sedml_file_name = f"*-{args.sbml_level_version}-sedml.xml"
+        sbml_file_path = glob.glob(os.path.join(subfolder, sbml_file_name))
+        sedml_file_path = glob.glob(os.path.join(subfolder, sedml_file_name))
+        
+        # omex_file_path = glob.glob(os.path.join(subfolder, "*.omex"))
+        
         # create table with results
         mtab.new_row()
         mtab['case'] = add_case_url(sbml_file_path[0], sbml_file_path[0], args.suite_url_base) \
