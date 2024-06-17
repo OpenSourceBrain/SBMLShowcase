@@ -100,8 +100,8 @@ def process_cases(args):
     with a summary of how many cases were tested and how many tests failed
     """
     # set up the markdown table 
-    column_labels = "case|valid-sbml|valid-sbml-units|valid-sedml|tellurium|sedml-xmlns-sbml-attribute-missing"
-    column_keys  =  "case|valid_sbml|valid_sbml_units|valid_sedml|tellurium_outcome|sedml_xmlns_sbml_attribute_missing"
+    column_labels = "case|valid-sbml|valid-sbml-units|valid-sedml|tellurium|xmlns-sbml-missing"
+    column_keys  =  "case|valid_sbml|valid_sbml_units|valid_sedml|tellurium_outcome|xmlns_sbml_missing"
     mtab = utils.MarkdownTable(column_labels, column_keys)  
 
     # set the path to the test suite
