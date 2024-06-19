@@ -73,20 +73,6 @@ def get_entry_format(file_path, file_type):
     return file_entry_format
 
 
-def add_xmlns_sbml_attribute_if_missing(sedml_filepath, sbml_filepath):
-    # read the sedml file as a string
-    with open(sedml_filepath, 'r') as file:
-        sedstr = file.read()
-    # read the sbml file as a string to add the xmlns attribute if it is missing
-    if "xmlns:sbml" not in re.search(r'<sedML[^>]*', sedstr).group():
-        with open(sbml_filepath, 'r') as file:
-            sbml_str = file.read()
-        sbml_xmlns = re.search(r'xmlns="([^"]*)"', sbml_str).group(1)
-        missing_sbml_attribute = ' xmlns:sbml="' + sbml_xmlns + '"'
-        sedstr = re.sub(r'<sedML ', r'<sedML' + missing_sbml_attribute + ' ', sedstr)
-    return sedstr 
-
-
 def add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, output_filepath=None):
     '''
     add an xmlns:sbml attribute to the sedml file that matches the sbml file
