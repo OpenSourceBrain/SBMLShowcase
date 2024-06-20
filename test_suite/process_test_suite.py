@@ -13,6 +13,8 @@ from pyneuroml.sbml import validate_sbml_files
 from pyneuroml.sedml import validate_sedml_files
 import matplotlib
 import sys
+import warnings
+import re
 
 sys.path.append("..")
 import utils
@@ -52,11 +54,11 @@ def parse_arguments():
     )
 
     parser.add_argument(
-        "--suite-glob",
+        "--sbml-level_version",
         action="store",
         type=str,
-        default="000*/*-sbml-l3v2.xml",
-        help="Shell-style glob matching test suite file(s) within suite_path, eg '000*/*-sbml-l3v2.xml'",
+        default="sbml-l3v2",
+        help="SBML level and version to test, default is 'sbml-l3v2'",
     )
 
     parser.add_argument(
@@ -92,77 +94,83 @@ def add_case_url(case,fpath,url_base):
     new_item = f'[{case}]({url})'
     return new_item
 
-
-
 def process_cases(args):
     """
     process the test cases and write results out as a markdown table
     with links to the test case files online (as noted above the sedml files are actually in a zip file)
     with a summary of how many cases were tested and how many tests failed
     """
+    # set up the markdown table 
+    column_labels = "case|valid-sbml|valid-sbml-units|valid-sedml|tellurium|xmlns-sbml-missing"
+    column_keys  =  "case|valid_sbml|valid_sbml_units|valid_sedml|tellurium_outcome|xmlns_sbml_missing"
+    mtab = utils.MarkdownTable(column_labels, column_keys)  
 
-    #allow stdout/stderr from validation tests to be suppressed to improve progress count readability
+    # set the path to the test suite
+    starting_dir = os.getcwd() # where results will be written
+    os.chdir(args.suite_path) # change to test suite directory
+    suite_path_abs = os.getcwd() # absolute path to test suite
+
+    # suppress interactive plots and load sup module to suppress stdout
     sup = utils.SuppressOutput(stdout=suppress_stdout)
+ 
+    matplotlib.use("agg") 
+    # Suppress specific UserWarning caused by matplotlib (required to suppress interactive plots)
+    warnings.filterwarnings("ignore", category=UserWarning, message="FigureCanvasAgg is non-interactive, and thus cannot be shown")
+    subfolders = os.listdir(suite_path_abs) if args.limit == 0 else os.listdir(suite_path_abs)[:args.limit]    
+    
+    for subfolder in subfolders:
+        # find relevant files in the subfolder
+        sbml_file_name = f"*-{args.sbml_level_version}.xml"
+        sedml_file_name = f"*-{args.sbml_level_version}-sedml.xml"
+        sbml_file_path = glob.glob(os.path.join(subfolder, sbml_file_name))[0] if len(glob.glob(os.path.join(subfolder, sbml_file_name))) > 0 else []
+        sedml_file_path = glob.glob(os.path.join(subfolder, sedml_file_name))[0] if len(glob.glob(os.path.join(subfolder, sedml_file_name))) > 0 else []
 
-    column_labels = "case|valid-sbml|valid-sbml-units|valid-sedml|tellurium"
-    column_keys  =  "case|valid_sbml|valid_sbml_units|valid_sedml|tellurium_outcome"
-    mtab = utils.MarkdownTable(column_labels,column_keys)
-
-    #open file now to make sure output path is with respect to initial working directory
-    #not the test suite folder
-    starting_dir = os.getcwd()
-
-    n_cases = 0
-
-    os.chdir(args.suite_path)
-    suite_path_abs = os.getcwd()
-    sbml_list = sorted(glob.glob(args.suite_glob))
-
-    for sbml_path in sbml_list:
-        if args.limit and args.limit > 0 and n_cases >= args.limit: break
-
+        # if no files found with the specified sbml_level_version, try to find any sbml or sedml files
+        if sbml_file_path == [] or sedml_file_path == []:
+            print(f"Folder {subfolder} has no {args.sbml_level_version} SBML or SED-ML files")
+            sedml_file_paths = glob.glob(os.path.join(subfolder, "*-sbml-*sedml.xml"))
+            # get last entry in list of sedml_file_paths (because it has the highest level and version number considering the alphabetical order and naming convention)
+            sedml_file_path = sedml_file_paths[-1] if sedml_file_paths != [] else []
+            sbml_file_path = sedml_file_path.replace("-sedml.xml",".xml") if sedml_file_path != [] else []
+            if sbml_file_path == [] or sedml_file_path == []:
+                print(f"Folder {subfolder} has no SBML or SED-ML files")
+                continue
+        print(f"Processing {sbml_file_path} and {sedml_file_path}")
+        
+        # create table with results
         mtab.new_row()
-        n_cases +=1
+        mtab['case'] = add_case_url(sbml_file_path, sbml_file_path, args.suite_url_base) \
+            if args.suite_url_base != '' else sbml_file_path
+        
+        # suppress stdout output from validation functions to make progress counter readable
+        sup.suppress() 
+        mtab['valid_sbml'] = validate_sbml_files([sbml_file_path], strict_units=False)
+        mtab['valid_sbml_units'] = validate_sbml_files([sbml_file_path], strict_units=True)
+        mtab['valid_sedml'] = validate_sedml_files([sedml_file_path])
+        mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_file_path) # run tellurium directly        
+        sup.restore() 
 
-        case_dir = os.path.dirname(sbml_path)
-        os.chdir(suite_path_abs)
-        os.chdir(case_dir)
-
-        sbml_file = os.path.basename(sbml_path)
-        sedml_file = sbml_file.replace(".xml", "-sedml.xml")
-
-        print(f"{n_cases}/{len(sbml_list)} {sbml_file}")
-        assert os.path.isfile(sbml_file)
-        assert os.path.isfile(sedml_file)
-        case = sbml_file
-        if args.suite_url_base != '': case = add_case_url(case,sbml_path,args.suite_url_base)
-        mtab['case'] = case
-
-        sup.suppress() #suppress printing warnings to stdout
-        mtab['valid_sbml'] = validate_sbml_files([sbml_file], strict_units=False)
-        mtab['valid_sbml_units'] = validate_sbml_files([sbml_file], strict_units=True)
-        mtab['valid_sedml'] = validate_sedml_files([sedml_file])
-        mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_file) # run tellurium directly
-        sup.restore()
-
-        #stop matplotlib plots from building up
-        matplotlib.pyplot.close()
+        mtab['xmlns_sbml_missing'] = utils.xmlns_sbml_attribute_missing(sedml_file_path)
+        matplotlib.pyplot.close('all')   # supresses error from building up plots  
 
     #give failure counts
     for key in ['valid_sbml','valid_sbml_units','valid_sedml']:
         mtab.add_count(key,lambda x:x==False,'n_fail={count}')
         mtab.transform_column(key,lambda x:'pass' if x else 'FAIL')
 
+    # add counts for cases and missing xmlns_sbml attributes
+    mtab.add_count('case',lambda _:True,'n={count}')
+    mtab.add_count('xmlns_sbml_missing',lambda x:x==True,'n={count}')
+
     #process engine outcomes column(s)
     mtab.simple_summary('tellurium_outcome')
     mtab.transform_column('tellurium_outcome')
-        
+
     #write out to file
     os.chdir(starting_dir)
     with open(args.output_file, "w") as fout:
         fout.write(md_description)
         mtab.write(fout)
-        
 
 if __name__ == "__main__":
     args = parse_arguments()
