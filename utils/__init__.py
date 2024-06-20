@@ -22,10 +22,31 @@ import tempfile
 # (currently only tellurium)
 # key is the tag/category used to report the category, value is a regex matching the error message
 # see MarkdownTable.process_engine_outcomes
-error_categories=\
-{
-    "tellurium":
-        {
+
+
+# error_categories=\
+# {
+#     "tellurium":
+#         {
+#             "algebraic":"^Unable to support algebraic rules.",
+#             "delay":"^Unable to support delay differential equations.",
+#             "ASTNode":"^Unknown ASTNode type of",
+#             "stochiometry":"^Mutable stochiometry for species which appear multiple times in a single reaction",
+#             "float":"^'float' object is not callable",
+#             "SpeciesRef":"is not a named SpeciesReference",
+#             "reset":"reset",
+#             "SEDMLfile":"^failed to validate SEDML file",
+#             "NoSBMLelement":"^No sbml element exists",
+#             "CV_ERR_FAILURE":"CV_ERR_FAILURE",
+#             "CV_TOO_MUCH_WORK":"CV_TOO_MUCH_WORK",
+#             "CV_CONV_FAILURE":"CV_CONV_FAILURE",
+#             "CV_ILL_INPUT":"CV_ILL_INPUT",
+#             "OutOfRange":"list index out of range",
+#         },
+#     "copasi":{},
+# }
+
+error_categories = {
             "algebraic":"^Unable to support algebraic rules.",
             "delay":"^Unable to support delay differential equations.",
             "ASTNode":"^Unknown ASTNode type of",
@@ -40,9 +61,7 @@ error_categories=\
             "CV_CONV_FAILURE":"CV_CONV_FAILURE",
             "CV_ILL_INPUT":"CV_ILL_INPUT",
             "OutOfRange":"list index out of range",
-        },
-    "copasi":{},
-}
+        }
 
 def get_entry_format(file_path, file_type):
     '''
@@ -221,10 +240,10 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir=None
     if log_str:
         error_str = safe_md_string(log_str)
 
-    #categorise the error string
-    for tag in error_categories[engine]:
-        if re.search(error_categories[engine][tag],error_str):
-            return [tag,f"```{error_str}```"]
+    # #categorise the error string
+    # for tag in error_categories:
+    #     if re.search(error_categories[engine][tag],error_str):
+    #         return [tag,f"```{error_str}```"]
     
     return ["other",f"```{error_str}```"]
 
