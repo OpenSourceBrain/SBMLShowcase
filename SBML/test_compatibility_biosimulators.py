@@ -9,6 +9,7 @@ sys.path.append("..")
 import utils
 import os
 import pandas as pd
+import shutil
 
 sbml_filepath = 'LEMS_NML2_Ex9_FN.sbml'
 sedml_filepath = 'LEMS_NML2_Ex9_FN_missing_xmlns.sedml' #xmlns:sbml missing (original file)
@@ -19,9 +20,11 @@ types_dict = utils.types_dict
 
 engine_dict = {}
 
+output_folder = 'output'
+
 for e in engines.keys():
     print('Running ' + e)
-    output_dir = os.path.abspath(os.path.join('output', e))
+    output_dir = os.path.abspath(os.path.join(output_folder, e))
     try:
         record = utils.run_biosimulators_docker(e, sedml_filepath, sbml_filepath, output_dir=output_dir)
         engine_dict[e] = record
@@ -31,7 +34,9 @@ for e in engines.keys():
         engine_dict[e] = error_message
         continue
 
-utils.delete_output_folder('output')
+file_paths = utils.find_files(output_folder, '.pdf')
+utils.move_d1_files(file_paths, 'd1_plots')
+shutil.rmtree(output_folder)
 
 # Create a table of the results
 results_table = pd.DataFrame.from_dict(engine_dict).T

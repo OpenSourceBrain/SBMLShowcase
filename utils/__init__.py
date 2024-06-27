@@ -17,6 +17,7 @@ import yaml
 import libsbml
 import libsedml
 import tempfile
+import glob
 
 # 
 engines = {
@@ -225,6 +226,25 @@ def read_log_yml(log_filepath):
     with open(log_filepath) as f:
         ym = yaml.safe_load(f)
     return ym['exception']['message']
+
+def find_files(directory, extension):
+    files = glob.glob(f"{directory}/**/*{extension}", recursive=True)
+    return files
+
+def move_d1_files(file_paths, plot_dir='d1_plots',engines=engines):
+    if not os.path.exists(plot_dir):
+        os.makedirs(plot_dir, exist_ok=True)
+
+    for i in range(len(file_paths)):
+        engine = [key for key in engines.keys() if key in file_paths[i]]
+        new_file_name = '_'.join(engine) + '_' + os.path.basename(file_paths[i])
+        new_file_path = os.path.join(plot_dir, new_file_name)
+        print(new_file_path)
+        if os.path.exists(new_file_path):
+            os.remove(new_file_path)
+        shutil.move(file_paths[i], new_file_path)
+
+    return find_files(plot_dir, '.pdf')
 
 def parse_error_message(text):
     if text != None:
