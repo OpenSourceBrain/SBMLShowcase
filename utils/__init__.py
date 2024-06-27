@@ -18,33 +18,42 @@ import libsbml
 import libsedml
 import tempfile
 
-#define error categories for detailed error counting per engine
-# (currently only tellurium)
-# key is the tag/category used to report the category, value is a regex matching the error message
-# see MarkdownTable.process_engine_outcomes
+# 
+engines = {
+                        'amici': ('sbml', 'sedml'),\
+                        'brian2': [('nml', 'sedml'),('lems', 'sedml'),('sbml', 'sedml')],\
+                        'bionetgen': ('bngl', 'sedml'),\
+                        'boolnet': ('sbmlqual', 'sedml'),\
+                        'cbmpy': ('sbml', 'sedml'),\
+                        'cobrapy': ('sbml', 'sedml'),\
+                        'copasi': ('sbml', 'sedml'),\
+                        'gillespy2': ('sbml', 'sedml'),\
+                        'ginsim': ('sbmlqual', 'sedml'),\
+                        'libsbmlsim': ('sbml', 'sedml'),\
+                        'masspy': ('sbml', 'sedml'),\
+                        'netpyne': ('sbml', 'sedml'),\
+                        'neuron': [('nml', 'sedml'),('lems', 'sedml')],\
+                        'opencor': ('sbml', 'sedml'),\
+                        'pyneuroml': [('nml', 'sedml'),('lems', 'sedml')],\
+                        'pysces': ('sbml', 'sedml'),\
+                        'rbapy': ('rbapy', 'sedml'),\
+                        'smoldyn':None ,\
+                        'tellurium': ('sbml', 'sedml'),\
+                        'vcell': None,\
+                        'xpp': ('xpp', 'sedml')               
+            }
 
-
-# error_categories=\
-# {
-#     "tellurium":
-#         {
-#             "algebraic":"^Unable to support algebraic rules.",
-#             "delay":"^Unable to support delay differential equations.",
-#             "ASTNode":"^Unknown ASTNode type of",
-#             "stochiometry":"^Mutable stochiometry for species which appear multiple times in a single reaction",
-#             "float":"^'float' object is not callable",
-#             "SpeciesRef":"is not a named SpeciesReference",
-#             "reset":"reset",
-#             "SEDMLfile":"^failed to validate SEDML file",
-#             "NoSBMLelement":"^No sbml element exists",
-#             "CV_ERR_FAILURE":"CV_ERR_FAILURE",
-#             "CV_TOO_MUCH_WORK":"CV_TOO_MUCH_WORK",
-#             "CV_CONV_FAILURE":"CV_CONV_FAILURE",
-#             "CV_ILL_INPUT":"CV_ILL_INPUT",
-#             "OutOfRange":"list index out of range",
-#         },
-#     "copasi":{},
-# }
+types_dict = {
+                'sbml':'SBML',\
+                'sedml':'SED-ML',\
+                'nml':'NeuroML',\
+                'lems':'LEMS',\
+                'sbmlqual':'SBML-qual',\
+                'bngl':'BNGL',\
+                'rbapy':'RBApy',\
+                'xpp':'XPP',\
+                'smoldyn':'Smoldyn'\
+             }
 
 error_categories = {
             "algebraic":"^Unable to support algebraic rules.",
@@ -217,6 +226,108 @@ def read_log_yml(log_filepath):
         ym = yaml.safe_load(f)
     return ym['exception']['message']
 
+def parse_error_message(text):
+    if text != None:
+        text_message = re.findall(r'"([^"]*)"', text) 
+        if len(text_message) > 0:
+            text = text_message
+        else:
+            text = text.replace('|', '')
+            return text
+        text = bytes(text[0], "utf-8").decode("unicode_escape")
+        text = text.replace('|', '')
+
+        # # for any text with "<*>" remove "<" as well as ">" but leave wildcard text *
+        text = re.sub(r'<([^>]*)>', r'\1', text)
+
+        # replace color codes with html color codes
+        text = text.replace("\x1b[33m",'<span style="color:darkorange;">')
+        text = text.replace("\x1b[31m",'<span style="color:red;">')
+
+        # # remove .\x1b[0m
+        text = text.replace("\x1b[0m", "")
+
+        # find first "." or ":" after "<span*" and add "</span>"after it
+        pattern = r'(<span style="[^"]*">[^.:]*)([.:])'
+        replacement = r'\1\2</span>'
+        text = re.sub(pattern, replacement, text, count=1)
+
+        # bullet points and new lines
+        text = text.replace('\r\n  - ', '</li><li>')
+        text = text.replace('\r\n', '<br>')
+        text = text.replace('\n', '<br>') 
+
+        # BioSimulatorsWarning:  two <br> tags after
+        text = text.replace('BioSimulatorsWarning:', '<br><br>BioSimulatorsWarning:<br><br>')
+        text = text.replace('warnings.warn(termcolor.colored(message, Colors.warning.value), category)', '<br>')
+
+        # if text includes The COMBINE/OMEX did not execute successfully: make everyhting from that point red
+        text = text.replace('The COMBINE/OMEX did not execute successfully:', '<span style="color:red;">The COMBINE/OMEX did not execute successfully:')
+    return text
+
+def display_error_message(error_message):
+    if error_message != None:
+        display_markdown(f'{error_message}', raw=True)
+    return error_message
+
+def check_file_compatibility_test(engine, types_dict, model_filepath, experiment_filepath):
+    '''
+    Check if the file extensions suggest the file types are compatible with the engine
+    '''
+    input_filetypes = set(get_filetypes(model_filepath, experiment_filepath))
+    input_file_types_text = [types_dict[i] for i in input_filetypes]
+
+
+    engine_filetypes = engines[engine]
+    if engine_filetypes is not None:
+        # Flatten the list if the engine_filetypes is a list of tuples
+        if all(isinstance(i, tuple) for i in engine_filetypes):
+            engine_filetypes = {item for sublist in engine_filetypes for item in sublist}
+        engine_file_types_text = [types_dict[i] for i in engine_filetypes if i in types_dict]
+        if input_filetypes.issubset(engine_filetypes):
+            return 'pass', (f"The file extensions suggest the input file types are '{input_file_types_text}'. These are compatible with {engine}")
+        else:
+            return 'FAIL', (f"The file extensions suggest the input file types are '{input_file_types_text}'. Tese are not compatible with {engine}. The following file types will be compatible {engine_file_types_text}")
+    else:
+        return 'FAIL', (f"{engine} compatible file types unknown.")
+
+
+def collapsible_content(content, title='Details'):
+    """
+    Create a collapsible content section in markdown format
+    
+    Input: content, title
+    """
+    if content:
+        return f'<details><summary>{title}</summary>{content}</details>'
+    else:
+        return None
+    
+def get_filetypes(model_filepath, simulation_filepath):
+    """
+    Get the filetypes of the model and simulation files
+
+    Input: model_filepath, simulation_filepath
+    Output: tuple of filetypes
+    """
+    if model_filepath.endswith(".sbml") and simulation_filepath.endswith(".sedml"):
+        filetypes = ('sbml', 'sedml')
+    else:
+        filetypes = "other"
+    return filetypes
+
+def delete_output_folder(output_dir):
+    '''
+    # Delete the output folder and its contents
+    '''
+    for file_name in os.listdir(output_dir):
+        file_path = os.path.join(output_dir, file_name)
+        if os.path.isfile(file_path):
+            os.remove(file_path)
+        elif os.path.isdir(file_path):
+            shutil.rmtree(file_path)
+
+
 def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir=None,error_categories=error_categories):
     '''
     put the sedml and sbml file into an omex archive
@@ -232,13 +343,14 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir=None
         return "pass" #no errors
     except Exception as e:
         #capture the error as a string which won't break markdown tables
-        error_str = safe_md_string(e)
+        # error_str = safe_md_string(e)
+        error_str = str(e)
 
-    #try to load the cleaner error message from the log.yml file
-    log_str = read_log_yml(os.path.join(os.path.dirname(omex_filepath),"log.yml"))
+    # #try to load the cleaner error message from the log.yml file
+    # log_str = read_log_yml(os.path.join(os.path.dirname(omex_filepath),"log.yml"))
 
-    if log_str:
-        error_str = safe_md_string(log_str)
+    # if log_str:
+    #     error_str = safe_md_string(log_str)
 
     # #categorise the error string
     # for tag in error_categories:
