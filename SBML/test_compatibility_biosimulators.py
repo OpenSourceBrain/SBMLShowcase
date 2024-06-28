@@ -63,5 +63,5 @@ results_table['d1'] = results_table['d1'].apply(lambda x: utils.create_hyperlink
 results_table = results_table.to_markdown(index=False)
 
 # save results_md_table
-with open('results_biosimulators_compatability.md', 'w', encoding='utf-8') as f:
+with open('results_compatibility_biosimulators.md', 'w', encoding='utf-8') as f:
     f.write(results_table)
