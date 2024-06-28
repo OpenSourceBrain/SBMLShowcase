@@ -38,6 +38,7 @@ file_paths = utils.find_files(output_folder, '.pdf')
 utils.move_d1_files(file_paths, 'd1_plots')
 shutil.rmtree(output_folder)
 
+# TODO: move part that creates table to utils 
 # Create a table of the results
 results_table = pd.DataFrame.from_dict(engine_dict).T
 results_table.columns = ['pass/FAIL', 'Error']
@@ -54,6 +55,10 @@ results_table['Compatibility'] = results_table['Engine'].apply(lambda x: utils.c
 results_table['Compatibility'] = results_table['Compatibility'].apply(lambda x: utils.collapsible_content(x[1], title=x[0]))
 results_table['pass/FAIL'] = results_table['pass/FAIL'].apply(lambda x: f'<span style="color:darkred;">{x}</span>' if x == 'FAIL' else x)
 results_table['Compatibility'] = results_table['Compatibility'].apply(lambda x: f'<span style="color:darkred;">{x}</span>' if 'FAIL' in x else x)
+
+# d1 plot clickable link
+results_table['d1'] = results_table['Engine'].apply(lambda x: utils.d1_plots_dict(engines, 'd1_plots').get(x, None))
+results_table['d1'] = results_table['d1'].apply(lambda x: utils.create_hyperlink(x))
 
 results_table = results_table.to_markdown(index=False)
 

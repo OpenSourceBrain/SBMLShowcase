@@ -246,6 +246,28 @@ def move_d1_files(file_paths, plot_dir='d1_plots',engines=engines):
 
     return find_files(plot_dir, '.pdf')
 
+# write definition to create d1 plots dict
+def d1_plots_dict(engines=engines, d1_plots_path='d1_plots'):
+    """
+    Create a dictionary with engine names as keys and d1 plot paths as values.
+    """
+    d1_plots = find_files(d1_plots_path, '.pdf')
+    d1_plots_dict = {e: d1_plot for e in engines.keys() for d1_plot in d1_plots if e in d1_plot}
+    return d1_plots_dict
+
+
+def create_hyperlink(file_path):
+    """
+    Create a hyperlink to a file or folder. If the path is None, return None.
+    Title is the basename of the path.
+    """
+    if file_path:
+        title = os.path.basename(file_path)
+        return f'<a href="{file_path}">{title}</a>'
+    else:
+        return None
+    
+
 def parse_error_message(text):
     if text != None:
         text_message = re.findall(r'"([^"]*)"', text) 
