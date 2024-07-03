@@ -41,7 +41,6 @@ error_categories=\
             "CV_ILL_INPUT":"CV_ILL_INPUT",
             "OutOfRange":"list index out of range",
         },
-    "copasi":{},
 }
 
 def get_entry_format(file_path, file_type):
@@ -222,9 +221,10 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir=None
         error_str = safe_md_string(log_str)
 
     #categorise the error string
-    for tag in error_categories[engine]:
-        if re.search(error_categories[engine][tag],error_str):
-            return [tag,f"```{error_str}```"]
+    if engine in error_categories:
+        for tag in error_categories[engine]:
+            if re.search(error_categories[engine][tag],error_str):
+                return [tag,f"```{error_str}```"]
     
     return ["other",f"```{error_str}```"]
 
