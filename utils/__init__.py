@@ -830,10 +830,46 @@ def download_file_from_link(download_link, output_file='results.zip', max_wait_t
             with open(output_file, 'wb') as f:
                 shutil.copyfileobj(r.raw, f)
         print('Download completed.')
-        return True
+        # filepath where the file is downloaded
+        filepath = os.path.abspath(output_file)
+        return filepath
     else:
         print('Failed to download the file.')
         return False
+
+# unzip the file in file_path if it is a zip file and remove the zip file, replace with the unzipped folder
+def unzip_file(file_path, output_dir=None):
+    """
+    Unzip a file if it is a zip file.
+
+    Parameters:
+    file_path (str): The path to the file to unzip.
+    output_dir (str): The directory to extract the contents of the zip file to. Defaults to None.
+
+    Returns:
+    str: The path to the unzipped folder.
+    """
+
+    # If the file is a zip file, unzip it
+    if zipfile.is_zipfile(file_path):
+        # If the output directory is not specified, use the directory of the file
+        if output_dir is None:
+            output_dir = os.path.dirname(file_path)
+
+        # Create a ZipFile object
+        with zipfile.ZipFile(file_path, 'r') as zip_ref:
+            # Extract the contents of the zip file
+            zip_ref.extractall(output_dir)
+
+        # Remove the zip file
+        os.remove(file_path)
+
+        # Get the name of the unzipped folder
+        unzipped_folder = os.path.join(output_dir, os.path.splitext(os.path.basename(file_path))[0])
+
+        return unzipped_folder
+
+    return file_path
 
 
 #!/usr/bin/env python3
