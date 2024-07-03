@@ -3,9 +3,9 @@ name: Testing non OMV scripts
 
 on:
   push:
-    branches: [ master, development, experimental, test* ]
+    branches: [ master, development, experimental, test*, feature/* ]
   pull_request:
-    branches: [ master, development, experimental, test* ]
+    branches: [ master, development, experimental, test*, feature/* ]
 
 jobs:
   build:
