@@ -45,7 +45,7 @@ jobs:
 
     - name: Test validity of files
       run: |
-        pip install pyNeuroML
+        pip install pyNeuroML pyNeuroML[annotations]
         cd SBML
         ./validateAll.sh
 
