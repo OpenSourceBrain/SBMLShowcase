@@ -34,7 +34,7 @@ engines = {
                         'masspy': ('sbml', 'sedml'),\
                         'netpyne': ('sbml', 'sedml'),\
                         'neuron': [('nml', 'sedml'),('lems', 'sedml')],\
-                        'opencor': ('sbml', 'sedml'),\
+                        'opencor': ('cellml', 'sedml'),\
                         'pyneuroml': [('nml', 'sedml'),('lems', 'sedml')],\
                         'pysces': ('sbml', 'sedml'),\
                         'rbapy': ('rbapy', 'sedml'),\
@@ -53,7 +53,8 @@ types_dict = {
                 'bngl':'BNGL',\
                 'rbapy':'RBApy',\
                 'xpp':'XPP',\
-                'smoldyn':'Smoldyn'\
+                'smoldyn':'Smoldyn',\
+                'cellml':'CellML'\
              }
 
 error_categories = {
