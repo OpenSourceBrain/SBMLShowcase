@@ -17,46 +17,15 @@ import yaml
 import libsbml
 import libsedml
 import tempfile
-import glob
 
-# 
-engines = {
-                        'amici': ('sbml', 'sedml'),\
-                        'brian2': [('nml', 'sedml'),('lems', 'sedml'),('sbml', 'sedml')],\
-                        'bionetgen': ('bngl', 'sedml'),\
-                        'boolnet': ('sbmlqual', 'sedml'),\
-                        'cbmpy': ('sbml', 'sedml'),\
-                        'cobrapy': ('sbml', 'sedml'),\
-                        'copasi': ('sbml', 'sedml'),\
-                        'gillespy2': ('sbml', 'sedml'),\
-                        'ginsim': ('sbmlqual', 'sedml'),\
-                        'libsbmlsim': ('sbml', 'sedml'),\
-                        'masspy': ('sbml', 'sedml'),\
-                        'netpyne': ('sbml', 'sedml'),\
-                        'neuron': [('nml', 'sedml'),('lems', 'sedml')],\
-                        'opencor': ('sbml', 'sedml'),\
-                        'pyneuroml': [('nml', 'sedml'),('lems', 'sedml')],\
-                        'pysces': ('sbml', 'sedml'),\
-                        'rbapy': ('rbapy', 'sedml'),\
-                        'smoldyn':None ,\
-                        'tellurium': ('sbml', 'sedml'),\
-                        'vcell': None,\
-                        'xpp': ('xpp', 'sedml')               
-            }
-
-types_dict = {
-                'sbml':'SBML',\
-                'sedml':'SED-ML',\
-                'nml':'NeuroML',\
-                'lems':'LEMS',\
-                'sbmlqual':'SBML-qual',\
-                'bngl':'BNGL',\
-                'rbapy':'RBApy',\
-                'xpp':'XPP',\
-                'smoldyn':'Smoldyn'\
-             }
-
-error_categories = {
+#define error categories for detailed error counting per engine
+# (currently only tellurium)
+# key is the tag/category used to report the category, value is a regex matching the error message
+# see MarkdownTable.process_engine_outcomes
+error_categories=\
+{
+    "tellurium":
+        {
             "algebraic":"^Unable to support algebraic rules.",
             "delay":"^Unable to support delay differential equations.",
             "ASTNode":"^Unknown ASTNode type of",
@@ -71,7 +40,8 @@ error_categories = {
             "CV_CONV_FAILURE":"CV_CONV_FAILURE",
             "CV_ILL_INPUT":"CV_ILL_INPUT",
             "OutOfRange":"list index out of range",
-        }
+        },
+}
 
 def get_entry_format(file_path, file_type):
     '''
@@ -394,10 +364,11 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir=None
     # if log_str:
     #     error_str = safe_md_string(log_str)
 
-    # #categorise the error string
-    # for tag in error_categories:
-    #     if re.search(error_categories[engine][tag],error_str):
-    #         return [tag,f"```{error_str}```"]
+    #categorise the error string
+    if engine in error_categories:
+        for tag in error_categories[engine]:
+            if re.search(error_categories[engine][tag],error_str):
+                return [tag,f"```{error_str}```"]
     
     return ["other",f"```{error_str}```"]
 
