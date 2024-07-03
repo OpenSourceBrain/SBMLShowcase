@@ -17,6 +17,45 @@ import yaml
 import libsbml
 import libsedml
 import tempfile
+import glob
+
+# 
+engines = {
+                        'amici': ('sbml', 'sedml'),\
+                        'brian2': [('nml', 'sedml'),('lems', 'sedml'),('sbml', 'sedml')],\
+                        'bionetgen': ('bngl', 'sedml'),\
+                        'boolnet': ('sbmlqual', 'sedml'),\
+                        'cbmpy': ('sbml', 'sedml'),\
+                        'cobrapy': ('sbml', 'sedml'),\
+                        'copasi': ('sbml', 'sedml'),\
+                        'gillespy2': ('sbml', 'sedml'),\
+                        'ginsim': ('sbmlqual', 'sedml'),\
+                        'libsbmlsim': ('sbml', 'sedml'),\
+                        'masspy': ('sbml', 'sedml'),\
+                        'netpyne': ('sbml', 'sedml'),\
+                        'neuron': [('nml', 'sedml'),('lems', 'sedml')],\
+                        'opencor': ('cellml', 'sedml'),\
+                        'pyneuroml': [('nml', 'sedml'),('lems', 'sedml')],\
+                        'pysces': ('sbml', 'sedml'),\
+                        'rbapy': ('rbapy', 'sedml'),\
+                        'smoldyn':None ,\
+                        'tellurium': ('sbml', 'sedml'),\
+                        'vcell': None,\
+                        'xpp': ('xpp', 'sedml')               
+            }
+
+types_dict = {
+                'sbml':'SBML',\
+                'sedml':'SED-ML',\
+                'nml':'NeuroML',\
+                'lems':'LEMS',\
+                'sbmlqual':'SBML-qual',\
+                'bngl':'BNGL',\
+                'rbapy':'RBApy',\
+                'xpp':'XPP',\
+                'smoldyn':'Smoldyn',\
+                'cellml':'CellML'\
+             }
 
 #define error categories for detailed error counting per engine
 # (currently only tellurium)
