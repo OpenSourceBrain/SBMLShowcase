@@ -19,4 +19,4 @@ if [[ ! -d semantic ]] ; then
 fi
 
 #run the tests, output markdown table with summary
-./process_test_suite.py --suite-path ./semantic --suite-glob '*/*-sbml-l3v2.xml' --output-file ./results.md
+./process_test_suite.py --suite-path ./semantic --sbml-level_version 'sbml-l3v2' --output-file ./results.md
