@@ -277,7 +277,7 @@ def create_hyperlink(file_path):
         return None
     
 
-def parse_error_message(text):
+def ansi_to_html(text):
     if text != None:
         text_message = re.findall(r'"([^"]*)"', text) 
         if len(text_message) > 0:
@@ -397,6 +397,7 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir=None
         # error_str = safe_md_string(e)
         error_str = str(e)
 
+    # TODO: add back functionality to get error message from log.yml
     # #try to load the cleaner error message from the log.yml file
     # log_str = read_log_yml(os.path.join(os.path.dirname(omex_filepath),"log.yml"))
 

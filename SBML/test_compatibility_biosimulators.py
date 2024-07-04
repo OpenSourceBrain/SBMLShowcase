@@ -48,7 +48,7 @@ results_table.reset_index(inplace=True)
 results_table['Error'] = results_table.apply(lambda x: None if x['pass/FAIL'] == x['Error'] else x['Error'], axis=1)
 results_table['pass/FAIL'] = results_table['pass/FAIL'].replace('other', 'FAIL')
 
-results_table['Error'] = results_table['Error'].apply(lambda x: utils.parse_error_message(x))
+results_table['Error'] = results_table['Error'].apply(lambda x: utils.ansi_to_html(x))
 results_table['Error'] = results_table['Error'].apply(lambda x: utils.collapsible_content(x))
 
 results_table['Compatibility'] = results_table['Engine'].apply(lambda x: utils.check_file_compatibility_test(x, types_dict, sbml_filepath, sedml_filepath))
