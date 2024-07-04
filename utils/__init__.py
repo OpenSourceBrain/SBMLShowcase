@@ -248,7 +248,6 @@ def move_d1_files(file_paths, plot_dir='d1_plots',engines=engines):
         engine = [key for key in engines.keys() if key in file_paths[i]]
         new_file_name = '_'.join(engine) + '_' + os.path.basename(file_paths[i])
         new_file_path = os.path.join(plot_dir, new_file_name)
-        print(new_file_path)
         if os.path.exists(new_file_path):
             os.remove(new_file_path)
         shutil.move(file_paths[i], new_file_path)
