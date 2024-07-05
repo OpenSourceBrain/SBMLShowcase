@@ -18,6 +18,7 @@ import libsbml
 import libsedml
 import tempfile
 import glob
+from pyneuroml import biosimulations
 
 # 
 engines = {
@@ -240,6 +241,28 @@ def find_files(directory, extension):
     files = glob.glob(f"{directory}/**/*{extension}", recursive=True)
     return files
 
+
+def find_file_in_dir(file_name, directory):
+    """
+    Searches for a specific file in a given directory and its subdirectories.
+
+    Parameters:
+    file_name (str): The name of the file to search for.
+    directory (str): The directory to search in.
+
+    Returns:
+    str: The path of the found file. If the file is not found, returns None.
+    """
+
+    list_of_files = []
+    for root, _, files in os.walk(directory):
+        for file in files:
+            if file == file_name:
+                file_path = os.path.join(root, file)
+                list_of_files.append(file_path)
+    return list_of_files
+
+
 def move_d1_files(file_paths, plot_dir='d1_plots',engines=engines):
     if not os.path.exists(plot_dir):
         os.makedirs(plot_dir, exist_ok=True)
@@ -281,10 +304,13 @@ def ansi_to_html(text):
         text_message = re.findall(r'"([^"]*)"', text) 
         if len(text_message) > 0:
             text = text_message
+            text = bytes(text[0], "utf-8").decode("unicode_escape")
+        elif 'The COMBINE/OMEX did not execute successfully:' in text:
+            text = text # to deal with remote error message
         else:
             text = text.replace('|', '')
             return text
-        text = bytes(text[0], "utf-8").decode("unicode_escape")
+
         text = text.replace('|', '')
 
         # # for any text with "<*>" remove "<" as well as ">" but leave wildcard text *
@@ -377,8 +403,65 @@ def delete_output_folder(output_dir):
         elif os.path.isdir(file_path):
             shutil.rmtree(file_path)
 
+def run_biosimulators_remote(engine,sedml_filepath,sbml_filepath):
+    '''
+    put the sedml and sbml file into an omex archive
+    run it remotely using biosimulators
+    '''
 
-def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir=None,error_categories=error_categories):
+    #put the sedml and sbml into a combine archive
+    omex_filepath = create_omex(sedml_filepath,sbml_filepath)
+    omex_file_name = os.path.basename(omex_filepath)
+
+    # get the version of the engine
+    engine_version = biosimulations.get_simulator_versions(engine)
+
+    sim_dict = {
+                "name": "test",
+                "simulator": engine,
+                "simulatorVersion": engine_version[engine][-1], # get the latest version
+                "cpus": 1,
+                "memory": 8,
+                "maxTime": 20,
+                "envVars": [],
+                "purpose": "academic",
+                "email": "",
+                }
+
+    download_link, _ = biosimulations.submit_simulation_archive(\
+        archive_file=omex_file_name,\
+        sim_dict=sim_dict)
+    
+    return download_link
+
+def get_remote_results(engine, download_link, output_dir='remote_results'):
+
+    filepath_results = download_file_from_link(engine, download_link)
+    extract_dir = os.path.join(os.getcwd(), output_dir, engine)
+    shutil.unpack_archive(filepath_results, extract_dir=extract_dir)
+    os.remove(filepath_results)
+
+    return extract_dir
+
+def rename_files_in_extract_dir(extract_dir, engine):
+    
+    # find the log.yml file in the extracted directory
+    log_yml_path = find_file_in_dir('log.yml', extract_dir)[0]
+    with open(log_yml_path) as f:
+        log_yml_dict = yaml.safe_load(f)
+    
+    # rename log.yml file to '{engine}_log.yml'
+    new_file_name = f'{engine}_log.yml'
+    root = os.path.dirname(log_yml_path)
+    new_file_path = os.path.join(root, new_file_name)
+    if os.path.exists(new_file_path):
+        os.remove(new_file_path)
+    os.rename(log_yml_path, new_file_path)
+    
+    return extract_dir
+
+
+def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='output',error_categories=error_categories):
     '''
     put the sedml and sbml file into an omex archive
     run it locally using a biosimulators docker
@@ -400,7 +483,7 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir=None
     log_str = read_log_yml(os.path.join(os.path.dirname(omex_filepath),"log.yml"))
 
     if log_str:
-        error_str = log_str
+        error_str = str(log_str)
     # if log_str:
     #     error_str = safe_md_string(log_str)
 
@@ -807,7 +890,7 @@ def safe_md_string(value):
 
 import time
 
-def download_file_from_link(download_link, output_file='results.zip', max_wait_time=120, wait_time=2):
+def download_file_from_link(engine, download_link, output_file='results.zip', max_wait_time=120, wait_time=2):
     """
     Function to download a file from a given URL.
 
@@ -836,16 +919,15 @@ def download_file_from_link(download_link, output_file='results.zip', max_wait_t
 
     # If status == 200 then download the results
     if response.status_code == 200:
-        print('Downloading results...')
+        print(f'Downloading {engine} results...')
         with requests.get(download_link, stream=True) as r:
             with open(output_file, 'wb') as f:
                 shutil.copyfileobj(r.raw, f)
-        print('Download completed.')
         # filepath where the file is downloaded
         filepath = os.path.abspath(output_file)
         return filepath
     else:
-        print('Failed to download the file.')
+        print(f'Failed to download {engine} results.')
         return False
 
 # unzip the file in file_path if it is a zip file and remove the zip file, replace with the unzipped folder
