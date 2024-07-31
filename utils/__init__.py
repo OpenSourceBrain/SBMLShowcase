@@ -428,11 +428,13 @@ def run_biosimulators_remote(engine,sedml_filepath,sbml_filepath):
                 "email": "",
                 }
 
-    download_link, _ = biosimulations.submit_simulation_archive(\
+    res = biosimulations.submit_simulation_archive(\
         archive_file=omex_file_name,\
         sim_dict=sim_dict)
     
-    return download_link
+    download_url = res["download"]
+    
+    return download_url
 
 def get_remote_results(engine, download_link, output_dir='remote_results'):
 
