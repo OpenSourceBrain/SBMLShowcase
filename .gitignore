@@ -42,3 +42,4 @@ arm64
 /BioModels/tmplocalfiles
 __pycache__
 venv
+/SBML/.DS_Store
