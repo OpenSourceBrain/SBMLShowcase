@@ -55,6 +55,11 @@ jobs:
         cd SBML        
         ./test_biosimulators_docker.py
 
+    - name: test biosimulators compatibility table creation
+      run: |
+        cd SBML        
+        ./test_compatibility_biosimulators.py
+
 
     - name: Test test_suite output regeneration
       run: |
