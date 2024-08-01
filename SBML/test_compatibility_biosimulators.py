@@ -11,6 +11,9 @@ import os
 import pandas as pd
 import shutil
 
+
+
+
 sbml_filepath = 'LEMS_NML2_Ex9_FN.sbml'
 sedml_filepath = 'LEMS_NML2_Ex9_FN_missing_xmlns.sedml' #xmlns:sbml missing (original file)
 
@@ -35,7 +38,7 @@ for e in engines.keys():
         continue
 
 file_paths = utils.find_files(output_folder, '.pdf')
-utils.move_d1_files(file_paths, 'd1_plots')
+utils.move_d1_files(file_paths, 'temp_plots')
 shutil.rmtree(output_folder)
 
 # TODO: move part that creates table to utils 

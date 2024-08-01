@@ -240,7 +240,7 @@ def find_files(directory, extension):
     files = glob.glob(f"{directory}/**/*{extension}", recursive=True)
     return files
 
-def move_d1_files(file_paths, plot_dir='temp_plots',engines=engines):
+def move_d1_files(file_paths, plot_dir='d1_plots',engines=engines):
     if not os.path.exists(plot_dir):
         os.makedirs(plot_dir, exist_ok=True)
 
