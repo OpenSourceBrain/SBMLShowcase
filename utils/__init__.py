@@ -429,7 +429,8 @@ def biosimulators_core(engine,omex_filepath,output_dir=None):
     #to avoid the "file already exists" type error
     if not output_dir:
         output_dir = os.path.join(omex_dir,'output')
-        os.makedirs(output_dir,exist_ok=True)
+
+    os.makedirs(output_dir,exist_ok=True)
 
     mount_out = docker.types.Mount("/root/out",output_dir,type="bind")
     client = docker.from_env()

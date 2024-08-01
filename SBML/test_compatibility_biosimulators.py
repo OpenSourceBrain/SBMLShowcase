@@ -25,14 +25,9 @@ output_folder = 'output'
 for e in engines.keys():
     print('Running ' + e)
     output_dir = os.path.abspath(os.path.join(output_folder, e))
-    try:
-        record = utils.run_biosimulators_docker(e, sedml_filepath, sbml_filepath, output_dir=output_dir)
-        engine_dict[e] = record
-    except Exception as error:
-        error_message = str(error)
-        print(f"Error occurred while running {e}")
-        engine_dict[e] = error_message
-        continue
+
+    record = utils.run_biosimulators_docker(e, sedml_filepath, sbml_filepath, output_dir=output_dir)
+    engine_dict[e] = record
 
 file_paths = utils.find_files(output_folder, '.pdf')
 utils.move_d1_files(file_paths, 'd1_plots')
