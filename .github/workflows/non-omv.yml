@@ -58,7 +58,7 @@ jobs:
     - name: test biosimulators compatibility table creation
       run: |
         cd SBML        
-        ./test_compatibility_biosimulators.py
+        python ./test_compatibility_biosimulators.py
 
 
     - name: Test test_suite output regeneration
