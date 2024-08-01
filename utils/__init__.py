@@ -379,7 +379,7 @@ def delete_output_folder(output_dir):
             shutil.rmtree(file_path)
 
 
-def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir=None,error_categories=error_categories):
+def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir=None,error_categories=error_categories,chown_outputs=True):
     '''
     put the sedml and sbml file into an omex archive
     run it locally using a biosimulators docker
@@ -397,6 +397,10 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir=None
         # error_str = safe_md_string(e)
         error_str = str(e)
 
+    if 'getuid' in dir(os) and chown_outputs:
+        uid = os.getuid()
+        os.system(f'sudo chown -R {uid}:{uid} {output_dir}')
+
     # #try to load the cleaner error message from the log.yml file
     # log_str = read_log_yml(os.path.join(os.path.dirname(omex_filepath),"log.yml"))
 
@@ -411,7 +415,7 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir=None
     
     return ["other",f"```{error_str}```"]
 
-def biosimulators_core(engine,omex_filepath,output_dir=None,chown_outputs=True):
+def biosimulators_core(engine,omex_filepath,output_dir=None):
     '''
     run the omex file using biosimulators
     calls biosimulators via docker locally
@@ -421,7 +425,6 @@ def biosimulators_core(engine,omex_filepath,output_dir=None,chown_outputs=True):
 
     omex_filepath: the OMEX file to run
     output_dir: folder to write the simulation outputs to
-    chown_outputs: whether to change the output files ownership from root back to the user
     '''
 
     #directory containing omex file needs mapping into the container as the input folders
@@ -441,10 +444,6 @@ def biosimulators_core(engine,omex_filepath,output_dir=None,chown_outputs=True):
     client.containers.run(f"ghcr.io/biosimulators/{engine}",
                         mounts=[mount_in,mount_out],
                         command=f"-i /root/in/{omex_file} -o /root/out")
-
-    if 'getuid' in dir(os) and chown_outputs:
-        uid = os.getuid()
-        os.system(f'sudo chown -R {uid}:{uid} {output_dir}')
 
 def test_engine(engine,filename,error_categories=error_categories):
     '''
