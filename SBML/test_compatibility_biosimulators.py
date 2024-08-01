@@ -10,6 +10,11 @@ import utils
 import os
 import pandas as pd
 import shutil
+import argparse
+
+parser = argparse.ArgumentParser(description='Test compatibility of different biosimulation engines')
+parser.add_argument('--output-dir',action='store',default='d1_plots',help='Where to move the output pdf plots to')
+args = parser.parse_args()
 
 sbml_filepath = 'LEMS_NML2_Ex9_FN.sbml'
 sedml_filepath = 'LEMS_NML2_Ex9_FN_missing_xmlns.sedml' #xmlns:sbml missing (original file)
@@ -20,7 +25,7 @@ types_dict = utils.types_dict
 
 engine_dict = {}
 
-output_folder = 'output'
+output_folder = 'output' #initial temporary output folder
 
 for e in engines.keys():
     print('Running ' + e)
@@ -30,7 +35,7 @@ for e in engines.keys():
     engine_dict[e] = record
 
 file_paths = utils.find_files(output_folder, '.pdf')
-utils.move_d1_files(file_paths, 'd1_plots')
+utils.move_d1_files(file_paths, args.output_dir)
 shutil.rmtree(output_folder)
 
 # TODO: move part that creates table to utils 
@@ -52,7 +57,7 @@ results_table['pass/FAIL'] = results_table['pass/FAIL'].apply(lambda x: f'<span 
 results_table['Compatibility'] = results_table['Compatibility'].apply(lambda x: f'<span style="color:darkred;">{x}</span>' if 'FAIL' in x else x)
 
 # d1 plot clickable link
-results_table['d1'] = results_table['Engine'].apply(lambda x: utils.d1_plots_dict(engines, 'd1_plots').get(x, None))
+results_table['d1'] = results_table['Engine'].apply(lambda x: utils.d1_plots_dict(engines, args.output_dir).get(x, None))
 results_table['d1'] = results_table['d1'].apply(lambda x: utils.create_hyperlink(x))
 
 results_table = results_table.to_markdown(index=False)
