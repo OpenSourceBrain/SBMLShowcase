@@ -411,13 +411,17 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir=None
     
     return ["other",f"```{error_str}```"]
 
-def biosimulators_core(engine,omex_filepath,output_dir=None):
+def biosimulators_core(engine,omex_filepath,output_dir=None,chown_outputs=True):
     '''
     run the omex file using biosimulators
     calls biosimulators via docker locally
     assumes local docker is setup
     engine can be any string that matches a biosimulators docker "URI":
     ghcr.io/biosimulators/{engine}
+
+    omex_filepath: the OMEX file to run
+    output_dir: folder to write the simulation outputs to
+    chown_outputs: whether to change the output files ownership from root back to the user
     '''
 
     #directory containing omex file needs mapping into the container as the input folders
@@ -437,6 +441,10 @@ def biosimulators_core(engine,omex_filepath,output_dir=None):
     client.containers.run(f"ghcr.io/biosimulators/{engine}",
                         mounts=[mount_in,mount_out],
                         command=f"-i /root/in/{omex_file} -o /root/out")
+
+    if 'getuid' in dir(os) and chown_outputs:
+        uid = os.getuid()
+        os.system(f'sudo chown -R {uid}:{uid} {output_dir}')
 
 def test_engine(engine,filename,error_categories=error_categories):
     '''
