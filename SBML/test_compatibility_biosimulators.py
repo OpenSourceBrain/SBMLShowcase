@@ -19,7 +19,6 @@ args = parser.parse_args()
 sbml_filepath = 'LEMS_NML2_Ex9_FN.sbml'
 sedml_filepath = 'LEMS_NML2_Ex9_FN_missing_xmlns.sedml' #xmlns:sbml missing (original file)
 
-
 engines = utils.engines
 types_dict = utils.types_dict
 
@@ -31,10 +30,8 @@ for e in engines.keys():
     print('Running ' + e)
     output_dir = os.path.abspath(os.path.join(output_folder, e))
     engine_dict[e] = utils.run_biosimulators_docker(e, sedml_filepath, sbml_filepath, output_dir=output_dir)
-    file_paths = utils.find_files(output_dir, '.pdf')
-    utils.move_d1_files(file_paths, e, args.output_dir)
+    utils.move_d1_files(utils.find_files(output_dir, '.pdf'), e, args.output_dir)
 
-print(os.listdir(output_folder))
 shutil.rmtree(output_folder)
 
 # TODO: move part that creates table to utils 
