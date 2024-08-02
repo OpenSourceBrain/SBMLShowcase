@@ -34,6 +34,7 @@ for e in engines.keys():
     file_paths = utils.find_files(output_dir, '.pdf')
     utils.move_d1_files(file_paths, e, args.output_dir)
 
+print(os.listdir(output_folder))
 shutil.rmtree(output_folder)
 
 # TODO: move part that creates table to utils 
