@@ -240,20 +240,13 @@ def find_files(directory, extension):
     files = glob.glob(f"{directory}/**/*{extension}", recursive=True)
     return files
 
-def move_d1_files(file_paths, plot_dir='d1_plots',engines=engines):
-    if not os.path.exists(plot_dir):
-        os.makedirs(plot_dir, exist_ok=True)
-
-    for i in range(len(file_paths)):
-        engine = [key for key in engines.keys() if key in file_paths[i]]
-        new_file_name = '_'.join(engine) + '_' + os.path.basename(file_paths[i])
-        new_file_path = os.path.join(plot_dir, new_file_name)
-        print(new_file_path)
-        if os.path.exists(new_file_path):
-            os.remove(new_file_path)
-        shutil.move(file_paths[i], new_file_path)
-
-    return find_files(plot_dir, '.pdf')
+def move_d1_files(file_paths, engine, plot_dir='d1_plots'):
+    for fpath in file_paths:
+        new_file_path = os.path.join(plot_dir, f'{engine}_{os.path.basename(fpath)}')
+        if not os.path.exists(plot_dir): os.makedirs(plot_dir, exist_ok=True)
+        if os.path.exists(new_file_path): os.remove(new_file_path)
+        print(f'Moving {fpath} to {new_file_path}')
+        shutil.move(fpath, new_file_path)
 
 # write definition to create d1 plots dict
 def d1_plots_dict(engines=engines, d1_plots_path='d1_plots'):
@@ -447,7 +440,8 @@ def biosimulators_core(engine,omex_filepath,output_dir=None):
     client = docker.from_env()
     client.containers.run(f"ghcr.io/biosimulators/{engine}",
                         mounts=[mount_in,mount_out],
-                        command=f"-i /root/in/{omex_file} -o /root/out")
+                        command=f"-i /root/in/{omex_file} -o /root/out",
+                        auto_remove=True)
 
 def test_engine(engine,filename,error_categories=error_categories):
     '''

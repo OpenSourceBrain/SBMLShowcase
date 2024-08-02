@@ -30,12 +30,10 @@ output_folder = 'output' #initial temporary output folder
 for e in engines.keys():
     print('Running ' + e)
     output_dir = os.path.abspath(os.path.join(output_folder, e))
+    engine_dict[e] = utils.run_biosimulators_docker(e, sedml_filepath, sbml_filepath, output_dir=output_dir)
+    file_paths = utils.find_files(output_dir, '.pdf')
+    utils.move_d1_files(file_paths, e, args.output_dir)
 
-    record = utils.run_biosimulators_docker(e, sedml_filepath, sbml_filepath, output_dir=output_dir)
-    engine_dict[e] = record
-
-file_paths = utils.find_files(output_folder, '.pdf')
-utils.move_d1_files(file_paths, args.output_dir)
 shutil.rmtree(output_folder)
 
 # TODO: move part that creates table to utils 
