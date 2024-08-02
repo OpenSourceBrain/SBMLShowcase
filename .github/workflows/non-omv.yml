@@ -57,7 +57,8 @@ jobs:
 
     - name: test biosimulators compatibility table creation
       run: |
-        cd SBML        
+        cd SBML
+        sudo rm -rf output
         python ./test_compatibility_biosimulators.py --output-dir=tmp_plots
 
 
