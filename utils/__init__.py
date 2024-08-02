@@ -388,18 +388,22 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir=None
 
     #put the sedml and sbml into a combine archive
     omex_filepath = create_omex(sedml_filepath,sbml_filepath)
+    error_str = None
 
     try:
         biosimulators_core(engine,omex_filepath,output_dir=output_dir)
-        return "pass" #no errors
     except Exception as e:
         #capture the error as a string which won't break markdown tables
         # error_str = safe_md_string(e)
         error_str = str(e)
 
+    #ensure outputs are owned by the user
     if 'getuid' in dir(os) and chown_outputs:
         uid = os.getuid()
-        os.system(f'sudo chown -R {uid}:{uid} {output_dir}')
+        gid = os.getgid()
+        os.system(f'sudo chown -R {uid}:{gid} {output_dir}')
+
+    if not error_str: return "pass"
 
     # #try to load the cleaner error message from the log.yml file
     # log_str = read_log_yml(os.path.join(os.path.dirname(omex_filepath),"log.yml"))
