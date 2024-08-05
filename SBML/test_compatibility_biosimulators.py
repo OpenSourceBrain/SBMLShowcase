@@ -10,32 +10,28 @@ import utils
 import os
 import pandas as pd
 import shutil
+import argparse
+
+parser = argparse.ArgumentParser(description='Test compatibility of different biosimulation engines')
+parser.add_argument('--output-dir',action='store',default='d1_plots',help='Where to move the output pdf plots to')
+args = parser.parse_args()
 
 sbml_filepath = 'LEMS_NML2_Ex9_FN.sbml'
 sedml_filepath = 'LEMS_NML2_Ex9_FN_missing_xmlns.sedml' #xmlns:sbml missing (original file)
-
 
 engines = utils.engines
 types_dict = utils.types_dict
 
 engine_dict = {}
 
-output_folder = 'output'
+output_folder = 'output' #initial temporary output folder
 
 for e in engines.keys():
     print('Running ' + e)
     output_dir = os.path.abspath(os.path.join(output_folder, e))
-    try:
-        record = utils.run_biosimulators_docker(e, sedml_filepath, sbml_filepath, output_dir=output_dir)
-        engine_dict[e] = record
-    except Exception as error:
-        error_message = str(error)
-        print(f"Error occurred while running {e}")
-        engine_dict[e] = error_message
-        continue
+    engine_dict[e] = utils.run_biosimulators_docker(e, sedml_filepath, sbml_filepath, output_dir=output_dir)
+    utils.move_d1_files(utils.find_files(output_dir, '.pdf'), e, args.output_dir)
 
-file_paths = utils.find_files(output_folder, '.pdf')
-utils.move_d1_files(file_paths, 'd1_plots')
 shutil.rmtree(output_folder)
 
 # TODO: move part that creates table to utils 
@@ -57,7 +53,7 @@ results_table['pass/FAIL'] = results_table['pass/FAIL'].apply(lambda x: f'<span 
 results_table['Compatibility'] = results_table['Compatibility'].apply(lambda x: f'<span style="color:darkred;">{x}</span>' if 'FAIL' in x else x)
 
 # d1 plot clickable link
-results_table['d1'] = results_table['Engine'].apply(lambda x: utils.d1_plots_dict(engines, 'd1_plots').get(x, None))
+results_table['d1'] = results_table['Engine'].apply(lambda x: utils.d1_plots_dict(engines, args.output_dir).get(x, None))
 results_table['d1'] = results_table['d1'].apply(lambda x: utils.create_hyperlink(x))
 
 results_table = results_table.to_markdown(index=False)

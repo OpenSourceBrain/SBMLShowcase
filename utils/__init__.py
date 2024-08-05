@@ -241,6 +241,13 @@ def find_files(directory, extension):
     files = glob.glob(f"{directory}/**/*{extension}", recursive=True)
     return files
 
+def move_d1_files(file_paths, engine, plot_dir='d1_plots'):
+    for fpath in file_paths:
+        new_file_path = os.path.join(plot_dir, f'{engine}_{os.path.basename(fpath)}')
+        if not os.path.exists(plot_dir): os.makedirs(plot_dir, exist_ok=True)
+        if os.path.exists(new_file_path): os.remove(new_file_path)
+        print(f'Moving {fpath} to {new_file_path}')
+        shutil.move(fpath, new_file_path)
 
 def find_file_in_dir(file_name, directory):
     """
@@ -262,20 +269,6 @@ def find_file_in_dir(file_name, directory):
                 list_of_files.append(file_path)
     return list_of_files
 
-
-def move_d1_files(file_paths, plot_dir='d1_plots',engines=engines):
-    if not os.path.exists(plot_dir):
-        os.makedirs(plot_dir, exist_ok=True)
-
-    for i in range(len(file_paths)):
-        engine = [key for key in engines.keys() if key in file_paths[i]]
-        new_file_name = '_'.join(engine) + '_' + os.path.basename(file_paths[i])
-        new_file_path = os.path.join(plot_dir, new_file_name)
-        if os.path.exists(new_file_path):
-            os.remove(new_file_path)
-        shutil.move(file_paths[i], new_file_path)
-
-    return find_files(plot_dir, '.pdf')
 
 # write definition to create d1 plots dict
 def d1_plots_dict(engines=engines, d1_plots_path='d1_plots'):
@@ -463,7 +456,7 @@ def rename_files_in_extract_dir(extract_dir, engine):
     return extract_dir
 
 
-def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='output',error_categories=error_categories):
+def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='output',error_categories=error_categories,chown_outputs=True):
     '''
     put the sedml and sbml file into an omex archive
     run it locally using a biosimulators docker
@@ -472,17 +465,25 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='out
 
     #put the sedml and sbml into a combine archive
     omex_filepath = create_omex(sedml_filepath,sbml_filepath)
+    error_str = None
 
     try:
         biosimulators_core(engine,omex_filepath,output_dir=output_dir)
-        return "pass" #no errors
     except Exception as e:
         #capture the error as a string which won't break markdown tables 
         # error_str = safe_md_string(e)
         error_str = str(e)
 
-    #try to load the cleaner error message from the log.yml file
-    log_str = read_log_yml(os.path.join(os.path.dirname(omex_filepath),"log.yml"))
+    #ensure outputs are owned by the user
+    if 'getuid' in dir(os) and chown_outputs:
+        uid = os.getuid()
+        gid = os.getgid()
+        os.system(f'sudo chown -R {uid}:{gid} {output_dir}')
+
+    if not error_str: return "pass"
+
+    # #try to load the cleaner error message from the log.yml file
+    # log_str = read_log_yml(os.path.join(os.path.dirname(omex_filepath),"log.yml"))
 
     if log_str:
         error_str = str(log_str)
@@ -504,6 +505,9 @@ def biosimulators_core(engine,omex_filepath,output_dir=None):
     assumes local docker is setup
     engine can be any string that matches a biosimulators docker "URI":
     ghcr.io/biosimulators/{engine}
+
+    omex_filepath: the OMEX file to run
+    output_dir: folder to write the simulation outputs to
     '''
 
     #directory containing omex file needs mapping into the container as the input folders
@@ -515,13 +519,15 @@ def biosimulators_core(engine,omex_filepath,output_dir=None):
     #to avoid the "file already exists" type error
     if not output_dir:
         output_dir = os.path.join(omex_dir,'output')
-        os.makedirs(output_dir,exist_ok=True)
+
+    os.makedirs(output_dir,exist_ok=True)
 
     mount_out = docker.types.Mount("/root/out",output_dir,type="bind")
     client = docker.from_env()
     client.containers.run(f"ghcr.io/biosimulators/{engine}",
                         mounts=[mount_in,mount_out],
-                        command=f"-i /root/in/{omex_file} -o /root/out")
+                        command=f"-i /root/in/{omex_file} -o /root/out",
+                        auto_remove=True)
 
 def test_engine(engine,filename,error_categories=error_categories):
     '''
