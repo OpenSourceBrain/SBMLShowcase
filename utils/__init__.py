@@ -483,7 +483,7 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='out
     if not error_str: return "pass"
 
     # #try to load the cleaner error message from the log.yml file
-    # log_str = read_log_yml(os.path.join(os.path.dirname(omex_filepath),"log.yml"))
+    log_str = read_log_yml(os.path.join(os.path.dirname(omex_filepath),"log.yml"))
 
     if log_str:
         error_str = str(log_str)
