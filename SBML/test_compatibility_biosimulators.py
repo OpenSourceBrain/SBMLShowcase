@@ -101,7 +101,7 @@ if os.path.exists(output_folder):
 #########################################################################################
 
 results_table = utils.create_results_table(results, types_dict, sbml_filepath, sedml_filepath, engines, 'd1_plots_remote')
-results_table_local = utils.create_results_table(results_local, types_dict, sbml_filepath, sedml_filepath, engines, 'd1_plots')
+results_table_local = utils.create_results_table(results_local, types_dict, sbml_filepath, sedml_filepath, engines, 'd1_plots_local')
 
 # rename cols to distinguish between local and remote results except for Engine column
 results_table.columns = [str(col) + ' (remote)' if col != 'Engine' else str(col) for col in results_table.columns]
