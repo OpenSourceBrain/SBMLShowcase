@@ -19,6 +19,7 @@ import libsedml
 import tempfile
 import glob
 from pyneuroml import biosimulations
+import pandas as pd
 
 # 
 engines = {
@@ -241,8 +242,10 @@ def find_files(directory, extension):
     files = glob.glob(f"{directory}/**/*{extension}", recursive=True)
     return files
 
-def move_d1_files(file_paths, engine, plot_dir='d1_plots'):
+def move_d1_files(file_paths, plot_dir='d1_plots'):
     for fpath in file_paths:
+        # find engine.keys() in the file path and asign to engine
+        engine = next((e for e in engines.keys() if e in fpath), None)
         new_file_path = os.path.join(plot_dir, f'{engine}_{os.path.basename(fpath)}')
         if not os.path.exists(plot_dir): os.makedirs(plot_dir, exist_ok=True)
         if os.path.exists(new_file_path): os.remove(new_file_path)
@@ -972,3 +975,41 @@ def unzip_file(file_path, output_dir=None):
 
     return file_path
 
+
+def create_results_table(results, types_dict, sbml_filepath, sedml_filepath, engines, output_dir):
+    """
+    Create a markdown table of the results.
+    
+    Input: results, types_dict, sbml_filepath, sedml_filepath, engines, output_dir
+    Output: results_md_table
+
+    """
+    # Create a table of the results
+    results_table = pd.DataFrame.from_dict(results).T
+    # if list is three elements 
+    if results_table.shape[1] == 3:
+        results_table.columns = ['pass/FAIL', 'Error', 'Type']
+    elif results_table.shape[1] == 2:
+        results_table.columns = ['pass/FAIL', 'Error']
+
+    results_table.index.name = 'Engine'
+    results_table.reset_index(inplace=True)
+
+    results_table['Error'] = results_table.apply(lambda x: None if x['pass/FAIL'] == x['Error'] else x['Error'], axis=1)
+    results_table['pass/FAIL'] = results_table['pass/FAIL'].replace('other', 'FAIL')
+
+    results_table['Error'] = results_table['Error'].apply(lambda x: ansi_to_html(x))
+    results_table['Error'] = results_table['Error'].apply(lambda x: collapsible_content(x))
+
+    # compatibility_message
+    results_table['Compatibility'] = results_table['Engine'].apply(lambda x: check_file_compatibility_test(x, types_dict, sbml_filepath, sedml_filepath))
+    results_table['Compatibility'] = results_table['Compatibility'].apply(lambda x: collapsible_content(x[1], title=x[0]))
+    results_table['pass/FAIL'] = results_table['pass/FAIL'].apply(lambda x: f'<span style="color:darkred;">{x}</span>' if x == 'FAIL' else x)
+    results_table['Compatibility'] = results_table['Compatibility'].apply(lambda x: f'<span style="color:darkred;">{x}</span>' if 'FAIL' in x else x)
+
+    # d1 plot clickable link
+    results_table['d1'] = results_table['Engine'].apply(lambda x: d1_plots_dict(engines, output_dir).get(x, None))
+    results_table['d1'] = results_table['d1'].apply(lambda x: create_hyperlink(x))
+
+
+    return results_table

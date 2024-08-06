@@ -3,61 +3,122 @@ This script tests the compatibility of different biosimulation engines with a gi
 It runs each engine and records the result (pass/fail) and any error messages encountered during the simulation.
 The results are then displayed in a table and saved to a markdown file.
 '''
+#!/usr/bin/env python
+
+'''
+use pymetadata module to create a minimal valid combine archive
+using LEMS_NML2_Ex9_FN.sbml and LEMS_NML2_Ex9_FN.sedml
+'''
 
 import sys
 sys.path.append("..")
 import utils
 import os
 import pandas as pd
+from IPython.display import display_markdown
 import shutil
-import argparse
-
-parser = argparse.ArgumentParser(description='Test compatibility of different biosimulation engines')
-parser.add_argument('--output-dir',action='store',default='d1_plots',help='Where to move the output pdf plots to')
-args = parser.parse_args()
+import yaml
 
 sbml_filepath = 'LEMS_NML2_Ex9_FN.sbml'
-sedml_filepath = 'LEMS_NML2_Ex9_FN_missing_xmlns.sedml' #xmlns:sbml missing (original file)
+sedml_filepath = 'LEMS_NML2_Ex9_FN_missing_xmlns.sedml' #xmlns:sbml missing
 
 engines = utils.engines
 types_dict = utils.types_dict
 
-engine_dict = {}
 
-output_folder = 'output' #initial temporary output folder
+#########################################################################################
+# Run remotely
+#########################################################################################
+
+remote_output_dir = 'remote_results'
+
+download_links_dict = dict()
+for e in engines.keys():
+    download_link = utils.run_biosimulators_remote(e, sedml_filepath, sbml_filepath)
+    download_links_dict[e] = download_link
+
+extract_dir_dict = dict()
+for e, link in download_links_dict.items():
+    extract_dir = utils.get_remote_results(e, link, remote_output_dir)
+    extract_dir_dict[e] = extract_dir
+
+results = dict()
+for e, extract_dir in extract_dir_dict.items():
+    status = ""
+    error_message = ""
+    exception_type = ""
+
+    log_yml_path = utils.find_file_in_dir('log.yml', extract_dir)[0]
+    if not log_yml_path:
+        status = None
+        error_message = 'log.yml not found'
+        continue
+    with open(log_yml_path) as f:
+        log_yml_dict = yaml.safe_load(f)
+        if log_yml_dict['status'] == 'SUCCEEDED':
+            status = 'pass'
+        elif log_yml_dict['status'] == 'FAILED':
+            status = 'FAIL'
+            exception = log_yml_dict['exception']
+            error_message = exception['message']
+            exception_type = exception['type'] 
+        else:
+            status = None
+        results[e] = [status, error_message, exception_type] 
+
+file_paths = utils.find_files(remote_output_dir, '.pdf')
+utils.move_d1_files(file_paths, 'd1_plots_remote')
+
+# remove the remote results directory
+if os.path.exists(remote_output_dir):
+    shutil.rmtree(remote_output_dir)
+    print('Removed ' + remote_output_dir + ' folder')
+
+#########################################################################################
+# Run locally
+#########################################################################################
+
+results_local = {}
+
+output_folder = 'output'
 
 for e in engines.keys():
     print('Running ' + e)
     output_dir = os.path.abspath(os.path.join(output_folder, e))
-    engine_dict[e] = utils.run_biosimulators_docker(e, sedml_filepath, sbml_filepath, output_dir=output_dir)
-    utils.move_d1_files(utils.find_files(output_dir, '.pdf'), e, args.output_dir)
+    record = utils.run_biosimulators_docker(e, sedml_filepath, sbml_filepath, output_dir=output_dir)
+    results_local[e] = record
 
-shutil.rmtree(output_folder)
+file_paths = utils.find_files(output_folder, '.pdf')
+utils.move_d1_files(file_paths, 'd1_plots_local')
 
-# TODO: move part that creates table to utils 
-# Create a table of the results
-results_table = pd.DataFrame.from_dict(engine_dict).T
-results_table.columns = ['pass/FAIL', 'Error']
-results_table.index.name = 'Engine'
-results_table.reset_index(inplace=True)
+# if it exists remove the output folder
+if os.path.exists(output_folder):
+    shutil.rmtree(output_folder)
+    print('Removed ' + output_folder + ' folder')
 
-results_table['Error'] = results_table.apply(lambda x: None if x['pass/FAIL'] == x['Error'] else x['Error'], axis=1)
-results_table['pass/FAIL'] = results_table['pass/FAIL'].replace('other', 'FAIL')
+#########################################################################################
+# process results and save markdown table
+#########################################################################################
 
-results_table['Error'] = results_table['Error'].apply(lambda x: utils.ansi_to_html(x))
-results_table['Error'] = results_table['Error'].apply(lambda x: utils.collapsible_content(x))
+results_table = utils.create_results_table(results, types_dict, sbml_filepath, sedml_filepath, engines, 'd1_plots_remote')
+results_table_local = utils.create_results_table(results_local, types_dict, sbml_filepath, sedml_filepath, engines, 'd1_plots')
 
-results_table['Compatibility'] = results_table['Engine'].apply(lambda x: utils.check_file_compatibility_test(x, types_dict, sbml_filepath, sedml_filepath))
-results_table['Compatibility'] = results_table['Compatibility'].apply(lambda x: utils.collapsible_content(x[1], title=x[0]))
-results_table['pass/FAIL'] = results_table['pass/FAIL'].apply(lambda x: f'<span style="color:darkred;">{x}</span>' if x == 'FAIL' else x)
-results_table['Compatibility'] = results_table['Compatibility'].apply(lambda x: f'<span style="color:darkred;">{x}</span>' if 'FAIL' in x else x)
+# rename cols to distinguish between local and remote results except for Engine column
+results_table.columns = [str(col) + ' (remote)' if col != 'Engine' else str(col) for col in results_table.columns]
+results_table_local.columns = [str(col) + ' (local)' if col != 'Engine' else str(col) for col in results_table_local.columns]
 
-# d1 plot clickable link
-results_table['d1'] = results_table['Engine'].apply(lambda x: utils.d1_plots_dict(engines, args.output_dir).get(x, None))
-results_table['d1'] = results_table['d1'].apply(lambda x: utils.create_hyperlink(x))
+# combine remote and local results
+combined_results = pd.merge(results_table, results_table_local, on='Engine', how='outer')
+combined_results = combined_results.reindex(columns=['Engine'] + sorted(combined_results.columns[1:]))
 
-results_table = results_table.to_markdown(index=False)
+cols_order = ['Engine', 'pass/FAIL (remote)', 'pass/FAIL (local)',\
+               'Compatibility (remote)', 'Compatibility (local)', \
+               'Type (remote)', \
+               'Error (remote)', 'Error (local)', \
+               'd1 (remote)', 'd1 (local)']
 
-# save results_md_table
-with open('results_compatibility_biosimulators.md', 'w', encoding='utf-8') as f:
-    f.write(results_table)
+combined_results = combined_results[cols_order]
+
+# save the results to a markdown file
+with open('results_compatibility_biosimulators.md', 'w') as f:
+    f.write(combined_results.to_markdown())
