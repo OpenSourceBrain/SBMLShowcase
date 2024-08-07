@@ -103,7 +103,7 @@ if os.path.exists(output_folder):
 # process results and save markdown table
 #########################################################################################
 
-results_table = utils.create_results_table(results, types_dict, sbml_filepath, sedml_filepath, engines, d1_plots_remote_dir
+results_table = utils.create_results_table(results, types_dict, sbml_filepath, sedml_filepath, engines, d1_plots_remote_dir)
 results_table_local = utils.create_results_table(results_local, types_dict, sbml_filepath, sedml_filepath, engines, d1_plots_local_dir)
 
 # rename cols to distinguish between local and remote results except for Engine column
