@@ -15,7 +15,6 @@ sys.path.append("..")
 import utils
 import os
 import pandas as pd
-from IPython.display import display_markdown
 import shutil
 import yaml
 
