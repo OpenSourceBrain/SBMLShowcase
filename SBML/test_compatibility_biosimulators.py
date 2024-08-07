@@ -1,13 +1,9 @@
+#!/usr/bin/env python
+
 '''
 This script tests the compatibility of different biosimulation engines with a given SBML and SED-ML file.
 It runs each engine and records the result (pass/fail) and any error messages encountered during the simulation.
 The results are then displayed in a table and saved to a markdown file.
-'''
-#!/usr/bin/env python
-
-'''
-use pymetadata module to create a minimal valid combine archive
-using LEMS_NML2_Ex9_FN.sbml and LEMS_NML2_Ex9_FN.sedml
 '''
 
 import sys
