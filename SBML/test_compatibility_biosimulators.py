@@ -13,6 +13,14 @@ import os
 import pandas as pd
 import shutil
 import yaml
+import argparse
+
+parser = argparse.ArgumentParser(description='Test compatibility of different biosimulation engines')
+parser.add_argument('--output-dir',action='store',default='d1_plots',help='prefix of the output directory where the d1 plots will be saved')
+args = parser.parse_args()
+
+d1_plots_remote_dir = args.output_dir + '_remote'
+d1_plots_local_dir = args.output_dir + '_local'
 
 sbml_filepath = 'LEMS_NML2_Ex9_FN.sbml'
 sedml_filepath = 'LEMS_NML2_Ex9_FN_missing_xmlns.sedml' #xmlns:sbml missing
@@ -62,7 +70,7 @@ for e, extract_dir in extract_dir_dict.items():
         results[e] = [status, error_message, exception_type] 
 
 file_paths = utils.find_files(remote_output_dir, '.pdf')
-utils.move_d1_files(file_paths, 'd1_plots_remote')
+utils.move_d1_files(file_paths, d1_plots_remote_dir)
 
 # remove the remote results directory
 if os.path.exists(remote_output_dir):
@@ -84,7 +92,7 @@ for e in engines.keys():
     results_local[e] = record
 
 file_paths = utils.find_files(output_folder, '.pdf')
-utils.move_d1_files(file_paths, 'd1_plots_local')
+utils.move_d1_files(file_paths, d1_plots_local_dir)
 
 # if it exists remove the output folder
 if os.path.exists(output_folder):
@@ -95,8 +103,8 @@ if os.path.exists(output_folder):
 # process results and save markdown table
 #########################################################################################
 
-results_table = utils.create_results_table(results, types_dict, sbml_filepath, sedml_filepath, engines, 'd1_plots_remote')
-results_table_local = utils.create_results_table(results_local, types_dict, sbml_filepath, sedml_filepath, engines, 'd1_plots_local')
+results_table = utils.create_results_table(results, types_dict, sbml_filepath, sedml_filepath, engines, d1_plots_remote_dir
+results_table_local = utils.create_results_table(results_local, types_dict, sbml_filepath, sedml_filepath, engines, d1_plots_local_dir)
 
 # rename cols to distinguish between local and remote results except for Engine column
 results_table.columns = [str(col) + ' (remote)' if col != 'Engine' else str(col) for col in results_table.columns]
