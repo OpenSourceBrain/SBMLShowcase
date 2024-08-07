@@ -245,7 +245,7 @@ def find_files(directory, extension):
 def move_d1_files(file_paths, plot_dir='d1_plots'):
     for fpath in file_paths:
         # find engine.keys() in the file path and asign to engine
-        engine = next((e for e in engines.keys() if e in fpath), None)
+        engine = next((e for e in engines.keys() if e in fpath), 'unknown')
         new_file_path = os.path.join(plot_dir, f'{engine}_{os.path.basename(fpath)}')
         if not os.path.exists(plot_dir): os.makedirs(plot_dir, exist_ok=True)
         if os.path.exists(new_file_path): os.remove(new_file_path)
