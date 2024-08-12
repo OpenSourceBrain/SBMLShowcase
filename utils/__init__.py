@@ -283,13 +283,14 @@ def d1_plots_dict(engines=engines, d1_plots_path='d1_plots'):
     return d1_plots_dict
 
 
-def create_hyperlink(file_path):
+def create_hyperlink(file_path, title=None):
     """
     Create a hyperlink to a file or folder. If the path is None, return None.
     Title is the basename of the path.
     """
     if file_path:
-        title = os.path.basename(file_path)
+        if title is None:
+            title = os.path.basename(file_path)
         return f'<a href="{file_path}">{title}</a>'
     else:
         return None
@@ -984,32 +985,38 @@ def create_results_table(results, types_dict, sbml_filepath, sedml_filepath, eng
     Output: results_md_table
 
     """
+
     # Create a table of the results
     results_table = pd.DataFrame.from_dict(results).T
     # if list is three elements 
     if results_table.shape[1] == 3:
-        results_table.columns = ['pass/FAIL', 'Error', 'Type']
+        results_table.columns = ['pass / FAIL', 'Error', 'Type']
     elif results_table.shape[1] == 2:
-        results_table.columns = ['pass/FAIL', 'Error']
+        results_table.columns = ['pass / FAIL', 'Error']
 
     results_table.index.name = 'Engine'
     results_table.reset_index(inplace=True)
 
-    results_table['Error'] = results_table.apply(lambda x: None if x['pass/FAIL'] == x['Error'] else x['Error'], axis=1)
-    results_table['pass/FAIL'] = results_table['pass/FAIL'].replace('other', 'FAIL')
+    results_table['Error'] = results_table.apply(lambda x: None if x['pass / FAIL'] == x['Error'] else x['Error'], axis=1)
+    results_table['pass / FAIL'] = results_table['pass / FAIL'].replace('other', 'FAIL')
 
     results_table['Error'] = results_table['Error'].apply(lambda x: ansi_to_html(x))
     results_table['Error'] = results_table['Error'].apply(lambda x: collapsible_content(x))
 
     # compatibility_message
-    results_table['Compatibility'] = results_table['Engine'].apply(lambda x: check_file_compatibility_test(x, types_dict, sbml_filepath, sedml_filepath))
-    results_table['Compatibility'] = results_table['Compatibility'].apply(lambda x: collapsible_content(x[1], title=x[0]))
-    results_table['pass/FAIL'] = results_table['pass/FAIL'].apply(lambda x: f'<span style="color:darkred;">{x}</span>' if x == 'FAIL' else x)
-    results_table['Compatibility'] = results_table['Compatibility'].apply(lambda x: f'<span style="color:darkred;">{x}</span>' if 'FAIL' in x else x)
+    results_table['Compat'] = results_table['Engine'].apply(lambda x: check_file_compatibility_test(x, types_dict, sbml_filepath, sedml_filepath))
+    results_table['Compat'] = results_table['Compat'].apply(lambda x: collapsible_content(x[1], title=x[0]))
+    results_table['Compat'] = results_table['Compat'].apply(lambda x: f'<span style="color:darkred;">{x}</span>' if 'FAIL' in x else x)
+
+    # pass / FAIL
+    results_table['pass / FAIL'] = results_table['pass / FAIL'].apply(lambda x: f'<span style="color:darkred;">{x}</span>' if x == 'FAIL' else x)
 
     # d1 plot clickable link
     results_table['d1'] = results_table['Engine'].apply(lambda x: d1_plots_dict(engines, output_dir).get(x, None))
-    results_table['d1'] = results_table['d1'].apply(lambda x: create_hyperlink(x))
-
+    results_table['d1'] = results_table['d1'].apply(lambda x: create_hyperlink(x,title='plot'))
+    
+    # if Type is in the table add message with collapsible content
+    if 'Type' in results_table.columns:
+        results_table['Type'] = results_table['Type'].apply(lambda x: collapsible_content(x,"".join(re.findall(r'[A-Z]', x))))
 
     return results_table

@@ -114,8 +114,8 @@ results_table_local.columns = [str(col) + ' (local)' if col != 'Engine' else str
 combined_results = pd.merge(results_table, results_table_local, on='Engine', how='outer')
 combined_results = combined_results.reindex(columns=['Engine'] + sorted(combined_results.columns[1:]))
 
-cols_order = ['Engine', 'pass/FAIL (remote)', 'pass/FAIL (local)',\
-               'Compatibility (remote)', 'Compatibility (local)', \
+cols_order = ['Engine', 'pass / FAIL (remote)', 'pass / FAIL (local)',\
+               'Compat (remote)', 'Compat (local)', \
                'Type (remote)', \
                'Error (remote)', 'Error (local)', \
                'd1 (remote)', 'd1 (local)']
