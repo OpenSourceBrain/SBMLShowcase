@@ -46,6 +46,116 @@ engines = {
                         'xpp': ('xpp', 'sedml')               
             }
 
+engines = {
+    'amici': {
+        'formats': ('sbml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_AMICI/',
+        'status': ''
+    },
+    'brian2': {
+        'formats': [('nml', 'sedml'), ('lems', 'sedml'), ('sbml', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
+        'status': ''
+    },
+    'bionetgen': {
+        'formats': ('bngl', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_BioNetGen/',
+        'status': ''
+    },
+    'boolnet': {
+        'formats': ('sbmlqual', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_BoolNet/',
+        'status': ''
+    },
+    'cbmpy': {
+        'formats': ('sbml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_CBMPy/',
+        'status': ''
+    },
+    'cobrapy': {
+        'formats': ('sbml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_COBRApy/',
+        'status': 'Only allows steady state simulations'
+    },
+    'copasi': {
+        'formats': ('sbml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_COPASI/',
+        'status': ''
+    },
+    'gillespy2': {
+        'formats': ('sbml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_GillesPy2/',
+        'status': ''
+    },
+    'ginsim': {
+        'formats': ('sbmlqual', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_GINsim/',
+        'status': ''
+    },
+    'libsbmlsim': {
+        'formats': ('sbml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_LibSBMLSim/',
+        'status': ''
+    },
+    'masspy': {
+        'formats': ('sbml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_MASSpy/',
+        'status': ''
+    },
+    'netpyne': {
+        'formats': ('sbml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
+        'status': ''
+    },
+    'neuron': {
+        'formats': [('nml', 'sedml'), ('lems', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
+        'status': ''
+    },
+    'opencor': {
+        'formats': ('cellml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_OpenCOR/',
+        'status': ''
+    },
+    'pyneuroml': {
+        'formats': [('nml', 'sedml'), ('lems', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
+        'status': ''
+    },
+    'pysces': {
+        'formats': ('sbml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_PySCeS/',
+        'status': ''
+    },
+    'rbapy': {
+        'formats': ('rbapy', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_RBApy/',
+        'status': ''
+    },
+    'smoldyn': {
+        'formats': None,
+        'url': 'https://smoldyn.readthedocs.io/en/latest/python/api.html#sed-ml-combine-biosimulators-api',
+        'status': 'inactive'
+    },
+    'tellurium': {
+        'formats': ('sbml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_tellurium/',
+        'status': ''
+    },
+    'vcell': {
+        'formats': [('sbml', 'sedml'),('bngl', 'sedml')],
+        'url': 'https://github.com/virtualcell/vcell',
+        'status': ''
+    },
+    'xpp': {
+        'formats': ('xpp', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_XPP/',
+        'status': ''
+    }
+}
+
+
+
 types_dict = {
                 'sbml':'SBML',\
                 'sedml':'SED-ML',\
@@ -58,6 +168,9 @@ types_dict = {
                 'smoldyn':'Smoldyn',\
                 'cellml':'CellML'\
              }
+
+
+
 
 #define error categories for detailed error counting per engine
 # (currently only tellurium)
@@ -351,7 +464,7 @@ def check_file_compatibility_test(engine, types_dict, model_filepath, experiment
     input_file_types_text = [types_dict[i] for i in input_filetypes]
 
 
-    engine_filetypes = engines[engine]
+    engine_filetypes = engines[engine]['formats']
     if engine_filetypes is not None:
         # Flatten the list if the engine_filetypes is a list of tuples
         if all(isinstance(i, tuple) for i in engine_filetypes):
@@ -1000,6 +1113,7 @@ def create_results_table(results, types_dict, sbml_filepath, sedml_filepath, eng
     results_table.index.name = 'Engine'
     results_table.reset_index(inplace=True)
 
+    # Error
     results_table['Error'] = results_table.apply(lambda x: None if x['pass / FAIL'] == x['Error'] else x['Error'], axis=1)
     results_table['pass / FAIL'] = results_table['pass / FAIL'].replace('other', 'FAIL')
 
@@ -1024,5 +1138,8 @@ def create_results_table(results, types_dict, sbml_filepath, sedml_filepath, eng
     # if Type is in the table add message with collapsible content
     if 'Type' in results_table.columns:
         results_table['Type'] = results_table['Type'].apply(lambda x: collapsible_content(x,"".join(re.findall(r'[A-Z]', x))))
+
+    # Engine add hyperlink
+    results_table['Engine'] = results_table['Engine'].apply(lambda x: create_hyperlink(engines[x]['url'], title=x))
 
     return results_table
