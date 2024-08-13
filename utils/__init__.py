@@ -976,7 +976,6 @@ def unzip_file(file_path, output_dir=None):
 
     return file_path
 
-
 def create_results_table(results, types_dict, sbml_filepath, sedml_filepath, engines, output_dir):
     """
     Create a markdown table of the results.
@@ -985,6 +984,10 @@ def create_results_table(results, types_dict, sbml_filepath, sedml_filepath, eng
     Output: results_md_table
 
     """
+    
+    link_green_square = "https://via.placeholder.com/15/00dd00/00dd00.png"
+    link_orange_square = "https://via.placeholder.com/15/ec9706/ec9706.png"
+    link_red_square = "https://via.placeholder.com/15/dd0000/dd0000.png"
 
     # Create a table of the results
     results_table = pd.DataFrame.from_dict(results).T
@@ -1006,10 +1009,13 @@ def create_results_table(results, types_dict, sbml_filepath, sedml_filepath, eng
     # compatibility_message
     results_table['Compat'] = results_table['Engine'].apply(lambda x: check_file_compatibility_test(x, types_dict, sbml_filepath, sedml_filepath))
     results_table['Compat'] = results_table['Compat'].apply(lambda x: collapsible_content(x[1], title=x[0]))
-    results_table['Compat'] = results_table['Compat'].apply(lambda x: f'<span style="color:darkred;">{x}</span>' if 'FAIL' in x else x)
+    results_table['Compat'] = results_table['Compat'].apply(lambda x: f'<span style="color:darkred;"><img src={link_red_square}/> {x}</span>'\
+                                                             if 'FAIL' in x else f'<img src={link_green_square}/>{x}')
 
     # pass / FAIL
-    results_table['pass / FAIL'] = results_table['pass / FAIL'].apply(lambda x: f'<span style="color:darkred;">{x}</span>' if x == 'FAIL' else x)
+    results_table['pass / FAIL'] = results_table['pass / FAIL'].apply(lambda x: f'<span style="color:darkred;">\
+                                                                      <img src={link_red_square}/> {x}</span>' if x == 'FAIL' \
+                                                                        else f'<img src={link_green_square}/> {x}')
 
     # d1 plot clickable link
     results_table['d1'] = results_table['Engine'].apply(lambda x: d1_plots_dict(engines, output_dir).get(x, None))
