@@ -21,139 +21,113 @@ import glob
 from pyneuroml import biosimulations
 import pandas as pd
 
-# 
-engines = {
-                        'amici': ('sbml', 'sedml'),\
-                        'brian2': [('nml', 'sedml'),('lems', 'sedml'),('sbml', 'sedml')],\
-                        'bionetgen': ('bngl', 'sedml'),\
-                        'boolnet': ('sbmlqual', 'sedml'),\
-                        'cbmpy': ('sbml', 'sedml'),\
-                        'cobrapy': ('sbml', 'sedml'),\
-                        'copasi': ('sbml', 'sedml'),\
-                        'gillespy2': ('sbml', 'sedml'),\
-                        'ginsim': ('sbmlqual', 'sedml'),\
-                        'libsbmlsim': ('sbml', 'sedml'),\
-                        'masspy': ('sbml', 'sedml'),\
-                        'netpyne': ('sbml', 'sedml'),\
-                        'neuron': [('nml', 'sedml'),('lems', 'sedml')],\
-                        'opencor': ('cellml', 'sedml'),\
-                        'pyneuroml': [('nml', 'sedml'),('lems', 'sedml')],\
-                        'pysces': ('sbml', 'sedml'),\
-                        'rbapy': ('rbapy', 'sedml'),\
-                        'smoldyn':None ,\
-                        'tellurium': ('sbml', 'sedml'),\
-                        'vcell': None,\
-                        'xpp': ('xpp', 'sedml')               
-            }
-
 engines = {
     'amici': {
         'formats': ('sbml', 'sedml'),
         'url': 'https://docs.biosimulators.org/Biosimulators_AMICI/',
-        'status': ''
+        'status': ""
     },
     'brian2': {
         'formats': [('nml', 'sedml'), ('lems', 'sedml'), ('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
-        'status': ''
+        'status': ""
     },
     'bionetgen': {
         'formats': ('bngl', 'sedml'),
         'url': 'https://docs.biosimulators.org/Biosimulators_BioNetGen/',
-        'status': ''
+        'status': ""
     },
     'boolnet': {
         'formats': ('sbmlqual', 'sedml'),
         'url': 'https://docs.biosimulators.org/Biosimulators_BoolNet/',
-        'status': ''
+        'status': ""
     },
     'cbmpy': {
         'formats': ('sbml', 'sedml'),
         'url': 'https://docs.biosimulators.org/Biosimulators_CBMPy/',
-        'status': ''
+        'status': ""
     },
     'cobrapy': {
         'formats': ('sbml', 'sedml'),
         'url': 'https://docs.biosimulators.org/Biosimulators_COBRApy/',
-        'status': 'Only allows steady state simulations'
+        'status': "Only allows steady state simulations"
     },
     'copasi': {
         'formats': ('sbml', 'sedml'),
         'url': 'https://docs.biosimulators.org/Biosimulators_COPASI/',
-        'status': ''
+        'status': ""
     },
     'gillespy2': {
         'formats': ('sbml', 'sedml'),
         'url': 'https://docs.biosimulators.org/Biosimulators_GillesPy2/',
-        'status': ''
+        'status': ""
     },
     'ginsim': {
         'formats': ('sbmlqual', 'sedml'),
         'url': 'https://docs.biosimulators.org/Biosimulators_GINsim/',
-        'status': ''
+        'status': ""
     },
     'libsbmlsim': {
         'formats': ('sbml', 'sedml'),
         'url': 'https://docs.biosimulators.org/Biosimulators_LibSBMLSim/',
-        'status': ''
+        'status': ""
     },
     'masspy': {
         'formats': ('sbml', 'sedml'),
         'url': 'https://docs.biosimulators.org/Biosimulators_MASSpy/',
-        'status': ''
+        'status': ""
     },
     'netpyne': {
         'formats': ('sbml', 'sedml'),
         'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
-        'status': ''
+        'status': ""
     },
     'neuron': {
         'formats': [('nml', 'sedml'), ('lems', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
-        'status': ''
+        'status': ""
     },
     'opencor': {
         'formats': ('cellml', 'sedml'),
         'url': 'https://docs.biosimulators.org/Biosimulators_OpenCOR/',
-        'status': ''
+        'status': ""
     },
     'pyneuroml': {
         'formats': [('nml', 'sedml'), ('lems', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
-        'status': ''
+        'status': ""
     },
     'pysces': {
         'formats': ('sbml', 'sedml'),
         'url': 'https://docs.biosimulators.org/Biosimulators_PySCeS/',
-        'status': ''
+        'status': ""
     },
     'rbapy': {
         'formats': ('rbapy', 'sedml'),
         'url': 'https://docs.biosimulators.org/Biosimulators_RBApy/',
-        'status': ''
+        'status': ""
     },
     'smoldyn': {
         'formats': None,
         'url': 'https://smoldyn.readthedocs.io/en/latest/python/api.html#sed-ml-combine-biosimulators-api',
-        'status': 'inactive'
+        'status': ""
     },
     'tellurium': {
         'formats': ('sbml', 'sedml'),
         'url': 'https://docs.biosimulators.org/Biosimulators_tellurium/',
-        'status': ''
+        'status': ""
     },
     'vcell': {
         'formats': [('sbml', 'sedml'),('bngl', 'sedml')],
         'url': 'https://github.com/virtualcell/vcell',
-        'status': ''
+        'status': ""
     },
     'xpp': {
         'formats': ('xpp', 'sedml'),
         'url': 'https://docs.biosimulators.org/Biosimulators_XPP/',
-        'status': ''
+        'status': ""
     }
 }
-
 
 
 types_dict = {
@@ -168,8 +142,6 @@ types_dict = {
                 'smoldyn':'Smoldyn',\
                 'cellml':'CellML'\
              }
-
-
 
 
 #define error categories for detailed error counting per engine
@@ -1139,7 +1111,7 @@ def create_results_table(results, types_dict, sbml_filepath, sedml_filepath, eng
     if 'Type' in results_table.columns:
         results_table['Type'] = results_table['Type'].apply(lambda x: collapsible_content(x,"".join(re.findall(r'[A-Z]', x))))
 
-    # Engine add hyperlink
-    results_table['Engine'] = results_table['Engine'].apply(lambda x: create_hyperlink(engines[x]['url'], title=x))
+
+    results_table['Engine'] = results_table['Engine'].apply(lambda x:  collapsible_content(f'{engines[x]["url"]}<br>{engines[x]["status"]}', x))
 
     return results_table
