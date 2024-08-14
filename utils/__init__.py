@@ -445,7 +445,7 @@ def check_file_compatibility_test(engine, types_dict, model_filepath, experiment
         if input_filetypes.issubset(engine_filetypes):
             return 'pass', (f"The file extensions suggest the input file types are '{input_file_types_text}'. These are compatible with {engine}")
         else:
-            return 'FAIL', (f"The file extensions suggest the input file types are '{input_file_types_text}'. Tese are not compatible with {engine}. The following file types will be compatible {engine_file_types_text}")
+            return 'FAIL', (f"The file extensions suggest the input file types are '{input_file_types_text}'. These are not compatible with {engine}. The following file types will be compatible {engine_file_types_text}")
     else:
         return 'FAIL', (f"{engine} compatible file types unknown.")
 
