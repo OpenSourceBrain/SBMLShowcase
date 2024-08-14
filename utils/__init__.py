@@ -21,30 +21,114 @@ import glob
 from pyneuroml import biosimulations
 import pandas as pd
 
-# 
 engines = {
-                        'amici': ('sbml', 'sedml'),\
-                        'brian2': [('nml', 'sedml'),('lems', 'sedml'),('sbml', 'sedml')],\
-                        'bionetgen': ('bngl', 'sedml'),\
-                        'boolnet': ('sbmlqual', 'sedml'),\
-                        'cbmpy': ('sbml', 'sedml'),\
-                        'cobrapy': ('sbml', 'sedml'),\
-                        'copasi': ('sbml', 'sedml'),\
-                        'gillespy2': ('sbml', 'sedml'),\
-                        'ginsim': ('sbmlqual', 'sedml'),\
-                        'libsbmlsim': ('sbml', 'sedml'),\
-                        'masspy': ('sbml', 'sedml'),\
-                        'netpyne': ('sbml', 'sedml'),\
-                        'neuron': [('nml', 'sedml'),('lems', 'sedml')],\
-                        'opencor': ('cellml', 'sedml'),\
-                        'pyneuroml': [('nml', 'sedml'),('lems', 'sedml')],\
-                        'pysces': ('sbml', 'sedml'),\
-                        'rbapy': ('rbapy', 'sedml'),\
-                        'smoldyn':None ,\
-                        'tellurium': ('sbml', 'sedml'),\
-                        'vcell': None,\
-                        'xpp': ('xpp', 'sedml')               
-            }
+    'amici': {
+        'formats': ('sbml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_AMICI/',
+        'status': ""
+    },
+    'brian2': {
+        'formats': [('nml', 'sedml'), ('lems', 'sedml'), ('sbml', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
+        'status': ""
+    },
+    'bionetgen': {
+        'formats': ('bngl', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_BioNetGen/',
+        'status': ""
+    },
+    'boolnet': {
+        'formats': ('sbmlqual', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_BoolNet/',
+        'status': ""
+    },
+    'cbmpy': {
+        'formats': ('sbml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_CBMPy/',
+        'status': ""
+    },
+    'cobrapy': {
+        'formats': ('sbml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_COBRApy/',
+        'status': "Only allows steady state simulations"
+    },
+    'copasi': {
+        'formats': ('sbml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_COPASI/',
+        'status': ""
+    },
+    'gillespy2': {
+        'formats': ('sbml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_GillesPy2/',
+        'status': ""
+    },
+    'ginsim': {
+        'formats': ('sbmlqual', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_GINsim/',
+        'status': ""
+    },
+    'libsbmlsim': {
+        'formats': ('sbml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_LibSBMLSim/',
+        'status': ""
+    },
+    'masspy': {
+        'formats': ('sbml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_MASSpy/',
+        'status': ""
+    },
+    'netpyne': {
+        'formats': ('sbml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
+        'status': ""
+    },
+    'neuron': {
+        'formats': [('nml', 'sedml'), ('lems', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
+        'status': ""
+    },
+    'opencor': {
+        'formats': ('cellml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_OpenCOR/',
+        'status': ""
+    },
+    'pyneuroml': {
+        'formats': [('nml', 'sedml'), ('lems', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
+        'status': ""
+    },
+    'pysces': {
+        'formats': ('sbml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_PySCeS/',
+        'status': ""
+    },
+    'rbapy': {
+        'formats': ('rbapy', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_RBApy/',
+        'status': ""
+    },
+    'smoldyn': {
+        'formats': None,
+        'url': 'https://smoldyn.readthedocs.io/en/latest/python/api.html#sed-ml-combine-biosimulators-api',
+        'status': ""
+    },
+    'tellurium': {
+        'formats': ('sbml', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_tellurium/',
+        'status': ""
+    },
+    'vcell': {
+        'formats': [('sbml', 'sedml'),('bngl', 'sedml')],
+        'url': 'https://github.com/virtualcell/vcell',
+        'status': ""
+    },
+    'xpp': {
+        'formats': ('xpp', 'sedml'),
+        'url': 'https://docs.biosimulators.org/Biosimulators_XPP/',
+        'status': ""
+    }
+}
+
 
 types_dict = {
                 'sbml':'SBML',\
@@ -58,6 +142,7 @@ types_dict = {
                 'smoldyn':'Smoldyn',\
                 'cellml':'CellML'\
              }
+
 
 #define error categories for detailed error counting per engine
 # (currently only tellurium)
@@ -283,13 +368,14 @@ def d1_plots_dict(engines=engines, d1_plots_path='d1_plots'):
     return d1_plots_dict
 
 
-def create_hyperlink(file_path):
+def create_hyperlink(file_path, title=None):
     """
     Create a hyperlink to a file or folder. If the path is None, return None.
     Title is the basename of the path.
     """
     if file_path:
-        title = os.path.basename(file_path)
+        if title is None:
+            title = os.path.basename(file_path)
         return f'<a href="{file_path}">{title}</a>'
     else:
         return None
@@ -350,7 +436,7 @@ def check_file_compatibility_test(engine, types_dict, model_filepath, experiment
     input_file_types_text = [types_dict[i] for i in input_filetypes]
 
 
-    engine_filetypes = engines[engine]
+    engine_filetypes = engines[engine]['formats']
     if engine_filetypes is not None:
         # Flatten the list if the engine_filetypes is a list of tuples
         if all(isinstance(i, tuple) for i in engine_filetypes):
@@ -359,7 +445,7 @@ def check_file_compatibility_test(engine, types_dict, model_filepath, experiment
         if input_filetypes.issubset(engine_filetypes):
             return 'pass', (f"The file extensions suggest the input file types are '{input_file_types_text}'. These are compatible with {engine}")
         else:
-            return 'FAIL', (f"The file extensions suggest the input file types are '{input_file_types_text}'. Tese are not compatible with {engine}. The following file types will be compatible {engine_file_types_text}")
+            return 'FAIL', (f"The file extensions suggest the input file types are '{input_file_types_text}'. These are not compatible with {engine}. The following file types will be compatible {engine_file_types_text}")
     else:
         return 'FAIL', (f"{engine} compatible file types unknown.")
 
@@ -975,7 +1061,6 @@ def unzip_file(file_path, output_dir=None):
 
     return file_path
 
-
 def create_results_table(results, types_dict, sbml_filepath, sedml_filepath, engines, output_dir):
     """
     Create a markdown table of the results.
@@ -984,32 +1069,49 @@ def create_results_table(results, types_dict, sbml_filepath, sedml_filepath, eng
     Output: results_md_table
 
     """
+    
+    link_green_square = "https://via.placeholder.com/15/00dd00/00dd00.png"
+    link_orange_square = "https://via.placeholder.com/15/ec9706/ec9706.png"
+    link_red_square = "https://via.placeholder.com/15/dd0000/dd0000.png"
+
     # Create a table of the results
     results_table = pd.DataFrame.from_dict(results).T
     # if list is three elements 
     if results_table.shape[1] == 3:
-        results_table.columns = ['pass/FAIL', 'Error', 'Type']
+        results_table.columns = ['pass / FAIL', 'Error', 'Type']
     elif results_table.shape[1] == 2:
-        results_table.columns = ['pass/FAIL', 'Error']
+        results_table.columns = ['pass / FAIL', 'Error']
 
     results_table.index.name = 'Engine'
     results_table.reset_index(inplace=True)
 
-    results_table['Error'] = results_table.apply(lambda x: None if x['pass/FAIL'] == x['Error'] else x['Error'], axis=1)
-    results_table['pass/FAIL'] = results_table['pass/FAIL'].replace('other', 'FAIL')
+    # Error
+    results_table['Error'] = results_table.apply(lambda x: None if x['pass / FAIL'] == x['Error'] else x['Error'], axis=1)
+    results_table['pass / FAIL'] = results_table['pass / FAIL'].replace('other', 'FAIL')
 
     results_table['Error'] = results_table['Error'].apply(lambda x: ansi_to_html(x))
     results_table['Error'] = results_table['Error'].apply(lambda x: collapsible_content(x))
 
     # compatibility_message
-    results_table['Compatibility'] = results_table['Engine'].apply(lambda x: check_file_compatibility_test(x, types_dict, sbml_filepath, sedml_filepath))
-    results_table['Compatibility'] = results_table['Compatibility'].apply(lambda x: collapsible_content(x[1], title=x[0]))
-    results_table['pass/FAIL'] = results_table['pass/FAIL'].apply(lambda x: f'<span style="color:darkred;">{x}</span>' if x == 'FAIL' else x)
-    results_table['Compatibility'] = results_table['Compatibility'].apply(lambda x: f'<span style="color:darkred;">{x}</span>' if 'FAIL' in x else x)
+    results_table['Compat'] = results_table['Engine'].apply(lambda x: check_file_compatibility_test(x, types_dict, sbml_filepath, sedml_filepath))
+    results_table['Compat'] = results_table['Compat'].apply(lambda x: collapsible_content(x[1], title=x[0]))
+    results_table['Compat'] = results_table['Compat'].apply(lambda x: f'<span style="color:darkred;"><img src={link_red_square}/> {x}</span>'\
+                                                             if 'FAIL' in x else f'<img src={link_green_square}/>{x}')
+
+    # pass / FAIL
+    results_table['pass / FAIL'] = results_table['pass / FAIL'].apply(lambda x: f'<span style="color:darkred;">\
+                                                                      <img src={link_red_square}/> {x}</span>' if x == 'FAIL' \
+                                                                        else f'<img src={link_green_square}/> {x}')
 
     # d1 plot clickable link
     results_table['d1'] = results_table['Engine'].apply(lambda x: d1_plots_dict(engines, output_dir).get(x, None))
-    results_table['d1'] = results_table['d1'].apply(lambda x: create_hyperlink(x))
+    results_table['d1'] = results_table['d1'].apply(lambda x: create_hyperlink(x,title='plot'))
+    
+    # if Type is in the table add message with collapsible content
+    if 'Type' in results_table.columns:
+        results_table['Type'] = results_table['Type'].apply(lambda x: collapsible_content(x,"".join(re.findall(r'[A-Z]', x))))
 
+
+    results_table['Engine'] = results_table['Engine'].apply(lambda x:  collapsible_content(f'{engines[x]["url"]}<br>{engines[x]["status"]}', x))
 
     return results_table
