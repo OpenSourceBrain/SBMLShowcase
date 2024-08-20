@@ -47,19 +47,19 @@ jobs:
       run: |
         pip install pyNeuroML pyNeuroML[annotations]
         cd SBML
-        ./validateAll.sh
+        ./tests/alidateAll.sh
 
     - name: test omex file creation
       run: |
         pip install "pymetadata>=0.4.2" docker "requests<2.32.0"
         cd SBML        
-        ./test_biosimulators_docker.py
+        ./tests/test_biosimulators_docker.py
 
     - name: test biosimulators compatibility table creation
       run: |
         cd SBML
         sudo rm -rf output
-        python ./test_compatibility_biosimulators.py --output-dir=tmp_plots
+        python ./tests/test_compatibility_biosimulators.py --output-dir=tmp_plots
 
 
     - name: Test test_suite output regeneration
