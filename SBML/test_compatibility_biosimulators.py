@@ -107,18 +107,18 @@ results_table = utils.create_results_table(results, types_dict, sbml_filepath, s
 results_table_local = utils.create_results_table(results_local, types_dict, sbml_filepath, sedml_filepath, engines, d1_plots_local_dir)
 
 # rename cols to distinguish between local and remote results except for Engine column
-results_table.columns = [str(col) + ' (remote)' if col != 'Engine' else str(col) for col in results_table.columns]
-results_table_local.columns = [str(col) + ' (local)' if col != 'Engine' else str(col) for col in results_table_local.columns]
+results_table.columns = [str(col) + ' (R)' if col != 'Engine' else str(col) for col in results_table.columns]
+results_table_local.columns = [str(col) + ' (L)' if col != 'Engine' else str(col) for col in results_table_local.columns]
 
 # combine remote and local results
 combined_results = pd.merge(results_table, results_table_local, on='Engine', how='outer')
 combined_results = combined_results.reindex(columns=['Engine'] + sorted(combined_results.columns[1:]))
 
-cols_order = ['Engine', 'pass/FAIL (remote)', 'pass/FAIL (local)',\
-               'Compatibility (remote)', 'Compatibility (local)', \
-               'Type (remote)', \
-               'Error (remote)', 'Error (local)', \
-               'd1 (remote)', 'd1 (local)']
+cols_order = ['Engine', 'pass / FAIL (R)', 'pass / FAIL (L)',\
+               'Compat (R)', 'Compat (L)', \
+               'Type (R)', \
+               'Error (R)', 'Error (L)', \
+               'd1 (R)', 'd1 (L)']
 
 combined_results = combined_results[cols_order]
 
