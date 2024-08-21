@@ -41,7 +41,7 @@ jobs:
 
         cd ../SBML
         pip install python-libsedml
-        python test_tellurium.py 
+        python ./tests/test_tellurium.py 
 
     - name: Test validity of files
       run: |
