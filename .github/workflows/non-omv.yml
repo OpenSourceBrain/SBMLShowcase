@@ -46,7 +46,7 @@ jobs:
     - name: Test validity of files
       run: |
         pip install pyNeuroML pyNeuroML[annotations]
-        cd SBML
+        cd SBML/tests
         ./tests/validateAll.sh
 
     - name: test omex file creation
