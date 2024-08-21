@@ -53,7 +53,7 @@ jobs:
       run: |
         pip install "pymetadata>=0.4.2" docker "requests<2.32.0"
         cd SBML        
-        ./tests/test_biosimulators_docker.py
+        python ./tests/test_biosimulators_docker.py
 
     - name: test biosimulators compatibility table creation
       run: |
