@@ -1115,3 +1115,152 @@ def create_results_table(results, types_dict, sbml_filepath, sedml_filepath, eng
     results_table['Engine'] = results_table['Engine'].apply(lambda x:  collapsible_content(f'{engines[x]["url"]}<br>{engines[x]["status"]}', x))
 
     return results_table
+
+
+
+def run_biosimulators_remotely(sedml_file_name, 
+                               sbml_file_name, 
+                               d1_plots_remote_dir, 
+                               engines=engines, 
+                               test_folder='tests'):
+    
+    """ run with directory pointing towards the location of the sedml and sbml files"""
+    
+    remote_output_dir = 'remote_results'
+    remote_output_dir = os.path.join(test_folder, remote_output_dir)
+
+    download_links_dict = dict()
+    for e in engines.keys():
+        download_link = run_biosimulators_remote(e, sedml_file_name, sbml_file_name)
+        download_links_dict[e] = download_link
+
+    extract_dir_dict = dict()
+    for e, link in download_links_dict.items():
+        extract_dir = get_remote_results(e, link, remote_output_dir)
+        extract_dir_dict[e] = extract_dir
+
+    results_remote = dict()
+    for e, extract_dir in extract_dir_dict.items():
+        status = ""
+        error_message = ""
+        exception_type = ""
+
+        log_yml_path = find_file_in_dir('log.yml', extract_dir)[0]
+        if not log_yml_path:
+            status = None
+            error_message = 'log.yml not found'
+            continue
+        with open(log_yml_path) as f:
+            log_yml_dict = yaml.safe_load(f)
+            if log_yml_dict['status'] == 'SUCCEEDED':
+                status = 'pass'
+            elif log_yml_dict['status'] == 'FAILED':
+                status = 'FAIL'
+                exception = log_yml_dict['exception']
+                error_message = exception['message']
+                exception_type = exception['type'] 
+            else:
+                status = None
+            results_remote[e] = [status, error_message, exception_type] 
+
+    file_paths = find_files(remote_output_dir, '.pdf')
+    move_d1_files(file_paths, d1_plots_remote_dir)
+
+    # remove the remote results directory
+    if os.path.exists(remote_output_dir):
+        shutil.rmtree(remote_output_dir)
+        print('Removed ' + remote_output_dir + ' folder')
+
+    return results_remote
+
+def run_biosimulators_locally(sedml_file_name, 
+                              sbml_file_name, 
+                              d1_plots_local_dir, 
+                              engines=engines, 
+                              test_folder='tests'):
+    results_local = {}
+
+    output_folder = 'local_results'
+    local_output_dir = os.path.join(test_folder, output_folder)
+
+    for e in engines.keys():
+        print('Running ' + e)
+        local_output_dir_e = os.path.abspath(os.path.join(local_output_dir, e))
+        print(local_output_dir_e)
+        record = run_biosimulators_docker(e, sedml_file_name, sbml_file_name, output_dir=local_output_dir_e)
+        results_local[e] = record
+
+    file_paths = find_files(local_output_dir, '.pdf')
+    print('file paths:', file_paths)
+    move_d1_files(file_paths, d1_plots_local_dir)
+
+    # if it exists remove the output folder
+    if os.path.exists(local_output_dir):
+        shutil.rmtree(local_output_dir)
+        print('Removed ' + local_output_dir + ' folder')
+
+    return results_local
+
+
+def create_combined_results_table(results_remote, 
+                                  results_local, 
+                                  sedml_file_name, 
+                                  sbml_file_name, 
+                                  d1_plots_local_dir, 
+                                  d1_plots_remote_dir,
+                                  engines=engines, 
+                                  test_folder='tests'):
+    
+    results_table_remote = create_results_table(results_remote, types_dict, sbml_file_name, sedml_file_name, engines, d1_plots_remote_dir)
+    results_table_local = create_results_table(results_local, types_dict, sbml_file_name, sedml_file_name, engines, d1_plots_local_dir)
+
+    # rename cols to distinguish between local and remote results except for Engine column
+    results_table_remote.columns = [str(col) + ' (R)' if col != 'Engine' else str(col) for col in results_table_remote.columns]
+    results_table_local.columns = [str(col) + ' (L)' if col != 'Engine' else str(col) for col in results_table_local.columns]
+
+    # combine remote and local results
+    combined_results = pd.merge(results_table_remote, results_table_local, on='Engine', how='outer')
+    combined_results = combined_results.reindex(columns=['Engine'] + sorted(combined_results.columns[1:]))
+
+    cols_order = ['Engine', 'pass / FAIL (R)', 'pass / FAIL (L)',\
+                'Compat (R)', 'Compat (L)', \
+                'Type (R)', \
+                'Error (R)', 'Error (L)', \
+                'd1 (R)', 'd1 (L)']
+
+    combined_results = combined_results[cols_order]
+
+    path_to_results = os.path.join(test_folder, 'results_compatibility_biosimulators.md')
+    print('Saving results to:', path_to_results)
+    with open(path_to_results, 'w') as f:
+        f.write(combined_results.to_markdown())
+
+    return combined_results
+
+
+def run_biosimulators_remotely_and_locally(sedml_file_name, 
+                                 sbml_file_name,
+                                 d1_plots_remote_dir, 
+                                 d1_plots_local_dir,
+                                 engines=engines, test_folder='tests'):
+    
+    results_remote = run_biosimulators_remotely(sedml_file_name=sedml_file_name, 
+                                    sbml_file_name=sbml_file_name,
+                                    d1_plots_remote_dir=d1_plots_remote_dir, 
+                                    engines=engines, test_folder=test_folder)
+    
+    results_local = run_biosimulators_locally(sedml_file_name=sedml_file_name, 
+                                    sbml_file_name=sbml_file_name,
+                                    d1_plots_local_dir=d1_plots_local_dir, 
+                                    engines=engines, test_folder=test_folder)
+
+    results_table = create_combined_results_table(results_remote, 
+                                    results_local, 
+                                    sedml_file_name=sedml_file_name, 
+                                    sbml_file_name=sbml_file_name,
+                                    d1_plots_local_dir=d1_plots_local_dir,
+                                    d1_plots_remote_dir=d1_plots_remote_dir, 
+                                    engines=engines, 
+                                    test_folder=test_folder)
+    
+    return results_table
