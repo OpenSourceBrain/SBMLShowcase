@@ -47,7 +47,7 @@ jobs:
       run: |
         pip install pyNeuroML pyNeuroML[annotations]
         cd SBML
-        ./tests/alidateAll.sh
+        ./tests/validateAll.sh
 
     - name: test omex file creation
       run: |
