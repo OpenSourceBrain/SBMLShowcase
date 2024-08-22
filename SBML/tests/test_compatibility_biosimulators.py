@@ -155,3 +155,7 @@ path_to_results = os.path.join(test_folder, 'results_compatibility_biosimulators
 print('Saving results to:', path_to_results)
 with open(path_to_results, 'w') as f:
     f.write(combined_results.to_markdown())
+
+print('Number of columns in md table:', len(combined_results.columns))
+print('Number of rows in md table:', len(combined_results))
+print(combined_results.head())
