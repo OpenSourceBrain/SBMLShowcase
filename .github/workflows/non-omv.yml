@@ -49,13 +49,13 @@ jobs:
         cd SBML/tests
         ./validateAll.sh
 
-    - name: test omex file creation
+    - name: Test omex file creation
       run: |
         pip install "pymetadata>=0.4.2" docker "requests<2.32.0"
         cd SBML/tests    
         python ./test_biosimulators_docker.py
 
-    - name: test biosimulators compatibility table creation
+    - name: Test biosimulators compatibility table creation
       run: |
         cd SBML/tests
         sudo rm -rf output
