@@ -8,15 +8,8 @@ The results are then displayed in a table and saved to a markdown file.
 
 import sys
 import os
-
-# Add the parent directory to the Python path
-parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))) # to import utils
 import utils
-import os
-import pandas as pd
-import shutil
-import yaml
 import argparse
 
 # Save the current working directory
