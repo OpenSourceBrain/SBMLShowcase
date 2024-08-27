@@ -35,7 +35,7 @@ pip install docker
 Navigate to the directory containing the `process_test_suite.py` script and execute it, specifying the path to the extracted test files. For example if the extraction folder is  `C:\Users\Username\Documents\compbiolibs\SBML_test_suite\semantic` and the `process_test_suite.py` script is in the current directory.
 
 ```
- python process_test_suite.py --suite-path C:\Users\Username\Documents\compbiolibs\SBML_test_suite\semantic  --suite-glob '*/*-sbml-l3v2.xml' --output-file ./results_test.md --limit 5       
+ python process_test_suite.py --suite-path C:\Users\Username\Documents\compbiolibs\SBML_test_suite\semantic  --sbml-level_version 'l3v2' --output-file ./results_test.md --limit 5       
 ```
 
 ## Command Line Options
