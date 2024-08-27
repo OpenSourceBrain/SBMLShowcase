@@ -12,6 +12,9 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".
 import utils
 import argparse
 
+engines = utils.engines
+types_dict = utils.types_dict
+
 # Save the current working directory
 cwd = os.getcwd()
 print('Current working directory:', cwd)
@@ -20,22 +23,14 @@ print('Current working directory:', cwd)
 path_to_sbml_folder = os.path.abspath(os.path.join(cwd, os.pardir))
 print('Path to SBML folder:', path_to_sbml_folder)
 
-# change the working directory to the SBML folder
+# change the working directory to the SBML folder (because here the SBML and SED-ML files are located)
 os.chdir(path_to_sbml_folder)
 print('Changed working directory to:', os.getcwd())
 
 sbml_file_name = 'LEMS_NML2_Ex9_FN.sbml'
 sedml_file_name = 'LEMS_NML2_Ex9_FN_missing_xmlns.sedml' #xmlns:sbml missing
 
-sbml_file_path = os.path.join(path_to_sbml_folder, sbml_file_name)
-sedml_file_path = os.path.join(path_to_sbml_folder, sedml_file_name)
-
-engines = utils.engines
-types_dict = utils.types_dict
-
-print('Path to SED-ML file:', sedml_file_path)
-print('Path to SBML file:', sbml_file_path)
-
+# output_dir is set to 'd1_plots' by default but can be changed using the --output-dir argument (required to deal with GitHub Actions permission issues)
 parser = argparse.ArgumentParser(description='Test compatibility of different biosimulation engines')
 parser.add_argument('--output-dir',action='store',default='d1_plots',help='prefix of the output directory where the d1 plots will be saved')
 args = parser.parse_args()
