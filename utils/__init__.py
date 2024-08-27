@@ -1235,6 +1235,10 @@ def create_combined_results_table(results_remote,
     with open(path_to_results, 'w') as f:
         f.write(combined_results.to_markdown())
 
+    print('Number of columns in md table:', len(combined_results.columns))
+    print('Number of rows in md table:', len(combined_results))
+    print(combined_results.head())    
+
     return combined_results
 
 
