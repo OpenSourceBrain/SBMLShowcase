@@ -57,8 +57,8 @@ def parse_arguments():
         "--sbml-level_version",
         action="store",
         type=str,
-        default="sbml-l3v2",
-        help="SBML level and version to test, default is 'sbml-l3v2'",
+        default="highest",
+        help="SBML level and version to test (e.g. 'l3v2'), default is '' which will try to find the highest level and version in the folder",
     )
 
     parser.add_argument(
@@ -119,21 +119,21 @@ def process_cases(args):
     subfolders = os.listdir(suite_path_abs) if args.limit == 0 else os.listdir(suite_path_abs)[:args.limit]    
     
     for subfolder in subfolders:
-        # find relevant files in the subfolder
-        sbml_file_name = f"*-{args.sbml_level_version}.xml"
-        sedml_file_name = f"*-{args.sbml_level_version}-sedml.xml"
-        sbml_file_path = glob.glob(os.path.join(subfolder, sbml_file_name))[0] if len(glob.glob(os.path.join(subfolder, sbml_file_name))) > 0 else []
-        sedml_file_path = glob.glob(os.path.join(subfolder, sedml_file_name))[0] if len(glob.glob(os.path.join(subfolder, sedml_file_name))) > 0 else []
-
-        # if no files found with the specified sbml_level_version, try to find any sbml or sedml files
-        if sbml_file_path == [] or sedml_file_path == []:
-            print(f"Folder {subfolder} has no {args.sbml_level_version} SBML or SED-ML files")
+        # if sbml_level_version is empty string (default), find the highest level and version in the folder
+        if args.sbml_level_version == "highest":
             sedml_file_paths = glob.glob(os.path.join(subfolder, "*-sbml-*sedml.xml"))
             # get last entry in list of sedml_file_paths (because it has the highest level and version number considering the alphabetical order and naming convention)
             sedml_file_path = sedml_file_paths[-1] if sedml_file_paths != [] else []
             sbml_file_path = sedml_file_path.replace("-sedml.xml",".xml") if sedml_file_path != [] else []
-            if sbml_file_path == [] or sedml_file_path == []:
-                print(f"Folder {subfolder} has no SBML or SED-ML files")
+        else:
+            # find relevant files in the subfolder
+            sbml_file_name = f"*-sbml-{args.sbml_level_version}.xml"
+            sedml_file_name = f"*-sbml-{args.sbml_level_version}-sedml.xml"
+            sbml_file_path = glob.glob(os.path.join(subfolder, sbml_file_name))[0] if len(glob.glob(os.path.join(subfolder, sbml_file_name))) > 0 else []
+            sedml_file_path = glob.glob(os.path.join(subfolder, sedml_file_name))[0] if len(glob.glob(os.path.join(subfolder, sedml_file_name))) > 0 else []
+        
+        if sbml_file_path == [] or sedml_file_path == []:
+                print(f"Folder {subfolder} has no SBML or SED-ML files {args.sbml_level_version}")
                 continue
         print(f"Processing {sbml_file_path} and {sedml_file_path}")
         
