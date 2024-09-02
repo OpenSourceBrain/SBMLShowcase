@@ -34,7 +34,9 @@ jnml LEMS_Regular_HindmarshRose.xml -sbml-sedml
 mv *sedml ../SBML
 mv *sbml ../SBML
 
-cd ../SBML
+cd ../SBML/tests
 ./validateAll.sh
 python test_tellurium.py LEMS_Regular_HindmarshRose.sedml -nogui
 python test_tellurium.py LEMS_NML2_Ex9_FN.sedml -nogui
+
+echo "Finished all tests!"
