@@ -365,7 +365,10 @@ def d1_plots_dict(engines=engines, d1_plots_path='d1_plots'):
     Create a dictionary with engine names as keys and d1 plot paths as values.
     """
     d1_plots = find_files(d1_plots_path, '.pdf')
+    # to fix broken links in output table after changing the file structure, remove the first two parts of the path
+    d1_plots = [os.path.join(*Path(d1_plot).parts[1:]) for d1_plot in d1_plots]
     d1_plots_dict = {e: d1_plot for e in engines.keys() for d1_plot in d1_plots if e in d1_plot}
+    
     return d1_plots_dict
 
 
@@ -436,13 +439,9 @@ def check_file_compatibility_test(engine, types_dict, model_filepath, experiment
     For SED-ML files, the expected file extension is '.sedml'. For SBML files, the expected file extension is '.sbml'.
     '''
     input_filetypes_tuple = get_filetypes(model_filepath, experiment_filepath)
-    print('input filetypes:', input_filetypes_tuple)
     engine_filetypes_tuple_list = engines[engine]['formats']
-    print('engine filetypes:', engine_filetypes_tuple_list)
     flat_engine_filetypes_tuple_list = [item for sublist in engine_filetypes_tuple_list for item in sublist if sublist != 'unclear']
-    print('flat list:', flat_engine_filetypes_tuple_list)
     compatible_filetypes = [types_dict[i] for i in flat_engine_filetypes_tuple_list if i in list(types_dict.keys())]
-    print('compatible filetypes:', compatible_filetypes)
 
     if input_filetypes_tuple in engine_filetypes_tuple_list:
         file_types = [types_dict[i] for i in input_filetypes_tuple]
