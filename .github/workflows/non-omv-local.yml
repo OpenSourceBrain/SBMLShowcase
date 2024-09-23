@@ -1,0 +1,40 @@
+
+name: Testing non OMV scripts for remote biosimulators testing
+
+on:
+  push:
+    branches: [ master, development, experimental, test*, feature/* ]
+  pull_request:
+    branches: [ master, development, experimental, test*, feature/* ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [ 3.9, "3.10" ]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python  ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version:  ${{ matrix.python-version }}
+
+    # - name: Install OMV
+    #   run: |
+    #     pip install git+https://github.com/OpenSourceBrain/osb-model-validation
+
+    # - name: Run tests
+    #   run: |
+    #     omv install jneuroml
+
+    - name: Test remote biosimulators compatibility table creation
+      run: |
+        cd SBML/tests
+        sudo rm -rf output
+        python ./test_biosimulators_remote.py --output-dir=tmp_plots
+
