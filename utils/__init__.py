@@ -439,8 +439,7 @@ def check_file_compatibility_test(engine, types_dict, model_filepath, experiment
     print('input filetypes:', input_filetypes_tuple)
     engine_filetypes_tuple_list = engines[engine]['formats']
     print('engine filetypes:', engine_filetypes_tuple_list)
-    flat_engine_filetypes_tuple_list = [item for sublist in engine_filetypes_tuple_list for item in sublist] if \
-        engine_filetypes_tuple_list != 'unclear' else engine_filetypes_tuple_list
+    flat_engine_filetypes_tuple_list = [item for sublist in engine_filetypes_tuple_list for item in sublist if sublist != 'unclear']
     print('flat list:', flat_engine_filetypes_tuple_list)
     compatible_filetypes = [types_dict[i] for i in flat_engine_filetypes_tuple_list if i in list(types_dict.keys())]
     print('compatible filetypes:', compatible_filetypes)

@@ -37,8 +37,8 @@ args = parser.parse_args()
 
 test_folder = 'tests'
 
-d1_plots_remote_dir = os.path.join(test_folder, args.output_dir + '_remote')
-d1_plots_local_dir = os.path.join(test_folder, args.output_dir + '_local')
+d1_plots_remote_dir = os.path.join(args.output_dir + '_remote')
+d1_plots_local_dir = os.path.join(args.output_dir + '_local')
 
 print('d1 plots will be saved in:', d1_plots_remote_dir, 'and', d1_plots_local_dir)
 
