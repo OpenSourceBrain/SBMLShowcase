@@ -24,26 +24,15 @@ jobs:
       with:
         python-version:  ${{ matrix.python-version }}
 
-    - name: Install OMV
+    - name: Install dependencies
       run: |
-        pip install git+https://github.com/OpenSourceBrain/osb-model-validation
-
-    - name: Install pyNeuroML
-      run: |
-        pip install pyNeuroML pyNeuroML[annotations]
-
-    - name: Install libsedml
-      run: |
+          pip install git+https://github.com/OpenSourceBrain/osb-model-validation
+          pip install pyNeuroML pyNeuroML[annotations]
           pip install python-libsedml
-
-    - name: Install Tellurium
-      run: |
           pip install tellurium
           sudo apt-get install libncurses5 --fix-missing
-
-    - name: Run tests
-      run: |
-        omv install jneuroml
+          omv install jneuroml
+          pip install "pymetadata>=0.4.2" docker "requests<2.32.0"
 
     - name: Final version info
       run: |
