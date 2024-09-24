@@ -36,6 +36,11 @@ jobs:
       run: |
           pip install python-libsedml
 
+    - name: Install Tellurium
+      run: |
+          pip install tellurium
+          sudo apt-get install libncurses5 --fix-missing
+
     - name: Run tests
       run: |
         omv install jneuroml
