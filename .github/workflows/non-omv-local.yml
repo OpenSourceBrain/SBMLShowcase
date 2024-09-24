@@ -28,9 +28,9 @@ jobs:
     #   run: |
     #     pip install git+https://github.com/OpenSourceBrain/osb-model-validation
 
-    # - name: Run tests
-    #   run: |
-    #     omv install jneuroml
+    - name: Run tests
+      run: |
+        omv install jneuroml
 
     - name: Test remote biosimulators compatibility table creation
       run: |
