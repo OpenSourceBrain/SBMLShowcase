@@ -32,6 +32,10 @@ jobs:
       run: |
         pip install pyNeuroML pyNeuroML[annotations]
 
+    - name: Install libsedml
+      run: |
+        pip install python-libsedml
+
     - name: Run tests
       run: |
         omv install jneuroml
