@@ -73,3 +73,18 @@ jobs:
         omv list -V # list installed engines
         pip list
         env
+
+    - name: Test remote biosimulators compatibility table creation
+      run: |
+        cd SBML/tests
+        sudo rm -rf output
+        python ./test_biosimulators_remote.py --output-dir=tmp_plots
+
+
+    - name: Test local biosimulators compatibility table creation
+        run: |
+          cd SBML/tests
+          sudo rm -rf output
+          python ./test_biosimulators_local.py --output-dir=tmp_plots
+  
+  
