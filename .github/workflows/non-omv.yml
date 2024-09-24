@@ -83,8 +83,8 @@ jobs:
 
     - name: Test local biosimulators compatibility table creation
       run: |
-          cd SBML/tests
-          sudo rm -rf output
-          python ./test_biosimulators_local.py --output-dir=tmp_plots
+        cd SBML/tests
+        sudo rm -rf output
+        python ./test_biosimulators_local.py --output-dir=tmp_plots
   
   
