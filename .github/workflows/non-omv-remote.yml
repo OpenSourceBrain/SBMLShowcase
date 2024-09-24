@@ -27,6 +27,10 @@ jobs:
     - name: Install OMV
       run: |
         pip install git+https://github.com/OpenSourceBrain/osb-model-validation
+        
+    - name: Install pyNeuroML
+      run: |
+        pip install pyNeuroML pyNeuroML[annotations]
 
     - name: Run tests
       run: |
