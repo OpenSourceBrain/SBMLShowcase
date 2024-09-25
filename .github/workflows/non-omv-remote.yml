@@ -1,5 +1,5 @@
 
-name: Testing non OMV scripts
+name: Testing non OMV scripts (remotely via URLs)
 
 on:
   push:

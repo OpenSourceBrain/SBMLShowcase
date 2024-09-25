@@ -1,5 +1,5 @@
 
-name: Testing non OMV scripts
+name: Testing non OMV scripts (locally using docker)
 
 on:
   push:
