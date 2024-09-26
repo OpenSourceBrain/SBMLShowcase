@@ -27,7 +27,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install git+https://github.com/OpenSourceBrain/osb-model-validation
-        pip install pyNeuroML pyNeuroML[annotations]
+        pip install pyNeuroML[annotations]
         pip install python-libsedml
         pip install tellurium
         sudo apt-get install libncurses5 --fix-missing

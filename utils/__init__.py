@@ -20,6 +20,7 @@ import tempfile
 import glob
 from pyneuroml import biosimulations
 import pandas as pd
+from requests.exceptions import HTTPError 
 
 engines = {
     'amici': {
@@ -1033,7 +1034,7 @@ def download_file_from_link(engine, download_link, output_file='results.zip', ma
         return filepath
     else:
         print(f'Failed to download {engine} results.')
-        return False
+        raise HTTPError(f'Failed to download {engine} results.') 
 
 # unzip the file in file_path if it is a zip file and remove the zip file, replace with the unzipped folder
 def unzip_file(file_path, output_dir=None):
@@ -1144,11 +1145,15 @@ def run_biosimulators_remotely(sedml_file_name,
         download_links_dict[e] = download_link
 
     extract_dir_dict = dict()
+    results_remote = dict()
     for e, link in download_links_dict.items():
-        extract_dir = get_remote_results(e, link, remote_output_dir)
+        try:
+            extract_dir = get_remote_results(e, link, remote_output_dir)
+        except HTTPError as emessage:
+            results_remote[e] = ["FAIL", str(emessage), type(emessage).__name__]
+            continue
         extract_dir_dict[e] = extract_dir
 
-    results_remote = dict()
     for e, extract_dir in extract_dir_dict.items():
         status = ""
         error_message = ""
