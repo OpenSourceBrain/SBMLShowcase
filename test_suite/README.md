@@ -35,7 +35,7 @@ pip install docker
 Navigate to the directory containing the `process_test_suite.py` script and execute it, specifying the path to the extracted test files. For example if the extraction folder is  `C:\Users\Username\Documents\compbiolibs\SBML_test_suite\semantic` and the `process_test_suite.py` script is in the current directory.
 
 ```
- python process_test_suite.py --suite-path C:\Users\Username\Documents\compbiolibs\SBML_test_suite\semantic  --suite-glob '*/*-sbml-l3v2.xml' --output-file ./results_test.md --limit 5       
+ python process_test_suite.py --suite-path C:\Users\Username\Documents\compbiolibs\SBML_test_suite\semantic  --sbml-level_version 'sbml-l3v2' --output-file ./results_test.md --limit 5       
 ```
 
 ## Command Line Options
@@ -52,10 +52,10 @@ The `process_test_suite.py` script provides various command-line options to cust
   **Usage:** `--suite-path <path>`  
   **Default:** `.` (current directory)
 
-- `--suite-glob`  
-  **Description:** Shell-style glob pattern to match SBML files within the specified suite path.  
-  **Usage:** `--suite-glob <pattern>`  
-  **Default:** `000*/*-sbml-l3v2.xml`
+- `--sbml-level_version'
+  **Description:** String that specifies level and version of files to select for processing (e.g. 'l3v2')
+  **Usage:** `--sbml-level_version <string>`  
+  **Default:** `highest`
 
 - `--suite-url-base`  
   **Description:** Base URL for the online test case files to include as links in the results. Set to an empty string to disable links.  

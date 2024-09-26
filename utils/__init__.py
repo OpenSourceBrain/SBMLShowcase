@@ -20,10 +20,11 @@ import tempfile
 import glob
 from pyneuroml import biosimulations
 import pandas as pd
+from requests.exceptions import HTTPError 
 
 engines = {
     'amici': {
-        'formats': ('sbml', 'sedml'),
+        'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_AMICI/',
         'status': ""
     },
@@ -33,52 +34,52 @@ engines = {
         'status': ""
     },
     'bionetgen': {
-        'formats': ('bngl', 'sedml'),
+        'formats': [('bngl', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_BioNetGen/',
         'status': ""
     },
     'boolnet': {
-        'formats': ('sbmlqual', 'sedml'),
+        'formats': [('sbmlqual', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_BoolNet/',
         'status': ""
     },
     'cbmpy': {
-        'formats': ('sbml', 'sedml'),
+        'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_CBMPy/',
         'status': ""
     },
     'cobrapy': {
-        'formats': ('sbml', 'sedml'),
+        'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_COBRApy/',
         'status': "Only allows steady state simulations"
     },
     'copasi': {
-        'formats': ('sbml', 'sedml'),
+        'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_COPASI/',
         'status': ""
     },
     'gillespy2': {
-        'formats': ('sbml', 'sedml'),
+        'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_GillesPy2/',
         'status': ""
     },
     'ginsim': {
-        'formats': ('sbmlqual', 'sedml'),
+        'formats': [('sbmlqual', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_GINsim/',
         'status': ""
     },
     'libsbmlsim': {
-        'formats': ('sbml', 'sedml'),
+        'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_LibSBMLSim/',
         'status': ""
     },
     'masspy': {
-        'formats': ('sbml', 'sedml'),
+        'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_MASSpy/',
         'status': ""
     },
     'netpyne': {
-        'formats': ('sbml', 'sedml'),
+        'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
         'status': ""
     },
@@ -88,7 +89,7 @@ engines = {
         'status': ""
     },
     'opencor': {
-        'formats': ('cellml', 'sedml'),
+        'formats': [('cellml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_OpenCOR/',
         'status': ""
     },
@@ -98,22 +99,22 @@ engines = {
         'status': ""
     },
     'pysces': {
-        'formats': ('sbml', 'sedml'),
+        'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_PySCeS/',
         'status': ""
     },
     'rbapy': {
-        'formats': ('rbapy', 'sedml'),
+        'formats': [('rbapy', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_RBApy/',
         'status': ""
     },
     'smoldyn': {
-        'formats': None,
+        'formats': ['unclear'],
         'url': 'https://smoldyn.readthedocs.io/en/latest/python/api.html#sed-ml-combine-biosimulators-api',
         'status': ""
     },
     'tellurium': {
-        'formats': ('sbml', 'sedml'),
+        'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_tellurium/',
         'status': ""
     },
@@ -123,7 +124,7 @@ engines = {
         'status': ""
     },
     'xpp': {
-        'formats': ('xpp', 'sedml'),
+        'formats': [('xpp', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_XPP/',
         'status': ""
     }
@@ -140,7 +141,8 @@ types_dict = {
                 'rbapy':'RBApy',\
                 'xpp':'XPP',\
                 'smoldyn':'Smoldyn',\
-                'cellml':'CellML'\
+                'cellml':'CellML',\
+                'xml':'XML'\
              }
 
 
@@ -364,7 +366,10 @@ def d1_plots_dict(engines=engines, d1_plots_path='d1_plots'):
     Create a dictionary with engine names as keys and d1 plot paths as values.
     """
     d1_plots = find_files(d1_plots_path, '.pdf')
+    # to fix broken links in output table after changing the file structure, remove the first two parts of the path
+    d1_plots = [os.path.join(*Path(d1_plot).parts[1:]) for d1_plot in d1_plots]
     d1_plots_dict = {e: d1_plot for e in engines.keys() for d1_plot in d1_plots if e in d1_plot}
+    
     return d1_plots_dict
 
 
@@ -430,25 +435,23 @@ def display_error_message(error_message):
 
 def check_file_compatibility_test(engine, types_dict, model_filepath, experiment_filepath):
     '''
-    Check if the file extensions suggest the file types are compatible with the engine
+    Check if the file extensions suggest the file types are compatible with the engine.
+    This is done by comparing the file extensions of the model and experiment files with the file types supported by the engine.
+    For SED-ML files, the expected file extension is '.sedml'. For SBML files, the expected file extension is '.sbml'.
     '''
-    input_filetypes = set(get_filetypes(model_filepath, experiment_filepath))
-    input_file_types_text = [types_dict[i] for i in input_filetypes]
+    input_filetypes_tuple = get_filetypes(model_filepath, experiment_filepath)
+    engine_filetypes_tuple_list = engines[engine]['formats']
+    flat_engine_filetypes_tuple_list = [item for sublist in engine_filetypes_tuple_list for item in sublist if sublist != 'unclear']
+    compatible_filetypes = [types_dict[i] for i in flat_engine_filetypes_tuple_list if i in list(types_dict.keys())]
 
-
-    engine_filetypes = engines[engine]['formats']
-    if engine_filetypes is not None:
-        # Flatten the list if the engine_filetypes is a list of tuples
-        if all(isinstance(i, tuple) for i in engine_filetypes):
-            engine_filetypes = {item for sublist in engine_filetypes for item in sublist}
-        engine_file_types_text = [types_dict[i] for i in engine_filetypes if i in types_dict]
-        if input_filetypes.issubset(engine_filetypes):
-            return 'pass', (f"The file extensions suggest the input file types are '{input_file_types_text}'. These are compatible with {engine}")
-        else:
-            return 'FAIL', (f"The file extensions suggest the input file types are '{input_file_types_text}'. These are not compatible with {engine}. The following file types will be compatible {engine_file_types_text}")
+    if input_filetypes_tuple in engine_filetypes_tuple_list:
+        file_types = [types_dict[i] for i in input_filetypes_tuple]
+        return 'pass', (f"The file extensions {input_filetypes_tuple} suggest the input file types are '{file_types}'. {compatible_filetypes} are compatible with {engine}")
+    if 'xml' in input_filetypes_tuple:
+        return 'unsure', (f"The file extensions of the input files are '{input_filetypes_tuple}'. These may be compatible with {engine}. {compatible_filetypes} are compatible with {engine}")
     else:
-        return 'FAIL', (f"{engine} compatible file types unknown.")
-
+        return 'FAIL', (f"The file extensions {input_filetypes_tuple} suggest the input file types are not compatibe with {engine}. {compatible_filetypes} are compatible with {engine}")
+    
 
 def collapsible_content(content, title='Details'):
     """
@@ -470,6 +473,12 @@ def get_filetypes(model_filepath, simulation_filepath):
     """
     if model_filepath.endswith(".sbml") and simulation_filepath.endswith(".sedml"):
         filetypes = ('sbml', 'sedml')
+    elif model_filepath.endswith(".xml") and simulation_filepath.endswith(".xml"):
+        filetypes = ('xml', 'xml')
+    elif model_filepath.endswith(".xml") and simulation_filepath.endswith(".sedml"):
+        filetypes = ('xml', 'sedml')
+    elif model_filepath.endswith(".sbml") and simulation_filepath.endswith(".xml"):
+        filetypes = ('sbml', 'xml')
     else:
         filetypes = "other"
     return filetypes
@@ -1025,7 +1034,7 @@ def download_file_from_link(engine, download_link, output_file='results.zip', ma
         return filepath
     else:
         print(f'Failed to download {engine} results.')
-        return False
+        raise HTTPError(f'Failed to download {engine} results.') 
 
 # unzip the file in file_path if it is a zip file and remove the zip file, replace with the unzipped folder
 def unzip_file(file_path, output_dir=None):
@@ -1095,9 +1104,10 @@ def create_results_table(results, types_dict, sbml_filepath, sedml_filepath, eng
     # compatibility_message
     results_table['Compat'] = results_table['Engine'].apply(lambda x: check_file_compatibility_test(x, types_dict, sbml_filepath, sedml_filepath))
     results_table['Compat'] = results_table['Compat'].apply(lambda x: collapsible_content(x[1], title=x[0]))
-    results_table['Compat'] = results_table['Compat'].apply(lambda x: f'<span style="color:darkred;"><img src={link_red_square}/> {x}</span>'\
-                                                             if 'FAIL' in x else f'<img src={link_green_square}/>{x}')
-
+    results_table['Compat'] = results_table['Compat'].apply(lambda x: 
+                                                        f'<span style="color:darkred;"><img src={link_red_square}/> {x}</span>' if 'FAIL' in x else 
+                                                        f'{x}' if 'xml' in x or 'unsure' in x else 
+                                                        f'<img src={link_green_square}/> {x}' if 'pass' in x else x)
     # pass / FAIL
     results_table['pass / FAIL'] = results_table['pass / FAIL'].apply(lambda x: f'<span style="color:darkred;">\
                                                                       <img src={link_red_square}/> {x}</span>' if x == 'FAIL' \
@@ -1135,11 +1145,15 @@ def run_biosimulators_remotely(sedml_file_name,
         download_links_dict[e] = download_link
 
     extract_dir_dict = dict()
+    results_remote = dict()
     for e, link in download_links_dict.items():
-        extract_dir = get_remote_results(e, link, remote_output_dir)
+        try:
+            extract_dir = get_remote_results(e, link, remote_output_dir)
+        except HTTPError as emessage:
+            results_remote[e] = ["FAIL", str(emessage), type(emessage).__name__]
+            continue
         extract_dir_dict[e] = extract_dir
 
-    results_remote = dict()
     for e, extract_dir in extract_dir_dict.items():
         status = ""
         error_message = ""
