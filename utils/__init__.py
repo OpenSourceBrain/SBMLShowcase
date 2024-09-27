@@ -18,31 +18,118 @@ import libsbml
 import libsedml
 import tempfile
 import glob
+from pyneuroml import biosimulations
+import pandas as pd
+from requests.exceptions import HTTPError 
 
-# 
 engines = {
-                        'amici': ('sbml', 'sedml'),\
-                        'brian2': [('nml', 'sedml'),('lems', 'sedml'),('sbml', 'sedml')],\
-                        'bionetgen': ('bngl', 'sedml'),\
-                        'boolnet': ('sbmlqual', 'sedml'),\
-                        'cbmpy': ('sbml', 'sedml'),\
-                        'cobrapy': ('sbml', 'sedml'),\
-                        'copasi': ('sbml', 'sedml'),\
-                        'gillespy2': ('sbml', 'sedml'),\
-                        'ginsim': ('sbmlqual', 'sedml'),\
-                        'libsbmlsim': ('sbml', 'sedml'),\
-                        'masspy': ('sbml', 'sedml'),\
-                        'netpyne': ('sbml', 'sedml'),\
-                        'neuron': [('nml', 'sedml'),('lems', 'sedml')],\
-                        'opencor': ('cellml', 'sedml'),\
-                        'pyneuroml': [('nml', 'sedml'),('lems', 'sedml')],\
-                        'pysces': ('sbml', 'sedml'),\
-                        'rbapy': ('rbapy', 'sedml'),\
-                        'smoldyn':None ,\
-                        'tellurium': ('sbml', 'sedml'),\
-                        'vcell': None,\
-                        'xpp': ('xpp', 'sedml')               
-            }
+    'amici': {
+        'formats': [('sbml', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_AMICI/',
+        'status': ""
+    },
+    'brian2': {
+        'formats': [('nml', 'sedml'), ('lems', 'sedml'), ('sbml', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
+        'status': ""
+    },
+    'bionetgen': {
+        'formats': [('bngl', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_BioNetGen/',
+        'status': ""
+    },
+    'boolnet': {
+        'formats': [('sbmlqual', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_BoolNet/',
+        'status': ""
+    },
+    'cbmpy': {
+        'formats': [('sbml', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_CBMPy/',
+        'status': ""
+    },
+    'cobrapy': {
+        'formats': [('sbml', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_COBRApy/',
+        'status': "Only allows steady state simulations"
+    },
+    'copasi': {
+        'formats': [('sbml', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_COPASI/',
+        'status': ""
+    },
+    'gillespy2': {
+        'formats': [('sbml', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_GillesPy2/',
+        'status': ""
+    },
+    'ginsim': {
+        'formats': [('sbmlqual', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_GINsim/',
+        'status': ""
+    },
+    'libsbmlsim': {
+        'formats': [('sbml', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_LibSBMLSim/',
+        'status': ""
+    },
+    'masspy': {
+        'formats': [('sbml', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_MASSpy/',
+        'status': ""
+    },
+    'netpyne': {
+        'formats': [('sbml', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
+        'status': ""
+    },
+    'neuron': {
+        'formats': [('nml', 'sedml'), ('lems', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
+        'status': ""
+    },
+    'opencor': {
+        'formats': [('cellml', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_OpenCOR/',
+        'status': ""
+    },
+    'pyneuroml': {
+        'formats': [('nml', 'sedml'), ('lems', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
+        'status': ""
+    },
+    'pysces': {
+        'formats': [('sbml', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_PySCeS/',
+        'status': ""
+    },
+    'rbapy': {
+        'formats': [('rbapy', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_RBApy/',
+        'status': ""
+    },
+    'smoldyn': {
+        'formats': ['unclear'],
+        'url': 'https://smoldyn.readthedocs.io/en/latest/python/api.html#sed-ml-combine-biosimulators-api',
+        'status': ""
+    },
+    'tellurium': {
+        'formats': [('sbml', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_tellurium/',
+        'status': ""
+    },
+    'vcell': {
+        'formats': [('sbml', 'sedml'),('bngl', 'sedml')],
+        'url': 'https://github.com/virtualcell/vcell',
+        'status': ""
+    },
+    'xpp': {
+        'formats': [('xpp', 'sedml')],
+        'url': 'https://docs.biosimulators.org/Biosimulators_XPP/',
+        'status': ""
+    }
+}
+
 
 types_dict = {
                 'sbml':'SBML',\
@@ -54,8 +141,10 @@ types_dict = {
                 'rbapy':'RBApy',\
                 'xpp':'XPP',\
                 'smoldyn':'Smoldyn',\
-                'cellml':'CellML'\
+                'cellml':'CellML',\
+                'xml':'XML'\
              }
+
 
 #define error categories for detailed error counting per engine
 # (currently only tellurium)
@@ -240,13 +329,36 @@ def find_files(directory, extension):
     files = glob.glob(f"{directory}/**/*{extension}", recursive=True)
     return files
 
-def move_d1_files(file_paths, engine, plot_dir='d1_plots'):
+def move_d1_files(file_paths, plot_dir='d1_plots'):
     for fpath in file_paths:
+        # find engine.keys() in the file path and asign to engine
+        engine = next((e for e in engines.keys() if e in fpath), 'unknown')
         new_file_path = os.path.join(plot_dir, f'{engine}_{os.path.basename(fpath)}')
         if not os.path.exists(plot_dir): os.makedirs(plot_dir, exist_ok=True)
         if os.path.exists(new_file_path): os.remove(new_file_path)
         print(f'Moving {fpath} to {new_file_path}')
         shutil.move(fpath, new_file_path)
+
+def find_file_in_dir(file_name, directory):
+    """
+    Searches for a specific file in a given directory and its subdirectories.
+
+    Parameters:
+    file_name (str): The name of the file to search for.
+    directory (str): The directory to search in.
+
+    Returns:
+    str: The path of the found file. If the file is not found, returns None.
+    """
+
+    list_of_files = []
+    for root, _, files in os.walk(directory):
+        for file in files:
+            if file == file_name:
+                file_path = os.path.join(root, file)
+                list_of_files.append(file_path)
+    return list_of_files
+
 
 # write definition to create d1 plots dict
 def d1_plots_dict(engines=engines, d1_plots_path='d1_plots'):
@@ -254,31 +366,38 @@ def d1_plots_dict(engines=engines, d1_plots_path='d1_plots'):
     Create a dictionary with engine names as keys and d1 plot paths as values.
     """
     d1_plots = find_files(d1_plots_path, '.pdf')
+    # to fix broken links in output table after changing the file structure, remove the first two parts of the path
+    d1_plots = [os.path.join(*Path(d1_plot).parts[1:]) for d1_plot in d1_plots]
     d1_plots_dict = {e: d1_plot for e in engines.keys() for d1_plot in d1_plots if e in d1_plot}
+    
     return d1_plots_dict
 
 
-def create_hyperlink(file_path):
+def create_hyperlink(file_path, title=None):
     """
     Create a hyperlink to a file or folder. If the path is None, return None.
     Title is the basename of the path.
     """
     if file_path:
-        title = os.path.basename(file_path)
+        if title is None:
+            title = os.path.basename(file_path)
         return f'<a href="{file_path}">{title}</a>'
     else:
         return None
     
 
-def parse_error_message(text):
+def ansi_to_html(text):
     if text != None:
         text_message = re.findall(r'"([^"]*)"', text) 
         if len(text_message) > 0:
             text = text_message
+            text = bytes(text[0], "utf-8").decode("unicode_escape")
+        elif 'The COMBINE/OMEX did not execute successfully:' in text:
+            text = text # to deal with remote error message
         else:
             text = text.replace('|', '')
             return text
-        text = bytes(text[0], "utf-8").decode("unicode_escape")
+
         text = text.replace('|', '')
 
         # # for any text with "<*>" remove "<" as well as ">" but leave wildcard text *
@@ -316,25 +435,23 @@ def display_error_message(error_message):
 
 def check_file_compatibility_test(engine, types_dict, model_filepath, experiment_filepath):
     '''
-    Check if the file extensions suggest the file types are compatible with the engine
+    Check if the file extensions suggest the file types are compatible with the engine.
+    This is done by comparing the file extensions of the model and experiment files with the file types supported by the engine.
+    For SED-ML files, the expected file extension is '.sedml'. For SBML files, the expected file extension is '.sbml'.
     '''
-    input_filetypes = set(get_filetypes(model_filepath, experiment_filepath))
-    input_file_types_text = [types_dict[i] for i in input_filetypes]
+    input_filetypes_tuple = get_filetypes(model_filepath, experiment_filepath)
+    engine_filetypes_tuple_list = engines[engine]['formats']
+    flat_engine_filetypes_tuple_list = [item for sublist in engine_filetypes_tuple_list for item in sublist if sublist != 'unclear']
+    compatible_filetypes = [types_dict[i] for i in flat_engine_filetypes_tuple_list if i in list(types_dict.keys())]
 
-
-    engine_filetypes = engines[engine]
-    if engine_filetypes is not None:
-        # Flatten the list if the engine_filetypes is a list of tuples
-        if all(isinstance(i, tuple) for i in engine_filetypes):
-            engine_filetypes = {item for sublist in engine_filetypes for item in sublist}
-        engine_file_types_text = [types_dict[i] for i in engine_filetypes if i in types_dict]
-        if input_filetypes.issubset(engine_filetypes):
-            return 'pass', (f"The file extensions suggest the input file types are '{input_file_types_text}'. These are compatible with {engine}")
-        else:
-            return 'FAIL', (f"The file extensions suggest the input file types are '{input_file_types_text}'. Tese are not compatible with {engine}. The following file types will be compatible {engine_file_types_text}")
+    if input_filetypes_tuple in engine_filetypes_tuple_list:
+        file_types = [types_dict[i] for i in input_filetypes_tuple]
+        return 'pass', (f"The file extensions {input_filetypes_tuple} suggest the input file types are '{file_types}'. {compatible_filetypes} are compatible with {engine}")
+    if 'xml' in input_filetypes_tuple:
+        return 'unsure', (f"The file extensions of the input files are '{input_filetypes_tuple}'. These may be compatible with {engine}. {compatible_filetypes} are compatible with {engine}")
     else:
-        return 'FAIL', (f"{engine} compatible file types unknown.")
-
+        return 'FAIL', (f"The file extensions {input_filetypes_tuple} suggest the input file types are not compatibe with {engine}. {compatible_filetypes} are compatible with {engine}")
+    
 
 def collapsible_content(content, title='Details'):
     """
@@ -356,6 +473,12 @@ def get_filetypes(model_filepath, simulation_filepath):
     """
     if model_filepath.endswith(".sbml") and simulation_filepath.endswith(".sedml"):
         filetypes = ('sbml', 'sedml')
+    elif model_filepath.endswith(".xml") and simulation_filepath.endswith(".xml"):
+        filetypes = ('xml', 'xml')
+    elif model_filepath.endswith(".xml") and simulation_filepath.endswith(".sedml"):
+        filetypes = ('xml', 'sedml')
+    elif model_filepath.endswith(".sbml") and simulation_filepath.endswith(".xml"):
+        filetypes = ('sbml', 'xml')
     else:
         filetypes = "other"
     return filetypes
@@ -371,8 +494,67 @@ def delete_output_folder(output_dir):
         elif os.path.isdir(file_path):
             shutil.rmtree(file_path)
 
+def run_biosimulators_remote(engine,sedml_filepath,sbml_filepath):
+    '''
+    put the sedml and sbml file into an omex archive
+    run it remotely using biosimulators
+    '''
 
-def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir=None,error_categories=error_categories,chown_outputs=True):
+    #put the sedml and sbml into a combine archive
+    omex_filepath = create_omex(sedml_filepath,sbml_filepath)
+    omex_file_name = os.path.basename(omex_filepath)
+
+    # get the version of the engine
+    engine_version = biosimulations.get_simulator_versions(engine)
+
+    sim_dict = {
+                "name": "test",
+                "simulator": engine,
+                "simulatorVersion": engine_version[engine][-1], # get the latest version
+                "cpus": 1,
+                "memory": 8,
+                "maxTime": 20,
+                "envVars": [],
+                "purpose": "academic",
+                "email": "",
+                }
+
+    res = biosimulations.submit_simulation_archive(\
+        archive_file=omex_file_name,\
+        sim_dict=sim_dict)
+    
+    download_url = res["download"]
+    
+    return download_url
+
+def get_remote_results(engine, download_link, output_dir='remote_results'):
+
+    filepath_results = download_file_from_link(engine, download_link)
+    extract_dir = os.path.join(os.getcwd(), output_dir, engine)
+    shutil.unpack_archive(filepath_results, extract_dir=extract_dir)
+    os.remove(filepath_results)
+
+    return extract_dir
+
+def rename_files_in_extract_dir(extract_dir, engine):
+    
+    # find the log.yml file in the extracted directory
+    log_yml_path = find_file_in_dir('log.yml', extract_dir)[0]
+    with open(log_yml_path) as f:
+        log_yml_dict = yaml.safe_load(f)
+    
+    # rename log.yml file to '{engine}_log.yml'
+    new_file_name = f'{engine}_log.yml'
+    root = os.path.dirname(log_yml_path)
+    new_file_path = os.path.join(root, new_file_name)
+    if os.path.exists(new_file_path):
+        os.remove(new_file_path)
+    os.rename(log_yml_path, new_file_path)
+    
+    return extract_dir
+
+
+def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='output',error_categories=error_categories,chown_outputs=True):
     '''
     put the sedml and sbml file into an omex archive
     run it locally using a biosimulators docker
@@ -386,7 +568,7 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir=None
     try:
         biosimulators_core(engine,omex_filepath,output_dir=output_dir)
     except Exception as e:
-        #capture the error as a string which won't break markdown tables
+        #capture the error as a string which won't break markdown tables 
         # error_str = safe_md_string(e)
         error_str = str(e)
 
@@ -399,8 +581,10 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir=None
     if not error_str: return "pass"
 
     # #try to load the cleaner error message from the log.yml file
-    # log_str = read_log_yml(os.path.join(os.path.dirname(omex_filepath),"log.yml"))
+    log_str = read_log_yml(os.path.join(os.path.dirname(omex_filepath),"log.yml"))
 
+    if log_str:
+        error_str = str(log_str)
     # if log_str:
     #     error_str = safe_md_string(log_str)
 
@@ -809,3 +993,292 @@ def safe_md_string(value):
     '''
 
     return str(value).replace("\n"," ").replace("\r","").replace("\t"," ").replace("   "," ").replace("  "," ")
+
+import time
+
+def download_file_from_link(engine, download_link, output_file='results.zip', max_wait_time=120, wait_time=2):
+    """
+    Function to download a file from a given URL.
+
+    Parameters:
+    download_link (str): The URL of the file to download.
+    output_file (str): The name of the file to save the download as. Defaults to 'results.zip'.
+    max_wait_time (int): The maximum time to wait for the file to be ready to download. Defaults to 120 seconds.
+    wait_time (int): The time to wait between checks if the file is ready to download. Defaults to 2 seconds.
+
+    Returns:
+    bool: True if the file was downloaded successfully, False otherwise.
+    """
+
+    start_time = time.time()
+
+    while True:
+        # Check status of download_link
+        response = requests.get(download_link)
+
+        # If status is not 404 or max_wait_time has passed, break the loop
+        if response.status_code != 404 or time.time() - start_time > max_wait_time:
+            break
+
+        # Wait for wait_time seconds before checking again
+        time.sleep(wait_time)
+
+    # If status == 200 then download the results
+    if response.status_code == 200:
+        print(f'Downloading {engine} results...')
+        with requests.get(download_link, stream=True) as r:
+            with open(output_file, 'wb') as f:
+                shutil.copyfileobj(r.raw, f)
+        # filepath where the file is downloaded
+        filepath = os.path.abspath(output_file)
+        return filepath
+    else:
+        print(f'Failed to download {engine} results.')
+        raise HTTPError(f'Failed to download {engine} results.') 
+
+# unzip the file in file_path if it is a zip file and remove the zip file, replace with the unzipped folder
+def unzip_file(file_path, output_dir=None):
+    """
+    Unzip a file if it is a zip file.
+
+    Parameters:
+    file_path (str): The path to the file to unzip.
+    output_dir (str): The directory to extract the contents of the zip file to. Defaults to None.
+
+    Returns:
+    str: The path to the unzipped folder.
+    """
+
+    # If the file is a zip file, unzip it
+    if zipfile.is_zipfile(file_path):
+        # If the output directory is not specified, use the directory of the file
+        if output_dir is None:
+            output_dir = os.path.dirname(file_path)
+
+        # Create a ZipFile object
+        with zipfile.ZipFile(file_path, 'r') as zip_ref:
+            # Extract the contents of the zip file
+            zip_ref.extractall(output_dir)
+
+        # Remove the zip file
+        os.remove(file_path)
+
+        # Get the name of the unzipped folder
+        unzipped_folder = os.path.join(output_dir, os.path.splitext(os.path.basename(file_path))[0])
+
+        return unzipped_folder
+
+    return file_path
+
+def create_results_table(results, types_dict, sbml_filepath, sedml_filepath, engines, output_dir):
+    """
+    Create a markdown table of the results.
+    
+    Input: results, types_dict, sbml_filepath, sedml_filepath, engines, output_dir
+    Output: results_md_table
+
+    """
+    
+    link_green_square = "https://via.placeholder.com/15/00dd00/00dd00.png"
+    link_orange_square = "https://via.placeholder.com/15/ec9706/ec9706.png"
+    link_red_square = "https://via.placeholder.com/15/dd0000/dd0000.png"
+
+    # Create a table of the results
+    results_table = pd.DataFrame.from_dict(results).T
+    # if list is three elements 
+    if results_table.shape[1] == 3:
+        results_table.columns = ['pass / FAIL', 'Error', 'Type']
+    elif results_table.shape[1] == 2:
+        results_table.columns = ['pass / FAIL', 'Error']
+
+    results_table.index.name = 'Engine'
+    results_table.reset_index(inplace=True)
+
+    # Error
+    results_table['Error'] = results_table.apply(lambda x: None if x['pass / FAIL'] == x['Error'] else x['Error'], axis=1)
+    results_table['pass / FAIL'] = results_table['pass / FAIL'].replace('other', 'FAIL')
+
+    results_table['Error'] = results_table['Error'].apply(lambda x: ansi_to_html(x))
+    results_table['Error'] = results_table['Error'].apply(lambda x: collapsible_content(x))
+
+    # compatibility_message
+    results_table['Compat'] = results_table['Engine'].apply(lambda x: check_file_compatibility_test(x, types_dict, sbml_filepath, sedml_filepath))
+    results_table['Compat'] = results_table['Compat'].apply(lambda x: collapsible_content(x[1], title=x[0]))
+    results_table['Compat'] = results_table['Compat'].apply(lambda x: 
+                                                        f'<span style="color:darkred;"><img src={link_red_square}/> {x}</span>' if 'FAIL' in x else 
+                                                        f'{x}' if 'xml' in x or 'unsure' in x else 
+                                                        f'<img src={link_green_square}/> {x}' if 'pass' in x else x)
+    # pass / FAIL
+    results_table['pass / FAIL'] = results_table['pass / FAIL'].apply(lambda x: f'<span style="color:darkred;">\
+                                                                      <img src={link_red_square}/> {x}</span>' if x == 'FAIL' \
+                                                                        else f'<img src={link_green_square}/> {x}')
+
+    # d1 plot clickable link
+    results_table['d1'] = results_table['Engine'].apply(lambda x: d1_plots_dict(engines, output_dir).get(x, None))
+    results_table['d1'] = results_table['d1'].apply(lambda x: create_hyperlink(x,title='plot'))
+    
+    # if Type is in the table add message with collapsible content
+    if 'Type' in results_table.columns:
+        results_table['Type'] = results_table['Type'].apply(lambda x: collapsible_content(x,"".join(re.findall(r'[A-Z]', x))))
+
+
+    results_table['Engine'] = results_table['Engine'].apply(lambda x:  collapsible_content(f'{engines[x]["url"]}<br>{engines[x]["status"]}', x))
+
+    return results_table
+
+
+
+def run_biosimulators_remotely(sedml_file_name, 
+                               sbml_file_name, 
+                               d1_plots_remote_dir, 
+                               engines=engines, 
+                               test_folder='tests'):
+    
+    """ run with directory pointing towards the location of the sedml and sbml files"""
+    
+    remote_output_dir = 'remote_results'
+    remote_output_dir = os.path.join(test_folder, remote_output_dir)
+
+    download_links_dict = dict()
+    for e in engines.keys():
+        download_link = run_biosimulators_remote(e, sedml_file_name, sbml_file_name)
+        download_links_dict[e] = download_link
+
+    extract_dir_dict = dict()
+    results_remote = dict()
+    for e, link in download_links_dict.items():
+        try:
+            extract_dir = get_remote_results(e, link, remote_output_dir)
+        except HTTPError as emessage:
+            results_remote[e] = ["FAIL", str(emessage), type(emessage).__name__]
+            continue
+        extract_dir_dict[e] = extract_dir
+
+    for e, extract_dir in extract_dir_dict.items():
+        status = ""
+        error_message = ""
+        exception_type = ""
+
+        log_yml_path = find_file_in_dir('log.yml', extract_dir)[0]
+        if not log_yml_path:
+            status = None
+            error_message = 'log.yml not found'
+            continue
+        with open(log_yml_path) as f:
+            log_yml_dict = yaml.safe_load(f)
+            if log_yml_dict['status'] == 'SUCCEEDED':
+                status = 'pass'
+            elif log_yml_dict['status'] == 'FAILED':
+                status = 'FAIL'
+                exception = log_yml_dict['exception']
+                error_message = exception['message']
+                exception_type = exception['type'] 
+            else:
+                status = None
+            results_remote[e] = [status, error_message, exception_type] 
+
+    file_paths = find_files(remote_output_dir, '.pdf')
+    move_d1_files(file_paths, d1_plots_remote_dir)
+
+    # remove the remote results directory
+    if os.path.exists(remote_output_dir):
+        shutil.rmtree(remote_output_dir)
+        print('Removed ' + remote_output_dir + ' folder')
+
+    return results_remote
+
+def run_biosimulators_locally(sedml_file_name, 
+                              sbml_file_name, 
+                              d1_plots_local_dir, 
+                              engines=engines, 
+                              test_folder='tests'):
+    results_local = {}
+
+    output_folder = 'local_results'
+    local_output_dir = os.path.join(test_folder, output_folder)
+
+    for e in engines.keys():
+        print('Running ' + e)
+        local_output_dir_e = os.path.abspath(os.path.join(local_output_dir, e))
+        print(local_output_dir_e)
+        record = run_biosimulators_docker(e, sedml_file_name, sbml_file_name, output_dir=local_output_dir_e)
+        results_local[e] = record
+
+    file_paths = find_files(local_output_dir, '.pdf')
+    print('file paths:', file_paths)
+    move_d1_files(file_paths, d1_plots_local_dir)
+
+    # if it exists remove the output folder
+    if os.path.exists(local_output_dir):
+        shutil.rmtree(local_output_dir)
+        print('Removed ' + local_output_dir + ' folder')
+
+    return results_local
+
+
+def create_combined_results_table(results_remote, 
+                                  results_local, 
+                                  sedml_file_name, 
+                                  sbml_file_name, 
+                                  d1_plots_local_dir, 
+                                  d1_plots_remote_dir,
+                                  engines=engines, 
+                                  test_folder='tests'):
+    
+    results_table_remote = create_results_table(results_remote, types_dict, sbml_file_name, sedml_file_name, engines, d1_plots_remote_dir)
+    results_table_local = create_results_table(results_local, types_dict, sbml_file_name, sedml_file_name, engines, d1_plots_local_dir)
+
+    # rename cols to distinguish between local and remote results except for Engine column
+    results_table_remote.columns = [str(col) + ' (R)' if col != 'Engine' else str(col) for col in results_table_remote.columns]
+    results_table_local.columns = [str(col) + ' (L)' if col != 'Engine' else str(col) for col in results_table_local.columns]
+
+    # combine remote and local results
+    combined_results = pd.merge(results_table_remote, results_table_local, on='Engine', how='outer')
+    combined_results = combined_results.reindex(columns=['Engine'] + sorted(combined_results.columns[1:]))
+
+    cols_order = ['Engine', 'pass / FAIL (R)', 'pass / FAIL (L)',\
+                'Compat (R)', 'Compat (L)', \
+                'Type (R)', \
+                'Error (R)', 'Error (L)', \
+                'd1 (R)', 'd1 (L)']
+
+    combined_results = combined_results[cols_order]
+
+    path_to_results = os.path.join(test_folder, 'results_compatibility_biosimulators.md')
+    print('Saving results to:', path_to_results)
+    with open(path_to_results, 'w') as f:
+        f.write(combined_results.to_markdown())
+
+    print('Number of columns in md table:', len(combined_results.columns))
+    print('Number of rows in md table:', len(combined_results))
+    print(combined_results.head())    
+
+    return combined_results
+
+
+def run_biosimulators_remotely_and_locally(sedml_file_name, 
+                                 sbml_file_name,
+                                 d1_plots_remote_dir, 
+                                 d1_plots_local_dir,
+                                 engines=engines, test_folder='tests'):
+    
+    results_remote = run_biosimulators_remotely(sedml_file_name=sedml_file_name, 
+                                    sbml_file_name=sbml_file_name,
+                                    d1_plots_remote_dir=d1_plots_remote_dir, 
+                                    engines=engines, test_folder=test_folder)
+    
+    results_local = run_biosimulators_locally(sedml_file_name=sedml_file_name, 
+                                    sbml_file_name=sbml_file_name,
+                                    d1_plots_local_dir=d1_plots_local_dir, 
+                                    engines=engines, test_folder=test_folder)
+
+    results_table = create_combined_results_table(results_remote, 
+                                    results_local, 
+                                    sedml_file_name=sedml_file_name, 
+                                    sbml_file_name=sbml_file_name,
+                                    d1_plots_local_dir=d1_plots_local_dir,
+                                    d1_plots_remote_dir=d1_plots_remote_dir, 
+                                    engines=engines, 
+                                    test_folder=test_folder)
+    
+    return results_table

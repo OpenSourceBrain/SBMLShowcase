@@ -1,0 +1,49 @@
+
+name: Testing non OMV scripts (locally using docker)
+
+on:
+  push:
+    branches: [ master, development, experimental, test*, feature/* ]
+  pull_request:
+    branches: [ master, development, experimental, test*, feature/* ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [ 3.9, "3.10" ]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python  ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version:  ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+          pip install git+https://github.com/OpenSourceBrain/osb-model-validation
+          pip install pyNeuroML[annotations]
+          pip install python-libsedml
+          pip install tellurium
+          sudo apt-get install libncurses5 --fix-missing
+          omv install jneuroml
+          pip install "pymetadata>=0.4.2" docker "requests<2.32.0"
+
+    - name: Final version info
+      run: |
+        omv list -V # list installed engines
+        pip list
+        env
+
+    - name: Test local biosimulators compatibility table creation
+      run: |
+          cd SBML/tests
+          sudo rm -rf output
+          python ./test_biosimulators_local.py --output-dir=tmp_plots
+  
+  
