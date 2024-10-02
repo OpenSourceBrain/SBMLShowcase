@@ -34,11 +34,17 @@ jobs:
         omv install jneuroml
         pip install "pymetadata>=0.4.2" docker "requests<2.32.0"
 
+
     - name: Final version info
       run: |
         omv list -V # list installed engines
         pip list
         env
+
+    - name: Check health status of biosimulations API
+      run: |
+        cd SBML/tests
+        python ./test_biosimulators_api.py
 
     - name: Test remote biosimulators compatibility table creation
       run: |
