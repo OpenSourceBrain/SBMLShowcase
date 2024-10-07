@@ -6,7 +6,11 @@ on:
     branches: [ master, development, experimental, test*, feature/* ]
   pull_request:
     branches: [ master, development, experimental, test*, feature/* ]
-
+  workflow_run:
+      workflows: [Testing non OMV scripts (remotely via URLs)]
+      types:
+        - completed
+      
 jobs:
   build:
 
@@ -65,3 +69,8 @@ jobs:
         omv list -V # list installed engines
         pip list
         env
+
+    - name: Create results table
+      run: |
+        cd SBML/tests
+        python ./test_biosimulators_remote.py --output-dir=tmp_plots
