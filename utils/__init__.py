@@ -29,7 +29,7 @@ engines = {
         'status': ""
     },
     'brian2': {
-        'formats': [('nml', 'sedml'), ('lems', 'sedml'), ('sbml', 'sedml')],
+        'formats': [('nml', 'sedml'), ('lems', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
         'status': ""
     },
@@ -79,7 +79,7 @@ engines = {
         'status': ""
     },
     'netpyne': {
-        'formats': [('sbml', 'sedml')],
+        'formats': [('nml', 'sedml'), ('lems', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
         'status': ""
     },
