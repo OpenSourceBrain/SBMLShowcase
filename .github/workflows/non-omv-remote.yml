@@ -6,8 +6,6 @@ on:
     branches: [ master, development, experimental, test*, feature/* ]
   pull_request:
     branches: [ master, development, experimental, test*, feature/* ]
-  workflow_run:
-    workflows: [Testing non OMV scripts (locally using docker)]
 
 jobs:
   build:
