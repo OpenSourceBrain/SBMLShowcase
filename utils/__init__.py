@@ -1108,7 +1108,7 @@ def create_results_table(results, types_dict, sbml_filepath, sedml_filepath, eng
                                                         f'<span style="color:darkred;"><img src={link_red_square}/> {x}</span>' if 'FAIL' in x else 
                                                         f'{x}' if 'xml' in x or 'unsure' in x else 
                                                         f'<img src={link_green_square}/> {x}' if 'pass' in x else x)
-    # pass / FAIL (if XFAIL no colour or img, if pass, green square)
+
     results_table['pass / FAIL'] = results_table['pass / FAIL'].apply(lambda x: f'<span style="color:darkred;">\
                                                                       <img src={link_red_square}/> {x}</span>' if x == 'FAIL' \
                                                                         else f'<img src={link_green_square}/> {x}' if x == 'pass' else x)
@@ -1124,6 +1124,7 @@ def create_results_table(results, types_dict, sbml_filepath, sedml_filepath, eng
 
     # list of sbml uncompatible engines fetched from engines dict
     sbml_incompatible_engines = [e for e in engines.keys() if 'sbml' not in engines[e]['formats'][0]]
+
     # change any fails for sbml incompatible engines to XFAIL, for both pass / FAIL and Compat colums
     for engine in sbml_incompatible_engines:
         results_table.loc[results_table['Engine'] == engine, 'pass / FAIL'] = 'XFAIL'
@@ -1134,7 +1135,6 @@ def create_results_table(results, types_dict, sbml_filepath, sedml_filepath, eng
     results_table['Engine'] = results_table['Engine'].apply(lambda x:  collapsible_content(f'{engines[x]["url"]}<br>{engines[x]["status"]}', x))
 
     return results_table
-
 
 
 def run_biosimulators_remotely(sedml_file_name, 
