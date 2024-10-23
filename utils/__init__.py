@@ -1117,20 +1117,16 @@ def create_results_table(results, types_dict, sbml_filepath, sedml_filepath, eng
     # d1 plot clickable link
     results_table['d1'] = results_table['Engine'].apply(lambda x: d1_plots_dict(engines, output_dir).get(x, None))
     results_table['d1'] = results_table['d1'].apply(lambda x: create_hyperlink(x,title='plot'))
-    
-    # if Type is in the table add message with collapsible content
+
     if 'Type' in results_table.columns:
         results_table['Type'] = results_table['Type'].apply(lambda x: collapsible_content(x,"".join(re.findall(r'[A-Z]', x))))
 
-    # list of sbml uncompatible engines fetched from engines dict
     sbml_incompatible_engines = [e for e in engines.keys() if 'sbml' not in engines[e]['formats'][0]]
 
-    # change any fails for sbml incompatible engines to XFAIL, for both pass / FAIL and Compat colums
     for engine in sbml_incompatible_engines:
         results_table.loc[results_table['Engine'] == engine, 'pass / FAIL'] = 'XFAIL'
         compatibility_content = check_file_compatibility_test(engine, types_dict, sbml_filepath, sedml_filepath)
         results_table.loc[results_table['Engine'] == engine, 'Compat'] = collapsible_content(compatibility_content[1], title='XFAIL')
-        # results_table.loc[results_table['Engine'] == engine, 'Compat'] = 'XFAIL'
         
     results_table['Engine'] = results_table['Engine'].apply(lambda x:  collapsible_content(f'{engines[x]["url"]}<br>{engines[x]["status"]}', x))
 
