@@ -6,7 +6,7 @@ on:
     branches: [ master, development, experimental, test*, feature/* ]
   pull_request:
     branches: [ master, development, experimental, test*, feature/* ]
-
+      
 jobs:
   build:
 
@@ -65,3 +65,8 @@ jobs:
         omv list -V # list installed engines
         pip list
         env
+
+    - name: Create results table
+      run: |
+        cd SBML/tests
+        python ./test_creation_combined_results_table.py
