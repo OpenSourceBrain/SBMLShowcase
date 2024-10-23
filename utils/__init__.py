@@ -1083,52 +1083,62 @@ def create_results_table(results, types_dict, sbml_filepath, sedml_filepath, eng
     link_orange_square = "https://via.placeholder.com/15/ec9706/ec9706.png"
     link_red_square = "https://via.placeholder.com/15/dd0000/dd0000.png"
 
+    pass_html = "&#9989;"
+    fail_html = "&#10060;"
+    warning_html = "&#9888;"
+    xfail_html = "&#10062;"
+
+    colname_error = 'Error'
+    colname_pass_fail = 'pass / FAIL'
+    colname_type = 'Type'
+    colname_compat = 'Compat'
+    colname_d1 = 'd1'
+    indexname_engine = 'Engine'
+
     # Create a table of the results
     results_table = pd.DataFrame.from_dict(results).T
     # if list is three elements 
     if results_table.shape[1] == 3:
-        results_table.columns = ['pass / FAIL', 'Error', 'Type']
+        results_table.columns = [colname_pass_fail, colname_error, colname_type]
     elif results_table.shape[1] == 2:
-        results_table.columns = ['pass / FAIL', 'Error']
+        results_table.columns = [colname_pass_fail, colname_error]
 
-    results_table.index.name = 'Engine'
+    results_table.index.name =  indexname_engine
     results_table.reset_index(inplace=True)
 
     # Error
-    results_table['Error'] = results_table.apply(lambda x: None if x['pass / FAIL'] == x['Error'] else x['Error'], axis=1)
-    results_table['pass / FAIL'] = results_table['pass / FAIL'].replace('other', 'FAIL')
+    results_table[colname_error] = results_table.apply(lambda x: None if x[colname_pass_fail] == x[colname_error] else x[colname_error], axis=1)
+    results_table[colname_pass_fail] = results_table[colname_pass_fail].replace('other', 'FAIL')
     
-    results_table['Error'] = results_table['Error'].apply(lambda x: ansi_to_html(x))
-    results_table['Error'] = results_table['Error'].apply(lambda x: collapsible_content(x))
+    results_table[colname_error] = results_table[colname_error].apply(lambda x: ansi_to_html(x))
+    results_table[colname_error] = results_table[colname_error].apply(lambda x: collapsible_content(x))
 
     # compatibility_message
-    results_table['Compat'] = results_table['Engine'].apply(lambda x: check_file_compatibility_test(x, types_dict, sbml_filepath, sedml_filepath))
-    results_table['Compat'] = results_table['Compat'].apply(lambda x: collapsible_content(x[1], title=x[0]))
-    results_table['Compat'] = results_table['Compat'].apply(lambda x: 
-                                                        f'<span style="color:darkred;"><img src={link_red_square}/> {x}</span>' if 'FAIL' in x else 
-                                                        f'{x}' if 'xml' in x or 'unsure' in x else 
-                                                        f'<img src={link_green_square}/> {x}' if 'pass' in x else x)
+    results_table[colname_compat] = results_table[indexname_engine].apply(lambda x: check_file_compatibility_test(x, types_dict, sbml_filepath, sedml_filepath))
+    results_table[colname_compat] = results_table[colname_compat].apply(lambda x: collapsible_content(x[1], title=x[0]))
+    results_table[colname_compat] = results_table[colname_compat].apply(lambda x: 
+                                                        f'{fail_html}{x}' if 'FAIL' in x else 
+                                                        f'{warning_html}{x}' if 'xml' in x or 'unsure' in x else 
+                                                        f'{pass_html}{x}' if 'pass' in x else x)
 
-    results_table['pass / FAIL'] = results_table['pass / FAIL'].apply(lambda x: f'<span style="color:darkred;">\
-                                                                      <img src={link_red_square}/> {x}</span>' if x == 'FAIL' \
-                                                                        else f'<img src={link_green_square}/> {x}' if x == 'pass' else x)
+    results_table[colname_pass_fail] = results_table[colname_pass_fail].apply(lambda x: f'{fail_html}{x}' if x == 'FAIL' \
+                                                                        else f'{pass_html}{x}' if x == 'pass' else x)
                                                                        
-
     # d1 plot clickable link
-    results_table['d1'] = results_table['Engine'].apply(lambda x: d1_plots_dict(engines, output_dir).get(x, None))
-    results_table['d1'] = results_table['d1'].apply(lambda x: create_hyperlink(x,title='plot'))
+    results_table[colname_d1] = results_table[indexname_engine].apply(lambda x: d1_plots_dict(engines, output_dir).get(x, None))
+    results_table[colname_d1] = results_table[colname_d1].apply(lambda x: create_hyperlink(x,title='plot'))
 
-    if 'Type' in results_table.columns:
-        results_table['Type'] = results_table['Type'].apply(lambda x: collapsible_content(x,"".join(re.findall(r'[A-Z]', x))))
+    if colname_type in results_table.columns:
+        results_table[colname_type] = results_table[colname_type].apply(lambda x: collapsible_content(x,"".join(re.findall(r'[A-Z]', x))))
 
     sbml_incompatible_engines = [e for e in engines.keys() if 'sbml' not in engines[e]['formats'][0]]
 
     for engine in sbml_incompatible_engines:
-        results_table.loc[results_table['Engine'] == engine, 'pass / FAIL'] = 'XFAIL'
+        results_table.loc[results_table[indexname_engine] == engine, colname_pass_fail] = f'{xfail_html}xfail'
         compatibility_content = check_file_compatibility_test(engine, types_dict, sbml_filepath, sedml_filepath)
-        results_table.loc[results_table['Engine'] == engine, 'Compat'] = collapsible_content(compatibility_content[1], title='XFAIL')
+        results_table.loc[results_table[indexname_engine] == engine, colname_compat] = collapsible_content(compatibility_content[1], title=f'{xfail_html}xfail')
         
-    results_table['Engine'] = results_table['Engine'].apply(lambda x:  collapsible_content(f'{engines[x]["url"]}<br>{engines[x]["status"]}', x))
+    results_table[indexname_engine] = results_table[indexname_engine].apply(lambda x:  collapsible_content(f'{engines[x]["url"]}<br>{engines[x]["status"]}', x))
 
     return results_table
 
@@ -1221,6 +1231,7 @@ def run_biosimulators_locally(sedml_file_name,
     return results_local
 
 
+
 def create_combined_results_table(results_remote, 
                                   results_local, 
                                   sedml_file_name, 
@@ -1230,31 +1241,47 @@ def create_combined_results_table(results_remote,
                                   engines=engines, 
                                   test_folder='tests'):
     
+    # Define constants inside the function
+    colname_error = 'Error'
+    colname_pass_fail = 'pass / FAIL'
+    colname_type = 'Type'
+    colname_compat = 'Compat'
+    colname_d1 = 'd1'
+    indexname_engine = 'Engine'
+
+    suffix_remote = ' (R)'
+    suffix_local = ' (L)'
+    
+    # Create results tables for remote and local results
     results_table_remote = create_results_table(results_remote, types_dict, sbml_file_name, sedml_file_name, engines, d1_plots_remote_dir)
     results_table_local = create_results_table(results_local, types_dict, sbml_file_name, sedml_file_name, engines, d1_plots_local_dir)
 
-    # rename cols to distinguish between local and remote results except for Engine column
-    results_table_remote.columns = [str(col) + ' (R)' if col != 'Engine' else str(col) for col in results_table_remote.columns]
-    results_table_local.columns = [str(col) + ' (L)' if col != 'Engine' else str(col) for col in results_table_local.columns]
+    # Rename columns to distinguish between local and remote results except for Engine column
+    results_table_remote.columns = [f"{col}{suffix_remote}" if col != indexname_engine else col for col in results_table_remote.columns]
+    results_table_local.columns = [f"{col}{suffix_local}" if col != indexname_engine else col for col in results_table_local.columns]
 
-    # combine remote and local results
-    combined_results = pd.merge(results_table_remote, results_table_local, on='Engine', how='outer')
-    combined_results = combined_results.reindex(columns=['Engine'] + sorted(combined_results.columns[1:]))
-    combined_results['Compat'] = combined_results['Compat (R)']
-    combined_results.drop(columns=['Compat (R)', 'Compat (L)'], inplace=True)
+    # Combine remote and local results
+    combined_results = pd.merge(results_table_remote, results_table_local, on=indexname_engine, how='outer')
+    combined_results = combined_results.reindex(columns=[indexname_engine] + sorted(combined_results.columns[1:]))
+    combined_results[colname_compat] = combined_results[f"{colname_compat}{suffix_remote}"]
+    combined_results.drop(columns=[f"{colname_compat}{suffix_remote}", f"{colname_compat}{suffix_local}"], inplace=True)
 
-    cols_order = ['Engine', \
-                'Compat', \
-                'pass / FAIL (R)', 'pass / FAIL (L)',\
-                'Type (R)', \
-                'Error (R)', 'Error (L)', \
-                'd1 (R)', 'd1 (L)']
+    # Define the order of columns
+    cols_order = [
+        indexname_engine, 
+        colname_compat, 
+        f"{colname_pass_fail}{suffix_remote}", f"{colname_pass_fail}{suffix_local}", 
+        f"{colname_error}{suffix_remote}", f"{colname_error}{suffix_local}", 
+        f"{colname_type}{suffix_remote}",
+        f"{colname_d1}{suffix_remote}", f"{colname_d1}{suffix_local}"
+    ]
 
     combined_results = combined_results[cols_order]
 
+    # Save the results to a Markdown file with utf-8 encoding
     path_to_results = os.path.join(test_folder, 'results_compatibility_biosimulators.md')
     print('Saving results to:', path_to_results)
-    with open(path_to_results, 'w') as f:
+    with open(path_to_results, 'w', encoding='utf-8') as f:
         f.write(combined_results.to_markdown())
 
     print('Number of columns in md table:', len(combined_results.columns))
