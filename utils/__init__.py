@@ -109,7 +109,7 @@ engines = {
         'status': ""
     },
     'smoldyn': {
-        'formats': ['unclear'],
+        'formats': [('smoldyn', 'sedml')],
         'url': 'https://smoldyn.readthedocs.io/en/latest/python/api.html#sed-ml-combine-biosimulators-api',
         'status': ""
     },
