@@ -1245,8 +1245,9 @@ def create_combined_results_table(results_remote,
     combined_results = pd.merge(results_table_remote, results_table_local, on='Engine', how='outer')
     combined_results = combined_results.reindex(columns=['Engine'] + sorted(combined_results.columns[1:]))
 
-    cols_order = ['Engine', 'pass / FAIL (R)', 'pass / FAIL (L)',\
+    cols_order = ['Engine', \
                 'Compat (R)', 'Compat (L)', \
+                'pass / FAIL (R)', 'pass / FAIL (L)',\
                 'Type (R)', \
                 'Error (R)', 'Error (L)', \
                 'd1 (R)', 'd1 (L)']
