@@ -12,9 +12,6 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".
 import utils
 import argparse
 
-engines = utils.engines
-types_dict = utils.types_dict
-
 # Save the current working directory
 cwd = os.getcwd()
 print('Current working directory:', cwd)
@@ -44,5 +41,5 @@ print('d1 plots will be saved in:', d1_plots_remote_dir)
 results_remote = utils.run_biosimulators_remotely(sedml_file_name=sedml_file_name, 
                                     sbml_file_name=sbml_file_name,
                                     d1_plots_remote_dir=d1_plots_remote_dir, 
-                                    engines=engines, test_folder=test_folder)
+                                    test_folder=test_folder)
     

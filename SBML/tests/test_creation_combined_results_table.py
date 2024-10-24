@@ -4,7 +4,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".
 import utils
 import argparse
 
-engines = utils.engines
+engines = utils.ENGINES
 
 # Save the current working directory
 cwd = os.getcwd()
@@ -40,7 +40,6 @@ results_table = utils.create_combined_results_table(results_remote,
                                   sbml_file_name, 
                                   d1_plots_local_dir, 
                                   d1_plots_remote_dir,
-                                  engines=engines, 
                                   test_folder='tests')
 
 print(results_table)
