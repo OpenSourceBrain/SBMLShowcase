@@ -22,7 +22,7 @@ from pyneuroml import biosimulations
 import pandas as pd
 from requests.exceptions import HTTPError 
 
-engines = {
+ENGINES = {
     'amici': {
         'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_AMICI/',
@@ -131,7 +131,7 @@ engines = {
 }
 
 
-types_dict = {
+TYPES = {
                 'sbml':'SBML',\
                 'sedml':'SED-ML',\
                 'nml':'NeuroML',\
@@ -145,6 +145,13 @@ types_dict = {
                 'xml':'XML'\
              }
 
+# define the column headers for the markdown table
+ERROR = 'Error'
+PASS_FAIL = 'pass / FAIL'
+TYPE = 'Type'
+COMPAT = 'Compatibility'
+D1 = 'd1'
+ENGINE = 'Engine'
 
 #define error categories for detailed error counting per engine
 # (currently only tellurium)
@@ -332,7 +339,7 @@ def find_files(directory, extension):
 def move_d1_files(file_paths, plot_dir='d1_plots'):
     for fpath in file_paths:
         # find engine.keys() in the file path and asign to engine
-        engine = next((e for e in engines.keys() if e in fpath), 'unknown')
+        engine = next((e for e in ENGINES.keys() if e in fpath), 'unknown')
         new_file_path = os.path.join(plot_dir, f'{engine}_{os.path.basename(fpath)}')
         if not os.path.exists(plot_dir): os.makedirs(plot_dir, exist_ok=True)
         if os.path.exists(new_file_path): os.remove(new_file_path)
@@ -361,14 +368,14 @@ def find_file_in_dir(file_name, directory):
 
 
 # write definition to create d1 plots dict
-def d1_plots_dict(engines=engines, d1_plots_path='d1_plots'):
+def d1_plots_dict(d1_plots_path='d1_plots'):
     """
     Create a dictionary with engine names as keys and d1 plot paths as values.
     """
     d1_plots = find_files(d1_plots_path, '.pdf')
     # to fix broken links in output table after changing the file structure, remove the first two parts of the path
     d1_plots = [os.path.join(*Path(d1_plot).parts[1:]) for d1_plot in d1_plots]
-    d1_plots_dict = {e: d1_plot for e in engines.keys() for d1_plot in d1_plots if e in d1_plot}
+    d1_plots_dict = {e: d1_plot for e in ENGINES.keys() for d1_plot in d1_plots if e in d1_plot}
     
     return d1_plots_dict
 
@@ -433,19 +440,19 @@ def display_error_message(error_message):
         display_markdown(f'{error_message}', raw=True)
     return error_message
 
-def check_file_compatibility_test(engine, types_dict, model_filepath, experiment_filepath):
+def check_file_compatibility_test(engine, model_filepath, experiment_filepath):
     '''
     Check if the file extensions suggest the file types are compatible with the engine.
     This is done by comparing the file extensions of the model and experiment files with the file types supported by the engine.
     For SED-ML files, the expected file extension is '.sedml'. For SBML files, the expected file extension is '.sbml'.
     '''
     input_filetypes_tuple = get_filetypes(model_filepath, experiment_filepath)
-    engine_filetypes_tuple_list = engines[engine]['formats']
+    engine_filetypes_tuple_list = ENGINES[engine]['formats']
     flat_engine_filetypes_tuple_list = [item for sublist in engine_filetypes_tuple_list for item in sublist if sublist != 'unclear']
-    compatible_filetypes = [types_dict[i] for i in flat_engine_filetypes_tuple_list if i in list(types_dict.keys())]
+    compatible_filetypes = [TYPES[i] for i in flat_engine_filetypes_tuple_list if i in list(TYPES.keys())]
 
     if input_filetypes_tuple in engine_filetypes_tuple_list:
-        file_types = [types_dict[i] for i in input_filetypes_tuple]
+        file_types = [TYPES[i] for i in input_filetypes_tuple]
         return 'pass', (f"The file extensions {input_filetypes_tuple} suggest the input file types are '{file_types}'. {compatible_filetypes} are compatible with {engine}")
     if 'xml' in input_filetypes_tuple:
         return 'unsure', (f"The file extensions of the input files are '{input_filetypes_tuple}'. These may be compatible with {engine}. {compatible_filetypes} are compatible with {engine}")
@@ -1070,83 +1077,76 @@ def unzip_file(file_path, output_dir=None):
 
     return file_path
 
-def create_results_table(results, types_dict, sbml_filepath, sedml_filepath, engines, output_dir):
+def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
     """
     Create a markdown table of the results.
     
-    Input: results, types_dict, sbml_filepath, sedml_filepath, engines, output_dir
+    Input: results, TYPES, sbml_filepath, sedml_filepath, ENGINES, output_dir
     Output: results_md_table
 
     """
     
-    link_green_square = "https://via.placeholder.com/15/00dd00/00dd00.png"
-    link_orange_square = "https://via.placeholder.com/15/ec9706/ec9706.png"
-    link_red_square = "https://via.placeholder.com/15/dd0000/dd0000.png"
-
     pass_html = "&#9989;"
     fail_html = "&#10060;"
     warning_html = "&#9888;"
     xfail_html = "&#10062;"
 
-    colname_error = 'Error'
-    colname_pass_fail = 'pass / FAIL'
-    colname_type = 'Type'
-    colname_compat = 'Compat'
-    colname_d1 = 'd1'
-    indexname_engine = 'Engine'
-
     # Create a table of the results
     results_table = pd.DataFrame.from_dict(results).T
     # if list is three elements 
     if results_table.shape[1] == 3:
-        results_table.columns = [colname_pass_fail, colname_error, colname_type]
+        results_table.columns = [PASS_FAIL, ERROR, TYPE]
     elif results_table.shape[1] == 2:
-        results_table.columns = [colname_pass_fail, colname_error]
+        results_table.columns = [PASS_FAIL, ERROR]
 
-    results_table.index.name =  indexname_engine
+    results_table.index.name =  ENGINE
     results_table.reset_index(inplace=True)
 
     # Error
-    results_table[colname_error] = results_table.apply(lambda x: None if x[colname_pass_fail] == x[colname_error] else x[colname_error], axis=1)
-    results_table[colname_pass_fail] = results_table[colname_pass_fail].replace('other', 'FAIL')
+    results_table[ERROR] = results_table.apply(lambda x: None if x[PASS_FAIL] == x[ERROR] else x[ERROR], axis=1)
+    results_table[PASS_FAIL] = results_table[PASS_FAIL].replace('other', 'FAIL')
     
-    results_table[colname_error] = results_table[colname_error].apply(lambda x: ansi_to_html(x))
-    results_table[colname_error] = results_table[colname_error].apply(lambda x: collapsible_content(x))
+    results_table[ERROR] = results_table[ERROR].apply(lambda x: ansi_to_html(x))
+    results_table[ERROR] = results_table[ERROR].apply(lambda x: collapsible_content(x))
 
-    # compatibility_message
-    results_table[colname_compat] = results_table[indexname_engine].apply(lambda x: check_file_compatibility_test(x, types_dict, sbml_filepath, sedml_filepath))
-    results_table[colname_compat] = results_table[colname_compat].apply(lambda x: collapsible_content(x[1], title=x[0]))
-    results_table[colname_compat] = results_table[colname_compat].apply(lambda x: 
-                                                        f'{fail_html}{x}' if 'FAIL' in x else 
-                                                        f'{warning_html}{x}' if 'xml' in x or 'unsure' in x else 
-                                                        f'{pass_html}{x}' if 'pass' in x else x)
-
-    results_table[colname_pass_fail] = results_table[colname_pass_fail].apply(lambda x: f'{fail_html}{x}' if x == 'FAIL' \
+    results_table[PASS_FAIL] = results_table[PASS_FAIL].apply(lambda x: f'{fail_html}{x}' if x == 'FAIL' \
                                                                         else f'{pass_html}{x}' if x == 'pass' else x)
-                                                                       
+                                                          
     # d1 plot clickable link
-    results_table[colname_d1] = results_table[indexname_engine].apply(lambda x: d1_plots_dict(engines, output_dir).get(x, None))
-    results_table[colname_d1] = results_table[colname_d1].apply(lambda x: create_hyperlink(x,title='plot'))
+    results_table[D1] = results_table[ENGINE].apply(lambda x: d1_plots_dict(output_dir).get(x, None))
+    results_table[D1] = results_table[D1].apply(lambda x: create_hyperlink(x,title='plot'))
 
-    if colname_type in results_table.columns:
-        results_table[colname_type] = results_table[colname_type].apply(lambda x: collapsible_content(x,"".join(re.findall(r'[A-Z]', x))))
+    if TYPE in results_table.columns:
+        results_table[TYPE] = results_table[TYPE].apply(lambda x: collapsible_content(x,"".join(re.findall(r'[A-Z]', x))))
 
-    sbml_incompatible_engines = [e for e in engines.keys() if 'sbml' not in engines[e]['formats'][0]]
+    for e in ENGINES.keys():
+        compatibility_content = check_file_compatibility_test(e, sbml_filepath, sedml_filepath)
 
-    for engine in sbml_incompatible_engines:
-        results_table.loc[results_table[indexname_engine] == engine, colname_pass_fail] = f'{xfail_html}xfail'
-        compatibility_content = check_file_compatibility_test(engine, types_dict, sbml_filepath, sedml_filepath)
-        results_table.loc[results_table[indexname_engine] == engine, colname_compat] = collapsible_content(compatibility_content[1], title=f'{xfail_html}xfail')
+        print(e, compatibility_content[0] )
+        if compatibility_content[0] == 'pass':
+            results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{pass_html}pass')
+        elif compatibility_content[0] == 'unsure':
+            results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{warning_html}unsure')
+        else:
+            results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{fail_html}FAIL')
+
+    # add xfail to engines that do not support sbml
+    sbml_incompatible_ENGINES = [e for e in ENGINES.keys() if 'sbml' not in ENGINES[e]['formats'][0]]
+    for e in sbml_incompatible_ENGINES:
+        compatibility_content = check_file_compatibility_test(e, sbml_filepath, sedml_filepath)
+        results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{xfail_html}xfail')
+        results_table.loc[results_table[ENGINE] == e, PASS_FAIL] = f'{xfail_html}xfail' 
+           
         
-    results_table[indexname_engine] = results_table[indexname_engine].apply(lambda x:  collapsible_content(f'{engines[x]["url"]}<br>{engines[x]["status"]}', x))
+    # add status message defined in ENGINES
+    results_table[ENGINE] = results_table[ENGINE].apply(lambda x:  collapsible_content(f'{ENGINES[x]["url"]}<br>{ENGINES[x]["status"]}', x))
 
     return results_table
 
 
 def run_biosimulators_remotely(sedml_file_name, 
                                sbml_file_name, 
-                               d1_plots_remote_dir, 
-                               engines=engines, 
+                               d1_plots_remote_dir,  
                                test_folder='tests'):
     
     """ run with directory pointing towards the location of the sedml and sbml files"""
@@ -1155,7 +1155,7 @@ def run_biosimulators_remotely(sedml_file_name,
     remote_output_dir = os.path.join(test_folder, remote_output_dir)
 
     download_links_dict = dict()
-    for e in engines.keys():
+    for e in ENGINES.keys():
         download_link = run_biosimulators_remote(e, sedml_file_name, sbml_file_name)
         download_links_dict[e] = download_link
 
@@ -1205,14 +1205,13 @@ def run_biosimulators_remotely(sedml_file_name,
 def run_biosimulators_locally(sedml_file_name, 
                               sbml_file_name, 
                               d1_plots_local_dir, 
-                              engines=engines, 
                               test_folder='tests'):
     results_local = {}
 
     output_folder = 'local_results'
     local_output_dir = os.path.join(test_folder, output_folder)
 
-    for e in engines.keys():
+    for e in ENGINES.keys():
         print('Running ' + e)
         local_output_dir_e = os.path.abspath(os.path.join(local_output_dir, e))
         print(local_output_dir_e)
@@ -1238,42 +1237,33 @@ def create_combined_results_table(results_remote,
                                   sbml_file_name, 
                                   d1_plots_local_dir, 
                                   d1_plots_remote_dir,
-                                  engines=engines, 
                                   test_folder='tests'):
-    
-    # Define constants inside the function
-    colname_error = 'Error'
-    colname_pass_fail = 'pass / FAIL'
-    colname_type = 'Type'
-    colname_compat = 'Compat'
-    colname_d1 = 'd1'
-    indexname_engine = 'Engine'
 
     suffix_remote = ' (R)'
     suffix_local = ' (L)'
     
     # Create results tables for remote and local results
-    results_table_remote = create_results_table(results_remote, types_dict, sbml_file_name, sedml_file_name, engines, d1_plots_remote_dir)
-    results_table_local = create_results_table(results_local, types_dict, sbml_file_name, sedml_file_name, engines, d1_plots_local_dir)
+    results_table_remote = create_results_table(results_remote, sbml_file_name, sedml_file_name, d1_plots_remote_dir)
+    results_table_local = create_results_table(results_local, sbml_file_name, sedml_file_name, d1_plots_local_dir)
 
     # Rename columns to distinguish between local and remote results except for Engine column
-    results_table_remote.columns = [f"{col}{suffix_remote}" if col != indexname_engine else col for col in results_table_remote.columns]
-    results_table_local.columns = [f"{col}{suffix_local}" if col != indexname_engine else col for col in results_table_local.columns]
+    results_table_remote.columns = [f"{col}{suffix_remote}" if col != ENGINE else col for col in results_table_remote.columns]
+    results_table_local.columns = [f"{col}{suffix_local}" if col != ENGINE else col for col in results_table_local.columns]
 
     # Combine remote and local results
-    combined_results = pd.merge(results_table_remote, results_table_local, on=indexname_engine, how='outer')
-    combined_results = combined_results.reindex(columns=[indexname_engine] + sorted(combined_results.columns[1:]))
-    combined_results[colname_compat] = combined_results[f"{colname_compat}{suffix_remote}"]
-    combined_results.drop(columns=[f"{colname_compat}{suffix_remote}", f"{colname_compat}{suffix_local}"], inplace=True)
+    combined_results = pd.merge(results_table_remote, results_table_local, on=ENGINE, how='outer')
+    combined_results = combined_results.reindex(columns=[ENGINE] + sorted(combined_results.columns[1:]))
+    combined_results[COMPAT] = combined_results[f"{COMPAT}{suffix_remote}"]
+    combined_results.drop(columns=[f"{COMPAT}{suffix_remote}", f"{COMPAT}{suffix_local}"], inplace=True)
 
     # Define the order of columns
     cols_order = [
-        indexname_engine, 
-        colname_compat, 
-        f"{colname_pass_fail}{suffix_remote}", f"{colname_pass_fail}{suffix_local}", 
-        f"{colname_error}{suffix_remote}", f"{colname_error}{suffix_local}", 
-        f"{colname_type}{suffix_remote}",
-        f"{colname_d1}{suffix_remote}", f"{colname_d1}{suffix_local}"
+        ENGINE, 
+        COMPAT, 
+        f"{PASS_FAIL}{suffix_remote}", f"{PASS_FAIL}{suffix_local}", 
+        f"{ERROR}{suffix_remote}", f"{ERROR}{suffix_local}", 
+        f"{TYPE}{suffix_remote}",
+        f"{D1}{suffix_remote}", f"{D1}{suffix_local}"
     ]
 
     combined_results = combined_results[cols_order]
@@ -1295,17 +1285,17 @@ def run_biosimulators_remotely_and_locally(sedml_file_name,
                                  sbml_file_name,
                                  d1_plots_remote_dir, 
                                  d1_plots_local_dir,
-                                 engines=engines, test_folder='tests'):
+                                 test_folder='tests'):
     
     results_remote = run_biosimulators_remotely(sedml_file_name=sedml_file_name, 
                                     sbml_file_name=sbml_file_name,
                                     d1_plots_remote_dir=d1_plots_remote_dir, 
-                                    engines=engines, test_folder=test_folder)
+                                    test_folder=test_folder)
     
     results_local = run_biosimulators_locally(sedml_file_name=sedml_file_name, 
                                     sbml_file_name=sbml_file_name,
                                     d1_plots_local_dir=d1_plots_local_dir, 
-                                    engines=engines, test_folder=test_folder)
+                                    test_folder=test_folder)
 
     results_table = create_combined_results_table(results_remote, 
                                     results_local, 
@@ -1313,7 +1303,6 @@ def run_biosimulators_remotely_and_locally(sedml_file_name,
                                     sbml_file_name=sbml_file_name,
                                     d1_plots_local_dir=d1_plots_local_dir,
                                     d1_plots_remote_dir=d1_plots_remote_dir, 
-                                    engines=engines, 
                                     test_folder=test_folder)
     
     return results_table
