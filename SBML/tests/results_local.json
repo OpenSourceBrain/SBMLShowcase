@@ -1,0 +1,86 @@
+{
+    "amici": {
+        "status": "pass",
+        "error_message": ""
+    },
+    "brian2": {
+        "status": "FAIL",
+        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/brian2' returned non-zero exit status 1```"
+    },
+    "bionetgen": {
+        "status": "FAIL",
+        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/bionetgen' returned non-zero exit status 1```"
+    },
+    "boolnet": {
+        "status": "FAIL",
+        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/boolnet' returned non-zero exit status 1```"
+    },
+    "cbmpy": {
+        "status": "FAIL",
+        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/cbmpy' returned non-zero exit status 1```"
+    },
+    "cobrapy": {
+        "status": "FAIL",
+        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/cobrapy' returned non-zero exit status 1```"
+    },
+    "copasi": {
+        "status": "pass",
+        "error_message": ""
+    },
+    "gillespy2": {
+        "status": "pass",
+        "error_message": ""
+    },
+    "ginsim": {
+        "status": "FAIL",
+        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/ginsim' returned non-zero exit status 1```"
+    },
+    "libsbmlsim": {
+        "status": "pass",
+        "error_message": ""
+    },
+    "masspy": {
+        "status": "FAIL",
+        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/masspy' returned non-zero exit status 1```"
+    },
+    "netpyne": {
+        "status": "FAIL",
+        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/netpyne' returned non-zero exit status 1```"
+    },
+    "neuron": {
+        "status": "FAIL",
+        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/neuron' returned non-zero exit status 1```"
+    },
+    "opencor": {
+        "status": "FAIL",
+        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/opencor' returned non-zero exit status 1```"
+    },
+    "pyneuroml": {
+        "status": "FAIL",
+        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/pyneuroml' returned non-zero exit status 1```"
+    },
+    "pysces": {
+        "status": "FAIL",
+        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/pysces' returned non-zero exit status 1```"
+    },
+    "rbapy": {
+        "status": "FAIL",
+        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/rbapy' returned non-zero exit status 1```"
+    },
+    "smoldyn": {
+        "status": "FAIL",
+        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/smoldyn' returned non-zero exit status 1```"
+    },
+    "tellurium": {
+        "status": "pass",
+        "error_message": ""
+    },
+    "vcell": {
+        "status": "FAIL",
+        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/vcell' returned non-zero exit status 1```"
+    },
+    "xpp": {
+        "status": "FAIL",
+        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/xpp' returned non-zero exit status 1```"
+    }
+}

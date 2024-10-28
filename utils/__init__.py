@@ -380,15 +380,15 @@ def d1_plots_dict(d1_plots_path='d1_plots'):
     return d1_plots_dict
 
 
-def create_hyperlink(file_path, title=None):
+def create_hyperlink(path, title=None):
     """
     Create a hyperlink to a file or folder. If the path is None, return None.
     Title is the basename of the path.
     """
-    if file_path:
+    if path:
         if title is None:
-            title = os.path.basename(file_path)
-        return f'<a href="{file_path}">{title}</a>'
+            title = os.path.basename(path)
+        return f'<a href="{path}">{title}</a>'
     else:
         return None
     
@@ -583,7 +583,7 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='out
         gid = os.getgid()
         os.system(f'sudo chown -R {uid}:{gid} {output_dir}')
 
-    if not error_str: return "pass"
+    if not error_str: return {"status": 'pass', "error_message": ''}
 
     # #try to load the cleaner error message from the log.yml file
     log_str = read_log_yml(os.path.join(os.path.dirname(omex_filepath),"log.yml"))
@@ -599,7 +599,7 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='out
             if re.search(error_categories[engine][tag],error_str):
                 return [tag,f"```{error_str}```"]
     
-    return ["other",f"```{error_str}```"]
+    return {"status":"FAIL", "error_message": f"```{error_str}```"}
 
 def biosimulators_core(engine,omex_filepath,output_dir=None):
     '''
@@ -1090,20 +1090,17 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
     xfail_html = "&#10062;"
     xfail_html = "&#9888; XFAIL"
 
-    # Create a table of the results
+    for e in results.keys():
+        results[e]['combi'] = '<br>'.join([f'{create_hyperlink(results[e][k], title=k)}' for k in results[e].keys() if k in ['view', 'download', 'logs']])
+
     results_table = pd.DataFrame.from_dict(results).T
-    # if list is three elements 
-    if results_table.shape[1] > 2:
-        results_table.columns = [PASS_FAIL, ERROR, TYPE]
-    elif results_table.shape[1] == 2:
-        results_table.columns = [PASS_FAIL, ERROR]
+    results_table.rename(columns={"status": PASS_FAIL, "error_message": ERROR, "exception_type": TYPE}, inplace=True)
 
     results_table.index.name =  ENGINE
     results_table.reset_index(inplace=True)
 
     # Error
     results_table[ERROR] = results_table.apply(lambda x: None if x[PASS_FAIL] == x[ERROR] else x[ERROR], axis=1)
-    results_table[PASS_FAIL] = results_table[PASS_FAIL].replace('other', 'FAIL')
     
     results_table[ERROR] = results_table[ERROR].apply(lambda x: ansi_to_html(x))
     results_table[ERROR] = results_table[ERROR].apply(lambda x: collapsible_content(x))
@@ -1120,8 +1117,6 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
 
     for e in ENGINES.keys():
         compatibility_content = check_file_compatibility_test(e, sbml_filepath, sedml_filepath)
-
-        print(e, compatibility_content[0] )
         if compatibility_content[0] == 'pass':
             results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{pass_html}')
         elif compatibility_content[0] == 'unsure':
@@ -1135,10 +1130,12 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
         compatibility_content = check_file_compatibility_test(e, sbml_filepath, sedml_filepath)
         results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{xfail_html}')
         results_table.loc[results_table[ENGINE] == e, PASS_FAIL] = f'{xfail_html}' 
-           
-        
+
+    # for PASS_FAIL column in results_table, add collapsible content (add content from combi col if it exists) but keep titles the same as the content at the momtn
+    results_table[PASS_FAIL] = results_table.apply(lambda x: collapsible_content(x['combi'], x[PASS_FAIL]), axis=1)
+
     # add status message defined in ENGINES
-    results_table[ENGINE] = results_table[ENGINE].apply(lambda x:  collapsible_content(f'{ENGINES[x]["url"]}<br>{ENGINES[x]["status"]}', x))
+    results_table[ENGINE] = results_table[ENGINE].apply(lambda x:  collapsible_content(f'{ENGINES[x]["url"]}<br>{ENGINES[x]["status"]}', x))        
 
     return results_table
 
@@ -1153,13 +1150,13 @@ def run_biosimulators_remotely(sedml_file_name,
     remote_output_dir = 'remote_results'
     remote_output_dir = os.path.join(test_folder, remote_output_dir)
 
-    results_urls = dict()
-    for e in ENGINES.keys():
-        results_urls[e] = run_biosimulators_remote(e, sedml_file_name, sbml_file_name)
-
-    extract_dir_dict = dict()
     results_remote = dict()
-    for e, link in results_urls.items():
+    for e in ENGINES.keys():
+        results_remote[e] = run_biosimulators_remote(e, sedml_file_name, sbml_file_name)
+        results_remote[e]['response']  = results_remote[e]['response'].status_code
+        
+    extract_dir_dict = dict()
+    for e, link in results_remote.items():
         try:
             extract_dir = get_remote_results(e, link["download"], remote_output_dir)
         except HTTPError as emessage:
@@ -1188,7 +1185,9 @@ def run_biosimulators_remotely(sedml_file_name,
                 exception_type = exception['type'] 
             else:
                 status = None
-            results_remote[e] = [status, error_message, exception_type, results_urls] 
+            results_remote[e]["status"] = status
+            results_remote[e]["error_message"] = error_message
+            results_remote[e]["exception_type"] = exception_type
 
     file_paths = find_files(remote_output_dir, '.pdf')
     move_d1_files(file_paths, d1_plots_remote_dir)
@@ -1213,8 +1212,7 @@ def run_biosimulators_locally(sedml_file_name,
         print('Running ' + e)
         local_output_dir_e = os.path.abspath(os.path.join(local_output_dir, e))
         print(local_output_dir_e)
-        record = run_biosimulators_docker(e, sedml_file_name, sbml_file_name, output_dir=local_output_dir_e)
-        results_local[e] = record
+        results_local[e] = run_biosimulators_docker(e, sedml_file_name, sbml_file_name, output_dir=local_output_dir_e)
 
     file_paths = find_files(local_output_dir, '.pdf')
     print('file paths:', file_paths)
@@ -1226,8 +1224,6 @@ def run_biosimulators_locally(sedml_file_name,
         print('Removed ' + local_output_dir + ' folder')
 
     return results_local
-
-
 
 def create_combined_results_table(results_remote, 
                                   results_local, 
@@ -1242,7 +1238,16 @@ def create_combined_results_table(results_remote,
     
     # Create results tables for remote and local results
     results_table_remote = create_results_table(results_remote, sbml_file_name, sedml_file_name, d1_plots_remote_dir)
+    # save as md file
+    path_to_results = os.path.join(test_folder, 'results_remote.md')
+    with open(path_to_results, 'w', encoding='utf-8') as f:
+        f.write(results_table_remote.to_markdown())
+    
     results_table_local = create_results_table(results_local, sbml_file_name, sedml_file_name, d1_plots_local_dir)
+    # save as md file
+    path_to_results = os.path.join(test_folder, 'results_local.md')
+    with open(path_to_results, 'w', encoding='utf-8') as f:
+        f.write(results_table_local.to_markdown())
 
     # Rename columns to distinguish between local and remote results except for Engine column
     results_table_remote.columns = [f"{col}{suffix_remote}" if col != ENGINE else col for col in results_table_remote.columns]

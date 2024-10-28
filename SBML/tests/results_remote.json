@@ -1,0 +1,191 @@
+{
+    "amici": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/671f7f46f9c43d155d41845a",
+        "download": "https://api.biosimulations.org/results/671f7f46f9c43d155d41845a/download",
+        "logs": "https://api.biosimulations.org/logs/671f7f46f9c43d155d41845a?includeOutput=true",
+        "status": "pass",
+        "error_message": "",
+        "exception_type": ""
+    },
+    "brian2": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/671f7f48f9c43d155d41845d",
+        "download": "https://api.biosimulations.org/results/671f7f48f9c43d155d41845d/download",
+        "logs": "https://api.biosimulations.org/logs/671f7f48f9c43d155d41845d?includeOutput=true",
+        "status": "FAIL",
+        "error_message": "No module named 'libsbml'",
+        "exception_type": "ModuleNotFoundError"
+    },
+    "bionetgen": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/671f7f4a953bc3bf105eaace",
+        "download": "https://api.biosimulations.org/results/671f7f4a953bc3bf105eaace/download",
+        "logs": "https://api.biosimulations.org/logs/671f7f4a953bc3bf105eaace?includeOutput=true",
+        "status": "FAIL",
+        "error_message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Language for model `net1` is not supported.\n      - Model language `urn:sedml:language:sbml` is not supported. Models must be in BNGL format (e.g., `sed:model/@language` must match `^urn:sedml:language:bngl(\\.|$)` such as `urn:sedml:language:bngl`).",
+        "exception_type": "CombineArchiveExecutionError"
+    },
+    "boolnet": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/671f7f4db741155bbe286d4d",
+        "download": "https://api.biosimulations.org/results/671f7f4db741155bbe286d4d/download",
+        "logs": "https://api.biosimulations.org/logs/671f7f4db741155bbe286d4d?includeOutput=true",
+        "status": "FAIL",
+        "error_message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Simulation `sim1` is invalid.\n      - Number of points (20000) must be equal to the difference between the output end (200.0) and start times (0.0).",
+        "exception_type": "CombineArchiveExecutionError"
+    },
+    "cbmpy": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/671f7f4f953bc3bf105eaad2",
+        "download": "https://api.biosimulations.org/results/671f7f4f953bc3bf105eaad2/download",
+        "logs": "https://api.biosimulations.org/logs/671f7f4f953bc3bf105eaad2?includeOutput=true",
+        "status": "FAIL",
+        "error_message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    UniformTimeCourseSimulation `sim1` is not supported.\n      - Simulation sim1 of type `UniformTimeCourseSimulation` is not supported. Simulation must be an instance of one of the following:\n          - SteadyStateSimulation",
+        "exception_type": "CombineArchiveExecutionError"
+    },
+    "cobrapy": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/671f7f51f9c43d155d418465",
+        "download": "https://api.biosimulations.org/results/671f7f51f9c43d155d418465/download",
+        "logs": "https://api.biosimulations.org/logs/671f7f51f9c43d155d418465?includeOutput=true",
+        "status": "FAIL",
+        "error_message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    UniformTimeCourseSimulation `sim1` is not supported.\n      - Simulation sim1 of type `UniformTimeCourseSimulation` is not supported. Simulation must be an instance of one of the following:\n          - SteadyStateSimulation",
+        "exception_type": "CombineArchiveExecutionError"
+    },
+    "copasi": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/671f7f53b741155bbe286d56",
+        "download": "https://api.biosimulations.org/results/671f7f53b741155bbe286d56/download",
+        "logs": "https://api.biosimulations.org/logs/671f7f53b741155bbe286d56?includeOutput=true",
+        "status": "pass",
+        "error_message": "",
+        "exception_type": ""
+    },
+    "gillespy2": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/671f7f56b741155bbe286d59",
+        "download": "https://api.biosimulations.org/results/671f7f56b741155bbe286d59/download",
+        "logs": "https://api.biosimulations.org/logs/671f7f56b741155bbe286d59?includeOutput=true",
+        "status": "pass",
+        "error_message": "",
+        "exception_type": ""
+    },
+    "ginsim": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/671f7f59b741155bbe286d5c",
+        "download": "https://api.biosimulations.org/results/671f7f59b741155bbe286d5c/download",
+        "logs": "https://api.biosimulations.org/logs/671f7f59b741155bbe286d5c?includeOutput=true",
+        "status": "FAIL",
+        "error_message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Simulation `sim1` is invalid.\n      - The interval between the output start and time time must be an integer multiple of the number of steps, not `0.01`:\n          Output start time: 0.0\n          Output end time: 200.0\n          Number of steps: 20000",
+        "exception_type": "CombineArchiveExecutionError"
+    },
+    "libsbmlsim": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/671f7f5b953bc3bf105eaaeb",
+        "download": "https://api.biosimulations.org/results/671f7f5b953bc3bf105eaaeb/download",
+        "logs": "https://api.biosimulations.org/logs/671f7f5b953bc3bf105eaaeb?includeOutput=true",
+        "status": "pass",
+        "error_message": "",
+        "exception_type": ""
+    },
+    "masspy": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/671f7f5e953bc3bf105eaaf4",
+        "download": "https://api.biosimulations.org/results/671f7f5e953bc3bf105eaaf4/download",
+        "logs": "https://api.biosimulations.org/logs/671f7f5e953bc3bf105eaaf4?includeOutput=true",
+        "status": "FAIL",
+        "error_message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Something went wrong reading the SBML model. Most likely the SBML model is not valid. Please check that your model is valid using the `mass.io.sbml.validate_sbml_model` function or via the online validator at http://sbml.org/validator .\n    \t`(model, errors) = validate_sbml_model(filename)`\n    If the model is valid and cannot be read please open an issue at https://github.com/SBRG/masspy/issues .",
+        "exception_type": "CombineArchiveExecutionError"
+    },
+    "netpyne": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/671f7f60f9c43d155d41848c",
+        "download": "https://api.biosimulations.org/results/671f7f60f9c43d155d41848c/download",
+        "logs": "https://api.biosimulations.org/logs/671f7f60f9c43d155d41848c?includeOutput=true",
+        "status": "FAIL",
+        "error_message": "No module named 'libsbml'",
+        "exception_type": "ModuleNotFoundError"
+    },
+    "neuron": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/671f7f62b741155bbe286d88",
+        "download": "https://api.biosimulations.org/results/671f7f62b741155bbe286d88/download",
+        "logs": "https://api.biosimulations.org/logs/671f7f62b741155bbe286d88?includeOutput=true",
+        "status": "FAIL",
+        "error_message": "No module named 'libsbml'",
+        "exception_type": "ModuleNotFoundError"
+    },
+    "opencor": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/671f7f64f9c43d155d4184a0",
+        "download": "https://api.biosimulations.org/results/671f7f64f9c43d155d4184a0/download",
+        "logs": "https://api.biosimulations.org/logs/671f7f64f9c43d155d4184a0?includeOutput=true",
+        "status": "FAIL",
+        "error_message": "No module named 'libsbml'",
+        "exception_type": "ModuleNotFoundError"
+    },
+    "pyneuroml": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/671f7f66b741155bbe286da5",
+        "download": "https://api.biosimulations.org/results/671f7f66b741155bbe286da5/download",
+        "logs": "https://api.biosimulations.org/logs/671f7f66b741155bbe286da5?includeOutput=true",
+        "status": "FAIL",
+        "error_message": "No module named 'libsbml'",
+        "exception_type": "ModuleNotFoundError"
+    },
+    "pysces": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/671f7f69b741155bbe286db8",
+        "download": "https://api.biosimulations.org/results/671f7f69b741155bbe286db8/download",
+        "logs": "https://api.biosimulations.org/logs/671f7f69b741155bbe286db8?includeOutput=true",
+        "status": "FAIL",
+        "error_message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    <class 'AssertionError'>:\n    Unable to generate Stoichiometric Matrix! model has:\n    0 reactions\n    0 species\n    what did you have in mind?\n    ",
+        "exception_type": "CombineArchiveExecutionError"
+    },
+    "rbapy": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/671f7f6bf9c43d155d4184c2",
+        "download": "https://api.biosimulations.org/results/671f7f6bf9c43d155d4184c2/download",
+        "logs": "https://api.biosimulations.org/logs/671f7f6bf9c43d155d4184c2?includeOutput=true",
+        "status": "FAIL",
+        "error_message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Language for model `net1` is not supported.\n      - Model language `urn:sedml:language:sbml` is not supported. Models must be in RBA format (e.g., `sed:model/@language` must match `^urn:sedml:language:rba(\\.|$)` such as `urn:sedml:language:rba`).",
+        "exception_type": "CombineArchiveExecutionError"
+    },
+    "smoldyn": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/671f7f6db741155bbe286dcb",
+        "download": "https://api.biosimulations.org/results/671f7f6db741155bbe286dcb/download",
+        "logs": "https://api.biosimulations.org/logs/671f7f6db741155bbe286dcb?includeOutput=true",
+        "status": "FAIL",
+        "error_message": "No module named 'libsbml'",
+        "exception_type": "ModuleNotFoundError"
+    },
+    "tellurium": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/671f7f6f953bc3bf105eab39",
+        "download": "https://api.biosimulations.org/results/671f7f6f953bc3bf105eab39/download",
+        "logs": "https://api.biosimulations.org/logs/671f7f6f953bc3bf105eab39?includeOutput=true",
+        "status": "pass",
+        "error_message": "",
+        "exception_type": ""
+    },
+    "vcell": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/671f7f75b741155bbe286de6",
+        "download": "https://api.biosimulations.org/results/671f7f75b741155bbe286de6/download",
+        "logs": "https://api.biosimulations.org/logs/671f7f75b741155bbe286de6?includeOutput=true",
+        "status": null,
+        "error_message": "",
+        "exception_type": ""
+    },
+    "xpp": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/671f7f77953bc3bf105eab72",
+        "download": "https://api.biosimulations.org/results/671f7f77953bc3bf105eab72/download",
+        "logs": "https://api.biosimulations.org/logs/671f7f77953bc3bf105eab72?includeOutput=true",
+        "status": "FAIL",
+        "error_message": "No module named 'libsbml'",
+        "exception_type": "ModuleNotFoundError"
+    }
+}
