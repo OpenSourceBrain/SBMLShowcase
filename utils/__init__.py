@@ -526,13 +526,11 @@ def run_biosimulators_remote(engine,sedml_filepath,sbml_filepath):
                 "email": "",
                 }
 
-    res = biosimulations.submit_simulation_archive(\
+    results_urls = biosimulations.submit_simulation_archive(\
         archive_file=omex_file_name,\
         sim_dict=sim_dict)
-    
-    download_url = res["download"]
-    
-    return download_url
+       
+    return results_urls 
 
 def get_remote_results(engine, download_link, output_dir='remote_results'):
 
@@ -1094,7 +1092,7 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
     # Create a table of the results
     results_table = pd.DataFrame.from_dict(results).T
     # if list is three elements 
-    if results_table.shape[1] == 3:
+    if results_table.shape[1] > 2:
         results_table.columns = [PASS_FAIL, ERROR, TYPE]
     elif results_table.shape[1] == 2:
         results_table.columns = [PASS_FAIL, ERROR]
@@ -1154,16 +1152,15 @@ def run_biosimulators_remotely(sedml_file_name,
     remote_output_dir = 'remote_results'
     remote_output_dir = os.path.join(test_folder, remote_output_dir)
 
-    download_links_dict = dict()
+    results_urls = dict()
     for e in ENGINES.keys():
-        download_link = run_biosimulators_remote(e, sedml_file_name, sbml_file_name)
-        download_links_dict[e] = download_link
+        results_urls[e] = run_biosimulators_remote(e, sedml_file_name, sbml_file_name)
 
     extract_dir_dict = dict()
     results_remote = dict()
-    for e, link in download_links_dict.items():
+    for e, link in results_urls.items():
         try:
-            extract_dir = get_remote_results(e, link, remote_output_dir)
+            extract_dir = get_remote_results(e, link["download"], remote_output_dir)
         except HTTPError as emessage:
             results_remote[e] = ["FAIL", str(emessage), type(emessage).__name__]
             continue
@@ -1190,7 +1187,7 @@ def run_biosimulators_remotely(sedml_file_name,
                 exception_type = exception['type'] 
             else:
                 status = None
-            results_remote[e] = [status, error_message, exception_type] 
+            results_remote[e] = [status, error_message, exception_type, results_urls] 
 
     file_paths = find_files(remote_output_dir, '.pdf')
     move_d1_files(file_paths, d1_plots_remote_dir)
