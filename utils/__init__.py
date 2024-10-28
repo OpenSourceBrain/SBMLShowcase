@@ -1084,10 +1084,11 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
 
     """
     
-    pass_html = "&#9989;"
-    fail_html = "&#10060;"
-    warning_html = "&#9888;"
+    pass_html = "&#9989; PASS"
+    fail_html = "&#10060; FAIL"
+    warning_html = "&#9888; WARNING"
     xfail_html = "&#10062;"
+    xfail_html = "&#9888; XFAIL"
 
     # Create a table of the results
     results_table = pd.DataFrame.from_dict(results).T
@@ -1107,8 +1108,8 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
     results_table[ERROR] = results_table[ERROR].apply(lambda x: ansi_to_html(x))
     results_table[ERROR] = results_table[ERROR].apply(lambda x: collapsible_content(x))
 
-    results_table[PASS_FAIL] = results_table[PASS_FAIL].apply(lambda x: f'{fail_html}{x}' if x == 'FAIL' \
-                                                                        else f'{pass_html}{x}' if x == 'pass' else x)
+    results_table[PASS_FAIL] = results_table[PASS_FAIL].apply(lambda x: f'{fail_html}' if x == 'FAIL' \
+                                                                        else f'{pass_html}' if x == 'pass' else x)
                                                           
     # d1 plot clickable link
     results_table[D1] = results_table[ENGINE].apply(lambda x: d1_plots_dict(output_dir).get(x, None))
@@ -1122,18 +1123,18 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
 
         print(e, compatibility_content[0] )
         if compatibility_content[0] == 'pass':
-            results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{pass_html}pass')
+            results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{pass_html}')
         elif compatibility_content[0] == 'unsure':
-            results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{warning_html}unsure')
+            results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{warning_html}')
         else:
-            results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{fail_html}FAIL')
+            results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{fail_html}')
 
     # add xfail to engines that do not support sbml
     sbml_incompatible_ENGINES = [e for e in ENGINES.keys() if 'sbml' not in ENGINES[e]['formats'][0]]
     for e in sbml_incompatible_ENGINES:
         compatibility_content = check_file_compatibility_test(e, sbml_filepath, sedml_filepath)
-        results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{xfail_html}xfail')
-        results_table.loc[results_table[ENGINE] == e, PASS_FAIL] = f'{xfail_html}xfail' 
+        results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{xfail_html}')
+        results_table.loc[results_table[ENGINE] == e, PASS_FAIL] = f'{xfail_html}' 
            
         
     # add status message defined in ENGINES
