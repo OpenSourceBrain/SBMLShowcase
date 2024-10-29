@@ -1094,6 +1094,14 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
         if any([l in results[e].keys() for l in links]):
             results[e]['links'] = '<br>'.join([f'{create_hyperlink(results[e][k], title=k)}' for k in results[e].keys() if k in links])
 
+    # # add error_message amd exception_type (if it exists) to underneath the links html on new lines
+    # error_info = ['error_message', 'exception_type']
+    # for e in results.keys():
+    #     if any([l in results[e].keys() for l in links]):
+    #         results[e]['links'] += '<br>' + '<br>'.join([f'{results[e][k]}' for k in results[e].keys() if k in error_info])
+    #     else:
+    #         results[e]['links'] = '<br>'.join([f'{results[e][k]}' for k in results[e].keys() if k in error_info])         
+    #   
     results_table = pd.DataFrame.from_dict(results).T
     results_table.rename(columns={"status": PASS_FAIL, "error_message": ERROR, "exception_type": TYPE}, inplace=True)
 
@@ -1102,9 +1110,9 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
 
     # Error
     results_table[ERROR] = results_table.apply(lambda x: None if x[PASS_FAIL] == x[ERROR] else x[ERROR], axis=1)
-    
     results_table[ERROR] = results_table[ERROR].apply(lambda x: ansi_to_html(x))
-    results_table[ERROR] = results_table[ERROR].apply(lambda x: collapsible_content(x))
+
+    # results_table[ERROR] = results_table[ERROR].apply(lambda x: collapsible_content(x))
 
     results_table[PASS_FAIL] = results_table[PASS_FAIL].apply(lambda x: f'{fail_html}' if x == 'FAIL' \
                                                                         else f'{pass_html}' if x == 'pass' else x)
@@ -1112,9 +1120,6 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
     # d1 plot clickable link
     results_table[D1] = results_table[ENGINE].apply(lambda x: d1_plots_dict(output_dir).get(x, None))
     results_table[D1] = results_table[D1].apply(lambda x: create_hyperlink(x,title='plot'))
-
-    if TYPE in results_table.columns:
-        results_table[TYPE] = results_table[TYPE].apply(lambda x: collapsible_content(x,"".join(re.findall(r'[A-Z]', x))))
 
     for e in ENGINES.keys():
         compatibility_content = check_file_compatibility_test(e, sbml_filepath, sedml_filepath)
@@ -1132,9 +1137,32 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
         results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{xfail_html}')
         results_table.loc[results_table[ENGINE] == e, PASS_FAIL] = f'{xfail_html}' 
 
-    # if links column exists add collapsible content to PASS_FAIL column
-    if 'links' in results_table.columns:
-        results_table[PASS_FAIL] = results_table.apply(lambda x: collapsible_content(x['links'], x[PASS_FAIL]), axis=1)
+    for e in results_table[ENGINE]:
+        # only if no 'pass' in pass / fail column
+        if results_table.loc[results_table[ENGINE] == e, PASS_FAIL].values[0] != pass_html:
+            if len(results_table.loc[results_table[ENGINE] == e, ERROR].values[0]) > 1:
+                error_message = f'<br><br>ERROR MESSAGE:<br>{results_table.loc[results_table[ENGINE] == e, ERROR].values[0]}'
+            else:
+                error_message = ""
+            if "links" in results_table.columns:
+                links = results_table.loc[results_table[ENGINE] == e, "links"].values[0]
+            else: 
+                links = ""
+            if TYPE in results_table.columns:
+                error_type = f'<br><br>ERROR TYPE:<br>{results_table.loc[results_table[ENGINE] == e, TYPE].values[0]}'
+            else:
+                error_type =""
+
+            links_error = f'{links}{error_message}{error_type}'
+            results_table.loc[results_table[ENGINE] == e, "links_error"] = links_error
+
+    # add links as collapsible content to pass fail col only if pass fail is not pass
+    for e in results_table[ENGINE]:
+        if results_table.loc[results_table[ENGINE] == e, PASS_FAIL].values[0] != pass_html:
+            # add collapsible content links_error to PASS_FAIL column
+            results_table.loc[results_table[ENGINE] == e, PASS_FAIL] = collapsible_content(results_table.loc[results_table[ENGINE] == e, "links_error"].values[0], results_table.loc[results_table[ENGINE] == e, PASS_FAIL].values[0])
+
+    # results_table[PASS_FAIL] = results_table.apply(lambda x: collapsible_content(x['links_error'], x[PASS_FAIL]), axis=1)
 
     # add status message defined in ENGINES
     results_table[ENGINE] = results_table[ENGINE].apply(lambda x:  collapsible_content(f'{ENGINES[x]["url"]}<br>{ENGINES[x]["status"]}', x))        
@@ -1266,8 +1294,6 @@ def create_combined_results_table(results_remote,
         ENGINE, 
         COMPAT, 
         f"{PASS_FAIL}{suffix_remote}", f"{PASS_FAIL}{suffix_local}", 
-        f"{ERROR}{suffix_remote}", f"{ERROR}{suffix_local}", 
-        f"{TYPE}{suffix_remote}",
         f"{D1}{suffix_remote}", f"{D1}{suffix_local}"
     ]
 
