@@ -1087,11 +1087,12 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
     pass_html = "&#9989; PASS"
     fail_html = "&#10060; FAIL"
     warning_html = "&#9888; WARNING"
-    xfail_html = "&#10062;"
     xfail_html = "&#9888; XFAIL"
 
+    links = ['view', 'download', 'logs']
     for e in results.keys():
-        results[e]['combi'] = '<br>'.join([f'{create_hyperlink(results[e][k], title=k)}' for k in results[e].keys() if k in ['view', 'download', 'logs']])
+        if any([l in results[e].keys() for l in links]):
+            results[e]['links'] = '<br>'.join([f'{create_hyperlink(results[e][k], title=k)}' for k in results[e].keys() if k in links])
 
     results_table = pd.DataFrame.from_dict(results).T
     results_table.rename(columns={"status": PASS_FAIL, "error_message": ERROR, "exception_type": TYPE}, inplace=True)
@@ -1131,8 +1132,9 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
         results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{xfail_html}')
         results_table.loc[results_table[ENGINE] == e, PASS_FAIL] = f'{xfail_html}' 
 
-    # for PASS_FAIL column in results_table, add collapsible content (add content from combi col if it exists) but keep titles the same as the content at the momtn
-    results_table[PASS_FAIL] = results_table.apply(lambda x: collapsible_content(x['combi'], x[PASS_FAIL]), axis=1)
+    # if links column exists add collapsible content to PASS_FAIL column
+    if 'links' in results_table.columns:
+        results_table[PASS_FAIL] = results_table.apply(lambda x: collapsible_content(x['links'], x[PASS_FAIL]), axis=1)
 
     # add status message defined in ENGINES
     results_table[ENGINE] = results_table[ENGINE].apply(lambda x:  collapsible_content(f'{ENGINES[x]["url"]}<br>{ENGINES[x]["status"]}', x))        
