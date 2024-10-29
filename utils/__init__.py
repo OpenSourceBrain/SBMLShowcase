@@ -1089,8 +1089,7 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
     pass_html = "&#9989; PASS"
     fail_html = "&#10060; FAIL"
     warning_html = "&#9888; WARNING"
-    xfail_html = "&#10062;"
-    xfail_html = "&#9888; XFAIL"
+    xfail_html = "N/A"
 
     # Create a table of the results
     results_table = pd.DataFrame.from_dict(results).T
