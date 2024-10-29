@@ -1134,7 +1134,7 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
     sbml_incompatible_ENGINES = [e for e in ENGINES.keys() if 'sbml' not in ENGINES[e]['formats'][0]]
     for e in sbml_incompatible_ENGINES:
         compatibility_content = check_file_compatibility_test(e, sbml_filepath, sedml_filepath)
-        results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{warning_html}')
+        results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{fail_html}')
         results_table.loc[results_table[ENGINE] == e, PASS_FAIL] = f'{xfail_html}' 
            
         
