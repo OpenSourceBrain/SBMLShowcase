@@ -1130,28 +1130,26 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
         results_table.loc[results_table[ENGINE] == e, PASS_FAIL] = f'{xfail_html}' 
 
     for e in results_table[ENGINE]:
-        # only if no 'pass' in pass / fail column add error messages to links_error
-        if results_table.loc[results_table[ENGINE] == e, PASS_FAIL].values[0] != pass_html:
-            if len(results_table.loc[results_table[ENGINE] == e, ERROR].values[0]) > 1:
-                error_message = f'<br><br>ERROR MESSAGE:<br>{results_table.loc[results_table[ENGINE] == e, ERROR].values[0]}'
-            else:
-                error_message = ""
-            if "links" in results_table.columns:
-                links = results_table.loc[results_table[ENGINE] == e, "links"].values[0]
-            else: 
-                links = ""
-            if TYPE in results_table.columns:
-                error_type = f'<br><br>ERROR TYPE:<br>{results_table.loc[results_table[ENGINE] == e, TYPE].values[0]}'
-            else:
-                error_type =""
+        links = ""
+        error_message = ""
+        error_type = ""
 
-            links_error = f'{links}{error_message}{error_type}'
-            results_table.loc[results_table[ENGINE] == e, "links_error"] = links_error
+        if len(results_table.loc[results_table[ENGINE] == e, ERROR].values[0]) > 1:
+            error_message = f'<br><br>ERROR MESSAGE:<br>{results_table.loc[results_table[ENGINE] == e, ERROR].values[0]}'  
+        if "links" in results_table.columns:
+            links = results_table.loc[results_table[ENGINE] == e, "links"].values[0]
+        if TYPE in results_table.columns:
+            if len(results_table.loc[results_table[ENGINE] == e, TYPE].values[0])>1:
+                error_type = f'<br><br>ERROR TYPE:<br>{results_table.loc[results_table[ENGINE] == e, TYPE].values[0]}'
+
+        links_error = f'{links}{error_message}{error_type}'
+        results_table.loc[results_table[ENGINE] == e, "links_error"] = links_error
 
     # add links as collapsible content to pass / fail column
     for e in results_table[ENGINE]:
-        if results_table.loc[results_table[ENGINE] == e, PASS_FAIL].values[0] != pass_html:
-            results_table.loc[results_table[ENGINE] == e, PASS_FAIL] = collapsible_content(results_table.loc[results_table[ENGINE] == e, "links_error"].values[0], results_table.loc[results_table[ENGINE] == e, PASS_FAIL].values[0])
+        title = results_table.loc[results_table[ENGINE] == e, PASS_FAIL].values[0]
+        content = results_table.loc[results_table[ENGINE] == e, "links_error"].values[0]
+        results_table.loc[results_table[ENGINE] == e, PASS_FAIL] = collapsible_content(content, title)
 
     # add status message defined in ENGINES
     results_table[ENGINE] = results_table[ENGINE].apply(lambda x:  collapsible_content(f'{ENGINES[x]["url"]}<br>{ENGINES[x]["status"]}', x))        
