@@ -1204,7 +1204,7 @@ def run_biosimulators_remotely(engine_keys,
                 pattern_max_number_of_steps = "simulation failed: Reached maximum number of steps"
                 pattern_match = re.search(pattern_max_number_of_steps, log_yml_str)
                 if pattern_match:
-                    status = 'WARNING'
+                    status = 'FAIL'
                     error_message = 'Reached maximum number of steps'
             elif log_yml_dict['status'] == 'FAILED':
                 status = 'FAIL'
