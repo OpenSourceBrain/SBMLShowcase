@@ -157,6 +157,7 @@ ENGINE = 'Engine'
 # (currently only tellurium)
 # key is the tag/category used to report the category, value is a regex matching the error message
 # see MarkdownTable.process_engine_outcomes
+# TODO: use error categories in process_log_yml
 error_categories=\
 {
     "tellurium":
@@ -559,7 +560,7 @@ def rename_files_in_extract_dir(extract_dir, engine):
     return extract_dir
 
 
-def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='output',error_categories=error_categories,chown_outputs=True):
+def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='output',chown_outputs=True):
     '''
     put the sedml and sbml file into an omex archive
     run it locally using a biosimulators docker
@@ -568,14 +569,27 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='out
 
     #put the sedml and sbml into a combine archive
     omex_filepath = create_omex(sedml_filepath,sbml_filepath)
-    error_str = None
+    log_yml_path = os.path.join(output_dir,"log.yml")
+
+    status = ""
+    error_message = ""
+    exception_type = ""
+
 
     try:
         biosimulators_core(engine,omex_filepath,output_dir=output_dir)
     except Exception as e:
         #capture the error as a string which won't break markdown tables 
         # error_str = safe_md_string(e)
-        error_str = str(e)
+        error_message = str(e)
+        status = "FAIL"
+        error_message = "did not run"
+
+        if os.path.exists(log_yml_path):
+            status, error_message, exception_type = process_log_yml(log_yml_path)
+        
+        results_dict = {"status": status, "error_message": error_message, "exception_type": exception_type}
+        return results_dict
 
     #ensure outputs are owned by the user
     if 'getuid' in dir(os) and chown_outputs:
@@ -583,23 +597,11 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='out
         gid = os.getgid()
         os.system(f'sudo chown -R {uid}:{gid} {output_dir}')
 
-    if not error_str: return {"status": 'pass', "error_message": ''}
-
-    # #try to load the cleaner error message from the log.yml file
-    log_str = read_log_yml(os.path.join(os.path.dirname(omex_filepath),"log.yml"))
-
-    if log_str:
-        error_str = str(log_str)
-    # if log_str:
-    #     error_str = safe_md_string(log_str)
-
-    #categorise the error string
-    if engine in error_categories:
-        for tag in error_categories[engine]:
-            if re.search(error_categories[engine][tag],error_str):
-                return [tag,f"```{error_str}```"]
-    
-    return {"status":"FAIL", "error_message": f"```{error_str}```"}
+    if os.path.exists(log_yml_path):
+        status, error_message, exception_type = process_log_yml(log_yml_path)
+        
+    results_dict = {"status": status, "error_message": error_message, "exception_type": exception_type}
+    return results_dict
 
 def biosimulators_core(engine,omex_filepath,output_dir=None):
     '''
@@ -1160,26 +1162,29 @@ def process_log_yml(log_yml_path):
     status = ""
     error_message = ""
     exception_type = ""
-
-    with open(log_yml_path) as f:
-        log_yml_dict = yaml.safe_load(f)
-        log_yml_str = str(log_yml_dict)
-        if log_yml_dict['status'] == 'SUCCEEDED':
-            status = 'pass'
-            # to deal with cases like amici where the d1 plot max x is half the expected value
-            pattern_max_number_of_steps = "simulation failed: Reached maximum number of steps"
-            pattern_match = re.search(pattern_max_number_of_steps, log_yml_str)
-            if pattern_match:
-                status = 'FAIL'
-                error_message = 'Reached maximum number of steps'
-        elif log_yml_dict['status'] == 'FAILED':
-            status = 'FAIL'
-            exception = log_yml_dict['exception']
-            error_message = exception['message']
-            exception_type = exception['type']            
-        else:
-            status = None
     
+    if not log_yml_path:
+        status = None
+        error_message = 'log.yml not found'
+    else:
+        with open(log_yml_path) as f:
+            log_yml_dict = yaml.safe_load(f)
+            log_yml_str = str(log_yml_dict)
+            if log_yml_dict['status'] == 'SUCCEEDED':
+                status = 'pass'
+                # to deal with cases like amici where the d1 plot max x is half the expected value
+                pattern_max_number_of_steps = "simulation failed: Reached maximum number of steps"
+                pattern_match = re.search(pattern_max_number_of_steps, log_yml_str)
+                if pattern_match:
+                    status = 'FAIL'
+                    error_message = 'Reached maximum number of steps'
+            elif log_yml_dict['status'] == 'FAILED':
+                status = 'FAIL'
+                exception = log_yml_dict['exception']
+                error_message = exception['message']
+                exception_type = exception['type']            
+            else:
+                status = None
     return status, error_message, exception_type
 
 
@@ -1211,38 +1216,11 @@ def run_biosimulators_remotely(engine_keys,
         extract_dir_dict[e] = extract_dir
 
     for e, extract_dir in extract_dir_dict.items():
-        status = ""
-        error_message = ""
-        exception_type = ""
-        task_output = ""
-
         log_yml_path = find_file_in_dir('log.yml', extract_dir)[0]
-        if not log_yml_path:
-            status = None
-            error_message = 'log.yml not found'
-            continue
-        with open(log_yml_path) as f:
-            log_yml_dict = yaml.safe_load(f)
-            log_yml_str = str(log_yml_dict)
-            if log_yml_dict['status'] == 'SUCCEEDED':
-                status = 'pass'
-                # to deal with cases like amici where the d1 plot max x is half the expected value
-                pattern_max_number_of_steps = "simulation failed: Reached maximum number of steps"
-                pattern_match = re.search(pattern_max_number_of_steps, log_yml_str)
-                if pattern_match:
-                    status = 'FAIL'
-                    error_message = 'Reached maximum number of steps'
-            elif log_yml_dict['status'] == 'FAILED':
-                status = 'FAIL'
-                exception = log_yml_dict['exception']
-                error_message = exception['message']
-                exception_type = exception['type']
-            else:
-                status = None
-            results_remote[e]["status"] = status
-            results_remote[e]["error_message"] = error_message
-            results_remote[e]["exception_type"] = exception_type
-            results_remote[e]["tasks_output"] = task_output
+        status, error_message, exception_type = process_log_yml(log_yml_path)
+        results_remote[e]["status"] = status
+        results_remote[e]["error_message"] = error_message
+        results_remote[e]["exception_type"] = exception_type
 
     file_paths = find_files(remote_output_dir, '.pdf')
     move_d1_files(file_paths, d1_plots_remote_dir)
