@@ -13,6 +13,7 @@ import utils
 import argparse
 import json
 
+
 # Save the current working directory
 cwd = os.getcwd()
 print('Current working directory:', cwd)
@@ -39,7 +40,9 @@ d1_plots_remote_dir = os.path.join(test_folder, args.output_dir + '_remote')
 
 print('d1 plots will be saved in:', d1_plots_remote_dir)
 
-results_remote = utils.run_biosimulators_remotely(sedml_file_name=sedml_file_name, 
+engine_keys = list(utils.ENGINES.keys())
+
+results_remote = utils.run_biosimulators_remotely(engine_keys, sedml_file_name=sedml_file_name, 
                                     sbml_file_name=sbml_file_name,
                                     d1_plots_remote_dir=d1_plots_remote_dir, 
                                     test_folder=test_folder)

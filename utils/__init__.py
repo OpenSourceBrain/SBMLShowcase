@@ -1105,7 +1105,9 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
     results_table[ERROR] = results_table[ERROR].apply(lambda x: ansi_to_html(x))
 
     results_table[PASS_FAIL] = results_table[PASS_FAIL].apply(lambda x: f'{fail_html}' if x == 'FAIL' \
-                                                                        else f'{pass_html}' if x == 'pass' else x)
+                                                                        else f'{pass_html}' if x == 'pass'
+                                                                        else f'{warning_html}' if x == 'WARNING'
+                                                                        else x)
                                                           
     # d1 plot clickable link
     results_table[D1] = results_table[ENGINE].apply(lambda x: d1_plots_dict(output_dir).get(x, None))
@@ -1157,18 +1159,21 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
     return results_table
 
 
-def run_biosimulators_remotely(sedml_file_name, 
+def run_biosimulators_remotely(engine_keys,
+                               sedml_file_name, 
                                sbml_file_name, 
                                d1_plots_remote_dir,  
                                test_folder='tests'):
     
     """ run with directory pointing towards the location of the sedml and sbml files"""
     
+    engines = {k: v for k, v in ENGINES.items() if k in engine_keys}
+
     remote_output_dir = 'remote_results'
     remote_output_dir = os.path.join(test_folder, remote_output_dir)
 
     results_remote = dict()
-    for e in ENGINES.keys():
+    for e in engines.keys():
         results_remote[e] = run_biosimulators_remote(e, sedml_file_name, sbml_file_name)
         results_remote[e]['response']  = results_remote[e]['response'].status_code
         
@@ -1185,6 +1190,7 @@ def run_biosimulators_remotely(sedml_file_name,
         status = ""
         error_message = ""
         exception_type = ""
+        task_output = ""
 
         log_yml_path = find_file_in_dir('log.yml', extract_dir)[0]
         if not log_yml_path:
@@ -1193,18 +1199,25 @@ def run_biosimulators_remotely(sedml_file_name,
             continue
         with open(log_yml_path) as f:
             log_yml_dict = yaml.safe_load(f)
+            log_yml_str = str(log_yml_dict)
             if log_yml_dict['status'] == 'SUCCEEDED':
                 status = 'pass'
+                # to deal with cases like amici where the d1 plot max x is half the expected value
+                pattern_max_number_of_steps = "simulation failed: Reached maximum number of steps"
+                pattern_match = re.search(pattern_max_number_of_steps, log_yml_str)
+                if pattern_match:
+                    status = 'WARNING'
+                    error_message = 'Reached maximum number of steps'
             elif log_yml_dict['status'] == 'FAILED':
                 status = 'FAIL'
                 exception = log_yml_dict['exception']
                 error_message = exception['message']
-                exception_type = exception['type'] 
             else:
                 status = None
             results_remote[e]["status"] = status
             results_remote[e]["error_message"] = error_message
             results_remote[e]["exception_type"] = exception_type
+            results_remote[e]["tasks_output"] = task_output
 
     file_paths = find_files(remote_output_dir, '.pdf')
     move_d1_files(file_paths, d1_plots_remote_dir)
@@ -1216,16 +1229,19 @@ def run_biosimulators_remotely(sedml_file_name,
 
     return results_remote
 
-def run_biosimulators_locally(sedml_file_name, 
+def run_biosimulators_locally(engine_keys,
+                              sedml_file_name, 
                               sbml_file_name, 
                               d1_plots_local_dir, 
                               test_folder='tests'):
+    
+    engines = {k: v for k, v in ENGINES.items() if k in engine_keys}
     results_local = {}
 
     output_folder = 'local_results'
     local_output_dir = os.path.join(test_folder, output_folder)
 
-    for e in ENGINES.keys():
+    for e in engines.keys():
         print('Running ' + e)
         local_output_dir_e = os.path.abspath(os.path.join(local_output_dir, e))
         print(local_output_dir_e)
@@ -1299,18 +1315,21 @@ def create_combined_results_table(results_remote,
     return combined_results
 
 
-def run_biosimulators_remotely_and_locally(sedml_file_name, 
+def run_biosimulators_remotely_and_locally(engine_keys,
+                                 sedml_file_name, 
                                  sbml_file_name,
                                  d1_plots_remote_dir, 
                                  d1_plots_local_dir,
                                  test_folder='tests'):
     
-    results_remote = run_biosimulators_remotely(sedml_file_name=sedml_file_name, 
+    results_remote = run_biosimulators_remotely(engine_keys,
+                                    sedml_file_name=sedml_file_name, 
                                     sbml_file_name=sbml_file_name,
                                     d1_plots_remote_dir=d1_plots_remote_dir, 
                                     test_folder=test_folder)
     
-    results_local = run_biosimulators_locally(sedml_file_name=sedml_file_name, 
+    results_local = run_biosimulators_locally(engine_keys,
+                                    sedml_file_name=sedml_file_name, 
                                     sbml_file_name=sbml_file_name,
                                     d1_plots_local_dir=d1_plots_local_dir, 
                                     test_folder=test_folder)
