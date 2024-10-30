@@ -1156,6 +1156,32 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
 
     return results_table
 
+def process_log_yml(log_yml_path):
+    status = ""
+    error_message = ""
+    exception_type = ""
+
+    with open(log_yml_path) as f:
+        log_yml_dict = yaml.safe_load(f)
+        log_yml_str = str(log_yml_dict)
+        if log_yml_dict['status'] == 'SUCCEEDED':
+            status = 'pass'
+            # to deal with cases like amici where the d1 plot max x is half the expected value
+            pattern_max_number_of_steps = "simulation failed: Reached maximum number of steps"
+            pattern_match = re.search(pattern_max_number_of_steps, log_yml_str)
+            if pattern_match:
+                status = 'FAIL'
+                error_message = 'Reached maximum number of steps'
+        elif log_yml_dict['status'] == 'FAILED':
+            status = 'FAIL'
+            exception = log_yml_dict['exception']
+            error_message = exception['message']
+            exception_type = exception['type']            
+        else:
+            status = None
+    
+    return status, error_message, exception_type
+
 
 def run_biosimulators_remotely(engine_keys,
                                sedml_file_name, 
@@ -1210,6 +1236,7 @@ def run_biosimulators_remotely(engine_keys,
                 status = 'FAIL'
                 exception = log_yml_dict['exception']
                 error_message = exception['message']
+                exception_type = exception['type']
             else:
                 status = None
             results_remote[e]["status"] = status
