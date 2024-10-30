@@ -469,7 +469,7 @@ def collapsible_content(content, title='Details'):
     if content:
         return f'<details><summary>{title}</summary>{content}</details>'
     else:
-        return None
+        return f'{title}'
     
 def get_filetypes(model_filepath, simulation_filepath):
     """
