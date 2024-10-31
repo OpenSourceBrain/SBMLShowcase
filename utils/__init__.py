@@ -557,29 +557,8 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='out
     #put the sedml and sbml into a combine archive
     omex_filepath = create_omex(sedml_filepath,sbml_filepath)
     log_yml_path = os.path.join(output_dir,"log.yml")
-
-    status = ""
-    error_message = ""
-    exception_type = ""
     log_yml_dict = {}
-
-
-    try:
-        biosimulators_core(engine,omex_filepath,output_dir=output_dir)
-    except Exception as e:
-        #capture the error as a string which won't break markdown tables 
-        # error_str = safe_md_string(e)
-        error_message = str(e)
-        status = "FAIL"
-        error_message = "did not run"
-
-        if os.path.exists(log_yml_path):
-            status, error_message, exception_type = process_log_yml(log_yml_path)
-            with open(log_yml_path) as f:
-                log_yml_dict = yaml.safe_load(f)
-        
-        results_dict = {"status": status, "error_message": error_message, "exception_type": exception_type,"log":log_yml_dict}
-        return results_dict
+    exception_message = ""
 
     #ensure outputs are owned by the user
     if 'getuid' in dir(os) and chown_outputs:
@@ -587,13 +566,16 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='out
         gid = os.getgid()
         os.system(f'sudo chown -R {uid}:{gid} {output_dir}')
 
+    try:
+        biosimulators_core(engine,omex_filepath,output_dir=output_dir)
+    except Exception as e:
+        exception_message = str(e)
+
     if os.path.exists(log_yml_path):
-        status, error_message, exception_type = process_log_yml(log_yml_path)
         with open(log_yml_path) as f:
             log_yml_dict = yaml.safe_load(f)
-        
-    results_dict = {"status": status, "error_message": error_message, "exception_type": exception_type,"log":log_yml_dict}
-    return results_dict
+    
+    return {"exception_message":exception_message,"log_yml":log_yml_dict}
 
 def biosimulators_core(engine,omex_filepath,output_dir=None):
     '''
@@ -1049,6 +1031,10 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
     warning_html = "&#9888; WARNING"
     xfail_html = "&#9888; XFAIL"
 
+    results2 = {}
+    for e in results.keys():
+        results2[e] = process_log_yml_dict(results[e]["log_yml"])
+
     links = ['view', 'download', 'logs']
     for e in results.keys():
         if any([l in results[e].keys() for l in links]):
@@ -1145,6 +1131,29 @@ def process_log_yml(log_yml_path):
                 status = None
     return status, error_message, exception_type
 
+def process_log_yml_dict(log_yml_dict):
+    status = ""
+    error_message = ""
+    exception_type = ""
+
+    log_yml_str = str(log_yml_dict)
+    if log_yml_dict['status'] == 'SUCCEEDED':
+        status = 'pass'
+        # to deal with cases like amici where the d1 plot max x is half the expected value
+        pattern_max_number_of_steps = "simulation failed: Reached maximum number of steps"
+        pattern_match = re.search(pattern_max_number_of_steps, log_yml_str)
+        if pattern_match:
+            status = 'FAIL'
+            error_message = 'Reached maximum number of steps'
+    elif log_yml_dict['status'] == 'FAILED':
+        status = 'FAIL'
+        exception = log_yml_dict['exception']
+        error_message = exception['message']
+        exception_type = exception['type']            
+    else:
+        status = None
+    return {"status":status, "error_message":error_message,"exception_type": exception_type}
+
 
 def run_biosimulators_remotely(engine_keys,
                                sedml_file_name, 
@@ -1177,11 +1186,11 @@ def run_biosimulators_remotely(engine_keys,
         log_yml_path = find_file_in_dir('log.yml', extract_dir)[0]
         with open(log_yml_path) as f:
             log_yml_dict = yaml.safe_load(f)
-        status, error_message, exception_type = process_log_yml(log_yml_path)
-        results_remote[e]["status"] = status
-        results_remote[e]["error_message"] = error_message
-        results_remote[e]["exception_type"] = exception_type
-        results_remote[e]["log"] = log_yml_dict
+        # status, error_message, exception_type = process_log_yml(log_yml_path)
+        # results_remote[e]["status"] = status
+        # results_remote[e]["error_message"] = error_message
+        # results_remote[e]["exception_type"] = exception_type
+        results_remote[e]["log_yml"] = log_yml_dict
 
     file_paths = find_files(remote_output_dir, '.pdf')
     move_d1_files(file_paths, d1_plots_remote_dir)
