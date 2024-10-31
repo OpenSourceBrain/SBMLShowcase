@@ -4,24 +4,345 @@
         "error_message": ""
     },
     "brian2": {
-        "status": "FAIL",
-        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/brian2' returned non-zero exit status 1```"
+        "log_yml": {
+            "duration": 0.044726,
+            "exception": {
+                "message": "No module named 'libsbml'",
+                "type": "ModuleNotFoundError"
+            },
+            "output": "",
+            "sedDocuments": [],
+            "skipReason": null,
+            "status": "FAILED"
+        }
     },
     "bionetgen": {
-        "status": "FAIL",
-        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/bionetgen' returned non-zero exit status 1```"
+        "log_yml": {
+            "duration": 0.820521,
+            "exception": {
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Language for model `net1` is not supported.\n      - Model language `urn:sedml:language:sbml` is not supported. Models must be in BNGL format (e.g., `sed:model/@language` must match `^urn:sedml:language:bngl(\\.|$)` such as `urn:sedml:language:bngl`).",
+                "type": "CombineArchiveExecutionError"
+            },
+            "output": "/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: BioSimulatorsWarning: \u001b[33mThe SED document is potentially incorrect.\r\n  - Model `net1` has warnings.\r\n    - The model file `LEMS_NML2_Ex9_FN.sbml` has warnings.\r\n      - 2 warnings of type SBML unit consistency (99505). The following is the first warning at line 40, column 12:\r\n        - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n           The units of the <rateRule> <math> expression '(V - pow(V, 3) / 3 - W + I) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n      - 4 warnings of type Modeling practice (80701). The following is the first warning at line 32, column 12:\r\n        - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n           The <parameter> with the id 'I' does not have a 'units' attribute.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: BioSimulatorsWarning: \u001b[33mThe COMBINE/OMEX archive has warnings.\r\n  - OMEX manifests should not contain content entries for themselves.\r\n  - The SED-ML file at location `./tmp781717` has warnings.\r\n    - Model `net1` has warnings.\r\n      - The model file `LEMS_NML2_Ex9_FN.sbml` has warnings.\r\n        - 2 warnings of type SBML unit consistency (99505). The following is the first warning at line 40, column 12:\r\n          - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n             The units of the <rateRule> <math> expression '(V - pow(V, 3) / 3 - W + I) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n        - 4 warnings of type Modeling practice (80701). The following is the first warning at line 32, column 12:\r\n          - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n             The <parameter> with the id 'I' does not have a 'units' attribute.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n",
+            "sedDocuments": [
+                {
+                    "duration": 0.460761,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  Language for model `net1` is not supported.\n    - Model language `urn:sedml:language:sbml` is not supported. Models must be in BNGL format (e.g., `sed:model/@language` must match `^urn:sedml:language:bngl(\\.|$)` such as `urn:sedml:language:bngl`).",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp781717",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  tmp781717:\r\n    Tasks (1):\r\n      sim1_net1\r\n    Reports (1):\r\n      ex9: 3 data sets\r\n    Plots (1):\r\n      d1: 2 curves\r\n\r\nExecuting SED-ML file 1: tmp781717 ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `sim1_net1`\r\n    Outputs:\r\n      `d1`\r\n      `ex9`\r\n  Executing task 1: `sim1_net1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `d1` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `ex9` ...",
+                    "outputs": [
+                        {
+                            "curves": [
+                                {
+                                    "id": "curve_V",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "curve_W",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.235886,
+                            "exception": null,
+                            "id": "d1",
+                            "output": "/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mA title could not be inferred for the X axis because the X data generators have inconsistent names.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mA title could not be inferred for the Y axis because the Y data generators have inconsistent names.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mCurves have inconsistent x axis scales. All curves will be plotted in linear scale.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mCurves have inconsistent y axis scales. All curves will be plotted in linear scale.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        },
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ex9_time",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ex9_V",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ex9_W",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.063044,
+                            "exception": null,
+                            "id": "ex9",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.029494,
+                            "exception": {
+                                "message": "Language for model `net1` is not supported.\n  - Model language `urn:sedml:language:sbml` is not supported. Models must be in BNGL format (e.g., `sed:model/@language` must match `^urn:sedml:language:bngl(\\.|$)` such as `urn:sedml:language:bngl`).",
+                                "type": "ValueError"
+                            },
+                            "id": "sim1_net1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
+            "skipReason": null,
+            "status": "FAILED"
+        }
     },
     "boolnet": {
-        "status": "FAIL",
-        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/boolnet' returned non-zero exit status 1```"
+        "log_yml": {
+            "duration": 0.926268,
+            "exception": {
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Simulation `sim1` is invalid.\n      - Number of points (20000) must be equal to the difference between the output end (200.0) and start times (0.0).",
+                "type": "CombineArchiveExecutionError"
+            },
+            "output": "/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: BioSimulatorsWarning: \u001b[33mThe SED document is potentially incorrect.\r\n  - Model `net1` may be invalid.\r\n    - The model file `LEMS_NML2_Ex9_FN.sbml` may be invalid.\r\n      - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n         The units of the <rateRule> <math> expression '(V - pow(V, 3) / 3 - W + I) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n        \r\n      - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n         The units of the <rateRule> <math> expression '0.08 * (V + (0.7 - 0.8 * W)) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n        \r\n      - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n         The <parameter> with the id 'I' does not have a 'units' attribute.\r\n        \r\n      - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n         The <parameter> with the id 'SEC' does not have a 'units' attribute.\r\n        \r\n      - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n         The <parameter> with the id 'V' does not have a 'units' attribute.\r\n        \r\n      - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n         The <parameter> with the id 'W' does not have a 'units' attribute.\r\n        \u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: BioSimulatorsWarning: \u001b[33mThe COMBINE/OMEX archive may be invalid.\r\n  - OMEX manifests should not contain content entries for themselves.\r\n  - The SED-ML file at location `./tmp450962` may be invalid.\r\n    - Model `net1` may be invalid.\r\n      - The model file `LEMS_NML2_Ex9_FN.sbml` may be invalid.\r\n        - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n           The units of the <rateRule> <math> expression '(V - pow(V, 3) / 3 - W + I) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n          \r\n        - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n           The units of the <rateRule> <math> expression '0.08 * (V + (0.7 - 0.8 * W)) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n          \r\n        - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n           The <parameter> with the id 'I' does not have a 'units' attribute.\r\n          \r\n        - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n           The <parameter> with the id 'SEC' does not have a 'units' attribute.\r\n          \r\n        - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n           The <parameter> with the id 'V' does not have a 'units' attribute.\r\n          \r\n        - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n           The <parameter> with the id 'W' does not have a 'units' attribute.\r\n          \u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n",
+            "sedDocuments": [
+                {
+                    "duration": 0.546412,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  Simulation `sim1` is invalid.\n    - Number of points (20000) must be equal to the difference between the output end (200.0) and start times (0.0).",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp450962",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  tmp450962:\r\n    Tasks (1):\r\n      sim1_net1\r\n    Reports (1):\r\n      ex9: 3 data sets\r\n    Plots (1):\r\n      d1: 2 curves\r\n\r\nExecuting SED-ML file 1: tmp450962 ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `sim1_net1`\r\n    Outputs:\r\n      `d1`\r\n      `ex9`\r\n  Executing task 1: `sim1_net1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `d1` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `ex9` ...",
+                    "outputs": [
+                        {
+                            "curves": [
+                                {
+                                    "id": "curve_V",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "curve_W",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.29194,
+                            "exception": null,
+                            "id": "d1",
+                            "output": "/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mA title could not be inferred for the X axis because the X data generators have inconsistent names.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mA title could not be inferred for the Y axis because the Y data generators have inconsistent names.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mCurves have inconsistent x axis scales. All curves will be plotted in linear scale.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mCurves have inconsistent y axis scales. All curves will be plotted in linear scale.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        },
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ex9_time",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ex9_V",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ex9_W",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.075288,
+                            "exception": null,
+                            "id": "ex9",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.029381,
+                            "exception": {
+                                "message": "Simulation `sim1` is invalid.\n  - Number of points (20000) must be equal to the difference between the output end (200.0) and start times (0.0).",
+                                "type": "ValueError"
+                            },
+                            "id": "sim1_net1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
+            "skipReason": null,
+            "status": "FAILED"
+        }
     },
     "cbmpy": {
-        "status": "FAIL",
-        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/cbmpy' returned non-zero exit status 1```"
+        "log_yml": {
+            "duration": 0.885241,
+            "exception": {
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    UniformTimeCourseSimulation `sim1` is not supported.\n      - Simulation sim1 of type `UniformTimeCourseSimulation` is not supported. Simulation must be an instance of one of the following:\n          - SteadyStateSimulation",
+                "type": "CombineArchiveExecutionError"
+            },
+            "output": "\r\nINFO: No xlwt module available, Excel spreadsheet creation disabled\r\n\r\n\r\n\r\nNo module named 'cplex'\r\n\r\n\r\n\r\nCPLEX not available\r\n\r\n*****\r\nUsing GLPK\r\n*****\r\n\r\n\r\nINFO: No xlrd module available, Excel spreadsheet reading disabled\r\n\r\nCBMPy environment\r\n******************\r\nRevision: r689\r\n\r\n\r\n***********************************************************************\r\n* Welcome to CBMPy (0.7.25) - PySCeS Constraint Based Modelling       *\r\n*                http://cbmpy.sourceforge.net                         *\r\n* Copyright(C) Brett G. Olivier 2014 - 2019                           *\r\n* Dept. of Systems Bioinformatics                                     *\r\n* Vrije Universiteit Amsterdam, Amsterdam, The Netherlands            *\r\n* CBMPy is developed as part of the BeBasic MetaToolKit Project       *\r\n* Distributed under the GNU GPL v 3.0 licence, see                    *\r\n* LICENCE (supplied with this release) for details                    *\r\n***********************************************************************\r\n\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: BioSimulatorsWarning: \u001b[33mThe SED document is potentially incorrect.\r\n  - Model `net1` has warnings.\r\n    - The model file `LEMS_NML2_Ex9_FN.sbml` has warnings.\r\n      - 2 warnings of type SBML unit consistency (99505). The following is the first warning at line 40, column 12:\r\n        - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n           The units of the <rateRule> <math> expression '(V - pow(V, 3) / 3 - W + I) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n      - 4 warnings of type Modeling practice (80701). The following is the first warning at line 32, column 12:\r\n        - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n           The <parameter> with the id 'I' does not have a 'units' attribute.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: BioSimulatorsWarning: \u001b[33mThe COMBINE/OMEX archive has warnings.\r\n  - OMEX manifests should not contain content entries for themselves.\r\n  - The SED-ML file at location `./tmp899279` has warnings.\r\n    - Model `net1` has warnings.\r\n      - The model file `LEMS_NML2_Ex9_FN.sbml` has warnings.\r\n        - 2 warnings of type SBML unit consistency (99505). The following is the first warning at line 40, column 12:\r\n          - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n             The units of the <rateRule> <math> expression '(V - pow(V, 3) / 3 - W + I) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n        - 4 warnings of type Modeling practice (80701). The following is the first warning at line 32, column 12:\r\n          - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n             The <parameter> with the id 'I' does not have a 'units' attribute.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n",
+            "sedDocuments": [
+                {
+                    "duration": 0.435115,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  UniformTimeCourseSimulation `sim1` is not supported.\n    - Simulation sim1 of type `UniformTimeCourseSimulation` is not supported. Simulation must be an instance of one of the following:\n        - SteadyStateSimulation",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp899279",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  tmp899279:\r\n    Tasks (1):\r\n      sim1_net1\r\n    Reports (1):\r\n      ex9: 3 data sets\r\n    Plots (1):\r\n      d1: 2 curves\r\n\r\nExecuting SED-ML file 1: tmp899279 ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `sim1_net1`\r\n    Outputs:\r\n      `d1`\r\n      `ex9`\r\n  Executing task 1: `sim1_net1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `d1` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `ex9` ...",
+                    "outputs": [
+                        {
+                            "curves": [
+                                {
+                                    "id": "curve_V",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "curve_W",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.237872,
+                            "exception": null,
+                            "id": "d1",
+                            "output": "/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mA title could not be inferred for the X axis because the X data generators have inconsistent names.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mA title could not be inferred for the Y axis because the Y data generators have inconsistent names.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mCurves have inconsistent x axis scales. All curves will be plotted in linear scale.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mCurves have inconsistent y axis scales. All curves will be plotted in linear scale.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        },
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ex9_time",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ex9_V",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ex9_W",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.065517,
+                            "exception": null,
+                            "id": "ex9",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.027381,
+                            "exception": {
+                                "message": "UniformTimeCourseSimulation `sim1` is not supported.\n  - Simulation sim1 of type `UniformTimeCourseSimulation` is not supported. Simulation must be an instance of one of the following:\n      - SteadyStateSimulation",
+                                "type": "ValueError"
+                            },
+                            "id": "sim1_net1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
+            "skipReason": null,
+            "status": "FAILED"
+        }
     },
     "cobrapy": {
-        "status": "FAIL",
-        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/cobrapy' returned non-zero exit status 1```"
+        "log_yml": {
+            "duration": 0.82548,
+            "exception": {
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    UniformTimeCourseSimulation `sim1` is not supported.\n      - Simulation sim1 of type `UniformTimeCourseSimulation` is not supported. Simulation must be an instance of one of the following:\n          - SteadyStateSimulation",
+                "type": "CombineArchiveExecutionError"
+            },
+            "output": "/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: BioSimulatorsWarning: \u001b[33mThe SED document is potentially incorrect.\r\n  - Model `net1` has warnings.\r\n    - The model file `LEMS_NML2_Ex9_FN.sbml` has warnings.\r\n      - 2 warnings of type SBML unit consistency (99505). The following is the first warning at line 40, column 12:\r\n        - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n           The units of the <rateRule> <math> expression '(V - pow(V, 3) / 3 - W + I) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n      - 4 warnings of type Modeling practice (80701). The following is the first warning at line 32, column 12:\r\n        - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n           The <parameter> with the id 'I' does not have a 'units' attribute.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: BioSimulatorsWarning: \u001b[33mThe COMBINE/OMEX archive has warnings.\r\n  - OMEX manifests should not contain content entries for themselves.\r\n  - The SED-ML file at location `./tmp756923` has warnings.\r\n    - Model `net1` has warnings.\r\n      - The model file `LEMS_NML2_Ex9_FN.sbml` has warnings.\r\n        - 2 warnings of type SBML unit consistency (99505). The following is the first warning at line 40, column 12:\r\n          - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n             The units of the <rateRule> <math> expression '(V - pow(V, 3) / 3 - W + I) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n        - 4 warnings of type Modeling practice (80701). The following is the first warning at line 32, column 12:\r\n          - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n             The <parameter> with the id 'I' does not have a 'units' attribute.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n",
+            "sedDocuments": [
+                {
+                    "duration": 0.490212,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  UniformTimeCourseSimulation `sim1` is not supported.\n    - Simulation sim1 of type `UniformTimeCourseSimulation` is not supported. Simulation must be an instance of one of the following:\n        - SteadyStateSimulation",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp756923",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  tmp756923:\r\n    Tasks (1):\r\n      sim1_net1\r\n    Reports (1):\r\n      ex9: 3 data sets\r\n    Plots (1):\r\n      d1: 2 curves\r\n\r\nExecuting SED-ML file 1: tmp756923 ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `sim1_net1`\r\n    Outputs:\r\n      `d1`\r\n      `ex9`\r\n  Executing task 1: `sim1_net1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `d1` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `ex9` ...",
+                    "outputs": [
+                        {
+                            "curves": [
+                                {
+                                    "id": "curve_V",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "curve_W",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.236184,
+                            "exception": null,
+                            "id": "d1",
+                            "output": "/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mA title could not be inferred for the X axis because the X data generators have inconsistent names.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mA title could not be inferred for the Y axis because the Y data generators have inconsistent names.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mCurves have inconsistent x axis scales. All curves will be plotted in linear scale.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mCurves have inconsistent y axis scales. All curves will be plotted in linear scale.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        },
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ex9_time",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ex9_V",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ex9_W",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.070783,
+                            "exception": null,
+                            "id": "ex9",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.032542,
+                            "exception": {
+                                "message": "UniformTimeCourseSimulation `sim1` is not supported.\n  - Simulation sim1 of type `UniformTimeCourseSimulation` is not supported. Simulation must be an instance of one of the following:\n      - SteadyStateSimulation",
+                                "type": "ValueError"
+                            },
+                            "id": "sim1_net1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
+            "skipReason": null,
+            "status": "FAILED"
+        }
     },
     "copasi": {
         "status": "pass",
@@ -32,55 +353,417 @@
         "error_message": ""
     },
     "ginsim": {
-        "status": "FAIL",
-        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/ginsim' returned non-zero exit status 1```"
+        "log_yml": {
+            "duration": 0.807172,
+            "exception": {
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Simulation `sim1` is invalid.\n      - The interval between the output start and time time must be an integer multiple of the number of steps, not `0.01`:\n          Output start time: 0.0\n          Output end time: 200.0\n          Number of steps: 20000",
+                "type": "CombineArchiveExecutionError"
+            },
+            "output": "/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: BioSimulatorsWarning: \u001b[33mThe SED document is potentially incorrect.\r\n  - Model `net1` may be invalid.\r\n    - The model file `LEMS_NML2_Ex9_FN.sbml` may be invalid.\r\n      - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n         The units of the <rateRule> <math> expression '(V - pow(V, 3) / 3 - W + I) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n        \r\n      - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n         The units of the <rateRule> <math> expression '0.08 * (V + (0.7 - 0.8 * W)) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n        \r\n      - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n         The <parameter> with the id 'I' does not have a 'units' attribute.\r\n        \r\n      - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n         The <parameter> with the id 'SEC' does not have a 'units' attribute.\r\n        \r\n      - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n         The <parameter> with the id 'V' does not have a 'units' attribute.\r\n        \r\n      - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n         The <parameter> with the id 'W' does not have a 'units' attribute.\r\n        \u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: BioSimulatorsWarning: \u001b[33mThe COMBINE/OMEX archive may be invalid.\r\n  - OMEX manifests should not contain content entries for themselves.\r\n  - The SED-ML file at location `./tmp617278` may be invalid.\r\n    - Model `net1` may be invalid.\r\n      - The model file `LEMS_NML2_Ex9_FN.sbml` may be invalid.\r\n        - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n           The units of the <rateRule> <math> expression '(V - pow(V, 3) / 3 - W + I) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n          \r\n        - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n           The units of the <rateRule> <math> expression '0.08 * (V + (0.7 - 0.8 * W)) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n          \r\n        - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n           The <parameter> with the id 'I' does not have a 'units' attribute.\r\n          \r\n        - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n           The <parameter> with the id 'SEC' does not have a 'units' attribute.\r\n          \r\n        - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n           The <parameter> with the id 'V' does not have a 'units' attribute.\r\n          \r\n        - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n           The <parameter> with the id 'W' does not have a 'units' attribute.\r\n          \u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n",
+            "sedDocuments": [
+                {
+                    "duration": 0.465854,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  Simulation `sim1` is invalid.\n    - The interval between the output start and time time must be an integer multiple of the number of steps, not `0.01`:\n        Output start time: 0.0\n        Output end time: 200.0\n        Number of steps: 20000",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp617278",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  tmp617278:\r\n    Tasks (1):\r\n      sim1_net1\r\n    Reports (1):\r\n      ex9: 3 data sets\r\n    Plots (1):\r\n      d1: 2 curves\r\n\r\nExecuting SED-ML file 1: tmp617278 ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `sim1_net1`\r\n    Outputs:\r\n      `d1`\r\n      `ex9`\r\n  Executing task 1: `sim1_net1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `d1` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `ex9` ...",
+                    "outputs": [
+                        {
+                            "curves": [
+                                {
+                                    "id": "curve_V",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "curve_W",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.247969,
+                            "exception": null,
+                            "id": "d1",
+                            "output": "/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mA title could not be inferred for the X axis because the X data generators have inconsistent names.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mA title could not be inferred for the Y axis because the Y data generators have inconsistent names.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mCurves have inconsistent x axis scales. All curves will be plotted in linear scale.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mCurves have inconsistent y axis scales. All curves will be plotted in linear scale.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        },
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ex9_time",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ex9_V",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ex9_W",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.070755,
+                            "exception": null,
+                            "id": "ex9",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.027479,
+                            "exception": {
+                                "message": "Simulation `sim1` is invalid.\n  - The interval between the output start and time time must be an integer multiple of the number of steps, not `0.01`:\n      Output start time: 0.0\n      Output end time: 200.0\n      Number of steps: 20000",
+                                "type": "ValueError"
+                            },
+                            "id": "sim1_net1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
+            "skipReason": null,
+            "status": "FAILED"
+        }
     },
     "libsbmlsim": {
         "status": "pass",
         "error_message": ""
     },
     "masspy": {
-        "status": "FAIL",
-        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/masspy' returned non-zero exit status 1```"
+        "log_yml": {
+            "duration": 0.811296,
+            "exception": {
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Something went wrong reading the SBML model. Most likely the SBML model is not valid. Please check that your model is valid using the `mass.io.sbml.validate_sbml_model` function or via the online validator at http://sbml.org/validator .\n    \t`(model, errors) = validate_sbml_model(filename)`\n    If the model is valid and cannot be read please open an issue at https://github.com/SBRG/masspy/issues .",
+                "type": "CombineArchiveExecutionError"
+            },
+            "output": "/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31 \u001b[1;31mBioSimulatorsWarning\u001b[0m: \u001b[33mThe SED document is potentially incorrect.\r\n  - Model `net1` has warnings.\r\n    - The model file `LEMS_NML2_Ex9_FN.sbml` has warnings.\r\n      - 2 warnings of type SBML unit consistency (99505). The following is the first warning at line 40, column 12:\r\n        - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n           The units of the <rateRule> <math> expression '(V - pow(V, 3) / 3 - W + I) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n      - 4 warnings of type Modeling practice (80701). The following is the first warning at line 32, column 12:\r\n        - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n           The <parameter> with the id 'I' does not have a 'units' attribute.\u001b[0m\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31 \u001b[1;31mBioSimulatorsWarning\u001b[0m: \u001b[33mThe COMBINE/OMEX archive has warnings.\r\n  - OMEX manifests should not contain content entries for themselves.\r\n  - The SED-ML file at location `./tmp77529` has warnings.\r\n    - Model `net1` has warnings.\r\n      - The model file `LEMS_NML2_Ex9_FN.sbml` has warnings.\r\n        - 2 warnings of type SBML unit consistency (99505). The following is the first warning at line 40, column 12:\r\n          - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n             The units of the <rateRule> <math> expression '(V - pow(V, 3) / 3 - W + I) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n        - 4 warnings of type Modeling practice (80701). The following is the first warning at line 32, column 12:\r\n          - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n             The <parameter> with the id 'I' does not have a 'units' attribute.\u001b[0m\r\n",
+            "sedDocuments": [
+                {
+                    "duration": 0.471713,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  Something went wrong reading the SBML model. Most likely the SBML model is not valid. Please check that your model is valid using the `mass.io.sbml.validate_sbml_model` function or via the online validator at http://sbml.org/validator .\n  \t`(model, errors) = validate_sbml_model(filename)`\n  If the model is valid and cannot be read please open an issue at https://github.com/SBRG/masspy/issues .",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp77529",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  tmp77529:\r\n    Tasks (1):\r\n      sim1_net1\r\n    Reports (1):\r\n      ex9: 3 data sets\r\n    Plots (1):\r\n      d1: 2 curves\r\n\r\nExecuting SED-ML file 1: tmp77529 ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `sim1_net1`\r\n    Outputs:\r\n      `d1`\r\n      `ex9`\r\n  Executing task 1: `sim1_net1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `d1` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `ex9` ...",
+                    "outputs": [
+                        {
+                            "curves": [
+                                {
+                                    "id": "curve_V",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "curve_W",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.221141,
+                            "exception": null,
+                            "id": "d1",
+                            "output": "/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31 \u001b[1;31mIllogicalVizWarning\u001b[0m: \u001b[33mA title could not be inferred for the X axis because the X data generators have inconsistent names.\u001b[0m\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31 \u001b[1;31mIllogicalVizWarning\u001b[0m: \u001b[33mA title could not be inferred for the Y axis because the Y data generators have inconsistent names.\u001b[0m\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31 \u001b[1;31mIllogicalVizWarning\u001b[0m: \u001b[33mCurves have inconsistent x axis scales. All curves will be plotted in linear scale.\u001b[0m\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31 \u001b[1;31mIllogicalVizWarning\u001b[0m: \u001b[33mCurves have inconsistent y axis scales. All curves will be plotted in linear scale.\u001b[0m\r\n",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        },
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ex9_time",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ex9_V",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ex9_W",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.080053,
+                            "exception": null,
+                            "id": "ex9",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.036162,
+                            "exception": {
+                                "message": "Something went wrong reading the SBML model. Most likely the SBML model is not valid. Please check that your model is valid using the `mass.io.sbml.validate_sbml_model` function or via the online validator at http://sbml.org/validator .\n\t`(model, errors) = validate_sbml_model(filename)`\nIf the model is valid and cannot be read please open an issue at https://github.com/SBRG/masspy/issues .",
+                                "type": "MassSBMLError"
+                            },
+                            "id": "sim1_net1",
+                            "output": "/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31 \u001b[1;31mBioSimulatorsWarning\u001b[0m: \u001b[33m- Variable `DISPLAY__d1_V_fnPop1_0_V` has warnings.\r\n  - XPath could not be validated.\r\n- Variable `DISPLAY__d1_W_fnPop1_0_W` has warnings.\r\n  - XPath could not be validated.\r\n- Variable `OUTPUT__of1_W_fnPop1_0_W` has warnings.\r\n  - XPath could not be validated.\r\n- Variable `OUTPUT__of1_V_fnPop1_0_V` has warnings.\r\n  - XPath could not be validated.\u001b[0m\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31 \u001b[1;31mBioSimulatorsWarning\u001b[0m: \u001b[33mModel `net1` may be invalid.\r\n  - The model file `/tmp/tmp65ooz55i/./LEMS_NML2_Ex9_FN.sbml` has warnings.\r\n    - 2 warnings of type SBML unit consistency (99505). The following is the first warning at line 40, column 12:\r\n      - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n         The units of the <rateRule> <math> expression '(V - pow(V, 3) / 3 - W + I) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n    - 4 warnings of type Modeling practice (80701). The following is the first warning at line 32, column 12:\r\n      - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n         The <parameter> with the id 'I' does not have a 'units' attribute.\u001b[0m\r\n\u001b[93mWARNING:\u001b[0m \u001b[93mSBML model is written as Level 2 Version 2, will attempt to convert the SBML model from Level 2 Version 2 to Level 3 Version 1 before parsing\u001b[0m\r\n",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
+            "skipReason": null,
+            "status": "FAILED"
+        }
     },
     "netpyne": {
-        "status": "FAIL",
-        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/netpyne' returned non-zero exit status 1```"
+        "log_yml": {
+            "duration": 0.055604,
+            "exception": {
+                "message": "No module named 'libsbml'",
+                "type": "ModuleNotFoundError"
+            },
+            "output": "",
+            "sedDocuments": [],
+            "skipReason": null,
+            "status": "FAILED"
+        }
     },
     "neuron": {
-        "status": "FAIL",
-        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/neuron' returned non-zero exit status 1```"
+        "log_yml": {
+            "duration": 0.043542,
+            "exception": {
+                "message": "No module named 'libsbml'",
+                "type": "ModuleNotFoundError"
+            },
+            "output": "",
+            "sedDocuments": [],
+            "skipReason": null,
+            "status": "FAILED"
+        }
     },
     "opencor": {
-        "status": "FAIL",
-        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/opencor' returned non-zero exit status 1```"
+        "log_yml": {
+            "duration": 0.037372,
+            "exception": {
+                "message": "No module named 'libsbml'",
+                "type": "ModuleNotFoundError"
+            },
+            "output": "",
+            "sedDocuments": [],
+            "skipReason": null,
+            "status": "FAILED"
+        }
     },
     "pyneuroml": {
-        "status": "FAIL",
-        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/pyneuroml' returned non-zero exit status 1```"
+        "log_yml": {
+            "duration": 0.066082,
+            "exception": {
+                "message": "No module named 'libsbml'",
+                "type": "ModuleNotFoundError"
+            },
+            "output": "",
+            "sedDocuments": [],
+            "skipReason": null,
+            "status": "FAILED"
+        }
     },
     "pysces": {
-        "status": "FAIL",
-        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/pysces' returned non-zero exit status 1```"
+        "log_yml": {
+            "duration": 2.245048,
+            "exception": {
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    <class 'AssertionError'>:\n    Unable to generate Stoichiometric Matrix! model has:\n    0 reactions\n    0 species\n    what did you have in mind?\n    ",
+                "type": "CombineArchiveExecutionError"
+            },
+            "output": "/usr/local/lib/python3.10/site-packages/biosimulators_utils/warnings.py:31: BioSimulatorsWarning: \u001b[33mThe SED document is potentially incorrect.\r\n  - Model `net1` has warnings.\r\n    - The model file `LEMS_NML2_Ex9_FN.sbml` has warnings.\r\n      - 2 warnings of type SBML unit consistency (99505). The following is the first warning at line 40, column 12:\r\n        - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n           The units of the <rateRule> <math> expression '(V - pow(V, 3) / 3 - W + I) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n      - 4 warnings of type Modeling practice (80701). The following is the first warning at line 32, column 12:\r\n        - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n           The <parameter> with the id 'I' does not have a 'units' attribute.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.10/site-packages/biosimulators_utils/warnings.py:31: BioSimulatorsWarning: \u001b[33mThe COMBINE/OMEX archive has warnings.\r\n  - OMEX manifests should not contain content entries for themselves.\r\n  - The SED-ML file at location `./tmp470491` has warnings.\r\n    - Model `net1` has warnings.\r\n      - The model file `LEMS_NML2_Ex9_FN.sbml` has warnings.\r\n        - 2 warnings of type SBML unit consistency (99505). The following is the first warning at line 40, column 12:\r\n          - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n             The units of the <rateRule> <math> expression '(V - pow(V, 3) / 3 - W + I) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n        - 4 warnings of type Modeling practice (80701). The following is the first warning at line 32, column 12:\r\n          - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n             The <parameter> with the id 'I' does not have a 'units' attribute.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n",
+            "sedDocuments": [
+                {
+                    "duration": 1.857182,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  <class 'AssertionError'>:\n  Unable to generate Stoichiometric Matrix! model has:\n  0 reactions\n  0 species\n  what did you have in mind?\n  ",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp470491",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  tmp470491:\r\n    Tasks (1):\r\n      sim1_net1\r\n    Reports (1):\r\n      ex9: 3 data sets\r\n    Plots (1):\r\n      d1: 2 curves\r\n\r\nExecuting SED-ML file 1: tmp470491 ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `sim1_net1`\r\n    Outputs:\r\n      `d1`\r\n      `ex9`\r\n  Executing task 1: `sim1_net1`\r\n    Executing simulation ...Check SBML support is at action level 2\r\nSBML file is L2V2\r\n\r\n*******************************************************************\r\nIssues encountered in SBML translation (model processed anyway)\r\nSBML source: /tmp/tmpim64su02.xml\r\n*******************************************************************\r\n\r\nNo free species!? ... help I'm confused! \r\n\r\n*******************************************************************\r\n\r\nWriting file: /tmp/tmpbiwxk6d9.psc\r\n\r\nSBML2PSC\r\nin : /tmp/tmpim64su02.xml\r\nout: /tmp/tmpbiwxk6d9.psc\r\nUsing model directory: /Pysces/psc\r\n/tmp/tmpbiwxk6d9.psc loading ..... \r\nParsing file: /tmp/tmpbiwxk6d9.psc\r\nInfo: No reagents have been fixed\r\nInfo: \"I\" has been initialised but does not occur in a rate equation\r\nInfo: \"SEC\" has been initialised but does not occur in a rate equation\r\nInfo: \"V\" has been initialised but does not occur in a rate equation\r\nInfo: \"W\" has been initialised but does not occur in a rate equation\r\n \r\n \u001b[31mfailed - \r\nUnable to generate Stoichiometric Matrix! model has:\r\n0 reactions\r\n0 species\r\nwhat did you have in mind?\r\n\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `d1` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `ex9` ...",
+                    "outputs": [
+                        {
+                            "curves": [
+                                {
+                                    "id": "curve_V",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "curve_W",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.26398,
+                            "exception": null,
+                            "id": "d1",
+                            "output": "/usr/local/lib/python3.10/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mA title could not be inferred for the X axis because the X data generators have inconsistent names.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.10/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mA title could not be inferred for the Y axis because the Y data generators have inconsistent names.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.10/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mCurves have inconsistent x axis scales. All curves will be plotted in linear scale.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.10/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mCurves have inconsistent y axis scales. All curves will be plotted in linear scale.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        },
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ex9_time",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ex9_V",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ex9_W",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.148642,
+                            "exception": null,
+                            "id": "ex9",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 1.22189,
+                            "exception": {
+                                "message": "\nUnable to generate Stoichiometric Matrix! model has:\n0 reactions\n0 species\nwhat did you have in mind?\n",
+                                "type": "AssertionError"
+                            },
+                            "id": "sim1_net1",
+                            "output": "/usr/local/lib/python3.10/site-packages/biosimulators_utils/warnings.py:31: BioSimulatorsWarning: \u001b[33m- Variable `DISPLAY__d1_W_fnPop1_0_W` has warnings.\r\n  - XPath could not be validated.\r\n- Variable `OUTPUT__of1_W_fnPop1_0_W` has warnings.\r\n  - XPath could not be validated.\r\n- Variable `OUTPUT__of1_V_fnPop1_0_V` has warnings.\r\n  - XPath could not be validated.\r\n- Variable `DISPLAY__d1_V_fnPop1_0_V` has warnings.\r\n  - XPath could not be validated.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
+            "skipReason": null,
+            "status": "FAILED"
+        }
     },
     "rbapy": {
-        "status": "FAIL",
-        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/rbapy' returned non-zero exit status 1```"
+        "log_yml": {
+            "duration": 0.807296,
+            "exception": {
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Language for model `net1` is not supported.\n      - Model language `urn:sedml:language:sbml` is not supported. Models must be in RBA format (e.g., `sed:model/@language` must match `^urn:sedml:language:rba(\\.|$)` such as `urn:sedml:language:rba`).",
+                "type": "CombineArchiveExecutionError"
+            },
+            "output": "/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: BioSimulatorsWarning: \u001b[33mThe SED document is potentially incorrect.\r\n  - Model `net1` may be invalid.\r\n    - The model file `LEMS_NML2_Ex9_FN.sbml` may be invalid.\r\n      - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n         The units of the <rateRule> <math> expression '(V - pow(V, 3) / 3 - W + I) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n        \r\n      - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n         The units of the <rateRule> <math> expression '0.08 * (V + (0.7 - 0.8 * W)) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n        \r\n      - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n         The <parameter> with the id 'I' does not have a 'units' attribute.\r\n        \r\n      - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n         The <parameter> with the id 'SEC' does not have a 'units' attribute.\r\n        \r\n      - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n         The <parameter> with the id 'V' does not have a 'units' attribute.\r\n        \r\n      - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n         The <parameter> with the id 'W' does not have a 'units' attribute.\r\n        \u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: BioSimulatorsWarning: \u001b[33mThe COMBINE/OMEX archive may be invalid.\r\n  - OMEX manifests should not contain content entries for themselves.\r\n  - The SED-ML file at location `./tmp15160` may be invalid.\r\n    - Model `net1` may be invalid.\r\n      - The model file `LEMS_NML2_Ex9_FN.sbml` may be invalid.\r\n        - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n           The units of the <rateRule> <math> expression '(V - pow(V, 3) / 3 - W + I) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n          \r\n        - In situations where a mathematical expression contains literal numbers or parameters whose units have not been declared, it is not possible to verify accurately the consistency of the units in the expression. \r\n           The units of the <rateRule> <math> expression '0.08 * (V + (0.7 - 0.8 * W)) / SEC' cannot be fully checked. Unit consistency reported as either no errors or further unit errors related to this object may not be accurate.\r\n          \r\n        - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n           The <parameter> with the id 'I' does not have a 'units' attribute.\r\n          \r\n        - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n           The <parameter> with the id 'SEC' does not have a 'units' attribute.\r\n          \r\n        - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n           The <parameter> with the id 'V' does not have a 'units' attribute.\r\n          \r\n        - As a principle of best modeling practice, the units of a <parameter> should be declared rather than be left undefined. Doing so improves the ability of software to check the consistency of units and helps make it easier to detect potential errors in models.\r\n           The <parameter> with the id 'W' does not have a 'units' attribute.\r\n          \u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n",
+            "sedDocuments": [
+                {
+                    "duration": 0.458844,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  Language for model `net1` is not supported.\n    - Model language `urn:sedml:language:sbml` is not supported. Models must be in RBA format (e.g., `sed:model/@language` must match `^urn:sedml:language:rba(\\.|$)` such as `urn:sedml:language:rba`).",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp15160",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  tmp15160:\r\n    Tasks (1):\r\n      sim1_net1\r\n    Reports (1):\r\n      ex9: 3 data sets\r\n    Plots (1):\r\n      d1: 2 curves\r\n\r\nExecuting SED-ML file 1: tmp15160 ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `sim1_net1`\r\n    Outputs:\r\n      `d1`\r\n      `ex9`\r\n  Executing task 1: `sim1_net1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `d1` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `ex9` ...",
+                    "outputs": [
+                        {
+                            "curves": [
+                                {
+                                    "id": "curve_V",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "curve_W",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.236179,
+                            "exception": null,
+                            "id": "d1",
+                            "output": "/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mA title could not be inferred for the X axis because the X data generators have inconsistent names.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mA title could not be inferred for the Y axis because the Y data generators have inconsistent names.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mCurves have inconsistent x axis scales. All curves will be plotted in linear scale.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n/usr/local/lib/python3.9/site-packages/biosimulators_utils/warnings.py:31: IllogicalVizWarning: \u001b[33mCurves have inconsistent y axis scales. All curves will be plotted in linear scale.\u001b[0m\r\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\r\n",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        },
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ex9_time",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ex9_V",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ex9_W",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.074791,
+                            "exception": null,
+                            "id": "ex9",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.034445,
+                            "exception": {
+                                "message": "Language for model `net1` is not supported.\n  - Model language `urn:sedml:language:sbml` is not supported. Models must be in RBA format (e.g., `sed:model/@language` must match `^urn:sedml:language:rba(\\.|$)` such as `urn:sedml:language:rba`).",
+                                "type": "ValueError"
+                            },
+                            "id": "sim1_net1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
+            "skipReason": null,
+            "status": "FAILED"
+        }
     },
     "smoldyn": {
-        "status": "FAIL",
-        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/smoldyn' returned non-zero exit status 1```"
+        "log_yml": {}
     },
     "tellurium": {
         "status": "pass",
         "error_message": ""
     },
     "vcell": {
-        "status": "FAIL",
-        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/vcell' returned non-zero exit status 1```"
+        "log_yml": {
+            "duration": 2,
+            "exception": null,
+            "output": "Processing tmp65048.  Done",
+            "sedDocuments": [],
+            "skipReason": null,
+            "status": "SUCCEEDED"
+        }
     },
     "xpp": {
-        "status": "FAIL",
-        "error_message": "```Command '-i /root/in/LEMS_NML2_Ex9_FN_missing_xmlns.omex -o /root/out' in image 'ghcr.io/biosimulators/xpp' returned non-zero exit status 1```"
+        "log_yml": {
+            "duration": 0.054491,
+            "exception": {
+                "message": "No module named 'libsbml'",
+                "type": "ModuleNotFoundError"
+            },
+            "output": "",
+            "sedDocuments": [],
+            "skipReason": null,
+            "status": "FAILED"
+        }
     }
 }

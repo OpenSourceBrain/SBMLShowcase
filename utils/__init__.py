@@ -569,6 +569,8 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='out
     #put the sedml and sbml into a combine archive
     omex_filepath = create_omex(sedml_filepath,sbml_filepath)
     error_str = None
+    log_yml_path = os.path.join(output_dir,"log.yml")
+    log_yml_dict = {}
 
     try:
         biosimulators_core(engine,omex_filepath,output_dir=output_dir)
@@ -586,10 +588,13 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='out
     if not error_str: return {"status": 'pass', "error_message": ''}
 
     # #try to load the cleaner error message from the log.yml file
-    log_str = read_log_yml(os.path.join(os.path.dirname(omex_filepath),"log.yml"))
+    if os.path.isfile(log_yml_path):
+        log_str = read_log_yml(os.path.join(os.path.dirname(omex_filepath),"log.yml"))
+        with open(log_yml_path) as f:
+            log_yml_dict = yaml.safe_load(f)
 
-    if log_str:
-        error_str = str(log_str)
+        if log_str:
+            error_str = str(log_str)
     # if log_str:
     #     error_str = safe_md_string(log_str)
 
@@ -599,7 +604,7 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='out
             if re.search(error_categories[engine][tag],error_str):
                 return [tag,f"```{error_str}```"]
     
-    return {"status":"FAIL", "error_message": f"```{error_str}```"}
+    return {"log_yml": log_yml_dict}
 
 def biosimulators_core(engine,omex_filepath,output_dir=None):
     '''
