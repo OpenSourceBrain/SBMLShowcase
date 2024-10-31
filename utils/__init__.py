@@ -1094,6 +1094,10 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
     warning_html = "&#9888; WARNING"
     xfail_html = "&#9888; XFAIL"
 
+    
+    for e in results.keys():
+        results[e].update(process_log_yml_dict(results[e]["log_yml"]))
+
     links = ['view', 'download', 'logs']
     for e in results.keys():
         if any([l in results[e].keys() for l in links]):
