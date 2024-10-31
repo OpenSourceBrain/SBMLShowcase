@@ -560,16 +560,16 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='out
     log_yml_dict = {}
     exception_message = ""
 
+    try:
+        biosimulators_core(engine,omex_filepath,output_dir=output_dir)
+    except Exception as e:
+        exception_message = str(e)
+
     #ensure outputs are owned by the user
     if 'getuid' in dir(os) and chown_outputs:
         uid = os.getuid()
         gid = os.getgid()
         os.system(f'sudo chown -R {uid}:{gid} {output_dir}')
-
-    try:
-        biosimulators_core(engine,omex_filepath,output_dir=output_dir)
-    except Exception as e:
-        exception_message = str(e)
 
     if os.path.exists(log_yml_path):
         with open(log_yml_path) as f:
