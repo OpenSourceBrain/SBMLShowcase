@@ -1156,32 +1156,32 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
 
     return results_table
 
-def process_log_yml(log_yml_path):
+
+def process_log_yml_dict(log_yml_dict):
     status = ""
     error_message = ""
     exception_type = ""
 
-    with open(log_yml_path) as f:
-        log_yml_dict = yaml.safe_load(f)
-        log_yml_str = str(log_yml_dict)
-        if log_yml_dict['status'] == 'SUCCEEDED':
-            status = 'pass'
-            # to deal with cases like amici where the d1 plot max x is half the expected value
-            pattern_max_number_of_steps = "simulation failed: Reached maximum number of steps"
-            pattern_match = re.search(pattern_max_number_of_steps, log_yml_str)
-            if pattern_match:
-                status = 'FAIL'
-                error_message = 'Reached maximum number of steps'
-        elif log_yml_dict['status'] == 'FAILED':
-            status = 'FAIL'
-            exception = log_yml_dict['exception']
-            error_message = exception['message']
-            exception_type = exception['type']            
-        else:
-            status = None
-    
-    return status, error_message, exception_type
+    if log_yml_dict == {}:
+         return {"status":"FAIL", "error_message":"Error unknown. The log.yml containing error information was not found.","exception_type": ""}
 
+    log_yml_str = str(log_yml_dict)
+    if log_yml_dict['status'] == 'SUCCEEDED':
+        status = 'pass'
+        # to deal with cases like amici where the d1 plot max x is half the expected value
+        pattern_max_number_of_steps = "simulation failed: Reached maximum number of steps"
+        pattern_match = re.search(pattern_max_number_of_steps, log_yml_str)
+        if pattern_match:
+            status = 'FAIL'
+            error_message = 'Reached maximum number of steps'
+    elif log_yml_dict['status'] == 'FAILED':
+        status = 'FAIL'
+        exception = log_yml_dict['exception']
+        error_message = exception['message']
+        exception_type = exception['type']            
+    else:
+        status = None
+    return {"status":status, "error_message":error_message,"exception_type": exception_type}
 
 def run_biosimulators_remotely(engine_keys,
                                sedml_file_name, 
@@ -1211,38 +1211,11 @@ def run_biosimulators_remotely(engine_keys,
         extract_dir_dict[e] = extract_dir
 
     for e, extract_dir in extract_dir_dict.items():
-        status = ""
-        error_message = ""
-        exception_type = ""
-        task_output = ""
-
         log_yml_path = find_file_in_dir('log.yml', extract_dir)[0]
-        if not log_yml_path:
-            status = None
-            error_message = 'log.yml not found'
-            continue
         with open(log_yml_path) as f:
             log_yml_dict = yaml.safe_load(f)
-            log_yml_str = str(log_yml_dict)
-            if log_yml_dict['status'] == 'SUCCEEDED':
-                status = 'pass'
-                # to deal with cases like amici where the d1 plot max x is half the expected value
-                pattern_max_number_of_steps = "simulation failed: Reached maximum number of steps"
-                pattern_match = re.search(pattern_max_number_of_steps, log_yml_str)
-                if pattern_match:
-                    status = 'FAIL'
-                    error_message = 'Reached maximum number of steps'
-            elif log_yml_dict['status'] == 'FAILED':
-                status = 'FAIL'
-                exception = log_yml_dict['exception']
-                error_message = exception['message']
-                exception_type = exception['type']
-            else:
-                status = None
-            results_remote[e]["status"] = status
-            results_remote[e]["error_message"] = error_message
-            results_remote[e]["exception_type"] = exception_type
-            results_remote[e]["tasks_output"] = task_output
+        results_remote[e]["log_yml"] = log_yml_dict
+
 
     file_paths = find_files(remote_output_dir, '.pdf')
     move_d1_files(file_paths, d1_plots_remote_dir)
