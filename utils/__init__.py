@@ -574,6 +574,7 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='out
     status = ""
     error_message = ""
     exception_type = ""
+    log_yml_dict = {}
 
 
     try:
@@ -587,8 +588,10 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='out
 
         if os.path.exists(log_yml_path):
             status, error_message, exception_type = process_log_yml(log_yml_path)
+            with open(log_yml_path) as f:
+                log_yml_dict = yaml.safe_load(f)
         
-        results_dict = {"status": status, "error_message": error_message, "exception_type": exception_type}
+        results_dict = {"status": status, "error_message": error_message, "exception_type": exception_type,"log":log_yml_dict}
         return results_dict
 
     #ensure outputs are owned by the user
@@ -599,8 +602,10 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='out
 
     if os.path.exists(log_yml_path):
         status, error_message, exception_type = process_log_yml(log_yml_path)
+        with open(log_yml_path) as f:
+            log_yml_dict = yaml.safe_load(f)
         
-    results_dict = {"status": status, "error_message": error_message, "exception_type": exception_type}
+    results_dict = {"status": status, "error_message": error_message, "exception_type": exception_type,"log":log_yml_dict}
     return results_dict
 
 def biosimulators_core(engine,omex_filepath,output_dir=None):
@@ -1217,10 +1222,13 @@ def run_biosimulators_remotely(engine_keys,
 
     for e, extract_dir in extract_dir_dict.items():
         log_yml_path = find_file_in_dir('log.yml', extract_dir)[0]
+        with open(log_yml_path) as f:
+            log_yml_dict = yaml.safe_load(f)
         status, error_message, exception_type = process_log_yml(log_yml_path)
         results_remote[e]["status"] = status
         results_remote[e]["error_message"] = error_message
         results_remote[e]["exception_type"] = exception_type
+        results_remote[e]["log"] = log_yml_dict
 
     file_paths = find_files(remote_output_dir, '.pdf')
     move_d1_files(file_paths, d1_plots_remote_dir)
