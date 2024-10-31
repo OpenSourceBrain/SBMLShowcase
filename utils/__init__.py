@@ -367,8 +367,6 @@ def find_file_in_dir(file_name, directory):
                 list_of_files.append(file_path)
     return list_of_files
 
-
-# write definition to create d1 plots dict
 def d1_plots_dict(d1_plots_path='d1_plots'):
     """
     Create a dictionary with engine names as keys and d1 plot paths as values.
@@ -379,7 +377,6 @@ def d1_plots_dict(d1_plots_path='d1_plots'):
     d1_plots_dict = {e: d1_plot for e in ENGINES.keys() for d1_plot in d1_plots if e in d1_plot}
     
     return d1_plots_dict
-
 
 def create_hyperlink(path, title=None):
     """
@@ -435,11 +432,6 @@ def ansi_to_html(text):
         # if text includes The COMBINE/OMEX did not execute successfully: make everyhting from that point red
         text = text.replace('The COMBINE/OMEX did not execute successfully:', '<span style="color:red;">The COMBINE/OMEX did not execute successfully:')
     return text
-
-def display_error_message(error_message):
-    if error_message != None:
-        display_markdown(f'{error_message}', raw=True)
-    return error_message
 
 def check_file_compatibility_test(engine, model_filepath, experiment_filepath):
     '''
@@ -544,12 +536,7 @@ def get_remote_results(engine, download_link, output_dir='remote_results'):
 
 def rename_files_in_extract_dir(extract_dir, engine):
     
-    # find the log.yml file in the extracted directory
     log_yml_path = find_file_in_dir('log.yml', extract_dir)[0]
-    with open(log_yml_path) as f:
-        log_yml_dict = yaml.safe_load(f)
-    
-    # rename log.yml file to '{engine}_log.yml'
     new_file_name = f'{engine}_log.yml'
     root = os.path.dirname(log_yml_path)
     new_file_path = os.path.join(root, new_file_name)
@@ -1047,40 +1034,6 @@ def download_file_from_link(engine, download_link, output_file='results.zip', ma
     else:
         print(f'Failed to download {engine} results.')
         raise HTTPError(f'Failed to download {engine} results.') 
-
-# unzip the file in file_path if it is a zip file and remove the zip file, replace with the unzipped folder
-def unzip_file(file_path, output_dir=None):
-    """
-    Unzip a file if it is a zip file.
-
-    Parameters:
-    file_path (str): The path to the file to unzip.
-    output_dir (str): The directory to extract the contents of the zip file to. Defaults to None.
-
-    Returns:
-    str: The path to the unzipped folder.
-    """
-
-    # If the file is a zip file, unzip it
-    if zipfile.is_zipfile(file_path):
-        # If the output directory is not specified, use the directory of the file
-        if output_dir is None:
-            output_dir = os.path.dirname(file_path)
-
-        # Create a ZipFile object
-        with zipfile.ZipFile(file_path, 'r') as zip_ref:
-            # Extract the contents of the zip file
-            zip_ref.extractall(output_dir)
-
-        # Remove the zip file
-        os.remove(file_path)
-
-        # Get the name of the unzipped folder
-        unzipped_folder = os.path.join(output_dir, os.path.splitext(os.path.basename(file_path))[0])
-
-        return unzipped_folder
-
-    return file_path
 
 def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
     """
