@@ -157,7 +157,7 @@ ENGINE = 'Engine'
 # (currently only tellurium)
 # key is the tag/category used to report the category, value is a regex matching the error message
 # see MarkdownTable.process_engine_outcomes
-# TODO: use error categories in process_log_yml
+# TODO: use error categories in process_log_yml_dict
 error_categories=\
 {
     "tellurium":
@@ -1101,35 +1101,6 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
 
     return results_table
 
-def process_log_yml(log_yml_path):
-    status = ""
-    error_message = ""
-    exception_type = ""
-    
-    if not log_yml_path:
-        status = None
-        error_message = 'log.yml not found'
-    else:
-        with open(log_yml_path) as f:
-            log_yml_dict = yaml.safe_load(f)
-            log_yml_str = str(log_yml_dict)
-            if log_yml_dict['status'] == 'SUCCEEDED':
-                status = 'pass'
-                # to deal with cases like amici where the d1 plot max x is half the expected value
-                pattern_max_number_of_steps = "simulation failed: Reached maximum number of steps"
-                pattern_match = re.search(pattern_max_number_of_steps, log_yml_str)
-                if pattern_match:
-                    status = 'FAIL'
-                    error_message = 'Reached maximum number of steps'
-            elif log_yml_dict['status'] == 'FAILED':
-                status = 'FAIL'
-                exception = log_yml_dict['exception']
-                error_message = exception['message']
-                exception_type = exception['type']            
-            else:
-                status = None
-    return status, error_message, exception_type
-
 def process_log_yml_dict(log_yml_dict):
     status = ""
     error_message = ""
@@ -1188,10 +1159,6 @@ def run_biosimulators_remotely(engine_keys,
         log_yml_path = find_file_in_dir('log.yml', extract_dir)[0]
         with open(log_yml_path) as f:
             log_yml_dict = yaml.safe_load(f)
-        # status, error_message, exception_type = process_log_yml(log_yml_path)
-        # results_remote[e]["status"] = status
-        # results_remote[e]["error_message"] = error_message
-        # results_remote[e]["exception_type"] = exception_type
         results_remote[e]["log_yml"] = log_yml_dict
 
     file_paths = find_files(remote_output_dir, '.pdf')
