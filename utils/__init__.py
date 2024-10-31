@@ -1031,9 +1031,8 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
     warning_html = "&#9888; WARNING"
     xfail_html = "&#9888; XFAIL"
 
-    results2 = {}
     for e in results.keys():
-        results2[e] = process_log_yml_dict(results[e]["log_yml"])
+        results[e].update(process_log_yml_dict(results[e]["log_yml"]))
 
     links = ['view', 'download', 'logs']
     for e in results.keys():
@@ -1135,6 +1134,9 @@ def process_log_yml_dict(log_yml_dict):
     status = ""
     error_message = ""
     exception_type = ""
+
+    if log_yml_dict == {}:
+         return {"status":"FAIL", "error_message":"Error unknown. The log.yml containing error information was not found.","exception_type": ""}
 
     log_yml_str = str(log_yml_dict)
     if log_yml_dict['status'] == 'SUCCEEDED':
