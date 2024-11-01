@@ -1097,12 +1097,13 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
         if results_table.loc[results_table[ENGINE] == e, PASS_FAIL].values[0] == f'{xfail_html}':
             expected_fail = f'EXPECTED FAIL<br><br>'
         if len(results_table.loc[results_table[ENGINE] == e, ERROR].values[0]) > 1:
-            error_message = f'<br><br>ERROR MESSAGE:<br>{results_table.loc[results_table[ENGINE] == e, ERROR].values[0]}'  
+            error_message = f'ERROR MESSAGE:<br>{results_table.loc[results_table[ENGINE] == e, ERROR].values[0]}<br><br>'  
         if "links" in results_table.columns:
             links = results_table.loc[results_table[ENGINE] == e, "links"].values[0]
+            links = f'{links}<br><br>'
         if TYPE in results_table.columns:
             if len(results_table.loc[results_table[ENGINE] == e, TYPE].values[0])>1:
-                error_type = f'<br><br>ERROR TYPE:<br>{results_table.loc[results_table[ENGINE] == e, TYPE].values[0]}'
+                error_type = f'ERROR TYPE:<br>{results_table.loc[results_table[ENGINE] == e, TYPE].values[0]}'
 
         links_error = f'{expected_fail}{links}{error_message}{error_type}'
         results_table.loc[results_table[ENGINE] == e, "links_error"] = links_error
