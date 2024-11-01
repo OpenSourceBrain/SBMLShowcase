@@ -574,8 +574,17 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='out
     if os.path.exists(log_yml_path):
         with open(log_yml_path) as f:
             log_yml_dict = yaml.safe_load(f)
+
+    # to deal with vcell like cases where there is a log_yml with status SUCCEEDED but a detailedErrorLog.txt with "RuntimeError"
+    detailed_error_log_dict = {}
+    if os.path.exists(os.path.join(output_dir, 'detailedErrorLog.txt')):
+        with open(os.path.join(output_dir, 'detailedErrorLog.txt')) as f:
+            detailed_error_log = f.read()
+        if 'RuntimeException' in detailed_error_log:
+            detailed_error_log_dict['status'] = 'FAIL'
+            detailed_error_log_dict['error_message'] = "Runtime Exception"
     
-    return {"exception_message":exception_message,"log_yml":log_yml_dict}
+    return {"exception_message":exception_message,"log_yml":log_yml_dict, "detailed_error_log":detailed_error_log_dict}
 
 def biosimulators_core(engine,omex_filepath,output_dir=None):
     '''
@@ -1033,6 +1042,10 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
 
     for e in results.keys():
         results[e].update(process_log_yml_dict(results[e]["log_yml"]))
+        if "detailed_error_log" in results[e].keys():
+            if results[e]["detailed_error_log"] != {}:
+                results[e]['status']  = results[e]["detailed_error_log"]['status']
+                results[e]['error_message'] = results[e]["detailed_error_log"]['error_message']
 
     links = ['view', 'download', 'logs']
     for e in results.keys():
@@ -1122,9 +1135,14 @@ def process_log_yml_dict(log_yml_dict):
         status = 'FAIL'
         exception = log_yml_dict['exception']
         error_message = exception['message']
-        exception_type = exception['type']            
+        exception_type = exception['type']    
+    # in the case of vcell the status is QUEUED      
+    elif log_yml_dict['status'] == 'QUEUED':
+        status = 'FAIL'
+        error_message = 'status: QUEUED'  
     else:
         status = None
+
     return {"status":status, "error_message":error_message,"exception_type": exception_type}
 
 
@@ -1213,16 +1231,7 @@ def create_combined_results_table(results_remote,
     
     # Create results tables for remote and local results
     results_table_remote = create_results_table(results_remote, sbml_file_name, sedml_file_name, d1_plots_remote_dir)
-    # save as md file
-    path_to_results = os.path.join(test_folder, 'results_remote.md')
-    with open(path_to_results, 'w', encoding='utf-8') as f:
-        f.write(results_table_remote.to_markdown())
-    
     results_table_local = create_results_table(results_local, sbml_file_name, sedml_file_name, d1_plots_local_dir)
-    # save as md file
-    path_to_results = os.path.join(test_folder, 'results_local.md')
-    with open(path_to_results, 'w', encoding='utf-8') as f:
-        f.write(results_table_local.to_markdown())
 
     # Rename columns to distinguish between local and remote results except for Engine column
     results_table_remote.columns = [f"{col}{suffix_remote}" if col != ENGINE else col for col in results_table_remote.columns]
