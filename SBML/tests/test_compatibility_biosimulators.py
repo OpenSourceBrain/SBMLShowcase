@@ -42,7 +42,10 @@ d1_plots_local_dir = os.path.join(test_folder, args.output_dir + '_local')
 
 print('d1 plots will be saved in:', d1_plots_remote_dir, 'and', d1_plots_local_dir)
 
-utils.run_biosimulators_remotely_and_locally(sedml_file_name, 
+engine_keys = list(utils.ENGINES.keys())
+
+utils.run_biosimulators_remotely_and_locally(engine_keys,
+                                 sedml_file_name, 
                                  sbml_file_name,
                                  d1_plots_remote_dir, 
                                  d1_plots_local_dir,
