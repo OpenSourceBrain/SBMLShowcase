@@ -47,8 +47,9 @@ def parse_arguments():
 
     parser.add_argument(
         "--cases",
-        action="store",
-        type=list,
+        action="extend",
+        nargs="+",
+        type=str,
         default=[],
         help="Limit to the cases listed in the file. Empty list means no limit",
     )
