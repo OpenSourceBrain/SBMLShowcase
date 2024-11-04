@@ -125,9 +125,7 @@ def process_cases(args):
     # Suppress specific UserWarning caused by matplotlib (required to suppress interactive plots)
     warnings.filterwarnings("ignore", category=UserWarning, message="FigureCanvasAgg is non-interactive, and thus cannot be shown")
     subfolders = os.listdir(suite_path_abs) if args.limit == 0 else os.listdir(suite_path_abs)[:args.limit]   
-    # do same for cases
-    subfolders = os.listdir(suite_path_abs) if args.cases == [] else os.listdir(suite_path_abs)cases
-    
+
     for subfolder in subfolders:
         # if sbml_level_version is empty string (default), find the highest level and version in the folder
         if args.sbml_level_version == "highest":
