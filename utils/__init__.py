@@ -21,6 +21,7 @@ import glob
 from pyneuroml import biosimulations
 import pandas as pd
 from requests.exceptions import HTTPError 
+import json
 
 ENGINES = {
     'amici': {
@@ -1233,6 +1234,15 @@ def create_combined_results_table(results_remote,
 
     suffix_remote = ' (R)'
     suffix_local = ' (L)'
+
+    # save results_remote and results_local as json files with dicts
+    path_to_results_remote = os.path.join(test_folder, 'results_remote.json')
+    path_to_results_local = os.path.join(test_folder, 'results_local.json')
+
+    with open(path_to_results_remote, 'w') as f:
+        json.dump(results_remote, f, indent=4)
+    with open(path_to_results_local, 'w') as f:
+        json.dump(results_local, f, indent=4)
     
     # Create results tables for remote and local results
     results_table_remote = create_results_table(results_remote, sbml_file_name, sedml_file_name, d1_plots_remote_dir)

@@ -46,8 +46,9 @@ def parse_arguments():
 
     parser.add_argument(
         "--cases",
-        action="store",
-        type=list,
+        action="extend",
+        nargs="+",
+        type=str,
         default=[],
         help="Limit to the cases listed in the file. Empty list means no limit",
     )
@@ -106,7 +107,7 @@ def process_cases(args):
     print(f"Processing {len(subfolders)} subfolders in {args.suite_path}") 
     test_folder = 'tests'
 
-    for subfolder in subfolders:
+    for subfolder in args.cases:
         # create an equivalently named folder in the starting directory
         os.chdir(args.suite_path)
         print(f"Processing {subfolder}")
@@ -139,9 +140,10 @@ def process_cases(args):
         os.chdir(new_directory)
         print(f"Changed to {new_directory}")
 
-        engines_list = list(engines.keys()) 
+        engine_list = list(engines.keys()) 
         
-        utils.run_biosimulators_remotely_and_locally(os.path.basename(sedml_file_path), 
+        utils.run_biosimulators_remotely_and_locally(engine_list,
+                                 os.path.basename(sedml_file_path), 
                                  os.path.basename(sbml_file_path),
                                  os.path.join(test_folder,'d1_plots_remote'), 
                                  os.path.join(test_folder,'d1_plots_local'),
@@ -149,7 +151,7 @@ def process_cases(args):
 
 
 if __name__ == "__main__":
-    args = parse_arguments()
+    args = parse_arguments()    
 
     process_cases(args)
 
