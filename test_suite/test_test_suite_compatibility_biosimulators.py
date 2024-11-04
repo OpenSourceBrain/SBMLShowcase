@@ -15,7 +15,7 @@ import sys
 import shutil
 sys.path.append("..")
 import utils
-engines = utils.engines
+engines = utils.ENGINES
 
 
 md_description = \
@@ -42,6 +42,14 @@ def parse_arguments():
         type=int,
         default=0,
         help="Limit to the first n test cases, 0 means no limit",
+    )
+
+    parser.add_argument(
+        "--cases",
+        action="store",
+        type=list,
+        default=[],
+        help="Limit to the cases listed in the file. Empty list means no limit",
     )
 
     parser.add_argument(
@@ -94,6 +102,7 @@ def process_cases(args):
     suite_path_abs = os.getcwd() # absolute path to test suite
 
     subfolders = os.listdir(suite_path_abs) if args.limit == 0 else os.listdir(suite_path_abs)[:args.limit]   
+    # subfolders = os.listdir(suite_path_abs) if args.cases == [] else os.listdir(suite_path_abs)[args.cases]
     print(f"Processing {len(subfolders)} subfolders in {args.suite_path}") 
     test_folder = 'tests'
 
@@ -129,12 +138,14 @@ def process_cases(args):
 
         os.chdir(new_directory)
         print(f"Changed to {new_directory}")
+
+        engines_list = list(engines.keys()) 
         
         utils.run_biosimulators_remotely_and_locally(os.path.basename(sedml_file_path), 
                                  os.path.basename(sbml_file_path),
                                  os.path.join(test_folder,'d1_plots_remote'), 
                                  os.path.join(test_folder,'d1_plots_local'),
-                                 engines=engines, test_folder=test_folder)
+                                 test_folder=test_folder)
 
 
 if __name__ == "__main__":
