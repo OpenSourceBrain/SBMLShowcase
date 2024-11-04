@@ -2,8 +2,8 @@
 
 """
 This script tests the compatibility of different biosimulation engines with a given SBML and SED-ML file.
-It runs each engine and records the result (pass/fail) and any error messages encountered during the simulation.
-The results are then displayed in a table and saved to a markdown file.
+It runs each engine and saves the d1 plots, and a JSON file containing the log.yml file (as dict) and the 
+links for accessing the remote results, for each engine.
 """
 
 import sys
