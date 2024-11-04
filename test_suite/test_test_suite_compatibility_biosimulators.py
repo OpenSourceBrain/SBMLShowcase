@@ -102,12 +102,16 @@ def process_cases(args):
     os.chdir(args.suite_path) # change to test suite directory
     suite_path_abs = os.getcwd() # absolute path to test suite
 
-    subfolders = os.listdir(suite_path_abs) if args.limit == 0 else os.listdir(suite_path_abs)[:args.limit]   
-    # subfolders = os.listdir(suite_path_abs) if args.cases == [] else os.listdir(suite_path_abs)[args.cases]
+    if args.cases != []:
+        subfolders = args.cases
+    else:
+        subfolders = os.listdir(suite_path_abs) if args.limit == 0 else os.listdir(suite_path_abs)[:args.limit]   
+
     print(f"Processing {len(subfolders)} subfolders in {args.suite_path}") 
     test_folder = 'tests'
 
-    for subfolder in args.cases:
+
+    for subfolder in subfolders:
         # create an equivalently named folder in the starting directory
         os.chdir(args.suite_path)
         print(f"Processing {subfolder}")
