@@ -442,11 +442,11 @@ def check_file_compatibility_test(engine, model_filepath, experiment_filepath):
 
     if input_filetypes_tuple in engine_filetypes_tuple_list:
         file_types = [TYPES[i] for i in input_filetypes_tuple]
-        return 'pass', (f"The file extensions {input_filetypes_tuple} suggest the input file types are '{file_types}'. {compatible_filetypes} are compatible with {engine}")
+        return 'pass', (f"The file extensions {input_filetypes_tuple} suggest the input file types are '{file_types}'. {compatible_filetypes} are compatible with {engine}.")
     if 'xml' in input_filetypes_tuple:
-        return 'unsure', (f"The file extensions of the input files are '{input_filetypes_tuple}'. These may be compatible with {engine}. {compatible_filetypes} are compatible with {engine}")
+        return 'unsure', (f"The file extensions of the input files are '{input_filetypes_tuple}'. These may be compatible with {engine}. {compatible_filetypes} are compatible with {engine}.")
     else:
-        return 'FAIL', (f"The file extensions {input_filetypes_tuple} suggest the input file types are not compatibe with {engine}. {compatible_filetypes} are compatible with {engine}")
+        return 'FAIL', (f"The file extensions {input_filetypes_tuple} suggest the input file types are not compatibe with {engine}. {compatible_filetypes} are compatible with {engine}.")
     
 
 def collapsible_content(content, title='Details'):
