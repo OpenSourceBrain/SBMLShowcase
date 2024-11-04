@@ -398,11 +398,8 @@ def ansi_to_html(text):
         if len(text_message) > 0:
             text = text_message
             text = bytes(text[0], "utf-8").decode("unicode_escape")
-        elif 'The COMBINE/OMEX did not execute successfully:' in text:
-            text = text # to deal with remote error message
-        else:
-            text = text.replace('|', '')
-            return text
+        # elif 'The COMBINE/OMEX did not execute successfully:' in text:
+        #     text = text # to deal with remote error message
 
         text = text.replace('|', '')
 
@@ -410,8 +407,8 @@ def ansi_to_html(text):
         text = re.sub(r'<([^>]*)>', r'\1', text)
 
         # replace color codes with html color codes
-        text = text.replace("\x1b[33m",'<span style="color:darkorange;">')
-        text = text.replace("\x1b[31m",'<span style="color:red;">')
+        text = text.replace("\x1b[33m","")
+        text = text.replace("\x1b[31m","")
 
         # # remove .\x1b[0m
         text = text.replace("\x1b[0m", "")
@@ -430,9 +427,7 @@ def ansi_to_html(text):
         text = text.replace('BioSimulatorsWarning:', '<br><br>BioSimulatorsWarning:<br><br>')
         text = text.replace('warnings.warn(termcolor.colored(message, Colors.warning.value), category)', '<br>')
 
-        # if text includes The COMBINE/OMEX did not execute successfully: make everyhting from that point red
-        text = text.replace('The COMBINE/OMEX did not execute successfully:', '<span style="color:red;">The COMBINE/OMEX did not execute successfully:')
-    return text
+        return text
 
 def check_file_compatibility_test(engine, model_filepath, experiment_filepath):
     '''
