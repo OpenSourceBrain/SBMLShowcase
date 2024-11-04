@@ -50,7 +50,9 @@ def create_test_suite_results_tables():
 
         # get sbml filename with reg ex (it should contain sbml but not sedml)
         sbml_file_name = [f for f in os.listdir(subfolder_path) if 'sbml' in f and 'sedml' not in f][0]
-        sedml_file_name = [f for f in os.listdir(subfolder_path) if 'sedml' in f][0]
+        # also sbml file does not end with omex
+        sbml_file_name = [f for f in os.listdir(subfolder_path) if 'sbml' in f and 'sedml' not in f and not f.endswith('omex')][0]
+        sedml_file_name = [f for f in os.listdir(subfolder_path) if 'sedml' in f and not f.endswith('omex')][0]
 
         results_table = utils.create_combined_results_table(results["remote"], 
                                         results["local"], 
