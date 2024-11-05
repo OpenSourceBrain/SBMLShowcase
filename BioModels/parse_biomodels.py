@@ -24,6 +24,8 @@ import matplotlib
 sys.path.append("..")
 import utils
 
+matplotlib.use('Agg') #prevent matplotlib from trying to open a window
+
 API_URL: str = "https://www.ebi.ac.uk/biomodels"
 
 out_format="json"
@@ -181,7 +183,7 @@ def main():
 
     #caching is used to prevent the need to download the same responses from the remote server multiple times during testing
     #mode="off" to disable caching, "store" to wipe and store fresh results, "reuse" to use the stored cache
-    cache = utils.RequestCache(mode="auto",direc="cache")
+    cache = utils.RequestCache(mode="store",direc="cache")
 
     #accumulate results in columns defined by keys which correspond to the local variable names to be used below
     #to allow automated loading into the columns
