@@ -95,6 +95,9 @@ def process_cases(args):
 
     To test the highest level and version of SBML of the first 5 cases in the test suite:
     python test_test_suite_compatibility_biosimulators.py --limit 5 --suite-path /path/to/sbml-test-suite/cases/semantic --sbml-level_version highest
+
+    To test cases 00001 and 01186 in the test suite:
+    python test_test_suite_compatibility_biosimulators.py --cases 00001 01186 --suite-path /path/to/sbml-test-suite/cases/semantic --sbml-level_version highest
     """
 
     starting_dir = os.getcwd() # where results will be written
