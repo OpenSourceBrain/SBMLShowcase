@@ -2,14 +2,8 @@
 
 md_description = \
 '''
-Download and run validation tests on all the curated models from BioModels https://www.ebi.ac.uk/biomodels.
-The final step is to run the model in tellurium,
-only models specified in SBML with a matching SEDML file are run in tellurium.
-Errors or validation failures are reported at each step.
-Outputs to the Markdown Table below.
+Download and and create results table for curated models from BioModels https://www.ebi.ac.uk/biomodels.
 
-'valid-sbml-units' enforces strict unit checking, 'broken-ref' indicates that the SEDML file contained
-a broken source='model.xml' reference which was corrected to the name of the model's provided SBML file.
 '''
 
 import pyneuroml.sbml #for validate_sbml_files
@@ -19,9 +13,12 @@ import re
 import os
 import urllib
 import sys
+import matplotlib
 
 sys.path.append("..")
 import utils
+
+matplotlib.use('Agg') #prevent plotting from trying to open a window
 
 API_URL: str = "https://www.ebi.ac.uk/biomodels"
 
@@ -180,7 +177,7 @@ def main():
 
     #caching is used to prevent the need to download the same responses from the remote server multiple times during testing
     #mode="off" to disable caching, "store" to wipe and store fresh results, "reuse" to use the stored cache
-    cache = utils.RequestCache(mode="auto",direc="cache")
+    cache = utils.RequestCache(mode="store",direc="cache")
 
     #accumulate results in columns defined by keys which correspond to the local variable names to be used below
     #to allow automated loading into the columns
@@ -198,7 +195,7 @@ def main():
 
     for model_id in model_ids[0:1]:
         #allow testing on a small sample of models
-        if max_count > 0 and count >= max_count: break
+        if max_count > 0 and count >= max_count:reak
         count += 1
         print(f"\r{model_id} {count}/{len(model_ids)}       ",end='')
 
@@ -223,7 +220,7 @@ def main():
             mtab['model_desc'] = f"[{model_id}]({API_URL}/{model_id})<br/><sup>{info['name']}</sup>"
 
         #make temporary downloads of the sbml and sedml files
-        model_dir = os.path.join(starting_dir,tmp_dir,model_id)
+        model_dir = os.path.join(starting_dir,model_id)
         os.makedirs(model_dir,exist_ok=True)
         os.chdir(model_dir)
 
