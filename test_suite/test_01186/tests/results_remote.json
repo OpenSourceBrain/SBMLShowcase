@@ -1,28 +1,79 @@
 {
     "amici": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/6728b7265a60072d20f48b96",
-        "download": "https://api.biosimulations.org/results/6728b7265a60072d20f48b96/download",
-        "logs": "https://api.biosimulations.org/logs/6728b7265a60072d20f48b96?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/672cda23b678b3883bb65698",
+        "download": "https://api.biosimulations.org/results/672cda23b678b3883bb65698/download",
+        "logs": "https://api.biosimulations.org/logs/672cda23b678b3883bb65698?includeOutput=true",
         "log_yml": {
-            "duration": 0.299356,
+            "duration": 0.457526,
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./tmp267694` is invalid.\n    - Data generator `OBJF_1` is invalid.\n      - Variable `OBJF` is invalid.\n        - One or more namespaces required for target `/sbml:sbml/sbml:model/fbc:listOfObjectives/fbc:objective[@fbc:id='OBJF']` are not defined. Only the following namespaces are defined for the target: `sbml`.",
-                "type": "ValueError"
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    SteadyStateSimulation `simulation_1` is not supported.\n      - Simulation simulation_1 of type `SteadyStateSimulation` is not supported. Simulation must be an instance of one of the following:\n          - UniformTimeCourseSimulation",
+                "type": "CombineArchiveExecutionError"
             },
             "output": "",
-            "sedDocuments": [],
+            "sedDocuments": [
+                {
+                    "duration": 0.177744,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  SteadyStateSimulation `simulation_1` is not supported.\n    - Simulation simulation_1 of type `SteadyStateSimulation` is not supported. Simulation must be an instance of one of the following:\n        - UniformTimeCourseSimulation",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp935206",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 0 plots:\r\n  tmp935206:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n\r\nExecuting SED-ML file 1: tmp935206 ...\r\n  Found 1 tasks and 1 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 1 outputs ...\r\n      Generating output 1: `report_1` ...",
+                    "outputs": [
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_R01_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_R26_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_OBJF_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.077776,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.029592,
+                            "exception": {
+                                "message": "SteadyStateSimulation `simulation_1` is not supported.\n  - Simulation simulation_1 of type `SteadyStateSimulation` is not supported. Simulation must be an instance of one of the following:\n      - UniformTimeCourseSimulation",
+                                "type": "ValueError"
+                            },
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
             "skipReason": null,
             "status": "FAILED"
         }
     },
     "brian2": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/6728b72a0d09353e8f0f8a88",
-        "download": "https://api.biosimulations.org/results/6728b72a0d09353e8f0f8a88/download",
-        "logs": "https://api.biosimulations.org/logs/6728b72a0d09353e8f0f8a88?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/672cda255a60072d20f502b3",
+        "download": "https://api.biosimulations.org/results/672cda255a60072d20f502b3/download",
+        "logs": "https://api.biosimulations.org/logs/672cda255a60072d20f502b3?includeOutput=true",
         "log_yml": {
-            "duration": 0.058261,
+            "duration": 0.039435,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -35,164 +86,623 @@
     },
     "bionetgen": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/6728b72b0d09353e8f0f8a8c",
-        "download": "https://api.biosimulations.org/results/6728b72b0d09353e8f0f8a8c/download",
-        "logs": "https://api.biosimulations.org/logs/6728b72b0d09353e8f0f8a8c?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/672cda280d09353e8f10006a",
+        "download": "https://api.biosimulations.org/results/672cda280d09353e8f10006a/download",
+        "logs": "https://api.biosimulations.org/logs/672cda280d09353e8f10006a?includeOutput=true",
         "log_yml": {
-            "duration": 0.202798,
+            "duration": 0.388289,
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./tmp347049` is invalid.\n    - Data generator `OBJF_1` is invalid.\n      - Variable `OBJF` is invalid.\n        - One or more namespaces required for target `/sbml:sbml/sbml:model/fbc:listOfObjectives/fbc:objective[@fbc:id='OBJF']` are not defined. Only the following namespaces are defined for the target: `sbml`.",
-                "type": "ValueError"
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Language for model `model_1` is not supported.\n      - Model language `urn:sedml:language:sbml` is not supported. Models must be in BNGL format (e.g., `sed:model/@language` must match `^urn:sedml:language:bngl(\\.|$)` such as `urn:sedml:language:bngl`).",
+                "type": "CombineArchiveExecutionError"
             },
             "output": "",
-            "sedDocuments": [],
+            "sedDocuments": [
+                {
+                    "duration": 0.164902,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  Language for model `model_1` is not supported.\n    - Model language `urn:sedml:language:sbml` is not supported. Models must be in BNGL format (e.g., `sed:model/@language` must match `^urn:sedml:language:bngl(\\.|$)` such as `urn:sedml:language:bngl`).",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp19129",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 0 plots:\r\n  tmp19129:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n\r\nExecuting SED-ML file 1: tmp19129 ...\r\n  Found 1 tasks and 1 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 1 outputs ...\r\n      Generating output 1: `report_1` ...",
+                    "outputs": [
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_R01_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_R26_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_OBJF_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.066631,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.024745,
+                            "exception": {
+                                "message": "Language for model `model_1` is not supported.\n  - Model language `urn:sedml:language:sbml` is not supported. Models must be in BNGL format (e.g., `sed:model/@language` must match `^urn:sedml:language:bngl(\\.|$)` such as `urn:sedml:language:bngl`).",
+                                "type": "ValueError"
+                            },
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
             "skipReason": null,
             "status": "FAILED"
         }
     },
     "boolnet": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/6728b72d5a60072d20f48b99",
-        "download": "https://api.biosimulations.org/results/6728b72d5a60072d20f48b99/download",
-        "logs": "https://api.biosimulations.org/logs/6728b72d5a60072d20f48b99?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/672cda2b5a60072d20f502b6",
+        "download": "https://api.biosimulations.org/results/672cda2b5a60072d20f502b6/download",
+        "logs": "https://api.biosimulations.org/logs/672cda2b5a60072d20f502b6?includeOutput=true",
         "log_yml": {
-            "duration": 0.207202,
+            "duration": 0.3812,
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./tmp838310` is invalid.\n    - Data generator `OBJF_1` is invalid.\n      - Variable `OBJF` is invalid.\n        - One or more namespaces required for target `/sbml:sbml/sbml:model/fbc:listOfObjectives/fbc:objective[@fbc:id='OBJF']` are not defined. Only the following namespaces are defined for the target: `sbml`.",
-                "type": "ValueError"
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    SteadyStateSimulation `simulation_1` is not supported.\n      - Simulation simulation_1 of type `SteadyStateSimulation` is not supported. Simulation must be an instance of one of the following:\n          - UniformTimeCourseSimulation",
+                "type": "CombineArchiveExecutionError"
             },
             "output": "",
-            "sedDocuments": [],
+            "sedDocuments": [
+                {
+                    "duration": 0.187335,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  SteadyStateSimulation `simulation_1` is not supported.\n    - Simulation simulation_1 of type `SteadyStateSimulation` is not supported. Simulation must be an instance of one of the following:\n        - UniformTimeCourseSimulation",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp708539",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 0 plots:\r\n  tmp708539:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n\r\nExecuting SED-ML file 1: tmp708539 ...\r\n  Found 1 tasks and 1 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 1 outputs ...\r\n      Generating output 1: `report_1` ...",
+                    "outputs": [
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_R01_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_R26_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_OBJF_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.069294,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.035063,
+                            "exception": {
+                                "message": "SteadyStateSimulation `simulation_1` is not supported.\n  - Simulation simulation_1 of type `SteadyStateSimulation` is not supported. Simulation must be an instance of one of the following:\n      - UniformTimeCourseSimulation",
+                                "type": "ValueError"
+                            },
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
             "skipReason": null,
             "status": "FAILED"
         }
     },
     "cbmpy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/6728b72f5a60072d20f48b9e",
-        "download": "https://api.biosimulations.org/results/6728b72f5a60072d20f48b9e/download",
-        "logs": "https://api.biosimulations.org/logs/6728b72f5a60072d20f48b9e?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/672cda2db678b3883bb6569d",
+        "download": "https://api.biosimulations.org/results/672cda2db678b3883bb6569d/download",
+        "logs": "https://api.biosimulations.org/logs/672cda2db678b3883bb6569d?includeOutput=true",
         "log_yml": {
-            "duration": 0.335865,
+            "duration": 0.45169,
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./tmp528257` is invalid.\n    - Data generator `OBJF_1` is invalid.\n      - Variable `OBJF` is invalid.\n        - One or more namespaces required for target `/sbml:sbml/sbml:model/fbc:listOfObjectives/fbc:objective[@fbc:id='OBJF']` are not defined. Only the following namespaces are defined for the target: `sbml`.",
-                "type": "ValueError"
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    'MLStripper' object has no attribute 'unescape'",
+                "type": "CombineArchiveExecutionError"
             },
             "output": "\r\nINFO: No xlwt module available, Excel spreadsheet creation disabled\r\n\r\n\r\n\r\nNo module named 'cplex'\r\n\r\n\r\n\r\nCPLEX not available\r\n\r\n*****\r\nUsing GLPK\r\n*****\r\n\r\n\r\nINFO: No xlrd module available, Excel spreadsheet reading disabled\r\n\r\nCBMPy environment\r\n******************\r\nRevision: r689\r\n\r\n\r\n***********************************************************************\r\n* Welcome to CBMPy (0.7.25) - PySCeS Constraint Based Modelling       *\r\n*                http://cbmpy.sourceforge.net                         *\r\n* Copyright(C) Brett G. Olivier 2014 - 2019                           *\r\n* Dept. of Systems Bioinformatics                                     *\r\n* Vrije Universiteit Amsterdam, Amsterdam, The Netherlands            *\r\n* CBMPy is developed as part of the BeBasic MetaToolKit Project       *\r\n* Distributed under the GNU GPL v 3.0 licence, see                    *\r\n* LICENCE (supplied with this release) for details                    *\r\n***********************************************************************\r\n\r\n",
-            "sedDocuments": [],
+            "sedDocuments": [
+                {
+                    "duration": 0.170845,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  'MLStripper' object has no attribute 'unescape'",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp659541",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 0 plots:\r\n  tmp659541:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n\r\nExecuting SED-ML file 1: tmp659541 ...\r\n  Found 1 tasks and 1 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ...FBC version: 1\r\nM.getNumReactions: 26\r\nM.getNumSpecies: 23\r\nFBC.getNumObjectives: 1\r\nFBC.getNumGeneAssociations: 0\r\nFBC.getNumFluxBounds: 52\r\n \u001b[31mfailed\u001b[0m\r\n    Generating 1 outputs ...\r\n      Generating output 1: `report_1` ...",
+                    "outputs": [
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_R01_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_R26_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_OBJF_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.055436,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.042232,
+                            "exception": {
+                                "message": "'MLStripper' object has no attribute 'unescape'",
+                                "type": "AttributeError"
+                            },
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
             "skipReason": null,
             "status": "FAILED"
         }
     },
     "cobrapy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/6728b730b678b3883bb5df8f",
-        "download": "https://api.biosimulations.org/results/6728b730b678b3883bb5df8f/download",
-        "logs": "https://api.biosimulations.org/logs/6728b730b678b3883bb5df8f?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/672cda310d09353e8f100071",
+        "download": "https://api.biosimulations.org/results/672cda310d09353e8f100071/download",
+        "logs": "https://api.biosimulations.org/logs/672cda310d09353e8f100071?includeOutput=true",
         "log_yml": {
-            "duration": 0.201831,
+            "duration": 0.923096,
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./tmp171288` is invalid.\n    - Data generator `OBJF_1` is invalid.\n      - Variable `OBJF` is invalid.\n        - One or more namespaces required for target `/sbml:sbml/sbml:model/fbc:listOfObjectives/fbc:objective[@fbc:id='OBJF']` are not defined. Only the following namespaces are defined for the target: `sbml`.",
-                "type": "ValueError"
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Something went wrong reading the SBML model. Most likely the SBML model is not valid. Please check that your model is valid using the `cobra.io.sbml.validate_sbml_model` function or via the online validator at http://sbml.org/validator .\n    \t`(model, errors) = validate_sbml_model(filename)`\n    If the model is valid and cannot be read please open an issue at https://github.com/opencobra/cobrapy/issues .",
+                "type": "CombineArchiveExecutionError"
             },
             "output": "",
-            "sedDocuments": [],
+            "sedDocuments": [
+                {
+                    "duration": 0.718591,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  Something went wrong reading the SBML model. Most likely the SBML model is not valid. Please check that your model is valid using the `cobra.io.sbml.validate_sbml_model` function or via the online validator at http://sbml.org/validator .\n  \t`(model, errors) = validate_sbml_model(filename)`\n  If the model is valid and cannot be read please open an issue at https://github.com/opencobra/cobrapy/issues .",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp616442",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 0 plots:\r\n  tmp616442:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n\r\nExecuting SED-ML file 1: tmp616442 ...\r\n  Found 1 tasks and 1 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 1 outputs ...\r\n      Generating output 1: `report_1` ...",
+                    "outputs": [
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_R01_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_R26_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_OBJF_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.059931,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.572998,
+                            "exception": {
+                                "message": "Something went wrong reading the SBML model. Most likely the SBML model is not valid. Please check that your model is valid using the `cobra.io.sbml.validate_sbml_model` function or via the online validator at http://sbml.org/validator .\n\t`(model, errors) = validate_sbml_model(filename)`\nIf the model is valid and cannot be read please open an issue at https://github.com/opencobra/cobrapy/issues .",
+                                "type": "CobraSBMLError"
+                            },
+                            "id": "task_1",
+                            "output": "Loading SBML model without fbc:strict=\"true\"\r\nLoading SBML with fbc-v1 (models should be encoded using fbc-v2)\r\nSet parameter GURO_PAR_SPECIAL\r\nSet parameter TokenServer to value \"gurobi.cam.uchc.edu\"\r\n",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
             "skipReason": null,
             "status": "FAILED"
         }
     },
     "copasi": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/6728b7335a60072d20f48ba3",
-        "download": "https://api.biosimulations.org/results/6728b7335a60072d20f48ba3/download",
-        "logs": "https://api.biosimulations.org/logs/6728b7335a60072d20f48ba3?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/672cda35b678b3883bb656ae",
+        "download": "https://api.biosimulations.org/results/672cda35b678b3883bb656ae/download",
+        "logs": "https://api.biosimulations.org/logs/672cda35b678b3883bb656ae?includeOutput=true",
         "log_yml": {
-            "duration": 0.186713,
+            "duration": 0.489384,
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./tmp860188` is invalid.\n    - Data generator `OBJF_1` is invalid.\n      - Variable `OBJF` is invalid.\n        - One or more namespaces required for target `/sbml:sbml/sbml:model/fbc:listOfObjectives/fbc:objective[@fbc:id='OBJF']` are not defined. Only the following namespaces are defined for the target: `sbml`.",
-                "type": "ValueError"
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    <class 'ValueError'>:No suitable equivalent for 'KISAO_0000437' could be found with the provided substitution policy",
+                "type": "CombineArchiveExecutionError"
             },
             "output": "",
-            "sedDocuments": [],
+            "sedDocuments": [
+                {
+                    "duration": 0.272903,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  <class 'ValueError'>:No suitable equivalent for 'KISAO_0000437' could be found with the provided substitution policy",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp655448",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 0 plots:\r\n  tmp655448:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n\r\nExecuting SED-ML file 1: tmp655448 ...\r\n  Found 1 tasks and 1 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[31mfailed - No suitable equivalent for 'KISAO_0000437' could be found with the provided substitution policy\u001b[0m\r\n    Generating 1 outputs ...\r\n      Generating output 1: `report_1` ...",
+                    "outputs": [
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_R01_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_R26_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_OBJF_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.059354,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.137756,
+                            "exception": {
+                                "message": "No suitable equivalent for 'KISAO_0000437' could be found with the provided substitution policy",
+                                "type": "ValueError"
+                            },
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
             "skipReason": null,
             "status": "FAILED"
         }
     },
     "gillespy2": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/6728b7350d09353e8f0f8a96",
-        "download": "https://api.biosimulations.org/results/6728b7350d09353e8f0f8a96/download",
-        "logs": "https://api.biosimulations.org/logs/6728b7350d09353e8f0f8a96?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/672cda385a60072d20f502c1",
+        "download": "https://api.biosimulations.org/results/672cda385a60072d20f502c1/download",
+        "logs": "https://api.biosimulations.org/logs/672cda385a60072d20f502c1?includeOutput=true",
         "log_yml": {
-            "duration": 0.207018,
+            "duration": 0.365961,
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./tmp595452` is invalid.\n    - Data generator `OBJF_1` is invalid.\n      - Variable `OBJF` is invalid.\n        - One or more namespaces required for target `/sbml:sbml/sbml:model/fbc:listOfObjectives/fbc:objective[@fbc:id='OBJF']` are not defined. Only the following namespaces are defined for the target: `sbml`.",
-                "type": "ValueError"
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    SteadyStateSimulation `simulation_1` is not supported.\n      - Simulation simulation_1 of type `SteadyStateSimulation` is not supported. Simulation must be an instance of one of the following:\n          - UniformTimeCourseSimulation",
+                "type": "CombineArchiveExecutionError"
             },
             "output": "",
-            "sedDocuments": [],
+            "sedDocuments": [
+                {
+                    "duration": 0.163661,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  SteadyStateSimulation `simulation_1` is not supported.\n    - Simulation simulation_1 of type `SteadyStateSimulation` is not supported. Simulation must be an instance of one of the following:\n        - UniformTimeCourseSimulation",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp400970",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 0 plots:\r\n  tmp400970:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n\r\nExecuting SED-ML file 1: tmp400970 ...\r\n  Found 1 tasks and 1 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 1 outputs ...\r\n      Generating output 1: `report_1` ...",
+                    "outputs": [
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_R01_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_R26_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_OBJF_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.060071,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.02811,
+                            "exception": {
+                                "message": "SteadyStateSimulation `simulation_1` is not supported.\n  - Simulation simulation_1 of type `SteadyStateSimulation` is not supported. Simulation must be an instance of one of the following:\n      - UniformTimeCourseSimulation",
+                                "type": "ValueError"
+                            },
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
             "skipReason": null,
             "status": "FAILED"
         }
     },
     "ginsim": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/6728b7365a60072d20f48ba8",
-        "download": "https://api.biosimulations.org/results/6728b7365a60072d20f48ba8/download",
-        "logs": "https://api.biosimulations.org/logs/6728b7365a60072d20f48ba8?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/672cda3cb678b3883bb656b6",
+        "download": "https://api.biosimulations.org/results/672cda3cb678b3883bb656b6/download",
+        "logs": "https://api.biosimulations.org/logs/672cda3cb678b3883bb656b6?includeOutput=true",
         "log_yml": {
-            "duration": 0.171673,
+            "duration": 0.396331,
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./tmp956508` is invalid.\n    - Data generator `OBJF_1` is invalid.\n      - Variable `OBJF` is invalid.\n        - One or more namespaces required for target `/sbml:sbml/sbml:model/fbc:listOfObjectives/fbc:objective[@fbc:id='OBJF']` are not defined. Only the following namespaces are defined for the target: `sbml`.",
-                "type": "ValueError"
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Namespaces must include 1 SBML qual namespace.",
+                "type": "CombineArchiveExecutionError"
             },
             "output": "",
-            "sedDocuments": [],
+            "sedDocuments": [
+                {
+                    "duration": 0.175583,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  Namespaces must include 1 SBML qual namespace.",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp695326",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 0 plots:\r\n  tmp695326:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n\r\nExecuting SED-ML file 1: tmp695326 ...\r\n  Found 1 tasks and 1 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 1 outputs ...\r\n      Generating output 1: `report_1` ...",
+                    "outputs": [
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_R01_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_R26_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_OBJF_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.061538,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.033105,
+                            "exception": {
+                                "message": "Namespaces must include 1 SBML qual namespace.",
+                                "type": "ValueError"
+                            },
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
             "skipReason": null,
             "status": "FAILED"
         }
     },
     "libsbmlsim": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/6728b738b678b3883bb5dfa0",
-        "download": "https://api.biosimulations.org/results/6728b738b678b3883bb5dfa0/download",
-        "logs": "https://api.biosimulations.org/logs/6728b738b678b3883bb5dfa0?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/672cda3eb678b3883bb656bb",
+        "download": "https://api.biosimulations.org/results/672cda3eb678b3883bb656bb/download",
+        "logs": "https://api.biosimulations.org/logs/672cda3eb678b3883bb656bb?includeOutput=true",
         "log_yml": {
-            "duration": 0.159555,
+            "duration": 0.426982,
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./tmp385105` is invalid.\n    - Data generator `OBJF_1` is invalid.\n      - Variable `OBJF` is invalid.\n        - One or more namespaces required for target `/sbml:sbml/sbml:model/fbc:listOfObjectives/fbc:objective[@fbc:id='OBJF']` are not defined. Only the following namespaces are defined for the target: `sbml`.",
-                "type": "ValueError"
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    SteadyStateSimulation `simulation_1` is not supported.\n      - Simulation simulation_1 of type `SteadyStateSimulation` is not supported. Simulation must be an instance of one of the following:\n          - UniformTimeCourseSimulation",
+                "type": "CombineArchiveExecutionError"
             },
             "output": "",
-            "sedDocuments": [],
+            "sedDocuments": [
+                {
+                    "duration": 0.197929,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  SteadyStateSimulation `simulation_1` is not supported.\n    - Simulation simulation_1 of type `SteadyStateSimulation` is not supported. Simulation must be an instance of one of the following:\n        - UniformTimeCourseSimulation",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp428565",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 0 plots:\r\n  tmp428565:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n\r\nExecuting SED-ML file 1: tmp428565 ...\r\n  Found 1 tasks and 1 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 1 outputs ...\r\n      Generating output 1: `report_1` ...",
+                    "outputs": [
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_R01_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_R26_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_OBJF_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.063306,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.034525,
+                            "exception": {
+                                "message": "SteadyStateSimulation `simulation_1` is not supported.\n  - Simulation simulation_1 of type `SteadyStateSimulation` is not supported. Simulation must be an instance of one of the following:\n      - UniformTimeCourseSimulation",
+                                "type": "ValueError"
+                            },
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
             "skipReason": null,
             "status": "FAILED"
         }
     },
     "masspy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/6728b73ab678b3883bb5dfa5",
-        "download": "https://api.biosimulations.org/results/6728b73ab678b3883bb5dfa5/download",
-        "logs": "https://api.biosimulations.org/logs/6728b73ab678b3883bb5dfa5?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/672cda425a60072d20f502ca",
+        "download": "https://api.biosimulations.org/results/672cda425a60072d20f502ca/download",
+        "logs": "https://api.biosimulations.org/logs/672cda425a60072d20f502ca?includeOutput=true",
         "log_yml": {
-            "duration": 0.413051,
+            "duration": 0.65939,
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./tmp581425` is invalid.\n    - Data generator `OBJF_1` is invalid.\n      - Variable `OBJF` is invalid.\n        - One or more namespaces required for target `/sbml:sbml/sbml:model/fbc:listOfObjectives/fbc:objective[@fbc:id='OBJF']` are not defined. Only the following namespaces are defined for the target: `sbml`.",
-                "type": "ValueError"
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    SteadyStateSimulation `simulation_1` is not supported.\n      - Simulation simulation_1 of type `SteadyStateSimulation` is not supported. Simulation must be an instance of one of the following:\n          - UniformTimeCourseSimulation",
+                "type": "CombineArchiveExecutionError"
             },
             "output": "",
-            "sedDocuments": [],
+            "sedDocuments": [
+                {
+                    "duration": 0.180976,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  SteadyStateSimulation `simulation_1` is not supported.\n    - Simulation simulation_1 of type `SteadyStateSimulation` is not supported. Simulation must be an instance of one of the following:\n        - UniformTimeCourseSimulation",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp898388",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 0 plots:\r\n  tmp898388:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n\r\nExecuting SED-ML file 1: tmp898388 ...\r\n  Found 1 tasks and 1 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 1 outputs ...\r\n      Generating output 1: `report_1` ...",
+                    "outputs": [
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_R01_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_R26_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_OBJF_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.062792,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.035169,
+                            "exception": {
+                                "message": "SteadyStateSimulation `simulation_1` is not supported.\n  - Simulation simulation_1 of type `SteadyStateSimulation` is not supported. Simulation must be an instance of one of the following:\n      - UniformTimeCourseSimulation",
+                                "type": "ValueError"
+                            },
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
             "skipReason": null,
             "status": "FAILED"
         }
     },
     "netpyne": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/6728b73cb678b3883bb5dfb0",
-        "download": "https://api.biosimulations.org/results/6728b73cb678b3883bb5dfb0/download",
-        "logs": "https://api.biosimulations.org/logs/6728b73cb678b3883bb5dfb0?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/672cda44b678b3883bb656c5",
+        "download": "https://api.biosimulations.org/results/672cda44b678b3883bb656c5/download",
+        "logs": "https://api.biosimulations.org/logs/672cda44b678b3883bb656c5?includeOutput=true",
         "log_yml": {
-            "duration": 0.066357,
+            "duration": 0.039167,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -205,11 +715,11 @@
     },
     "neuron": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/6728b73d5a60072d20f48be0",
-        "download": "https://api.biosimulations.org/results/6728b73d5a60072d20f48be0/download",
-        "logs": "https://api.biosimulations.org/logs/6728b73d5a60072d20f48be0?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/672cda470d09353e8f1000b6",
+        "download": "https://api.biosimulations.org/results/672cda470d09353e8f1000b6/download",
+        "logs": "https://api.biosimulations.org/logs/672cda470d09353e8f1000b6?includeOutput=true",
         "log_yml": {
-            "duration": 0.038132,
+            "duration": 0.036652,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -222,11 +732,11 @@
     },
     "opencor": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/6728b73fb678b3883bb5dfcb",
-        "download": "https://api.biosimulations.org/results/6728b73fb678b3883bb5dfcb/download",
-        "logs": "https://api.biosimulations.org/logs/6728b73fb678b3883bb5dfcb?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/672cda490d09353e8f1000bb",
+        "download": "https://api.biosimulations.org/results/672cda490d09353e8f1000bb/download",
+        "logs": "https://api.biosimulations.org/logs/672cda490d09353e8f1000bb?includeOutput=true",
         "log_yml": {
-            "duration": 0.039215,
+            "duration": 0.019113,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -239,11 +749,11 @@
     },
     "pyneuroml": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/6728b7415a60072d20f48bfc",
-        "download": "https://api.biosimulations.org/results/6728b7415a60072d20f48bfc/download",
-        "logs": "https://api.biosimulations.org/logs/6728b7415a60072d20f48bfc?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/672cda4c0d09353e8f1000c6",
+        "download": "https://api.biosimulations.org/results/672cda4c0d09353e8f1000c6/download",
+        "logs": "https://api.biosimulations.org/logs/672cda4c0d09353e8f1000c6?includeOutput=true",
         "log_yml": {
-            "duration": 0.043981,
+            "duration": 0.041393,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -256,45 +766,147 @@
     },
     "pysces": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/6728b7435a60072d20f48c09",
-        "download": "https://api.biosimulations.org/results/6728b7435a60072d20f48c09/download",
-        "logs": "https://api.biosimulations.org/logs/6728b7435a60072d20f48c09?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/672cda4eb678b3883bb656f7",
+        "download": "https://api.biosimulations.org/results/672cda4eb678b3883bb656f7/download",
+        "logs": "https://api.biosimulations.org/logs/672cda4eb678b3883bb656f7?includeOutput=true",
         "log_yml": {
-            "duration": 0.180308,
+            "duration": 0.389088,
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./tmp956852` is invalid.\n    - Data generator `OBJF_1` is invalid.\n      - Variable `OBJF` is invalid.\n        - One or more namespaces required for target `/sbml:sbml/sbml:model/fbc:listOfObjectives/fbc:objective[@fbc:id='OBJF']` are not defined. Only the following namespaces are defined for the target: `sbml`.",
-                "type": "ValueError"
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    <class 'ValueError'>:SteadyStateSimulation `simulation_1` is not supported.\n      - Simulation simulation_1 of type `SteadyStateSimulation` is not supported. Simulation must be an instance of one of the following:\n          - UniformTimeCourseSimulation",
+                "type": "CombineArchiveExecutionError"
             },
             "output": "libtk8.6.so: cannot open shared object file: No such file or directory\r\n\r\nPySCeS defaults to matplotlib's TKagg backend if not specified                          in the user configuration file, set \"matplotlib_backend = <backend>\" \r\nMatplotlib interface loaded (pysces.plt.m)\r\nPitcon routines available\r\nNLEQ2 routines available\r\nSBML support available\r\nYou are using NumPy (2.1.2) with SciPy (1.14.1)\r\nAssimulo CVode available\r\nRateChar is available\r\nParallel scanner is available\r\n\r\nPySCeS environment\r\n******************\r\npysces.model_dir = /home/FCAM/crbmapi/Pysces/psc\r\npysces.output_dir = /home/FCAM/crbmapi/Pysces\r\n\r\n\r\n***********************************************************************\r\n* Welcome to PySCeS (1.2.2) - Python Simulator for Cellular Systems   *\r\n*                http://pysces.sourceforge.net                        *\r\n* Copyright(C) B.G. Olivier, J.M. Rohwer, J.-H.S. Hofmeyr, 2004-2024  *\r\n* Triple-J Group for Molecular Cell Physiology                        *\r\n* Stellenbosch University, ZA and VU University Amsterdam, NL         *\r\n* PySCeS is distributed under the PySCeS (BSD style) licence, see     *\r\n* LICENCE.txt (supplied with this release) for details                *\r\n* Please cite PySCeS with: doi:10.1093/bioinformatics/bti046          *\r\n***********************************************************************\r\n",
-            "sedDocuments": [],
+            "sedDocuments": [
+                {
+                    "duration": 0.162443,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  <class 'ValueError'>:SteadyStateSimulation `simulation_1` is not supported.\n    - Simulation simulation_1 of type `SteadyStateSimulation` is not supported. Simulation must be an instance of one of the following:\n        - UniformTimeCourseSimulation",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp698455",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 0 plots:\r\n  tmp698455:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n\r\nExecuting SED-ML file 1: tmp698455 ...\r\n  Found 1 tasks and 1 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[31mfailed - SteadyStateSimulation `simulation_1` is not supported.\r\n  - Simulation simulation_1 of type `SteadyStateSimulation` is not supported. Simulation must be an instance of one of the following:\r\n      - UniformTimeCourseSimulation\u001b[0m\r\n    Generating 1 outputs ...\r\n      Generating output 1: `report_1` ...",
+                    "outputs": [
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_R01_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_R26_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_OBJF_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.060159,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.028737,
+                            "exception": {
+                                "message": "SteadyStateSimulation `simulation_1` is not supported.\n  - Simulation simulation_1 of type `SteadyStateSimulation` is not supported. Simulation must be an instance of one of the following:\n      - UniformTimeCourseSimulation",
+                                "type": "ValueError"
+                            },
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
             "skipReason": null,
             "status": "FAILED"
         }
     },
     "rbapy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/6728b744b678b3883bb5dfe8",
-        "download": "https://api.biosimulations.org/results/6728b744b678b3883bb5dfe8/download",
-        "logs": "https://api.biosimulations.org/logs/6728b744b678b3883bb5dfe8?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/672cda50b678b3883bb65700",
+        "download": "https://api.biosimulations.org/results/672cda50b678b3883bb65700/download",
+        "logs": "https://api.biosimulations.org/logs/672cda50b678b3883bb65700?includeOutput=true",
         "log_yml": {
-            "duration": 0.214364,
+            "duration": 0.385827,
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./tmp868261` is invalid.\n    - Data generator `OBJF_1` is invalid.\n      - Variable `OBJF` is invalid.\n        - One or more namespaces required for target `/sbml:sbml/sbml:model/fbc:listOfObjectives/fbc:objective[@fbc:id='OBJF']` are not defined. Only the following namespaces are defined for the target: `sbml`.",
-                "type": "ValueError"
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Language for model `model_1` is not supported.\n      - Model language `urn:sedml:language:sbml` is not supported. Models must be in RBA format (e.g., `sed:model/@language` must match `^urn:sedml:language:rba(\\.|$)` such as `urn:sedml:language:rba`).",
+                "type": "CombineArchiveExecutionError"
             },
             "output": "",
-            "sedDocuments": [],
+            "sedDocuments": [
+                {
+                    "duration": 0.181183,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  Language for model `model_1` is not supported.\n    - Model language `urn:sedml:language:sbml` is not supported. Models must be in RBA format (e.g., `sed:model/@language` must match `^urn:sedml:language:rba(\\.|$)` such as `urn:sedml:language:rba`).",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp875473",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 0 plots:\r\n  tmp875473:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n\r\nExecuting SED-ML file 1: tmp875473 ...\r\n  Found 1 tasks and 1 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 1 outputs ...\r\n      Generating output 1: `report_1` ...",
+                    "outputs": [
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_R01_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_R26_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_OBJF_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.07977,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.025491,
+                            "exception": {
+                                "message": "Language for model `model_1` is not supported.\n  - Model language `urn:sedml:language:sbml` is not supported. Models must be in RBA format (e.g., `sed:model/@language` must match `^urn:sedml:language:rba(\\.|$)` such as `urn:sedml:language:rba`).",
+                                "type": "ValueError"
+                            },
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
             "skipReason": null,
             "status": "FAILED"
         }
     },
     "smoldyn": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/6728b746b678b3883bb5dfee",
-        "download": "https://api.biosimulations.org/results/6728b746b678b3883bb5dfee/download",
-        "logs": "https://api.biosimulations.org/logs/6728b746b678b3883bb5dfee?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/672cda535a60072d20f50324",
+        "download": "https://api.biosimulations.org/results/672cda535a60072d20f50324/download",
+        "logs": "https://api.biosimulations.org/logs/672cda535a60072d20f50324?includeOutput=true",
         "log_yml": {
-            "duration": 0.05399,
+            "duration": 0.039308,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -307,26 +919,77 @@
     },
     "tellurium": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/6728b7480d09353e8f0f8b0e",
-        "download": "https://api.biosimulations.org/results/6728b7480d09353e8f0f8b0e/download",
-        "logs": "https://api.biosimulations.org/logs/6728b7480d09353e8f0f8b0e?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/672cda55b678b3883bb65711",
+        "download": "https://api.biosimulations.org/results/672cda55b678b3883bb65711/download",
+        "logs": "https://api.biosimulations.org/logs/672cda55b678b3883bb65711?includeOutput=true",
         "log_yml": {
-            "duration": 0.374941,
+            "duration": 0.764669,
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./tmp399285` is invalid.\n    - Data generator `OBJF_1` is invalid.\n      - Variable `OBJF` is invalid.\n        - One or more namespaces required for target `/sbml:sbml/sbml:model/fbc:listOfObjectives/fbc:objective[@fbc:id='OBJF']` are not defined. Only the following namespaces are defined for the target: `sbml`.",
-                "type": "ValueError"
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Algorithm substitution for \"flux balance analysis\" (http://www.biomodels.net/kisao/KISAO#KISAO_0000437) for policy SIMILAR_VARIABLES is not supported.",
+                "type": "CombineArchiveExecutionError"
             },
             "output": "",
-            "sedDocuments": [],
+            "sedDocuments": [
+                {
+                    "duration": 0.403559,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  Algorithm substitution for \"flux balance analysis\" (http://www.biomodels.net/kisao/KISAO#KISAO_0000437) for policy SIMILAR_VARIABLES is not supported.",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp358874",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 0 plots:\r\n  tmp358874:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n\r\nExecuting SED-ML file 1: tmp358874 ...\r\n  Found 1 tasks and 1 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 1 outputs ...\r\n      Generating output 1: `report_1` ...",
+                    "outputs": [
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_R01_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_R26_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_OBJF_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.086416,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.237949,
+                            "exception": {
+                                "message": "Algorithm substitution for \"flux balance analysis\" (http://www.biomodels.net/kisao/KISAO#KISAO_0000437) for policy SIMILAR_VARIABLES is not supported.",
+                                "type": "NotImplementedError"
+                            },
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
             "skipReason": null,
             "status": "FAILED"
         }
     },
     "vcell": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/6728b74cb678b3883bb5e023",
-        "download": "https://api.biosimulations.org/results/6728b74cb678b3883bb5e023/download",
-        "logs": "https://api.biosimulations.org/logs/6728b74cb678b3883bb5e023?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/672cda5a5a60072d20f50343",
+        "download": "https://api.biosimulations.org/results/672cda5a5a60072d20f50343/download",
+        "logs": "https://api.biosimulations.org/logs/672cda5a5a60072d20f50343?includeOutput=true",
         "log_yml": {
             "duration": null,
             "exception": null,
@@ -338,11 +1001,11 @@
     },
     "xpp": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/6728b74d0d09353e8f0f8b26",
-        "download": "https://api.biosimulations.org/results/6728b74d0d09353e8f0f8b26/download",
-        "logs": "https://api.biosimulations.org/logs/6728b74d0d09353e8f0f8b26?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/672cda5d0d09353e8f1000fe",
+        "download": "https://api.biosimulations.org/results/672cda5d0d09353e8f1000fe/download",
+        "logs": "https://api.biosimulations.org/logs/672cda5d0d09353e8f1000fe?includeOutput=true",
         "log_yml": {
-            "duration": 0.06467,
+            "duration": 0.057895,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"

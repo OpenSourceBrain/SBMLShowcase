@@ -138,11 +138,11 @@ def process_cases(args):
         new_subfolder = "test_" + subfolder
         new_directory = os.path.join(starting_dir, new_subfolder)
         os.makedirs(new_directory, exist_ok=True)
-        print (f"Copying {sbml_file_path} and {sedml_file_path} to {starting_dir}/{subfolder}")
-        new_sbml_file_path = os.path.join(new_directory, os.path.basename(sbml_file_path))
-        new_sedml_file_path = os.path.join(new_directory, os.path.basename(sedml_file_path))
-        shutil.copy(sbml_file_path, new_sbml_file_path)
-        shutil.copy(sedml_file_path, new_sedml_file_path)
+        # print (f"Copying {sbml_file_path} and {sedml_file_path} to {starting_dir}/{subfolder}")
+        # new_sbml_file_path = os.path.join(new_directory, os.path.basename(sbml_file_path))
+        # new_sedml_file_path = os.path.join(new_directory, os.path.basename(sedml_file_path))
+        # shutil.copy(sbml_file_path, new_sbml_file_path)
+        # shutil.copy(sedml_file_path, new_sedml_file_path)
 
         os.chdir(new_directory)
         print(f"Changed to {new_directory}")
