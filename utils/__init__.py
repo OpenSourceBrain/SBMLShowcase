@@ -27,107 +27,128 @@ ENGINES = {
     'amici': {
         'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_AMICI/',
-        'status': ""
+        'status': "",
+        'name': "AMICI"
     },
     'brian2': {
         'formats': [('nml', 'sedml'), ('lems', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
-        'status': ""
+        'status': "",
+        'name': "Brian 2"
     },
     'bionetgen': {
         'formats': [('bngl', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_BioNetGen/',
-        'status': ""
+        'status': "",
+        'name': "BioNetGen"
     },
     'boolnet': {
         'formats': [('sbmlqual', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_BoolNet/',
-        'status': ""
+        'status': "",
+        'name': "BoolNet"
     },
     'cbmpy': {
         'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_CBMPy/',
-        'status': ""
+        'status': "",
+        'name': "CBMPy"
     },
     'cobrapy': {
         'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_COBRApy/',
-        'status': "Only allows steady state simulations"
+        'status': "Only allows steady state simulations",
+        'name': "COBRApy"
     },
     'copasi': {
         'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_COPASI/',
-        'status': ""
+        'status': "",
+        'name': "COPASI"
     },
     'gillespy2': {
         'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_GillesPy2/',
-        'status': ""
+        'status': "",
+        'name': "GillesPy2"
     },
     'ginsim': {
         'formats': [('sbmlqual', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_GINsim/',
-        'status': ""
+        'status': "",
+        'name': "GINsim"
     },
     'libsbmlsim': {
         'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_LibSBMLSim/',
-        'status': ""
+        'status': "",
+        'name': "LibSBMLSim"
     },
     'masspy': {
         'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_MASSpy/',
-        'status': ""
+        'status': "",
+        'name': "MASSpy"
     },
     'netpyne': {
         'formats': [('nml', 'sedml'), ('lems', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
-        'status': ""
+        'status': "",
+        'name': "NetPyNE"
     },
     'neuron': {
         'formats': [('nml', 'sedml'), ('lems', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
-        'status': ""
+        'status': "",
+        'name': "NEURON"
     },
     'opencor': {
         'formats': [('cellml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_OpenCOR/',
-        'status': ""
+        'status': "",
+        'name': "OpenCOR"
     },
     'pyneuroml': {
         'formats': [('nml', 'sedml'), ('lems', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
-        'status': ""
+        'status': "",
+        'name': "pyNeuroML"
     },
     'pysces': {
         'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_PySCeS/',
-        'status': ""
+        'status': "",
+        'name': "PySCeS"
     },
     'rbapy': {
         'formats': [('rbapy', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_RBApy/',
-        'status': ""
+        'status': "",
+        'name': "RBApy"
     },
     'smoldyn': {
         'formats': [('smoldyn', 'sedml')],
         'url': 'https://smoldyn.readthedocs.io/en/latest/python/api.html#sed-ml-combine-biosimulators-api',
-        'status': ""
+        'status': "",
+        'name': "Smoldyn"
     },
     'tellurium': {
         'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_tellurium/',
-        'status': ""
+        'status': "",
+        'name': "Tellurium"
     },
     'vcell': {
         'formats': [('sbml', 'sedml'),('bngl', 'sedml')],
         'url': 'https://github.com/virtualcell/vcell',
-        'status': ""
+        'status': "",
+        'name': "VCell"
     },
     'xpp': {
         'formats': [('xpp', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_XPP/',
-        'status': ""
+        'status': "",
+        'name': "XPP"
     }
 }
 
@@ -1055,22 +1076,24 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
     unsure_html = "&#10067; UNSURE"
     xfail_html = "&#9888; XFAIL"
 
+    links = ['view', 'download', 'logs']
     for e in results.keys():
         results[e].update(process_log_yml_dict(results[e]["log_yml"]))
         if "detailed_error_log" in results[e].keys():
             if results[e]["detailed_error_log"] != {}:
                 results[e]['status']  = results[e]["detailed_error_log"]['status']
                 results[e]['error_message'] = results[e]["detailed_error_log"]['error_message']
-
-    links = ['view', 'download', 'logs']
-    for e in results.keys():
         if any([l in results[e].keys() for l in links]):
             results[e]['links'] = '<br>'.join([f'{create_hyperlink(results[e][k], title=k)}' for k in results[e].keys() if k in links])
+        results[e]['name'] = ENGINES[e]['name']
 
     results_table = pd.DataFrame.from_dict(results).T
     results_table.rename(columns={"status": PASS_FAIL, "error_message": ERROR, "exception_type": TYPE}, inplace=True)
 
     results_table.index.name =  ENGINE
+    # make name column named ENGINE
+    # results_table["name"].name = ENGINE
+    # make 
     results_table.reset_index(inplace=True)
 
     # Error
@@ -1262,16 +1285,14 @@ def create_combined_results_table(results_remote,
     results_table_remote = create_results_table(results_remote, sbml_file_name, sedml_file_name, d1_plots_remote_dir)
     results_table_local = create_results_table(results_local, sbml_file_name, sedml_file_name, d1_plots_local_dir)
 
-    # Rename columns to distinguish between local and remote results except for Engine column
-    results_table_remote.columns = [f"{col}{suffix_remote}" if col != ENGINE else col for col in results_table_remote.columns]
-    results_table_local.columns = [f"{col}{suffix_local}" if col != ENGINE else col for col in results_table_local.columns]
+    shared_columns = [ENGINE, COMPAT, 'name']
+    results_table_remote.columns = [f"{col}{suffix_remote}" if col not in shared_columns else col for col in results_table_remote.columns]
+    results_table_local.columns = [f"{col}{suffix_local}" if col not in shared_columns else col for col in results_table_local.columns]
 
-    # Combine remote and local results
-    combined_results = pd.merge(results_table_remote, results_table_local, on=ENGINE, how='outer')
+    combined_results = pd.merge(results_table_remote, results_table_local, on=shared_columns, how='outer')
     combined_results = combined_results.reindex(columns=[ENGINE] + sorted(combined_results.columns[1:]))
-    combined_results[COMPAT] = combined_results[f"{COMPAT}{suffix_remote}"]
-    combined_results.drop(columns=[f"{COMPAT}{suffix_remote}", f"{COMPAT}{suffix_local}"], inplace=True)
-
+    combined_results = combined_results.drop(columns=[ENGINE]).rename(columns={"name": ENGINE})
+    
     # Define the order of columns
     cols_order = [
         ENGINE, 
@@ -1286,7 +1307,7 @@ def create_combined_results_table(results_remote,
     path_to_results = os.path.join(test_folder, 'results_compatibility_biosimulators.md')
     print('Saving results to:', path_to_results)
     with open(path_to_results, 'w', encoding='utf-8') as f:
-        f.write(combined_results.to_markdown())
+        f.write(combined_results.to_markdown(index=False))
 
     print('Number of columns in md table:', len(combined_results.columns))
     print('Number of rows in md table:', len(combined_results))
