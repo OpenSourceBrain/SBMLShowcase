@@ -1,11 +1,3 @@
-#!/usr/bin/env python
-
-"""
-This script tests the compatibility of different biosimulation engines with a given SBML and SED-ML file.
-It runs each engine and saves the d1 plots, and a JSON file containing the log.yml file (as dict) and the 
-links for accessing the remote results, for each engine.
-"""
-
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))) # to import utils
@@ -13,6 +5,7 @@ import utils
 import argparse
 import json
 
+engines = utils.ENGINES
 
 # Save the current working directory
 cwd = os.getcwd()
@@ -36,18 +29,26 @@ args = parser.parse_args()
 
 test_folder = 'tests'
 
+d1_plots_local_dir = os.path.join(test_folder, args.output_dir + '_local')
 d1_plots_remote_dir = os.path.join(test_folder, args.output_dir + '_remote')
 
-print('d1 plots will be saved in:', d1_plots_remote_dir)
+results_paths = {
+    "local": os.path.join(path_to_sbml_folder, 'tests', 'results_local.json'),
+    "remote": os.path.join(path_to_sbml_folder, 'tests', 'results_remote.json')
+}
 
-engine_keys = list(utils.ENGINES.keys())
+results = {}
+for key, path in results_paths.items():
+    with open(path, 'r') as f:
+        results[key] = json.load(f)
 
-results_remote = utils.run_biosimulators_remotely(engine_keys, sedml_file_name=sedml_file_name, 
-                                    sbml_file_name=sbml_file_name,
-                                    d1_plots_remote_dir=d1_plots_remote_dir, 
-                                    test_folder=test_folder)
+results_table = utils.create_combined_results_table(results["remote"], 
+                                  results["local"], 
+                                  sedml_file_name, 
+                                  sbml_file_name, 
+                                  d1_plots_local_dir, 
+                                  d1_plots_remote_dir,
+                                  test_folder='tests')
 
-results_remote_path = os.path.join(path_to_sbml_folder, 'tests', 'results_remote.json')
-with open(results_remote_path, 'w') as fp:
-    json.dump(results_remote, fp, indent=4)
+print(results_table)
     
