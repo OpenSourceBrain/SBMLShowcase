@@ -26,32 +26,38 @@ ENGINES = {
     'amici': {
         'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_AMICI/',
-        'status': ""
+        'status': "",
+        'name': "AMICI"
     },
     'brian2': {
         'formats': [('nml', 'sedml'), ('lems', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
-        'status': ""
+        'status': "",
+        'name': "Brian 2"
     },
     'bionetgen': {
         'formats': [('bngl', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_BioNetGen/',
-        'status': ""
+        'status': "",
+        'name': "BioNetGen"
     },
     'boolnet': {
         'formats': [('sbmlqual', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_BoolNet/',
-        'status': ""
+        'status': "",
+        'name': "BoolNet"
     },
     'cbmpy': {
         'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_CBMPy/',
-        'status': ""
+        'status': "",
+        'name': "CBMPy"
     },
     'cobrapy': {
         'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_COBRApy/',
-        'status': "Only allows steady state simulations"
+        'status': "Only allows steady state simulations",
+        'name': "COBRApy"
     },
     'copasi': {
         'formats': [('sbml', 'sedml')],
@@ -61,42 +67,50 @@ ENGINES = {
     'gillespy2': {
         'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_GillesPy2/',
-        'status': ""
+        'status': "",
+        'name': "GillesPy2"
     },
     'ginsim': {
         'formats': [('sbmlqual', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_GINsim/',
-        'status': ""
+        'status': "",
+        'name': "GINsim"
     },
     'libsbmlsim': {
         'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_LibSBMLSim/',
-        'status': ""
+        'status': "",
+        'name': "LibSBMLSim"
     },
     'masspy': {
         'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_MASSpy/',
-        'status': ""
+        'status': "",
+        'name': "MASSpy"
     },
     'netpyne': {
         'formats': [('nml', 'sedml'), ('lems', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
-        'status': ""
+        'status': "",
+        'name': "NetPyNE"
     },
     'neuron': {
         'formats': [('nml', 'sedml'), ('lems', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
-        'status': ""
+        'status': "",
+        'name': "NEURON"
     },
     'opencor': {
         'formats': [('cellml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_OpenCOR/',
-        'status': ""
+        'status': "",
+        'name': "OpenCOR"
     },
     'pyneuroml': {
         'formats': [('nml', 'sedml'), ('lems', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_pyNeuroML/',
-        'status': ""
+        'status': "",
+        'name': "pyNeuroML"
     },
     'pysces': {
         'formats': [('sbml', 'sedml')],
@@ -106,27 +120,32 @@ ENGINES = {
     'rbapy': {
         'formats': [('rbapy', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_RBApy/',
-        'status': ""
+        'status': "",
+        'name': "RBApy"
     },
     'smoldyn': {
         'formats': [('smoldyn', 'sedml')],
         'url': 'https://smoldyn.readthedocs.io/en/latest/python/api.html#sed-ml-combine-biosimulators-api',
-        'status': ""
+        'status': "",
+        'name': "Smoldyn"
     },
     'tellurium': {
         'formats': [('sbml', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_tellurium/',
-        'status': ""
+        'status': "",
+        'name': "Tellurium"
     },
     'vcell': {
         'formats': [('sbml', 'sedml'),('bngl', 'sedml')],
         'url': 'https://github.com/virtualcell/vcell',
-        'status': ""
+        'status': "",
+        'name': "VCell"
     },
     'xpp': {
         'formats': [('xpp', 'sedml')],
         'url': 'https://docs.biosimulators.org/Biosimulators_XPP/',
-        'status': ""
+        'status': "",
+        'name': "XPP"
     }
 }
 
