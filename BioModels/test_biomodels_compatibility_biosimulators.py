@@ -193,7 +193,10 @@ def main():
     count = 0
     starting_dir = os.getcwd()
 
-    for model_id in model_ids[0:1]:
+    if cases != None:
+        model_ids = cases
+
+    for model_id in model_ids:
         #allow testing on a small sample of models
         if max_count > 0 and count >= max_count:
             break
@@ -234,7 +237,7 @@ def main():
 
         test_folder = 'tests'
         engine_list = list(utils.ENGINES.keys())
-        engine_list = ['copasi']    
+
         utils.run_biosimulators_remotely_and_locally(engine_list,
                         os.path.basename(sedml_file), 
                         os.path.basename(sbml_file),
@@ -243,4 +246,5 @@ def main():
                         test_folder=test_folder)
 
 if __name__ == "__main__":
+    cases = ["BIOMD0000000001","BIOMD0000000138"]
     main()
