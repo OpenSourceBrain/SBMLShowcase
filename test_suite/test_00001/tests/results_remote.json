@@ -1,0 +1,1326 @@
+{
+    "amici": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/6731e5d05a60072d20f54d73",
+        "download": "https://api.biosimulations.org/results/6731e5d05a60072d20f54d73/download",
+        "logs": "https://api.biosimulations.org/logs/6731e5d05a60072d20f54d73?includeOutput=true",
+        "log_yml": {
+            "duration": 28.423081,
+            "exception": null,
+            "output": "",
+            "sedDocuments": [
+                {
+                    "duration": 28.034847,
+                    "exception": null,
+                    "location": "tmp160325",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  tmp160325:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n    Plots (1):\r\n      plot_1: 2 curves\r\n\r\nExecuting SED-ML file 1: tmp160325 ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `plot_1`\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[34msucceeded\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `plot_1` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `report_1` ...",
+                    "outputs": [
+                        {
+                            "curves": [
+                                {
+                                    "id": "c_S1_1",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "c_S2_1",
+                                    "status": "SUCCEEDED"
+                                }
+                            ],
+                            "duration": 0.36997,
+                            "exception": null,
+                            "id": "plot_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        },
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_time",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "ds_S1_1",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "ds_S2_1",
+                                    "status": "SUCCEEDED"
+                                }
+                            ],
+                            "duration": 0.06128,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "SUCCEEDED",
+                    "tasks": [
+                        {
+                            "algorithm": "KISAO_0000496",
+                            "duration": 27.524946,
+                            "exception": null,
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": [
+                                {
+                                    "key": "solver",
+                                    "value": "amici.amici.CVodeSolver"
+                                },
+                                {
+                                    "key": "method",
+                                    "value": "amici.swig_wrappers.runAmiciSimulation"
+                                },
+                                {
+                                    "key": "arguments",
+                                    "value": {}
+                                }
+                            ],
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        }
+                    ]
+                }
+            ],
+            "skipReason": null,
+            "status": "SUCCEEDED"
+        }
+    },
+    "brian2": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/6731e5d2b678b3883bb6a201",
+        "download": "https://api.biosimulations.org/results/6731e5d2b678b3883bb6a201/download",
+        "logs": "https://api.biosimulations.org/logs/6731e5d2b678b3883bb6a201?includeOutput=true",
+        "log_yml": {
+            "duration": 0.046306,
+            "exception": {
+                "message": "No module named 'libsbml'",
+                "type": "ModuleNotFoundError"
+            },
+            "output": "",
+            "sedDocuments": [],
+            "skipReason": null,
+            "status": "FAILED"
+        }
+    },
+    "bionetgen": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/6731e5d30d09353e8f104baa",
+        "download": "https://api.biosimulations.org/results/6731e5d30d09353e8f104baa/download",
+        "logs": "https://api.biosimulations.org/logs/6731e5d30d09353e8f104baa?includeOutput=true",
+        "log_yml": {
+            "duration": 0.641203,
+            "exception": {
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Language for model `model_1` is not supported.\n      - Model language `urn:sedml:language:sbml` is not supported. Models must be in BNGL format (e.g., `sed:model/@language` must match `^urn:sedml:language:bngl(\\.|$)` such as `urn:sedml:language:bngl`).",
+                "type": "CombineArchiveExecutionError"
+            },
+            "output": "",
+            "sedDocuments": [
+                {
+                    "duration": 0.349215,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  Language for model `model_1` is not supported.\n    - Model language `urn:sedml:language:sbml` is not supported. Models must be in BNGL format (e.g., `sed:model/@language` must match `^urn:sedml:language:bngl(\\.|$)` such as `urn:sedml:language:bngl`).",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp181523",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  tmp181523:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n    Plots (1):\r\n      plot_1: 2 curves\r\n\r\nExecuting SED-ML file 1: tmp181523 ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `plot_1`\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `plot_1` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `report_1` ...",
+                    "outputs": [
+                        {
+                            "curves": [
+                                {
+                                    "id": "c_S1_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "c_S2_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.173055,
+                            "exception": null,
+                            "id": "plot_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        },
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_time",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_S1_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_S2_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.062843,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.026747,
+                            "exception": {
+                                "message": "Language for model `model_1` is not supported.\n  - Model language `urn:sedml:language:sbml` is not supported. Models must be in BNGL format (e.g., `sed:model/@language` must match `^urn:sedml:language:bngl(\\.|$)` such as `urn:sedml:language:bngl`).",
+                                "type": "ValueError"
+                            },
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
+            "skipReason": null,
+            "status": "FAILED"
+        }
+    },
+    "boolnet": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/6731e5d50d09353e8f104bad",
+        "download": "https://api.biosimulations.org/results/6731e5d50d09353e8f104bad/download",
+        "logs": "https://api.biosimulations.org/logs/6731e5d50d09353e8f104bad?includeOutput=true",
+        "log_yml": {
+            "duration": 0.586691,
+            "exception": {
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Simulation `simulation_1` is invalid.\n      - Number of points (50) must be equal to the difference between the output end (5.0) and start times (0.0).",
+                "type": "CombineArchiveExecutionError"
+            },
+            "output": "",
+            "sedDocuments": [
+                {
+                    "duration": 0.337805,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  Simulation `simulation_1` is invalid.\n    - Number of points (50) must be equal to the difference between the output end (5.0) and start times (0.0).",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp345584",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  tmp345584:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n    Plots (1):\r\n      plot_1: 2 curves\r\n\r\nExecuting SED-ML file 1: tmp345584 ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `plot_1`\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `plot_1` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `report_1` ...",
+                    "outputs": [
+                        {
+                            "curves": [
+                                {
+                                    "id": "c_S1_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "c_S2_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.173287,
+                            "exception": null,
+                            "id": "plot_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        },
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_time",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_S1_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_S2_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.056914,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.031377,
+                            "exception": {
+                                "message": "Simulation `simulation_1` is invalid.\n  - Number of points (50) must be equal to the difference between the output end (5.0) and start times (0.0).",
+                                "type": "ValueError"
+                            },
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
+            "skipReason": null,
+            "status": "FAILED"
+        }
+    },
+    "cbmpy": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/6731e5d75a60072d20f54d77",
+        "download": "https://api.biosimulations.org/results/6731e5d75a60072d20f54d77/download",
+        "logs": "https://api.biosimulations.org/logs/6731e5d75a60072d20f54d77?includeOutput=true",
+        "log_yml": {
+            "duration": 0.753109,
+            "exception": {
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    UniformTimeCourseSimulation `simulation_1` is not supported.\n      - Simulation simulation_1 of type `UniformTimeCourseSimulation` is not supported. Simulation must be an instance of one of the following:\n          - SteadyStateSimulation",
+                "type": "CombineArchiveExecutionError"
+            },
+            "output": "\r\nINFO: No xlwt module available, Excel spreadsheet creation disabled\r\n\r\n\r\n\r\nNo module named 'cplex'\r\n\r\n\r\n\r\nCPLEX not available\r\n\r\n*****\r\nUsing GLPK\r\n*****\r\n\r\n\r\nINFO: No xlrd module available, Excel spreadsheet reading disabled\r\n\r\nCBMPy environment\r\n******************\r\nRevision: r689\r\n\r\n\r\n***********************************************************************\r\n* Welcome to CBMPy (0.7.25) - PySCeS Constraint Based Modelling       *\r\n*                http://cbmpy.sourceforge.net                         *\r\n* Copyright(C) Brett G. Olivier 2014 - 2019                           *\r\n* Dept. of Systems Bioinformatics                                     *\r\n* Vrije Universiteit Amsterdam, Amsterdam, The Netherlands            *\r\n* CBMPy is developed as part of the BeBasic MetaToolKit Project       *\r\n* Distributed under the GNU GPL v 3.0 licence, see                    *\r\n* LICENCE (supplied with this release) for details                    *\r\n***********************************************************************\r\n\r\n",
+            "sedDocuments": [
+                {
+                    "duration": 0.371498,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  UniformTimeCourseSimulation `simulation_1` is not supported.\n    - Simulation simulation_1 of type `UniformTimeCourseSimulation` is not supported. Simulation must be an instance of one of the following:\n        - SteadyStateSimulation",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp297002",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  tmp297002:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n    Plots (1):\r\n      plot_1: 2 curves\r\n\r\nExecuting SED-ML file 1: tmp297002 ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `plot_1`\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `plot_1` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `report_1` ...",
+                    "outputs": [
+                        {
+                            "curves": [
+                                {
+                                    "id": "c_S1_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "c_S2_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.166051,
+                            "exception": null,
+                            "id": "plot_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        },
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_time",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_S1_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_S2_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.056926,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.044416,
+                            "exception": {
+                                "message": "UniformTimeCourseSimulation `simulation_1` is not supported.\n  - Simulation simulation_1 of type `UniformTimeCourseSimulation` is not supported. Simulation must be an instance of one of the following:\n      - SteadyStateSimulation",
+                                "type": "ValueError"
+                            },
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
+            "skipReason": null,
+            "status": "FAILED"
+        }
+    },
+    "cobrapy": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/6731e5d9b678b3883bb6a206",
+        "download": "https://api.biosimulations.org/results/6731e5d9b678b3883bb6a206/download",
+        "logs": "https://api.biosimulations.org/logs/6731e5d9b678b3883bb6a206?includeOutput=true",
+        "log_yml": {
+            "duration": 0.568449,
+            "exception": {
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    UniformTimeCourseSimulation `simulation_1` is not supported.\n      - Simulation simulation_1 of type `UniformTimeCourseSimulation` is not supported. Simulation must be an instance of one of the following:\n          - SteadyStateSimulation",
+                "type": "CombineArchiveExecutionError"
+            },
+            "output": "",
+            "sedDocuments": [
+                {
+                    "duration": 0.328339,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  UniformTimeCourseSimulation `simulation_1` is not supported.\n    - Simulation simulation_1 of type `UniformTimeCourseSimulation` is not supported. Simulation must be an instance of one of the following:\n        - SteadyStateSimulation",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp731298",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  tmp731298:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n    Plots (1):\r\n      plot_1: 2 curves\r\n\r\nExecuting SED-ML file 1: tmp731298 ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `plot_1`\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `plot_1` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `report_1` ...",
+                    "outputs": [
+                        {
+                            "curves": [
+                                {
+                                    "id": "c_S1_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "c_S2_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.165593,
+                            "exception": null,
+                            "id": "plot_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        },
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_time",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_S1_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_S2_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.056247,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.028734,
+                            "exception": {
+                                "message": "UniformTimeCourseSimulation `simulation_1` is not supported.\n  - Simulation simulation_1 of type `UniformTimeCourseSimulation` is not supported. Simulation must be an instance of one of the following:\n      - SteadyStateSimulation",
+                                "type": "ValueError"
+                            },
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
+            "skipReason": null,
+            "status": "FAILED"
+        }
+    },
+    "copasi": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/6731e5dbb678b3883bb6a209",
+        "download": "https://api.biosimulations.org/results/6731e5dbb678b3883bb6a209/download",
+        "logs": "https://api.biosimulations.org/logs/6731e5dbb678b3883bb6a209?includeOutput=true",
+        "log_yml": {
+            "duration": 1.023982,
+            "exception": null,
+            "output": "",
+            "sedDocuments": [
+                {
+                    "duration": 0.741646,
+                    "exception": null,
+                    "location": "tmp463671",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  tmp463671:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n    Plots (1):\r\n      plot_1: 2 curves\r\n\r\nExecuting SED-ML file 1: tmp463671 ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `plot_1`\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[34msucceeded\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `plot_1` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `report_1` ...",
+                    "outputs": [
+                        {
+                            "curves": [
+                                {
+                                    "id": "c_S1_1",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "c_S2_1",
+                                    "status": "SUCCEEDED"
+                                }
+                            ],
+                            "duration": 0.477819,
+                            "exception": null,
+                            "id": "plot_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        },
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_time",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "ds_S1_1",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "ds_S2_1",
+                                    "status": "SUCCEEDED"
+                                }
+                            ],
+                            "duration": 0.057131,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "SUCCEEDED",
+                    "tasks": [
+                        {
+                            "algorithm": "KISAO_0000560",
+                            "duration": 0.126261,
+                            "exception": null,
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": [
+                                {
+                                    "key": "methodName",
+                                    "value": "lsoda"
+                                },
+                                {
+                                    "key": "parameters",
+                                    "value": null
+                                }
+                            ],
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        }
+                    ]
+                }
+            ],
+            "skipReason": null,
+            "status": "SUCCEEDED"
+        }
+    },
+    "gillespy2": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/6731e5df0d09353e8f104bb5",
+        "download": "https://api.biosimulations.org/results/6731e5df0d09353e8f104bb5/download",
+        "logs": "https://api.biosimulations.org/logs/6731e5df0d09353e8f104bb5?includeOutput=true",
+        "log_yml": {
+            "duration": 0.64493,
+            "exception": null,
+            "output": "",
+            "sedDocuments": [
+                {
+                    "duration": 0.389808,
+                    "exception": null,
+                    "location": "tmp516085",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  tmp516085:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n    Plots (1):\r\n      plot_1: 2 curves\r\n\r\nExecuting SED-ML file 1: tmp516085 ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `plot_1`\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[34msucceeded\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `plot_1` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `report_1` ...",
+                    "outputs": [
+                        {
+                            "curves": [
+                                {
+                                    "id": "c_S1_1",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "c_S2_1",
+                                    "status": "SUCCEEDED"
+                                }
+                            ],
+                            "duration": 0.191419,
+                            "exception": null,
+                            "id": "plot_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        },
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_time",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "ds_S1_1",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "ds_S2_1",
+                                    "status": "SUCCEEDED"
+                                }
+                            ],
+                            "duration": 0.060565,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "SUCCEEDED",
+                    "tasks": [
+                        {
+                            "algorithm": "KISAO_0000088",
+                            "duration": 0.053237,
+                            "exception": null,
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": [
+                                {
+                                    "key": "method",
+                                    "value": "gillespy2.solvers.numpy.ode_solver.ODESolver"
+                                },
+                                {
+                                    "key": "arguments",
+                                    "value": {
+                                        "integrator": "lsoda"
+                                    }
+                                }
+                            ],
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        }
+                    ]
+                }
+            ],
+            "skipReason": null,
+            "status": "SUCCEEDED"
+        }
+    },
+    "ginsim": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/6731e5e10d09353e8f104bb8",
+        "download": "https://api.biosimulations.org/results/6731e5e10d09353e8f104bb8/download",
+        "logs": "https://api.biosimulations.org/logs/6731e5e10d09353e8f104bb8?includeOutput=true",
+        "log_yml": {
+            "duration": 0.604121,
+            "exception": {
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Simulation `simulation_1` is invalid.\n      - The interval between the output start and time time must be an integer multiple of the number of steps, not `0.1`:\n          Output start time: 0.0\n          Output end time: 5.0\n          Number of steps: 50",
+                "type": "CombineArchiveExecutionError"
+            },
+            "output": "",
+            "sedDocuments": [
+                {
+                    "duration": 0.342584,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  Simulation `simulation_1` is invalid.\n    - The interval between the output start and time time must be an integer multiple of the number of steps, not `0.1`:\n        Output start time: 0.0\n        Output end time: 5.0\n        Number of steps: 50",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp149960",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  tmp149960:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n    Plots (1):\r\n      plot_1: 2 curves\r\n\r\nExecuting SED-ML file 1: tmp149960 ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `plot_1`\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `plot_1` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `report_1` ...",
+                    "outputs": [
+                        {
+                            "curves": [
+                                {
+                                    "id": "c_S1_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "c_S2_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.172201,
+                            "exception": null,
+                            "id": "plot_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        },
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_time",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_S1_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_S2_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.058413,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.028258,
+                            "exception": {
+                                "message": "Simulation `simulation_1` is invalid.\n  - The interval between the output start and time time must be an integer multiple of the number of steps, not `0.1`:\n      Output start time: 0.0\n      Output end time: 5.0\n      Number of steps: 50",
+                                "type": "ValueError"
+                            },
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
+            "skipReason": null,
+            "status": "FAILED"
+        }
+    },
+    "libsbmlsim": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/6731e5e35a60072d20f54d7d",
+        "download": "https://api.biosimulations.org/results/6731e5e35a60072d20f54d7d/download",
+        "logs": "https://api.biosimulations.org/logs/6731e5e35a60072d20f54d7d?includeOutput=true",
+        "log_yml": {
+            "duration": 0.68593,
+            "exception": null,
+            "output": "",
+            "sedDocuments": [
+                {
+                    "duration": 0.436735,
+                    "exception": null,
+                    "location": "tmp671836",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  tmp671836:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n    Plots (1):\r\n      plot_1: 2 curves\r\n\r\nExecuting SED-ML file 1: tmp671836 ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `plot_1`\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[34msucceeded\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `plot_1` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `report_1` ...",
+                    "outputs": [
+                        {
+                            "curves": [
+                                {
+                                    "id": "c_S1_1",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "c_S2_1",
+                                    "status": "SUCCEEDED"
+                                }
+                            ],
+                            "duration": 0.196431,
+                            "exception": null,
+                            "id": "plot_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        },
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_time",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "ds_S1_1",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "ds_S2_1",
+                                    "status": "SUCCEEDED"
+                                }
+                            ],
+                            "duration": 0.061935,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "SUCCEEDED",
+                    "tasks": [
+                        {
+                            "algorithm": "KISAO_0000086",
+                            "duration": 0.091669,
+                            "exception": null,
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": [
+                                {
+                                    "key": "method",
+                                    "value": "simulateSBMLFromFile"
+                                },
+                                {
+                                    "key": "arguments",
+                                    "value": {
+                                        "dt": 0.001,
+                                        "method": 51,
+                                        "print_amount": 0,
+                                        "print_interval": 100,
+                                        "sim_time": 5.0,
+                                        "use_lazy_method": 0
+                                    }
+                                }
+                            ],
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        }
+                    ]
+                }
+            ],
+            "skipReason": null,
+            "status": "SUCCEEDED"
+        }
+    },
+    "masspy": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/6731e5e5b678b3883bb6a20f",
+        "download": "https://api.biosimulations.org/results/6731e5e5b678b3883bb6a20f/download",
+        "logs": "https://api.biosimulations.org/logs/6731e5e5b678b3883bb6a20f?includeOutput=true",
+        "log_yml": {
+            "duration": 1.105669,
+            "exception": {
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    The following targets are not supported:\n      - /sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id='compartment']\n      - /sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id='compartment']\n    \n    Only following targets are supported:\n      - M_S1\n      - M_S2\n      - R_reaction1\n      - S1\n      - S2\n      - k1\n      - reaction1",
+                "type": "CombineArchiveExecutionError"
+            },
+            "output": "",
+            "sedDocuments": [
+                {
+                    "duration": 0.602529,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  The following targets are not supported:\n    - /sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id='compartment']\n    - /sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id='compartment']\n  \n  Only following targets are supported:\n    - M_S1\n    - M_S2\n    - R_reaction1\n    - S1\n    - S2\n    - k1\n    - reaction1",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp798233",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  tmp798233:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n    Plots (1):\r\n      plot_1: 2 curves\r\n\r\nExecuting SED-ML file 1: tmp798233 ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `plot_1`\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `plot_1` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `report_1` ...",
+                    "outputs": [
+                        {
+                            "curves": [
+                                {
+                                    "id": "c_S1_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "c_S2_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.371237,
+                            "exception": null,
+                            "id": "plot_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        },
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_time",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_S1_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_S2_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.06297,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.066482,
+                            "exception": {
+                                "message": "The following targets are not supported:\n  - /sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id='compartment']\n  - /sbml:sbml/sbml:model/sbml:listOfCompartments/sbml:compartment[@id='compartment']\n\nOnly following targets are supported:\n  - M_S1\n  - M_S2\n  - R_reaction1\n  - S1\n  - S2\n  - k1\n  - reaction1",
+                                "type": "ValueError"
+                            },
+                            "id": "task_1",
+                            "output": "\u001b[93mWARNING:\u001b[0m \u001b[93mModel does not contain SBML fbc package\u001b[0m\r\n\u001b[93mWARNING:\u001b[0m \u001b[93mModel does not contain SBML groups package\u001b[0m\r\n\u001b[93mWARNING:\u001b[0m \u001b[93mRate expressions are set to exclude compartments, but the initial condition is an InitialAmount for 'S1' in the SBML model specie. \u001b[0m\r\n\u001b[93mWARNING:\u001b[0m \u001b[93mRate expressions are set to exclude compartments, but the initial condition is an InitialAmount for 'S2' in the SBML model specie. \u001b[0m\r\n",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
+            "skipReason": null,
+            "status": "FAILED"
+        }
+    },
+    "netpyne": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/6731e5e6b678b3883bb6a213",
+        "download": "https://api.biosimulations.org/results/6731e5e6b678b3883bb6a213/download",
+        "logs": "https://api.biosimulations.org/logs/6731e5e6b678b3883bb6a213?includeOutput=true",
+        "log_yml": {
+            "duration": 0.048527,
+            "exception": {
+                "message": "No module named 'libsbml'",
+                "type": "ModuleNotFoundError"
+            },
+            "output": "",
+            "sedDocuments": [],
+            "skipReason": null,
+            "status": "FAILED"
+        }
+    },
+    "neuron": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/6731e5e85a60072d20f54d82",
+        "download": "https://api.biosimulations.org/results/6731e5e85a60072d20f54d82/download",
+        "logs": "https://api.biosimulations.org/logs/6731e5e85a60072d20f54d82?includeOutput=true",
+        "log_yml": {
+            "duration": 0.045649,
+            "exception": {
+                "message": "No module named 'libsbml'",
+                "type": "ModuleNotFoundError"
+            },
+            "output": "",
+            "sedDocuments": [],
+            "skipReason": null,
+            "status": "FAILED"
+        }
+    },
+    "opencor": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/6731e5eab678b3883bb6a216",
+        "download": "https://api.biosimulations.org/results/6731e5eab678b3883bb6a216/download",
+        "logs": "https://api.biosimulations.org/logs/6731e5eab678b3883bb6a216?includeOutput=true",
+        "log_yml": {
+            "duration": 0.022424,
+            "exception": {
+                "message": "No module named 'libsbml'",
+                "type": "ModuleNotFoundError"
+            },
+            "output": "",
+            "sedDocuments": [],
+            "skipReason": null,
+            "status": "FAILED"
+        }
+    },
+    "pyneuroml": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/6731e5eb5a60072d20f54d85",
+        "download": "https://api.biosimulations.org/results/6731e5eb5a60072d20f54d85/download",
+        "logs": "https://api.biosimulations.org/logs/6731e5eb5a60072d20f54d85?includeOutput=true",
+        "log_yml": {
+            "duration": 0.041005,
+            "exception": {
+                "message": "No module named 'libsbml'",
+                "type": "ModuleNotFoundError"
+            },
+            "output": "",
+            "sedDocuments": [],
+            "skipReason": null,
+            "status": "FAILED"
+        }
+    },
+    "pysces": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/6731e5edb678b3883bb6a219",
+        "download": "https://api.biosimulations.org/results/6731e5edb678b3883bb6a219/download",
+        "logs": "https://api.biosimulations.org/logs/6731e5edb678b3883bb6a219?includeOutput=true",
+        "log_yml": {
+            "duration": 0.952483,
+            "exception": null,
+            "output": "libtk8.6.so: cannot open shared object file: No such file or directory\r\n\r\nPySCeS defaults to matplotlib's TKagg backend if not specified                          in the user configuration file, set \"matplotlib_backend = <backend>\" \r\nMatplotlib interface loaded (pysces.plt.m)\r\nPitcon routines available\r\nNLEQ2 routines available\r\nSBML support available\r\nYou are using NumPy (2.1.2) with SciPy (1.14.1)\r\nAssimulo CVode available\r\nRateChar is available\r\nParallel scanner is available\r\n\r\nPySCeS environment\r\n******************\r\npysces.model_dir = /home/FCAM/crbmapi/Pysces/psc\r\npysces.output_dir = /home/FCAM/crbmapi/Pysces\r\n\r\n\r\n***********************************************************************\r\n* Welcome to PySCeS (1.2.2) - Python Simulator for Cellular Systems   *\r\n*                http://pysces.sourceforge.net                        *\r\n* Copyright(C) B.G. Olivier, J.M. Rohwer, J.-H.S. Hofmeyr, 2004-2024  *\r\n* Triple-J Group for Molecular Cell Physiology                        *\r\n* Stellenbosch University, ZA and VU University Amsterdam, NL         *\r\n* PySCeS is distributed under the PySCeS (BSD style) licence, see     *\r\n* LICENCE.txt (supplied with this release) for details                *\r\n* Please cite PySCeS with: doi:10.1093/bioinformatics/bti046          *\r\n***********************************************************************\r\n",
+            "sedDocuments": [
+                {
+                    "duration": 0.692338,
+                    "exception": null,
+                    "location": "tmp785513",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  tmp785513:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n    Plots (1):\r\n      plot_1: 2 curves\r\n\r\nExecuting SED-ML file 1: tmp785513 ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `plot_1`\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ...Check SBML support is at action level 2\r\nSBML file is L3V2\r\nInfo: single compartment model: locating \"reaction1\" in default compartment\r\nWriting file: /tmp/tmpjmz5qe0n.psc\r\n\r\nSBML2PSC\r\nin : /tmp/tmpf0nxnpb_.xml\r\nout: /tmp/tmpjmz5qe0n.psc\r\nUsing model directory: /home/FCAM/crbmapi/Pysces/psc\r\n/tmp/tmpjmz5qe0n.psc loading ..... \r\nParsing file: /tmp/tmpjmz5qe0n.psc\r\nInfo: No reagents have been fixed\r\n \r\nCalculating L matrix . . . . . . .  done.\r\nCalculating K matrix . . . . . . . no flux conservation\r\n done.\r\n \r\nCVODE time for 51 points: 0.008341550827026367\r\n \u001b[34msucceeded\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `plot_1` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `report_1` ...",
+                    "outputs": [
+                        {
+                            "curves": [
+                                {
+                                    "id": "c_S1_1",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "c_S2_1",
+                                    "status": "SUCCEEDED"
+                                }
+                            ],
+                            "duration": 0.454684,
+                            "exception": null,
+                            "id": "plot_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        },
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_time",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "ds_S1_1",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "ds_S2_1",
+                                    "status": "SUCCEEDED"
+                                }
+                            ],
+                            "duration": 0.062193,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "SUCCEEDED",
+                    "tasks": [
+                        {
+                            "algorithm": "KISAO_0000019",
+                            "duration": 0.086422,
+                            "exception": null,
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": [
+                                {
+                                    "key": "method",
+                                    "value": "pysces.PyscesModel.Simulate"
+                                },
+                                {
+                                    "key": "arguments",
+                                    "value": {
+                                        "cvode_abstol": 1e-09,
+                                        "cvode_access_solver": true,
+                                        "cvode_h0": 0.0,
+                                        "cvode_hmax": 0.0,
+                                        "cvode_hmin": 0.0,
+                                        "cvode_mxord": 5,
+                                        "cvode_mxstep": 5000,
+                                        "cvode_reltol": 1e-09,
+                                        "cvode_return_event_timepoints": false,
+                                        "cvode_stats": false,
+                                        "cvode_track_assignment_rules": true
+                                    }
+                                }
+                            ],
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        }
+                    ]
+                }
+            ],
+            "skipReason": null,
+            "status": "SUCCEEDED"
+        }
+    },
+    "rbapy": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/6731e5ee5a60072d20f54d88",
+        "download": "https://api.biosimulations.org/results/6731e5ee5a60072d20f54d88/download",
+        "logs": "https://api.biosimulations.org/logs/6731e5ee5a60072d20f54d88?includeOutput=true",
+        "log_yml": {
+            "duration": 0.568122,
+            "exception": {
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Language for model `model_1` is not supported.\n      - Model language `urn:sedml:language:sbml` is not supported. Models must be in RBA format (e.g., `sed:model/@language` must match `^urn:sedml:language:rba(\\.|$)` such as `urn:sedml:language:rba`).",
+                "type": "CombineArchiveExecutionError"
+            },
+            "output": "",
+            "sedDocuments": [
+                {
+                    "duration": 0.322984,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  Language for model `model_1` is not supported.\n    - Model language `urn:sedml:language:sbml` is not supported. Models must be in RBA format (e.g., `sed:model/@language` must match `^urn:sedml:language:rba(\\.|$)` such as `urn:sedml:language:rba`).",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "tmp551403",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  tmp551403:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n    Plots (1):\r\n      plot_1: 2 curves\r\n\r\nExecuting SED-ML file 1: tmp551403 ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `plot_1`\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `plot_1` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `report_1` ...",
+                    "outputs": [
+                        {
+                            "curves": [
+                                {
+                                    "id": "c_S1_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "c_S2_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.151534,
+                            "exception": null,
+                            "id": "plot_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        },
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_time",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_S1_1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "ds_S2_1",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.060854,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.026082,
+                            "exception": {
+                                "message": "Language for model `model_1` is not supported.\n  - Model language `urn:sedml:language:sbml` is not supported. Models must be in RBA format (e.g., `sed:model/@language` must match `^urn:sedml:language:rba(\\.|$)` such as `urn:sedml:language:rba`).",
+                                "type": "ValueError"
+                            },
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
+            "skipReason": null,
+            "status": "FAILED"
+        }
+    },
+    "smoldyn": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/6731e5f00d09353e8f104bc1",
+        "download": "https://api.biosimulations.org/results/6731e5f00d09353e8f104bc1/download",
+        "logs": "https://api.biosimulations.org/logs/6731e5f00d09353e8f104bc1?includeOutput=true",
+        "log_yml": {
+            "duration": 0.043567,
+            "exception": {
+                "message": "No module named 'libsbml'",
+                "type": "ModuleNotFoundError"
+            },
+            "output": "",
+            "sedDocuments": [],
+            "skipReason": null,
+            "status": "FAILED"
+        }
+    },
+    "tellurium": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/6731e5f25a60072d20f54d8c",
+        "download": "https://api.biosimulations.org/results/6731e5f25a60072d20f54d8c/download",
+        "logs": "https://api.biosimulations.org/logs/6731e5f25a60072d20f54d8c?includeOutput=true",
+        "log_yml": {
+            "duration": 1.135053,
+            "exception": null,
+            "output": "",
+            "sedDocuments": [
+                {
+                    "duration": 0.728373,
+                    "exception": null,
+                    "location": "tmp653535",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  tmp653535:\r\n    Tasks (1):\r\n      task_1\r\n    Reports (1):\r\n      report_1: 3 data sets\r\n    Plots (1):\r\n      plot_1: 2 curves\r\n\r\nExecuting SED-ML file 1: tmp653535 ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task_1`\r\n    Outputs:\r\n      `plot_1`\r\n      `report_1`\r\n  Executing task 1: `task_1`\r\n    Executing simulation ... \u001b[34msucceeded\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `plot_1` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `report_1` ...",
+                    "outputs": [
+                        {
+                            "curves": [
+                                {
+                                    "id": "c_S1_1",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "c_S2_1",
+                                    "status": "SUCCEEDED"
+                                }
+                            ],
+                            "duration": 0.385024,
+                            "exception": null,
+                            "id": "plot_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        },
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "ds_time",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "ds_S1_1",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "ds_S2_1",
+                                    "status": "SUCCEEDED"
+                                }
+                            ],
+                            "duration": 0.060578,
+                            "exception": null,
+                            "id": "report_1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "SUCCEEDED",
+                    "tasks": [
+                        {
+                            "algorithm": "KISAO_0000019",
+                            "duration": 0.180214,
+                            "exception": null,
+                            "id": "task_1",
+                            "output": "",
+                            "simulatorDetails": [
+                                {
+                                    "key": "method",
+                                    "value": "simulate"
+                                },
+                                {
+                                    "key": "solver",
+                                    "value": "cvode"
+                                },
+                                {
+                                    "key": "relative_tolerance",
+                                    "value": 1e-06
+                                },
+                                {
+                                    "key": "absolute_tolerance",
+                                    "value": 1e-12
+                                },
+                                {
+                                    "key": "stiff",
+                                    "value": true
+                                },
+                                {
+                                    "key": "maximum_bdf_order",
+                                    "value": 5
+                                },
+                                {
+                                    "key": "maximum_adams_order",
+                                    "value": 12
+                                },
+                                {
+                                    "key": "maximum_num_steps",
+                                    "value": 20000
+                                },
+                                {
+                                    "key": "maximum_time_step",
+                                    "value": 0.0
+                                },
+                                {
+                                    "key": "minimum_time_step",
+                                    "value": 0.0
+                                },
+                                {
+                                    "key": "initial_time_step",
+                                    "value": 0.0
+                                },
+                                {
+                                    "key": "multiple_steps",
+                                    "value": false
+                                },
+                                {
+                                    "key": "variable_step_size",
+                                    "value": false
+                                },
+                                {
+                                    "key": "max_output_rows",
+                                    "value": 100000
+                                }
+                            ],
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        }
+                    ]
+                }
+            ],
+            "skipReason": null,
+            "status": "SUCCEEDED"
+        }
+    },
+    "vcell": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/6731e5f70d09353e8f104bc6",
+        "download": "https://api.biosimulations.org/results/6731e5f70d09353e8f104bc6/download",
+        "logs": "https://api.biosimulations.org/logs/6731e5f70d09353e8f104bc6?includeOutput=true",
+        "log_yml": {
+            "duration": null,
+            "exception": null,
+            "output": null,
+            "sedDocuments": [],
+            "skipReason": null,
+            "status": "QUEUED"
+        }
+    },
+    "xpp": {
+        "response": 201,
+        "view": "https://api.biosimulations.org/runs/6731e5f8b678b3883bb6a21e",
+        "download": "https://api.biosimulations.org/results/6731e5f8b678b3883bb6a21e/download",
+        "logs": "https://api.biosimulations.org/logs/6731e5f8b678b3883bb6a21e?includeOutput=true",
+        "log_yml": {
+            "duration": 0.062313,
+            "exception": {
+                "message": "No module named 'libsbml'",
+                "type": "ModuleNotFoundError"
+            },
+            "output": "",
+            "sedDocuments": [],
+            "skipReason": null,
+            "status": "FAILED"
+        }
+    }
+}

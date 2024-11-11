@@ -21,6 +21,7 @@ import glob
 from pyneuroml import biosimulations
 import pandas as pd
 from requests.exceptions import HTTPError 
+import json
 
 ENGINES = {
     'amici': {
@@ -418,20 +419,14 @@ def ansi_to_html(text):
         if len(text_message) > 0:
             text = text_message
             text = bytes(text[0], "utf-8").decode("unicode_escape")
-        elif 'The COMBINE/OMEX did not execute successfully:' in text:
-            text = text # to deal with remote error message
-        else:
-            text = text.replace('|', '')
-            return text
-
         text = text.replace('|', '')
 
         # # for any text with "<*>" remove "<" as well as ">" but leave wildcard text *
         text = re.sub(r'<([^>]*)>', r'\1', text)
 
         # replace color codes with html color codes
-        text = text.replace("\x1b[33m",'<span style="color:darkorange;">')
-        text = text.replace("\x1b[31m",'<span style="color:red;">')
+        text = text.replace("\x1b[33m","")
+        text = text.replace("\x1b[31m","")
 
         # # remove .\x1b[0m
         text = text.replace("\x1b[0m", "")
@@ -450,28 +445,32 @@ def ansi_to_html(text):
         text = text.replace('BioSimulatorsWarning:', '<br><br>BioSimulatorsWarning:<br><br>')
         text = text.replace('warnings.warn(termcolor.colored(message, Colors.warning.value), category)', '<br>')
 
-        # if text includes The COMBINE/OMEX did not execute successfully: make everyhting from that point red
-        text = text.replace('The COMBINE/OMEX did not execute successfully:', '<span style="color:red;">The COMBINE/OMEX did not execute successfully:')
-    return text
+        return text
 
 def check_file_compatibility_test(engine, model_filepath, experiment_filepath):
     '''
     Check if the file extensions suggest the file types are compatible with the engine.
-    This is done by comparing the file extensions of the model and experiment files with the file types supported by the engine.
-    For SED-ML files, the expected file extension is '.sedml'. For SBML files, the expected file extension is '.sbml'.
+    Only .sedml and .sbml files, and .xml files with 'sedml' and/or 'sbml' in their filename
+    are considered at this moment. It can be extended to other cases if needed in the future.
     '''
-    input_filetypes_tuple = get_filetypes(model_filepath, experiment_filepath)
+    file_extensions = get_filetypes(model_filepath, experiment_filepath)
     engine_filetypes_tuple_list = ENGINES[engine]['formats']
     flat_engine_filetypes_tuple_list = [item for sublist in engine_filetypes_tuple_list for item in sublist if sublist != 'unclear']
     compatible_filetypes = [TYPES[i] for i in flat_engine_filetypes_tuple_list if i in list(TYPES.keys())]
 
-    if input_filetypes_tuple in engine_filetypes_tuple_list:
-        file_types = [TYPES[i] for i in input_filetypes_tuple]
-        return 'pass', (f"The file extensions {input_filetypes_tuple} suggest the input file types are '{file_types}'. {compatible_filetypes} are compatible with {engine}")
-    if 'xml' in input_filetypes_tuple:
-        return 'unsure', (f"The file extensions of the input files are '{input_filetypes_tuple}'. These may be compatible with {engine}. {compatible_filetypes} are compatible with {engine}")
+    if file_extensions in engine_filetypes_tuple_list:
+        file_types = [TYPES[i] for i in file_extensions]
+        return 'pass', (f"The file extensions {file_extensions} suggest the input file types are '{file_types}'. {compatible_filetypes} are compatible with {engine}.")
+    if 'xml' in file_extensions:
+            if 'sbml' in model_filepath and 'sedml' not in model_filepath:
+                if 'sbml' in experiment_filepath and 'sedml' in experiment_filepath:
+                    file_types = ('sbml', 'sedml')
+                    if file_types in engine_filetypes_tuple_list:
+                        return 'pass', (f"The filenames '{model_filepath}' and '{experiment_filepath}' suggest the input files are {[TYPES[i] for i in file_types]} which is compatible with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
+                    else: 
+                        return 'unsure', (f"The filenames '{model_filepath}' and '{experiment_filepath}' suggest the input files are {[TYPES[i] for i in file_types]} which is not compatible with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
     else:
-        return 'FAIL', (f"The file extensions {input_filetypes_tuple} suggest the input file types are not compatibe with {engine}. {compatible_filetypes} are compatible with {engine}")
+        return 'unsure', (f"The file extensions {file_extensions} suggest the input file types may not be compatibe with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
     
 
 def collapsible_content(content, title='Details'):
@@ -484,7 +483,7 @@ def collapsible_content(content, title='Details'):
         return f'<details><summary>{title}</summary>{content}</details>'
     else:
         return f'{title}'
-    
+
 def get_filetypes(model_filepath, simulation_filepath):
     """
     Get the filetypes of the model and simulation files
@@ -492,17 +491,29 @@ def get_filetypes(model_filepath, simulation_filepath):
     Input: model_filepath, simulation_filepath
     Output: tuple of filetypes
     """
-    if model_filepath.endswith(".sbml") and simulation_filepath.endswith(".sedml"):
-        filetypes = ('sbml', 'sedml')
-    elif model_filepath.endswith(".xml") and simulation_filepath.endswith(".xml"):
-        filetypes = ('xml', 'xml')
-    elif model_filepath.endswith(".xml") and simulation_filepath.endswith(".sedml"):
-        filetypes = ('xml', 'sedml')
-    elif model_filepath.endswith(".sbml") and simulation_filepath.endswith(".xml"):
-        filetypes = ('sbml', 'xml')
-    else:
-        filetypes = "other"
-    return filetypes
+    model_ext = os.path.splitext(model_filepath)[-1].lstrip('.')
+    simulation_ext = os.path.splitext(simulation_filepath)[-1].lstrip('.')
+    
+    return (model_ext, simulation_ext)
+
+# def get_filetypes(model_filepath, simulation_filepath):
+#     """
+#     Get the filetypes of the model and simulation files
+
+#     Input: model_filepath, simulation_filepath
+#     Output: tuple of filetypes
+#     """
+#     if model_filepath.endswith(".sbml") and simulation_filepath.endswith(".sedml"):
+#         filetypes = ('sbml', 'sedml')
+#     elif model_filepath.endswith(".xml") and simulation_filepath.endswith(".xml"):
+#         filetypes = ('xml', 'xml')
+#     elif model_filepath.endswith(".xml") and simulation_filepath.endswith(".sedml"):
+#         filetypes = ('xml', 'sedml')
+#     elif model_filepath.endswith(".sbml") and simulation_filepath.endswith(".xml"):
+#         filetypes = ('sbml', 'xml')
+#     else:
+#         filetypes = "other"
+#     return filetypes
 
 def delete_output_folder(output_dir):
     '''
@@ -1059,6 +1070,7 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
     pass_html = "&#9989; PASS"
     fail_html = "&#10060; FAIL"
     warning_html = "&#9888; WARNING"
+    unsure_html = "&#10067; UNSURE"
     xfail_html = "&#9888; XFAIL"
 
     links = ['view', 'download', 'logs']
@@ -1076,9 +1088,6 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
     results_table.rename(columns={"status": PASS_FAIL, "error_message": ERROR, "exception_type": TYPE}, inplace=True)
 
     results_table.index.name =  ENGINE
-    # make name column named ENGINE
-    # results_table["name"].name = ENGINE
-    # make 
     results_table.reset_index(inplace=True)
 
     # Error
@@ -1099,7 +1108,7 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
         if compatibility_content[0] == 'pass':
             results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{pass_html}')
         elif compatibility_content[0] == 'unsure':
-            results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{warning_html}')
+            results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{unsure_html}')
         else:
             results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content[1], title=f'{fail_html}')
 
@@ -1136,10 +1145,8 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
         title = results_table.loc[results_table[ENGINE] == e, PASS_FAIL].values[0]
         content = results_table.loc[results_table[ENGINE] == e, "links_error"].values[0]
         results_table.loc[results_table[ENGINE] == e, PASS_FAIL] = collapsible_content(content, title)
-
-    # add status message defined in ENGINES
-    results_table[ENGINE] = results_table[ENGINE].apply(lambda x:  collapsible_content(f'{ENGINES[x]["url"]}<br>{ENGINES[x]["status"]}', x))        
-
+        results_table.loc[results_table[ENGINE] == e, "name"] = collapsible_content(content=f'{ENGINES[e]["url"]}<br>{ENGINES[e]["status"]}', title=f'{ENGINES[e]["name"]}')
+        
     return results_table
 
 def process_log_yml_dict(log_yml_dict):
@@ -1256,6 +1263,15 @@ def create_combined_results_table(results_remote,
 
     suffix_remote = ' (R)'
     suffix_local = ' (L)'
+
+    # save results_remote and results_local as json files with dicts
+    path_to_results_remote = os.path.join(test_folder, 'results_remote.json')
+    path_to_results_local = os.path.join(test_folder, 'results_local.json')
+
+    with open(path_to_results_remote, 'w') as f:
+        json.dump(results_remote, f, indent=4)
+    with open(path_to_results_local, 'w') as f:
+        json.dump(results_local, f, indent=4)
     
     # Create results tables for remote and local results
     results_table_remote = create_results_table(results_remote, sbml_file_name, sedml_file_name, d1_plots_remote_dir)
