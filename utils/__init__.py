@@ -419,9 +419,6 @@ def ansi_to_html(text):
         if len(text_message) > 0:
             text = text_message
             text = bytes(text[0], "utf-8").decode("unicode_escape")
-        # elif 'The COMBINE/OMEX did not execute successfully:' in text:
-        #     text = text # to deal with remote error message
-
         text = text.replace('|', '')
 
         # # for any text with "<*>" remove "<" as well as ">" but leave wildcard text *
