@@ -195,9 +195,10 @@ def main():
 
     for model_id in model_ids[0:1]:
         #allow testing on a small sample of models
-        if max_count > 0 and count >= max_count:reak
+        if max_count > 0 and count >= max_count:
+            break
         count += 1
-        print(f"\r{model_id} {count}/{len(model_ids)}       ",end='')
+        print(f"\r{model_id} {count}/{len(model_ids)}",end='')
 
         #only process curated models
         #BIOMD ids should be the curated models
@@ -233,6 +234,7 @@ def main():
 
         test_folder = 'tests'
         engine_list = list(utils.ENGINES.keys())
+        engine_list = ['copasi']    
         utils.run_biosimulators_remotely_and_locally(engine_list,
                         os.path.basename(sedml_file), 
                         os.path.basename(sbml_file),
