@@ -461,17 +461,20 @@ def check_file_compatibility_test(engine, model_filepath, experiment_filepath):
     if file_extensions in engine_filetypes_tuple_list:
         file_types = [TYPES[i] for i in file_extensions]
         return 'pass', (f"The file extensions {file_extensions} suggest the input file types are '{file_types}'. {compatible_filetypes} are compatible with {engine}.")
+    
     if 'xml' in file_extensions:
-            if 'sbml' in model_filepath and 'sedml' not in model_filepath:
-                if 'sbml' in experiment_filepath and 'sedml' in experiment_filepath:
-                    file_types = ('sbml', 'sedml')
-                    if file_types in engine_filetypes_tuple_list:
-                        return 'pass', (f"The filenames '{model_filepath}' and '{experiment_filepath}' suggest the input files are {[TYPES[i] for i in file_types]} which is compatible with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
-                    else: 
-                        return 'unsure', (f"The filenames '{model_filepath}' and '{experiment_filepath}' suggest the input files are {[TYPES[i] for i in file_types]} which is not compatible with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
+        model_sbml = 'sbml' in model_filepath
+        model_sedml = 'sedml' in model_filepath
+        experiment_sbml = 'sbml' in experiment_filepath
+        experiment_sedml = 'sedml' in experiment_filepath
+
+        if model_sbml and experiment_sbml and experiment_sedml and not model_sedml:
+            file_types = [TYPES[i] for i in ('sbml', 'sedml') ]
+            return 'pass', (f"The filenames '{model_filepath}' and '{experiment_filepath}' suggest the input files are {file_types} which is compatible with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
+        else:
+            return 'unsure', (f"The file extensions {file_extensions} suggest the input file types may be compatibe with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
     else:
         return 'unsure', (f"The file extensions {file_extensions} suggest the input file types may not be compatibe with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
-    
 
 def collapsible_content(content, title='Details'):
     """
