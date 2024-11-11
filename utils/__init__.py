@@ -1091,9 +1091,6 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
     results_table.rename(columns={"status": PASS_FAIL, "error_message": ERROR, "exception_type": TYPE}, inplace=True)
 
     results_table.index.name =  ENGINE
-    # make name column named ENGINE
-    # results_table["name"].name = ENGINE
-    # make 
     results_table.reset_index(inplace=True)
 
     # Error
@@ -1151,10 +1148,8 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
         title = results_table.loc[results_table[ENGINE] == e, PASS_FAIL].values[0]
         content = results_table.loc[results_table[ENGINE] == e, "links_error"].values[0]
         results_table.loc[results_table[ENGINE] == e, PASS_FAIL] = collapsible_content(content, title)
-
-    # add status message defined in ENGINES
-    results_table[ENGINE] = results_table[ENGINE].apply(lambda x:  collapsible_content(f'{ENGINES[x]["url"]}<br>{ENGINES[x]["status"]}', x))        
-
+        results_table.loc[results_table[ENGINE] == e, "name"] = collapsible_content(content=f'{ENGINES[e]["url"]}<br>{ENGINES[e]["status"]}', title=f'{ENGINES[e]["name"]}')
+        
     return results_table
 
 def process_log_yml_dict(log_yml_dict):
