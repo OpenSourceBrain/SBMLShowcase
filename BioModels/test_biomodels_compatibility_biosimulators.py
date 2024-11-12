@@ -236,15 +236,18 @@ def main():
         if not sedml_file: continue # no further tests possible
 
         test_folder = 'tests'
-        engine_list = list(utils.ENGINES.keys())
+        # engine_list = list(utils.ENGINES.keys())
 
         utils.run_biosimulators_remotely_and_locally(engine_list,
                         os.path.basename(sedml_file), 
                         os.path.basename(sbml_file),
                         os.path.join(test_folder,'d1_plots_remote'), 
                         os.path.join(test_folder,'d1_plots_local'),
-                        test_folder=test_folder)
+                        test_folder=test_folder,
+                        remove_output=remove_output)
 
 if __name__ == "__main__":
     cases = ["BIOMD0000000001","BIOMD0000000138"]
+    remove_output = False
+    engine_list = ['copasi']
     main()

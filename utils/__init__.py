@@ -1188,7 +1188,8 @@ def run_biosimulators_remotely(engine_keys,
                                sedml_file_name, 
                                sbml_file_name, 
                                d1_plots_remote_dir,  
-                               test_folder='tests'):
+                               test_folder='tests',
+                               remove_output_remote=True):
     
     """ run with directory pointing towards the location of the sedml and sbml files"""
     
@@ -1220,10 +1221,10 @@ def run_biosimulators_remotely(engine_keys,
     file_paths = find_files(remote_output_dir, '.pdf')
     move_d1_files(file_paths, d1_plots_remote_dir)
 
-    # remove the remote results directory
-    if os.path.exists(remote_output_dir):
-        shutil.rmtree(remote_output_dir)
-        print('Removed ' + remote_output_dir + ' folder')
+    if remove_output_remote == True:# remove the remote results directory
+        if os.path.exists(remote_output_dir):
+            shutil.rmtree(remote_output_dir)
+            print('Removed ' + remote_output_dir + ' folder')
 
     return results_remote
 
@@ -1231,7 +1232,8 @@ def run_biosimulators_locally(engine_keys,
                               sedml_file_name, 
                               sbml_file_name, 
                               d1_plots_local_dir, 
-                              test_folder='tests'):
+                              test_folder='tests',
+                              remove_output_local=True):
     
     engines = {k: v for k, v in ENGINES.items() if k in engine_keys}
     results_local = {}
@@ -1250,9 +1252,10 @@ def run_biosimulators_locally(engine_keys,
     move_d1_files(file_paths, d1_plots_local_dir)
 
     # if it exists remove the output folder
-    if os.path.exists(local_output_dir):
-        shutil.rmtree(local_output_dir)
-        print('Removed ' + local_output_dir + ' folder')
+    if remove_output_local == True:
+        if os.path.exists(local_output_dir):
+            shutil.rmtree(local_output_dir)
+            print('Removed ' + local_output_dir + ' folder')
 
     return results_local
 
@@ -1316,19 +1319,22 @@ def run_biosimulators_remotely_and_locally(engine_keys,
                                  sbml_file_name,
                                  d1_plots_remote_dir, 
                                  d1_plots_local_dir,
-                                 test_folder='tests'):
+                                 test_folder='tests',
+                                 remove_output=True):
     
     results_remote = run_biosimulators_remotely(engine_keys,
                                     sedml_file_name=sedml_file_name, 
                                     sbml_file_name=sbml_file_name,
                                     d1_plots_remote_dir=d1_plots_remote_dir, 
-                                    test_folder=test_folder)
+                                    test_folder=test_folder,
+                                    remove_output_remote = remove_output)
     
     results_local = run_biosimulators_locally(engine_keys,
                                     sedml_file_name=sedml_file_name, 
                                     sbml_file_name=sbml_file_name,
                                     d1_plots_local_dir=d1_plots_local_dir, 
-                                    test_folder=test_folder)
+                                    test_folder=test_folder,
+                                    remove_output_local = remove_output)
 
     results_table = create_combined_results_table(results_remote, 
                                     results_local, 
