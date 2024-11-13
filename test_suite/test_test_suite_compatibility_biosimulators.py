@@ -134,7 +134,7 @@ def process_cases(args):
                                  os.path.basename(sbml_file_path),
                                  os.path.join(test_folder,'d1_plots_remote'), 
                                  os.path.join(test_folder,'d1_plots_local'),
-                                 engines=engines, test_folder=test_folder)
+                                 test_folder=test_folder)
 
 
 if __name__ == "__main__":
