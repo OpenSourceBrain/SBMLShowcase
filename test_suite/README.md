@@ -47,6 +47,12 @@ The `process_test_suite.py` script provides various command-line options to cust
   **Usage:** `--limit <number>`  
   **Default:** `0` (no limit)
 
+ `--cases`  
+  **Description:** list specific cases to process
+  **Usage:** `--cases <list>`  
+  **Default:** `[]` (no limit)
+
+
 - `--suite-path`  
   **Description:** Specifies the path to the directory containing the test suite files.  
   **Usage:** `--suite-path <path>`  

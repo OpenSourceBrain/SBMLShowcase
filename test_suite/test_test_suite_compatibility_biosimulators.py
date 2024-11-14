@@ -15,7 +15,7 @@ import sys
 import shutil
 sys.path.append("..")
 import utils
-engines = utils.engines
+engines = utils.ENGINES
 
 
 md_description = \
@@ -42,6 +42,15 @@ def parse_arguments():
         type=int,
         default=0,
         help="Limit to the first n test cases, 0 means no limit",
+    )
+
+    parser.add_argument(
+        "--cases",
+        action="extend",
+        nargs="+",
+        type=str,
+        default=[],
+        help="Limit to the cases listed in the file. Empty list means no limit",
     )
 
     parser.add_argument(
@@ -86,6 +95,9 @@ def process_cases(args):
 
     To test the highest level and version of SBML of the first 5 cases in the test suite:
     python test_test_suite_compatibility_biosimulators.py --limit 5 --suite-path /path/to/sbml-test-suite/cases/semantic --sbml-level_version highest
+
+    To test cases 00001 and 01186 in the test suite:
+    python test_test_suite_compatibility_biosimulators.py --cases 00001 01186 --suite-path /path/to/sbml-test-suite/cases/semantic --sbml-level_version highest
     """
 
     starting_dir = os.getcwd() # where results will be written
@@ -93,9 +105,14 @@ def process_cases(args):
     os.chdir(args.suite_path) # change to test suite directory
     suite_path_abs = os.getcwd() # absolute path to test suite
 
-    subfolders = os.listdir(suite_path_abs) if args.limit == 0 else os.listdir(suite_path_abs)[:args.limit]   
+    if args.cases != []:
+        subfolders = args.cases
+    else:
+        subfolders = os.listdir(suite_path_abs) if args.limit == 0 else os.listdir(suite_path_abs)[:args.limit]   
+
     print(f"Processing {len(subfolders)} subfolders in {args.suite_path}") 
     test_folder = 'tests'
+
 
     for subfolder in subfolders:
         # create an equivalently named folder in the starting directory
@@ -129,8 +146,11 @@ def process_cases(args):
 
         os.chdir(new_directory)
         print(f"Changed to {new_directory}")
+
+        engine_list = list(engines.keys()) 
         
-        utils.run_biosimulators_remotely_and_locally(os.path.basename(sedml_file_path), 
+        utils.run_biosimulators_remotely_and_locally(engine_list,
+                                 os.path.basename(sedml_file_path), 
                                  os.path.basename(sbml_file_path),
                                  os.path.join(test_folder,'d1_plots_remote'), 
                                  os.path.join(test_folder,'d1_plots_local'),
@@ -138,7 +158,7 @@ def process_cases(args):
 
 
 if __name__ == "__main__":
-    args = parse_arguments()
+    args = parse_arguments()    
 
     process_cases(args)
 

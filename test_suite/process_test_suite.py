@@ -46,6 +46,15 @@ def parse_arguments():
     )
 
     parser.add_argument(
+        "--cases",
+        action="extend",
+        nargs="+",
+        type=str,
+        default=[],
+        help="Limit to the cases listed in the file. Empty list means no limit",
+    )
+
+    parser.add_argument(
         "--suite-path",
         action="store",
         type=str,
@@ -116,8 +125,8 @@ def process_cases(args):
     matplotlib.use("agg") 
     # Suppress specific UserWarning caused by matplotlib (required to suppress interactive plots)
     warnings.filterwarnings("ignore", category=UserWarning, message="FigureCanvasAgg is non-interactive, and thus cannot be shown")
-    subfolders = os.listdir(suite_path_abs) if args.limit == 0 else os.listdir(suite_path_abs)[:args.limit]    
-    
+    subfolders = os.listdir(suite_path_abs) if args.limit == 0 else os.listdir(suite_path_abs)[:args.limit]   
+
     for subfolder in subfolders:
         # if sbml_level_version is empty string (default), find the highest level and version in the folder
         if args.sbml_level_version == "highest":

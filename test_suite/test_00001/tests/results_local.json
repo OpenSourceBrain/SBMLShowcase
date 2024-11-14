@@ -1,0 +1,107 @@
+{
+    "amici": {
+        "exception_message": "Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')",
+        "log_yml": {},
+        "detailed_error_log": {}
+    },
+    "brian2": {
+        "exception_message": "Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')",
+        "log_yml": {},
+        "detailed_error_log": {}
+    },
+    "bionetgen": {
+        "exception_message": "Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')",
+        "log_yml": {},
+        "detailed_error_log": {}
+    },
+    "boolnet": {
+        "exception_message": "Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')",
+        "log_yml": {},
+        "detailed_error_log": {}
+    },
+    "cbmpy": {
+        "exception_message": "Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')",
+        "log_yml": {},
+        "detailed_error_log": {}
+    },
+    "cobrapy": {
+        "exception_message": "Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')",
+        "log_yml": {},
+        "detailed_error_log": {}
+    },
+    "copasi": {
+        "exception_message": "Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')",
+        "log_yml": {},
+        "detailed_error_log": {}
+    },
+    "gillespy2": {
+        "exception_message": "Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')",
+        "log_yml": {},
+        "detailed_error_log": {}
+    },
+    "ginsim": {
+        "exception_message": "Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')",
+        "log_yml": {},
+        "detailed_error_log": {}
+    },
+    "libsbmlsim": {
+        "exception_message": "Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')",
+        "log_yml": {},
+        "detailed_error_log": {}
+    },
+    "masspy": {
+        "exception_message": "Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')",
+        "log_yml": {},
+        "detailed_error_log": {}
+    },
+    "netpyne": {
+        "exception_message": "Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')",
+        "log_yml": {},
+        "detailed_error_log": {}
+    },
+    "neuron": {
+        "exception_message": "Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')",
+        "log_yml": {},
+        "detailed_error_log": {}
+    },
+    "opencor": {
+        "exception_message": "Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')",
+        "log_yml": {},
+        "detailed_error_log": {}
+    },
+    "pyneuroml": {
+        "exception_message": "Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')",
+        "log_yml": {},
+        "detailed_error_log": {}
+    },
+    "pysces": {
+        "exception_message": "Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')",
+        "log_yml": {},
+        "detailed_error_log": {}
+    },
+    "rbapy": {
+        "exception_message": "Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')",
+        "log_yml": {},
+        "detailed_error_log": {}
+    },
+    "smoldyn": {
+        "exception_message": "Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')",
+        "log_yml": {},
+        "detailed_error_log": {}
+    },
+    "tellurium": {
+        "exception_message": "Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')",
+        "log_yml": {},
+        "detailed_error_log": {}
+    },
+    "vcell": {
+        "exception_message": "Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')",
+        "log_yml": {},
+        "detailed_error_log": {}
+    },
+    "xpp": {
+        "exception_message": "Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')",
+        "log_yml": {},
+        "detailed_error_log": {}
+    }
+}
