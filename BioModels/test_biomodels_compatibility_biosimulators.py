@@ -148,9 +148,7 @@ def main():
         print(f"Changed to {new_directory}")
         
         engine_ids = list(engines.keys())
-        engine_ids = ['copasi']
-
-        engine_ids = engine_list if engine_list is not None else engine_ids
+        # engine_ids = engine_list if engine_list is not None else engine_ids
 
         test_folder = 'tests'
         utils.run_biosimulators_remotely_and_locally(engine_ids,
@@ -165,13 +163,14 @@ def main():
 
 if __name__ == "__main__":
 
-    biomodel_id_list = ["BIOMD0000000001","BIOMD0000000138"]
+
     use_original_files = False
-    engine_list = None
+    # engine_list = None
 
     biomodel_dict = {"BIOMD0000000001": {"outputStartTime": "0", "outputEndTime": "10000", "numberOfSteps": "100000"},
                      "BIOMD0000000138": {"outputStartTime": "0", "outputEndTime": "10", "numberOfSteps": "1000"}}
     
     biomodel_id_list = list(biomodel_dict.keys())
+    # biomodel_id_list = ["BIOMD0000000138"]
 
     main()
