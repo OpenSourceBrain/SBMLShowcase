@@ -97,12 +97,13 @@ def main():
 
     #mode="off" to disable caching, "store" to wipe and store fresh results, "reuse" to use the stored cache
     cache = utils.RequestCache(mode="store",direc="cache")
-    model_ids = cache.do_request(f"{API_URL}/model/identifiers?format={out_format}").json()['models']
     count = 0
     starting_dir = os.getcwd()
 
+    model_ids = cache.do_request(f"{API_URL}/model/identifiers?format={out_format}").json()['models']
     if biomodel_id_list != None:
         model_ids = biomodel_id_list
+
 
     for model_id in model_ids:
 
@@ -135,31 +136,37 @@ def main():
         new_directory = os.path.join(starting_dir, new_subfolder)
         os.makedirs(new_directory, exist_ok=True)
 
-        print (f"Copying {sbml_file} and {sedml_file} to {starting_dir}/{new_subfolder}")
         new_sbml_file_path = os.path.join(new_directory, os.path.basename(sbml_file))
         new_sedml_file_path = os.path.join(new_directory, os.path.basename(sedml_file))
 
-        shutil.copy(sbml_file_path, new_sbml_file_path)
-        shutil.copy(sedml_file_path, new_sedml_file_path)
+        if use_original_files:
+            print (f"Copying {sbml_file} and {sedml_file} to {starting_dir}/{new_subfolder}")
+            shutil.copy(sbml_file_path, new_sbml_file_path)
+            shutil.copy(sedml_file_path, new_sedml_file_path)
 
         os.chdir(new_directory)
         print(f"Changed to {new_directory}")
-
-        engine_list = list(engines.keys()) 
         
+        engine_ids = list(engines.keys())
+        engine_ids = ['copasi']
+
+        engine_ids = engine_list if engine_list is not None else engine_ids
+
         test_folder = 'tests'
-        utils.run_biosimulators_remotely_and_locally(engine_list,
+        utils.run_biosimulators_remotely_and_locally(engine_ids,
                                  os.path.basename(sedml_file_path), 
                                  os.path.basename(sbml_file_path),
                                  os.path.join(test_folder,'d1_plots_remote'), 
                                  os.path.join(test_folder,'d1_plots_local'),
                                  test_folder=test_folder)
         
-        # remove the temporary directory
         shutil.rmtree(tmp_model_dir) 
 
 
 if __name__ == "__main__":
 
     biomodel_id_list = ["BIOMD0000000001","BIOMD0000000138"]
+    use_original_files = False
+    engine_list = ['copasi']
+
     main()
