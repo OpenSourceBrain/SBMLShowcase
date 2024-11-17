@@ -432,9 +432,6 @@
     <plot2D id="autogen_plot3" name="vk">
       <xAxis name="Time" type="linear"/>
       <yAxis name="Species" type="linear"/>
-      <listOfCurves>
-         <curve id="autogen_curve_for_task1_vk" name="vk" logX="false" xDataReference="auto_time_for_task1" logY="false" yDataReference="auto_dg_for_task1_vk"/>
-      </listOfCurves>
     </plot2D>
   </listOfOutputs>
 </sedML>
