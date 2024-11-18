@@ -54,7 +54,7 @@ def parse_arguments():
     )
 
     parser.add_argument(
-        "--suite-path",
+        "--suite_path",
         action="store",
         type=str,
         default=".",
@@ -158,7 +158,11 @@ def process_cases(args):
 
 
 if __name__ == "__main__":
-    args = parse_arguments()    
+    args = parse_arguments()   
 
+    args.cases = ['01186'] 
+    args.sbml_level_version = 'l3v2'
+    suite_path_string = "C:/Users/prins/Documents/compbiolibs/SBML_test_suite/semantic"
+    args.suite_path = suite_path_string
     process_cases(args)
 

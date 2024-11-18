@@ -159,7 +159,7 @@ def process_cases(args):
         mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_file_path) # run tellurium directly        
         sup.restore() 
 
-        mtab['xmlns_sbml_missing'] = utils.xmlns_sbml_attribute_missing(sedml_file_path)
+        mtab['xmlns_sbml_missing'] = utils.xmlns_sbml_attribute_missing_in_sedml(sedml_file_path)
         matplotlib.pyplot.close('all')   # supresses error from building up plots  
 
     #give failure counts
