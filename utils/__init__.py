@@ -312,8 +312,9 @@ def fbc_sbml_attribute_missing_in_sedml(sedml_filepath):
 def add_missing_attribute_to_sedml(sedml_filepath, attribute_string):
     with open(sedml_filepath, 'r') as file:
         sedml_str = file.read()
-
-    sedml_str = re.sub(r'<sedML ', r'<sedML ' + attribute_string + ' ', sedml_str)
+    m = re.search(r'<sedML[^>]*>', sedml_str)
+    location = m.span()[1]-1
+    sedml_str = sedml_str[:location] + ' ' + attribute_string + sedml_str[location:]
 
     with open(sedml_filepath,"w") as fout:
         fout.write(sedml_str)

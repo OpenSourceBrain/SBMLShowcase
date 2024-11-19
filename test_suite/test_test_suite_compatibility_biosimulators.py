@@ -148,7 +148,6 @@ def process_cases(args):
         print(f"Changed to {new_directory}")
 
         engine_list = list(engines.keys()) 
-        
         utils.run_biosimulators_remotely_and_locally(engine_list,
                                  os.path.basename(sedml_file_path), 
                                  os.path.basename(sbml_file_path),
@@ -159,10 +158,9 @@ def process_cases(args):
 
 if __name__ == "__main__":
     args = parse_arguments()   
-
     args.cases = ['01186'] 
     args.sbml_level_version = 'l3v2'
-    suite_path_string = "C:/Users/prins/Documents/compbiolibs/SBML_test_suite/semantic"
-    args.suite_path = suite_path_string
+    user_folder = os.path.expanduser("~")
+    args.suite_path = os.path.join(user_folder, "Documents", "compbiolibs", "SBML_test_suite", "semantic")
     process_cases(args)
 
