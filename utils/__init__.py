@@ -264,10 +264,44 @@ def add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, output_filepath=None
     with open(output_filepath,"w") as fout:
         fout.write(sedstr)
 
+def add_xmlns_fbc_attribute(sedml_filepath, sbml_filepath, output_filepath=None):
+    '''
+    add an xmlns:sbml attribute to the sedml file that matches the sbml file
+    raise an error if the attribute is already present
+    output fixed file to output_filepath which defaults to sedml_filepath
+    '''
+    sedstr = ""
+    if output_filepath:
+        if os.path.exists(output_filepath):
+            with open(output_filepath, 'r') as file:
+                sedstr = file.read()    
+    if sedstr == "":
+        with open(sedml_filepath, 'r') as file:
+            sedstr = file.read()
+
+    m = re.search(r'<sedML[^>]*>', sedstr)
+    location = m.span()[1]-1
+
+    if m == None:
+        raise ValueError(f'Invalid SedML file: main <sedML> tag not found in {sedml_filepath}')
+
+    with open(sbml_filepath, 'r') as file:
+        sbml_str = file.read()
+
+    fbc_xmlns = re.search(r'xmlns:fbc="([^"]*)"', sbml_str).group(1)
+    missing_fbc_attribute = 'xmlns:fbc="' + fbc_xmlns + '"'
+    sedstr = sedstr[:location] + ' ' + missing_fbc_attribute + sedstr[location:]
+    
+    if output_filepath == None:
+        output_filepath = sedml_filepath
+
+    with open(output_filepath,"w") as fout:
+        fout.write(sedstr)
+
 
 def xmlns_sbml_attribute_missing(sedml_filepath):
     '''
-    report True if the xmlns:sbml attribute is missing from the main sedml tag
+    True if the xmlns:sbml attribute is missing from the main sedml tag
     '''
 
     with open(sedml_filepath, 'r') as file:
@@ -282,6 +316,26 @@ def xmlns_sbml_attribute_missing(sedml_filepath):
         return True
     else:
         return False
+    
+
+def xmlns_fbc_attribute_missing(sbml_filepath,sedml_filepath):
+    '''
+    True if the xmlns:fbc attribute is missing from the main sedml tag of the SED-ML file but present in the SBML file
+    '''
+    with open(sbml_filepath, 'r') as file:
+        sbmlstr = file.read()
+
+    with open(sedml_filepath, 'r') as file:
+        sedstr = file.read()
+    
+    sbmlstr_fbc = re.search(r'xmlns:fbc="([^"]*)"', sbmlstr)
+    sedstr_fbc = re.search(r'xmlns:fbc="([^"]*)"', sedstr)
+
+    if sbmlstr_fbc and not sedstr_fbc:
+        return True
+    else:
+        return False
+
 
 def get_temp_file():
     '''
@@ -308,14 +362,14 @@ def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None, silent_overwr
     if os.path.exists(omex_filepath) and silent_overwrite:
         os.remove(omex_filepath)
 
-    tmp_sedml_filepath = None
+    tmp_sedml_filepath = get_temp_file()
     if add_missing_xmlns:
         if xmlns_sbml_attribute_missing(sedml_filepath):
-            #create a temporary sedml file with the missing attribute added
-            tmp_sedml_filepath = get_temp_file()
             add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, tmp_sedml_filepath)
-            sedml_filepath = tmp_sedml_filepath
-
+        if xmlns_fbc_attribute_missing(sbml_filepath,sedml_filepath):
+            add_xmlns_fbc_attribute(sedml_filepath, sbml_filepath, tmp_sedml_filepath)
+        
+    sedml_filepath = tmp_sedml_filepath
     sbml_file_entry_format = get_entry_format(sbml_filepath, 'SBML')
     sedml_file_entry_format = get_entry_format(sedml_filepath, 'SEDML')
 
