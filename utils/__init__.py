@@ -229,111 +229,59 @@ def get_entry_format(file_path, file_type):
 
     return file_entry_format
 
+    
+def xmlns_present_in_sbml(sbml_filepath, xmlns='xmlns:sbml'):
+    ''' True if the fbc namespace is present in the sbml file, also return the xmlns attribute string. '''
+    with open(sbml_filepath, 'r') as file:
+        sbml_str = file.read()
+    if xmlns == 'xmlns:sbml':
+        xmlns = 'xmlns'
+    if xmlns in sbml_str:
+        return True, re.search(fr'{xmlns}="([^"]*)"', sbml_str).group(0)    
+    else:
+        return False, ""
+    
+def xmlns_missing_in_sedml(sedml_filepath, xmlns = 'xmlns:sbml'):
+    ''' True if the xmlns:sbml attribute is missing from the main sedml tag'''
 
-def add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, output_filepath=None):
+    with open(sedml_filepath, 'r') as file:
+        sedstr = file.read()
+
+    m = re.search(r'<sedML[^>]*>', sedstr).group()
+
+    if m == None:
+        raise ValueError(f'Invalid SedML file: main <sedML> tag not found in {sedml_filepath}')
+    if xmlns not in m:
+        return True
+    else:
+        return False
+
+def add_missing_xmlns_to_sedml(sedml_filepath, tmp_sedml_filepath, attribute_string):
+    with open(sedml_filepath, 'r') as file:
+        sedml_str = file.read()
+    if  "xmlns:fbc" in attribute_string:
+        m = re.search(r'<sedML[^>]*>', sedml_str)
+        location = m.span()[1]-1
+        sedml_str = sedml_str[:location] + ' ' + attribute_string + sedml_str[location:]
+    else:
+        sedml_str = re.sub(r'<sedML ', r'<sedML ' + attribute_string + ' ', sedml_str)
+    with open(tmp_sedml_filepath,"w") as fout:
+        fout.write(sedml_str)
+
+
+def add_xmlns_to_sedml_if_missing(sedml_filepath, tmp_sedml_filepath, sbml_filepath, xmlns=['xmlns:sbml']):
     '''
     add an xmlns:sbml attribute to the sedml file that matches the sbml file
     raise an error if the attribute is already present
     output fixed file to output_filepath which defaults to sedml_filepath
     '''
-
-    # read the sedml file as a string
-    with open(sedml_filepath, 'r') as file:
-        sedstr = file.read()
-
-    m = re.search(r'<sedML[^>]*>', sedstr)
-
-    if m == None:
-        raise ValueError(f'Invalid SedML file: main <sedML> tag not found in {sedml_filepath}')
-
-    # read the sbml file as a string to add the xmlns attribute if it is missing
-    if "xmlns:sbml" in m.group():
-        raise ValueError(f'xmlns:sbml attribute already present in file {sedml_filepath}')
-
-    with open(sbml_filepath, 'r') as file:
-        sbml_str = file.read()
-
-    sbml_xmlns = re.search(r'xmlns="([^"]*)"', sbml_str).group(1)
-    missing_sbml_attribute = 'xmlns:sbml="' + sbml_xmlns + '"'
-
-    sedstr = re.sub(r'<sedML ', r'<sedML ' + missing_sbml_attribute + ' ', sedstr)
-
-    if output_filepath == None:
-        output_filepath = sedml_filepath
-
-    with open(output_filepath,"w") as fout:
-        fout.write(sedstr)
-
-
-def xmlns_sbml_attribute_missing_in_sedml(sedml_filepath):
-    '''
-    report True if the xmlns:sbml attribute is missing from the main sedml tag
-    '''
-
-    with open(sedml_filepath, 'r') as file:
-        sedstr = file.read()
-
-    m = re.search(r'<sedML[^>]*>', sedstr)
-
-    if m == None:
-        raise ValueError(f'Invalid SedML file: main <sedML> tag not found in {sedml_filepath}')
-    
-    if "xmlns:sbml" not in m.group():
-        return True
-    else:
-        return False
-    
-def fbc_sbml_present_in_sbml(sbml_filepath):
-    '''
-    report True if the fbc namespace is present in the sbml file, also return the xmlns:fbc attribute string.
-    '''
-
-    with open(sbml_filepath, 'r') as file:
-        sbml_str = file.read()
-
-    if "xmlns:fbc" in sbml_str:
-        return True, re.search(r'xmlns:fbc="([^"]*)"', sbml_str).group(0)
-    else:
-        return False, ""
-    
-def fbc_sbml_attribute_missing_in_sedml(sedml_filepath):
-    '''
-    report True if the xmlns:sbml attribute is missing from the main sedml tag
-    '''
-
-    with open(sedml_filepath, 'r') as file:
-        sedstr = file.read()
-
-    if "xmlns:fbc" not in sedstr:
-        return True
-    else:
-        return False
-
-def add_missing_attribute_to_sedml(sedml_filepath, attribute_string):
-    with open(sedml_filepath, 'r') as file:
-        sedml_str = file.read()
-    m = re.search(r'<sedML[^>]*>', sedml_str)
-    location = m.span()[1]-1
-    sedml_str = sedml_str[:location] + ' ' + attribute_string + sedml_str[location:]
-
-    with open(sedml_filepath,"w") as fout:
-        fout.write(sedml_str)
-
-
-def add_fbc_sbml_attribute_to_sedml_if_missing(sedml_filepath, sbml_filepath):
-    '''
-    add an xmlns:fbc attribute to the sedml file that matches the sbml file
-    raise an error if the attribute is already present
-    output fixed file to output_filepath which defaults to sedml_filepath
-    '''
-    fbc_present_in_sbml, fbc_string = fbc_sbml_present_in_sbml(sbml_filepath)
-    fbc_missing_in_sedml = fbc_sbml_attribute_missing_in_sedml(sedml_filepath)
-
-    if fbc_present_in_sbml and fbc_missing_in_sedml:
-        add_missing_attribute_to_sedml(sedml_filepath, fbc_string)
-        print(f'Added missing xmlns:fbc attribute to {sedml_filepath}')
-    else:
-        print(f'No missing xmlns:fbc attribute in {sedml_filepath}')
+    for xmlns in xmlns:
+        xmlns_in_sbml, xmlns_string = xmlns_present_in_sbml(sbml_filepath, xmlns)
+        xmlns_not_in_sedml = xmlns_missing_in_sedml(sedml_filepath, xmlns)
+        
+        if xmlns_in_sbml and xmlns_not_in_sedml:
+            add_missing_xmlns_to_sedml(sedml_filepath, tmp_sedml_filepath, xmlns_string)
+            print(f'Added missing {xmlns} attribute to {sedml_filepath}')
 
 
 def get_temp_file():
@@ -361,15 +309,16 @@ def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None, silent_overwr
     if os.path.exists(omex_filepath) and silent_overwrite:
         os.remove(omex_filepath)
 
-    tmp_sedml_filepath = None
-    if add_missing_xmlns:
-        if xmlns_sbml_attribute_missing_in_sedml(sedml_filepath):
-            #create a temporary sedml file with the missing attribute added
-            tmp_sedml_filepath = get_temp_file()
-            add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, tmp_sedml_filepath)
-            sedml_filepath = tmp_sedml_filepath
+    tmp_sedml_filepath = get_temp_file()
+    # if add_missing_xmlns:
+    #     if xmlns_sbml_attribute_missing_in_sedml(sedml_filepath):
+    #         #create a temporary sedml file with the missing attribute added
+    #         tmp_sedml_filepath = get_temp_file()
+    #         add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, tmp_sedml_filepath)
+    #         sedml_filepath = tmp_sedml_filepath
     
-    add_fbc_sbml_attribute_to_sedml_if_missing(sedml_filepath, sbml_filepath)
+    add_xmlns_to_sedml_if_missing(sedml_filepath, tmp_sedml_filepath, sbml_filepath, ['xmlns:sbml','xmlns:fbc'])
+    # add_xmlns_to_sedml_if_missing(tmp_sedml_filepath, tmp_sedml_filepath, sbml_filepath, 'xmlns:fbc')
 
     sbml_file_entry_format = get_entry_format(sbml_filepath, 'SBML')
     sedml_file_entry_format = get_entry_format(sedml_filepath, 'SEDML')
