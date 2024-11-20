@@ -608,7 +608,9 @@ def run_biosimulators_remote(engine,sedml_filepath,sbml_filepath):
     results_urls = biosimulations.submit_simulation_archive(\
         archive_file=omex_file_name,\
         sim_dict=sim_dict)
-       
+    
+    os.remove(omex_filepath)
+
     return results_urls 
 
 def get_remote_results(engine, download_link, output_dir='remote_results'):
@@ -669,6 +671,8 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='out
         if 'RuntimeException' in detailed_error_log:
             detailed_error_log_dict['status'] = 'FAIL'
             detailed_error_log_dict['error_message'] = "Runtime Exception"
+
+    os.remove(omex_filepath)
     
     return {"exception_message":exception_message,"log_yml":log_yml_dict, "detailed_error_log":detailed_error_log_dict}
 
