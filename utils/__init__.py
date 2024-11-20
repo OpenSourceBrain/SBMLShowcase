@@ -289,6 +289,19 @@ def get_temp_file():
     '''
     return f"tmp{random.randrange(1000000)}"
 
+def remove_spaces_from_filename(filename):
+    '''
+    create another file with the same content but with filename spaces replaced by underscores
+    '''
+    old_filename = os.path.basename(filename)
+    if ' ' not in old_filename:
+        return old_filename
+    if ' ' in old_filename:
+        new_filename = old_filename.replace(' ', '_')
+        shutil.copy(filename, new_filename)
+        return new_filename
+ 
+
 def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None, silent_overwrite=True, add_missing_xmlns=True):
     '''
     wrap a sedml and an sbml file in a combine archive omex file
@@ -634,9 +647,12 @@ def biosimulators_core(engine,omex_filepath,output_dir=None):
     output_dir: folder to write the simulation outputs to
     '''
 
+    omex_filepath_no_spaces = remove_spaces_from_filename(omex_filepath)
+
     #directory containing omex file needs mapping into the container as the input folders
-    omex_dir = os.path.dirname(os.path.abspath(omex_filepath))
-    omex_file = os.path.basename(os.path.abspath(omex_filepath))
+    omex_dir = os.path.dirname(os.path.abspath(omex_filepath_no_spaces))
+    omex_file = os.path.basename(os.path.abspath(omex_filepath_no_spaces))
+
     mount_in = docker.types.Mount("/root/in",omex_dir,type="bind",read_only=True)
 
     #we want the output folder to be different to the input folder
@@ -652,6 +668,8 @@ def biosimulators_core(engine,omex_filepath,output_dir=None):
                         mounts=[mount_in,mount_out],
                         command=f"-i /root/in/{omex_file} -o /root/out",
                         auto_remove=True)
+    
+    os.remove(omex_filepath_no_spaces)
 
 def test_engine(engine,filename,error_categories=error_categories):
     '''

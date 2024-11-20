@@ -139,7 +139,8 @@ def main():
         new_sbml_file_path = os.path.join(new_directory, os.path.basename(sbml_file))
         new_sedml_file_path = os.path.join(new_directory, os.path.basename(sedml_file))
 
-        if use_original_files:
+        paths_exist = os.path.exists(new_sbml_file_path) and os.path.exists(new_sedml_file_path)
+        if use_original_files or not paths_exist:
             print (f"Copying {sbml_file} and {sedml_file} to {starting_dir}/{new_subfolder}")
             shutil.copy(sbml_file_path, new_sbml_file_path)
             shutil.copy(sedml_file_path, new_sedml_file_path)
@@ -171,6 +172,6 @@ if __name__ == "__main__":
                      "BIOMD0000000138": {"outputStartTime": "0", "outputEndTime": "10", "numberOfSteps": "1000"}}
     
     biomodel_id_list = list(biomodel_dict.keys())
-    # biomodel_id_list = ["BIOMD0000000138"]
+    biomodel_id_list = ["BIOMD0000001077"]
 
     main()
