@@ -162,15 +162,7 @@ def main():
 
 
 if __name__ == "__main__":
-
-
     use_original_files = False
-    # engine_list = None
-
-    biomodel_dict = {"BIOMD0000000001": {"outputStartTime": "0", "outputEndTime": "10000", "numberOfSteps": "100000"},
-                     "BIOMD0000000138": {"outputStartTime": "0", "outputEndTime": "10", "numberOfSteps": "1000"}}
-    
     biomodel_id_list = list(biomodel_dict.keys())
-    # biomodel_id_list = ["BIOMD0000000138"]
-
+    biomodel_id_list = ["BIOMD0000000001","BIOMD0000000138"]
     main()
