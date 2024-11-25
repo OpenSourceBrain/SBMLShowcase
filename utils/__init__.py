@@ -472,9 +472,9 @@ def check_file_compatibility_test(engine, model_filepath, experiment_filepath):
             file_types = [TYPES[i] for i in ('sbml', 'sedml') ]
             return 'pass', (f"The filenames '{model_filepath}' and '{experiment_filepath}' suggest the input files are {file_types} which is compatible with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
         else:
-            return 'unsure', (f"The file extensions {file_extensions} suggest the input file types may be compatibe with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
+            return 'unsure', (f"The file extensions {file_extensions} suggest the input file types may be compatible with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
     else:
-        return 'unsure', (f"The file extensions {file_extensions} suggest the input file types may not be compatibe with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
+        return 'unsure', (f"The file extensions {file_extensions} suggest the input file types may not be compatible with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
 
 
 def collapsible_content(content, title='Details'):
