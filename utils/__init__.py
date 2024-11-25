@@ -461,17 +461,21 @@ def check_file_compatibility_test(engine, model_filepath, experiment_filepath):
     if file_extensions in engine_filetypes_tuple_list:
         file_types = [TYPES[i] for i in file_extensions]
         return 'pass', (f"The file extensions {file_extensions} suggest the input file types are '{file_types}'. {compatible_filetypes} are compatible with {engine}.")
-    if 'xml' in file_extensions:
-            if 'sbml' in model_filepath and 'sedml' not in model_filepath:
-                if 'sbml' in experiment_filepath and 'sedml' in experiment_filepath:
-                    file_types = ('sbml', 'sedml')
-                    if file_types in engine_filetypes_tuple_list:
-                        return 'pass', (f"The filenames '{model_filepath}' and '{experiment_filepath}' suggest the input files are {[TYPES[i] for i in file_types]} which is compatible with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
-                    else: 
-                        return 'unsure', (f"The filenames '{model_filepath}' and '{experiment_filepath}' suggest the input files are {[TYPES[i] for i in file_types]} which is not compatible with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
-    else:
-        return 'unsure', (f"The file extensions {file_extensions} suggest the input file types may not be compatibe with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
     
+    if 'xml' in file_extensions:
+        model_sbml = 'sbml' in model_filepath
+        model_sedml = 'sedml' in model_filepath
+        experiment_sbml = 'sbml' in experiment_filepath
+        experiment_sedml = 'sedml' in experiment_filepath
+
+        if model_sbml and experiment_sbml and experiment_sedml and not model_sedml:
+            file_types = [TYPES[i] for i in ('sbml', 'sedml') ]
+            return 'pass', (f"The filenames '{model_filepath}' and '{experiment_filepath}' suggest the input files are {file_types} which is compatible with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
+        else:
+            return 'unsure', (f"The file extensions {file_extensions} suggest the input file types may be compatible with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
+    else:
+        return 'unsure', (f"The file extensions {file_extensions} suggest the input file types may not be compatible with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
+
 
 def collapsible_content(content, title='Details'):
     """
@@ -1018,14 +1022,14 @@ def safe_md_string(value):
 
 import time
 
-def download_file_from_link(engine, download_link, output_file='results.zip', max_wait_time=120, wait_time=2):
+def download_file_from_link(engine, download_link, output_file='results.zip', max_wait_time=600, wait_time=2):
     """
     Function to download a file from a given URL.
 
     Parameters:
     download_link (str): The URL of the file to download.
     output_file (str): The name of the file to save the download as. Defaults to 'results.zip'.
-    max_wait_time (int): The maximum time to wait for the file to be ready to download. Defaults to 120 seconds.
+    max_wait_time (int): The maximum time to wait for the file to be ready to download. Defaults to 300 seconds.
     wait_time (int): The time to wait between checks if the file is ready to download. Defaults to 2 seconds.
 
     Returns:
@@ -1035,23 +1039,16 @@ def download_file_from_link(engine, download_link, output_file='results.zip', ma
     start_time = time.time()
 
     while True:
-        # Check status of download_link
         response = requests.get(download_link)
-
-        # If status is not 404 or max_wait_time has passed, break the loop
         if response.status_code != 404 or time.time() - start_time > max_wait_time:
             break
-
-        # Wait for wait_time seconds before checking again
         time.sleep(wait_time)
 
-    # If status == 200 then download the results
     if response.status_code == 200:
         print(f'Downloading {engine} results...')
         with requests.get(download_link, stream=True) as r:
             with open(output_file, 'wb') as f:
                 shutil.copyfileobj(r.raw, f)
-        # filepath where the file is downloaded
         filepath = os.path.abspath(output_file)
         return filepath
     else:
