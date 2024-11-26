@@ -1092,14 +1092,14 @@ def safe_md_string(value):
 
 import time
 
-def download_file_from_link(engine, download_link, output_file='results.zip', max_wait_time=120, wait_time=2):
+def download_file_from_link(engine, download_link, output_file='results.zip', max_wait_time=600, wait_time=2):
     """
     Function to download a file from a given URL.
 
     Parameters:
     download_link (str): The URL of the file to download.
     output_file (str): The name of the file to save the download as. Defaults to 'results.zip'.
-    max_wait_time (int): The maximum time to wait for the file to be ready to download. Defaults to 120 seconds.
+    max_wait_time (int): The maximum time to wait for the file to be ready to download. Defaults to 300 seconds.
     wait_time (int): The time to wait between checks if the file is ready to download. Defaults to 2 seconds.
 
     Returns:
@@ -1109,23 +1109,16 @@ def download_file_from_link(engine, download_link, output_file='results.zip', ma
     start_time = time.time()
 
     while True:
-        # Check status of download_link
         response = requests.get(download_link)
-
-        # If status is not 404 or max_wait_time has passed, break the loop
         if response.status_code != 404 or time.time() - start_time > max_wait_time:
             break
-
-        # Wait for wait_time seconds before checking again
         time.sleep(wait_time)
 
-    # If status == 200 then download the results
     if response.status_code == 200:
         print(f'Downloading {engine} results...')
         with requests.get(download_link, stream=True) as r:
             with open(output_file, 'wb') as f:
                 shutil.copyfileobj(r.raw, f)
-        # filepath where the file is downloaded
         filepath = os.path.abspath(output_file)
         return filepath
     else:
