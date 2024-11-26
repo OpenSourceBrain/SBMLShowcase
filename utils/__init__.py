@@ -500,25 +500,6 @@ def get_filetypes(model_filepath, simulation_filepath):
     
     return (model_ext, simulation_ext)
 
-# def get_filetypes(model_filepath, simulation_filepath):
-#     """
-#     Get the filetypes of the model and simulation files
-
-#     Input: model_filepath, simulation_filepath
-#     Output: tuple of filetypes
-#     """
-#     if model_filepath.endswith(".sbml") and simulation_filepath.endswith(".sedml"):
-#         filetypes = ('sbml', 'sedml')
-#     elif model_filepath.endswith(".xml") and simulation_filepath.endswith(".xml"):
-#         filetypes = ('xml', 'xml')
-#     elif model_filepath.endswith(".xml") and simulation_filepath.endswith(".sedml"):
-#         filetypes = ('xml', 'sedml')
-#     elif model_filepath.endswith(".sbml") and simulation_filepath.endswith(".xml"):
-#         filetypes = ('sbml', 'xml')
-#     else:
-#         filetypes = "other"
-#     return filetypes
-
 def delete_output_folder(output_dir):
     '''
     # Delete the output folder and its contents
