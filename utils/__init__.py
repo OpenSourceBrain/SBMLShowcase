@@ -475,6 +475,7 @@ def check_file_compatibility_test(engine, model_filepath, experiment_filepath):
         file_types = [TYPES[i] for i in file_extensions]
         return 'pass', (f"The file extensions {file_extensions} suggest the input file types are '{file_types}'. {compatible_filetypes} are compatible with {engine}.")
     
+    
     if 'xml' in file_extensions:
         model_sbml = 'sbml' in model_filepath
         model_sedml = 'sedml' in model_filepath
