@@ -10,13 +10,11 @@ import requests
 from collections import defaultdict
 from pathlib import Path
 import random
-from pymetadata.console import console
 from pymetadata import omex
 import docker
 import yaml
 import libsbml
 import libsedml
-import tempfile
 import glob
 from pyneuroml import biosimulations
 import pandas as pd
