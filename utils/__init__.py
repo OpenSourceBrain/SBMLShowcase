@@ -349,17 +349,19 @@ def get_temp_file():
     '''
     return f"tmp{random.randrange(1000000)}"
 
-def remove_spaces_from_filename(filename):
+def remove_spaces_from_filename(file_path):
     '''
     create another file with the same content but with filename spaces replaced by underscores
     '''
-    old_filename = os.path.basename(filename)
+    old_filename = os.path.basename(file_path)
     if ' ' not in old_filename:
-        return old_filename
+        return file_path
     if ' ' in old_filename:
         new_filename = old_filename.replace(' ', '_')
-        shutil.copy(filename, new_filename)
-        return new_filename
+        new_file_path = os.path.join(os.path.dirname(file_path), new_filename) 
+        shutil.copy(file_path, new_file_path)
+        return new_file_path
+        
  
 
 def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None, silent_overwrite=True, add_missing_xmlns=True):
