@@ -646,8 +646,9 @@ def run_biosimulators_remote(engine,sedml_filepath,sbml_filepath):
     results_urls = biosimulations.submit_simulation_archive(\
         archive_file=omex_file_name,\
         sim_dict=sim_dict)
-    
-    os.remove(omex_filepath)
+
+    if os.path.exists(omex_filepath):
+        os.remove(omex_filepath)
 
     return results_urls 
 
@@ -710,7 +711,8 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='out
             detailed_error_log_dict['status'] = 'FAIL'
             detailed_error_log_dict['error_message'] = "Runtime Exception"
 
-    os.remove(omex_filepath)
+    if os.path.exists(omex_filepath):
+        os.remove(omex_filepath)
     
     return {"exception_message":exception_message,"log_yml":log_yml_dict, "detailed_error_log":detailed_error_log_dict}
 
@@ -748,7 +750,8 @@ def biosimulators_core(engine,omex_filepath,output_dir=None):
                         command=f"-i /root/in/{omex_file} -o /root/out",
                         auto_remove=True)
     
-    os.remove(omex_filepath_no_spaces)
+    if os.path.exists(omex_filepath_no_spaces):
+        os.remove(omex_filepath_no_spaces)
 
 def test_engine(engine,filename,error_categories=error_categories):
     '''
