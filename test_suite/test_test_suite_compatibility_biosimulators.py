@@ -148,6 +148,7 @@ def process_cases(args):
         print(f"Changed to {new_directory}")
 
         engine_list = list(engines.keys()) 
+        # engine_list = engine_list[:5]
         
         utils.run_biosimulators_remotely_and_locally(engine_list,
                                  os.path.basename(sedml_file_path), 
