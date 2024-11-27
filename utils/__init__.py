@@ -264,27 +264,31 @@ def add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, output_filepath=None
     with open(output_filepath,"w") as fout:
         fout.write(sedstr)
 
-def add_xmlns_fbc_attribute(sedml_filepath, sbml_filepath, output_filepath=None):
+def add_xmlns_fbc_attribute(sedml_filepath, sbml_filepath, temp_sedml_filepath=None):
     '''
-    add an xmlns:sbml attribute to the sedml file that matches the sbml file
-    raise an error if the attribute is already present
-    output fixed file to output_filepath which defaults to sedml_filepath
+    Adds an xmlns:fbc attribute to the SED-ML file. 
+
+    If a temp_sedml_filepath (which could already contain a xmlns:sbml fix) is provided, 
+    this instead of the original SED-ML file is used.
     '''
+    
     sedstr = ""
-    if output_filepath:
-        if os.path.exists(output_filepath):
-            with open(output_filepath, 'r') as file:
+
+    if temp_sedml_filepath:
+        if os.path.exists(temp_sedml_filepath):
+            with open(temp_sedml_filepath, 'r') as file:
                 sedstr = file.read()    
+                
     if sedstr == "":
         with open(sedml_filepath, 'r') as file:
             sedstr = file.read()
 
     m = re.search(r'<sedML[^>]*>', sedstr)
-    location = m.span()[1]-1
 
     if m == None:
         raise ValueError(f'Invalid SedML file: main <sedML> tag not found in {sedml_filepath}')
 
+    location = m.span()[1]-1
     with open(sbml_filepath, 'r') as file:
         sbml_str = file.read()
 
@@ -292,10 +296,12 @@ def add_xmlns_fbc_attribute(sedml_filepath, sbml_filepath, output_filepath=None)
     missing_fbc_attribute = 'xmlns:fbc="' + fbc_xmlns + '"'
     sedstr = sedstr[:location] + ' ' + missing_fbc_attribute + sedstr[location:]
     
-    if output_filepath == None:
-        output_filepath = sedml_filepath
 
-    with open(output_filepath,"w") as fout:
+    if temp_sedml_filepath == None:
+        temp_sedml_filepath = sedml_filepath
+
+    with open(temp_sedml_filepath,"w") as fout:
+      
         fout.write(sedstr)
 
 
