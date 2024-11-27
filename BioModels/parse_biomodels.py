@@ -24,6 +24,8 @@ import matplotlib
 sys.path.append("..")
 import utils
 
+matplotlib.use('agg') #prevent matplotlib from trying to open a window
+
 API_URL: str = "https://www.ebi.ac.uk/biomodels"
 
 out_format="json"
@@ -185,8 +187,8 @@ def main():
 
     #accumulate results in columns defined by keys which correspond to the local variable names to be used below
     #to allow automated loading into the columns
-    column_labels = "Model     |valid-sbml|valid-sbml-units|valid-sedml|broken-ref|tellurium"
-    column_keys  =  "model_desc|valid_sbml|valid_sbml_units|valid_sedml|broken_ref|tellurium_outcome"
+    column_labels = "Model     |valid-sbml|valid-sbml-units|valid-sedml|broken-ref|tellurium|tellurium-remote"
+    column_keys  =  "model_desc|valid_sbml|valid_sbml_units|valid_sedml|broken_ref|tellurium_outcome|tellurium_remote_outcome"
     mtab = utils.MarkdownTable(column_labels,column_keys)
 
     #allow stdout/stderr from validation tests to be suppressed to improve progress count visibility
@@ -241,6 +243,17 @@ def main():
         mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_file)
         sup.restore()
 
+        engine_key = 'tellurium'
+        test_folder = 'tests'
+        d1_plots_remote_dir = os.path.join(test_folder, 'd1_plots_remote')
+        results_remote = utils.run_biosimulators_remotely(engine_key,
+                                        sedml_file_name=sedml_file, 
+                                        sbml_file_name=sbml_file,
+                                        d1_plots_remote_dir=d1_plots_remote_dir, 
+                                        test_folder=test_folder)
+        
+        results_remote_processed = utils.process_log_yml_dict(results_remote[engine_key]["log_yml"])
+        
         #stop matplotlib plots from building up
         matplotlib.pyplot.close()
 
@@ -251,7 +264,7 @@ def main():
 
     #count occurrences of each cell value, convert to final form
     for key in ['valid_sbml','valid_sbml_units','valid_sedml','broken_ref',
-                'tellurium_outcome']:
+                'tellurium_outcome','tellurium_remote_outcome']:
         mtab.simple_summary(key)
         mtab.transform_column(key)
 
