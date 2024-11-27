@@ -264,10 +264,50 @@ def add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, output_filepath=None
     with open(output_filepath,"w") as fout:
         fout.write(sedstr)
 
+def add_xmlns_fbc_attribute(sedml_filepath, sbml_filepath, temp_sedml_filepath=None):
+    '''
+    Adds an xmlns:fbc attribute to the SED-ML file. 
+
+    If a temp_sedml_filepath (which could already contain a xmlns:sbml fix) is provided, 
+    this instead of the original SED-ML file is used.
+    '''
+    
+    sedstr = ""
+
+    if temp_sedml_filepath:
+        if os.path.exists(temp_sedml_filepath):
+            with open(temp_sedml_filepath, 'r') as file:
+                sedstr = file.read()    
+                
+    if sedstr == "":
+        with open(sedml_filepath, 'r') as file:
+            sedstr = file.read()
+
+    m = re.search(r'<sedML[^>]*>', sedstr)
+
+    if m == None:
+        raise ValueError(f'Invalid SedML file: main <sedML> tag not found in {sedml_filepath}')
+
+    location = m.span()[1]-1
+    with open(sbml_filepath, 'r') as file:
+        sbml_str = file.read()
+
+    fbc_xmlns = re.search(r'xmlns:fbc="([^"]*)"', sbml_str).group(1)
+    missing_fbc_attribute = 'xmlns:fbc="' + fbc_xmlns + '"'
+    sedstr = sedstr[:location] + ' ' + missing_fbc_attribute + sedstr[location:]
+    
+
+    if temp_sedml_filepath == None:
+        temp_sedml_filepath = sedml_filepath
+
+    with open(temp_sedml_filepath,"w") as fout:
+      
+        fout.write(sedstr)
+
 
 def xmlns_sbml_attribute_missing(sedml_filepath):
     '''
-    report True if the xmlns:sbml attribute is missing from the main sedml tag
+    True if the xmlns:sbml attribute is missing from the main sedml tag
     '''
 
     with open(sedml_filepath, 'r') as file:
@@ -282,6 +322,26 @@ def xmlns_sbml_attribute_missing(sedml_filepath):
         return True
     else:
         return False
+    
+
+def xmlns_fbc_attribute_missing(sbml_filepath,sedml_filepath):
+    '''
+    True if the xmlns:fbc attribute is missing from the main sedml tag of the SED-ML file but present in the SBML file
+    '''
+    with open(sbml_filepath, 'r') as file:
+        sbmlstr = file.read()
+
+    with open(sedml_filepath, 'r') as file:
+        sedstr = file.read()
+    
+    sbmlstr_fbc = re.search(r'xmlns:fbc="([^"]*)"', sbmlstr)
+    sedstr_fbc = re.search(r'xmlns:fbc="([^"]*)"', sedstr)
+
+    if sbmlstr_fbc and not sedstr_fbc:
+        return True
+    else:
+        return False
+
 
 def get_temp_file():
     '''
@@ -321,14 +381,14 @@ def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None, silent_overwr
     if os.path.exists(omex_filepath) and silent_overwrite:
         os.remove(omex_filepath)
 
-    tmp_sedml_filepath = None
+    tmp_sedml_filepath = get_temp_file()
     if add_missing_xmlns:
         if xmlns_sbml_attribute_missing(sedml_filepath):
-            #create a temporary sedml file with the missing attribute added
-            tmp_sedml_filepath = get_temp_file()
             add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, tmp_sedml_filepath)
-            sedml_filepath = tmp_sedml_filepath
-
+        if xmlns_fbc_attribute_missing(sbml_filepath,sedml_filepath):
+            add_xmlns_fbc_attribute(sedml_filepath, sbml_filepath, tmp_sedml_filepath)
+        
+    sedml_filepath = tmp_sedml_filepath
     sbml_file_entry_format = get_entry_format(sbml_filepath, 'SBML')
     sedml_file_entry_format = get_entry_format(sedml_filepath, 'SEDML')
 
@@ -468,12 +528,21 @@ def check_file_compatibility_test(engine, model_filepath, experiment_filepath):
     '''
     file_extensions = get_filetypes(model_filepath, experiment_filepath)
     engine_filetypes_tuple_list = ENGINES[engine]['formats']
+    engine_name = ENGINES[engine]['name']
     flat_engine_filetypes_tuple_list = [item for sublist in engine_filetypes_tuple_list for item in sublist if sublist != 'unclear']
     compatible_filetypes = [TYPES[i] for i in flat_engine_filetypes_tuple_list if i in list(TYPES.keys())]
+    unique_compatible_filetpyes = list(set(compatible_filetypes))
+
+    unique_compatible_filetpyes_strings = ', '.join(unique_compatible_filetpyes[:-1]) + ' and ' + unique_compatible_filetpyes[-1] if len(unique_compatible_filetpyes) > 1 else unique_compatible_filetpyes[0]
+    
+    file_types = [TYPES[i] for i in file_extensions]
+    filetypes_strings = ', '.join(file_types[:-1]) + ' and ' + file_types[-1] if len(file_types) > 1 else file_types[0]
+
+    if file_extensions == ('sbml', 'sedml') and file_extensions not in engine_filetypes_tuple_list:
+        return 'FAIL', (f"The file extensions {file_extensions} suggest the input file types are {filetypes_strings} which is not compatible with {engine_name}.<br><br>{unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
 
     if file_extensions in engine_filetypes_tuple_list:
-        file_types = [TYPES[i] for i in file_extensions]
-        return 'pass', (f"The file extensions {file_extensions} suggest the input file types are '{file_types}'. {compatible_filetypes} are compatible with {engine}.")
+        return 'pass', (f"The file extensions {file_extensions} suggest the input file types are {filetypes_strings}.<br><br> {unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
     
     
     if 'xml' in file_extensions:
@@ -483,12 +552,17 @@ def check_file_compatibility_test(engine, model_filepath, experiment_filepath):
         experiment_sedml = 'sedml' in experiment_filepath
 
         if model_sbml and experiment_sbml and experiment_sedml and not model_sedml:
-            file_types = [TYPES[i] for i in ('sbml', 'sedml') ]
-            return 'pass', (f"The filenames '{model_filepath}' and '{experiment_filepath}' suggest the input files are {file_types} which is compatible with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
-        else:
-            return 'unsure', (f"The file extensions {file_extensions} suggest the input file types may be compatibe with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
+
+            file_types_tuple = ('sbml', 'sedml')
+            file_types = [TYPES[i] for i in file_types_tuple]
+            filetypes_strings = ', '.join(file_types[:-1]) + ' and ' + file_types[-1] if len(file_types) > 1 else file_types[0]
+            if file_types_tuple in engine_filetypes_tuple_list:
+                return 'pass', (f"The filenames '{model_filepath}' and '{experiment_filepath}' suggest the input files are {filetypes_strings} which is compatible with {engine_name}.<br><br>{unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
+            else:
+                return 'FAIL', (f"The filenames '{model_filepath}' and '{experiment_filepath}' suggest the input files are {filetypes_strings} which is not compatible with {engine_name}.<br><br>{unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
     else:
-        return 'unsure', (f"The file extensions {file_extensions} suggest the input file types may not be compatibe with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
+        return 'unsure', (f"The file extensions {file_extensions} suggest the input file types may not be compatibe with {engine_name}.<br><br>{unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
+
 
 
 def collapsible_content(content, title='Details'):
@@ -572,7 +646,9 @@ def run_biosimulators_remote(engine,sedml_filepath,sbml_filepath):
     results_urls = biosimulations.submit_simulation_archive(\
         archive_file=omex_file_name,\
         sim_dict=sim_dict)
-       
+    
+    os.remove(omex_filepath)
+
     return results_urls 
 
 def get_remote_results(engine, download_link, output_dir='remote_results'):
@@ -633,6 +709,8 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='out
         if 'RuntimeException' in detailed_error_log:
             detailed_error_log_dict['status'] = 'FAIL'
             detailed_error_log_dict['error_message'] = "Runtime Exception"
+
+    os.remove(omex_filepath)
     
     return {"exception_message":exception_message,"log_yml":log_yml_dict, "detailed_error_log":detailed_error_log_dict}
 
