@@ -266,8 +266,7 @@ def add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, output_filepath=None
 
 def add_xmlns_fbc_attribute(sedml_filepath, sbml_filepath, temp_sedml_filepath=None):
     '''
-    Adds an xmlns:fbc attribute to the SED-ML file. If a temo
-    output fixed file to output_filepath which defaults to sedml_filepath.
+    Adds an xmlns:fbc attribute to the SED-ML file. 
 
     If a temp_sedml_filepath (which could already contain a xmlns:sbml fix) is provided, 
     this instead of the original SED-ML file is used.
