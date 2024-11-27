@@ -288,20 +288,19 @@ def add_xmlns_fbc_attribute(sedml_filepath, sbml_filepath, temp_sedml_filepath=N
     if m == None:
         raise ValueError(f'Invalid SedML file: main <sedML> tag not found in {sedml_filepath}')
 
-    else:
-        location = m.span()[1]-1
-        with open(sbml_filepath, 'r') as file:
-            sbml_str = file.read()
+    location = m.span()[1]-1
+    with open(sbml_filepath, 'r') as file:
+        sbml_str = file.read()
 
-        fbc_xmlns = re.search(r'xmlns:fbc="([^"]*)"', sbml_str).group(1)
-        missing_fbc_attribute = 'xmlns:fbc="' + fbc_xmlns + '"'
-        sedstr = sedstr[:location] + ' ' + missing_fbc_attribute + sedstr[location:]
-        
-        if temp_sedml_filepath == None:
-            temp_sedml_filepath = sedml_filepath
+    fbc_xmlns = re.search(r'xmlns:fbc="([^"]*)"', sbml_str).group(1)
+    missing_fbc_attribute = 'xmlns:fbc="' + fbc_xmlns + '"'
+    sedstr = sedstr[:location] + ' ' + missing_fbc_attribute + sedstr[location:]
+    
+    if temp_sedml_filepath == None:
+        temp_sedml_filepath = sedml_filepath
 
-        with open(temp_sedml_filepath,"w") as fout:
-            fout.write(sedstr)
+    with open(temp_sedml_filepath,"w") as fout:
+        fout.write(sedstr)
 
 
 def xmlns_sbml_attribute_missing(sedml_filepath):
