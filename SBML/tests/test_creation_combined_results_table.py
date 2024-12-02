@@ -5,8 +5,6 @@ import utils
 import argparse
 import json
 
-engines = utils.ENGINES
-
 # Save the current working directory
 cwd = os.getcwd()
 print('Current working directory:', cwd)
