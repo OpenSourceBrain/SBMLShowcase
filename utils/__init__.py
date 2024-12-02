@@ -573,6 +573,8 @@ def check_file_compatibility_test(engine, model_filepath, experiment_filepath):
                 return 'pass', (f"The filenames '{model_filepath}' and '{experiment_filepath}' suggest the input files are {filetypes_strings} which is compatible with {engine_name}.<br><br>{unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
             else:
                 return 'FAIL', (f"The filenames '{model_filepath}' and '{experiment_filepath}' suggest the input files are {filetypes_strings} which is not compatible with {engine_name}.<br><br>{unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
+        else:
+            return 'unsure', (f"The file extensions {file_extensions} suggest the input file types may not be compatibe with {engine_name}.<br><br>{unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
     else:
         return 'unsure', (f"The file extensions {file_extensions} suggest the input file types may not be compatibe with {engine_name}.<br><br>{unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
 
@@ -1225,8 +1227,10 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
     # add xfail to engines that do not support sbml
     sbml_incompatible_ENGINES = [e for e in ENGINES.keys() if 'sbml' not in ENGINES[e]['formats'][0]]
     for e in sbml_incompatible_ENGINES:
-        compatibility = check_file_compatibility_test(e, sbml_filepath, sedml_filepath)
-        compatibility_content =  f'EXPECTED FAIL<br><br>{compatibility[1]}'
+        engine_name = ENGINES[e]['name']
+        unique_compatible_filetpyes_strings = ', '.join([TYPES[i] for i in ENGINES[e]['formats'][0] if i in list(TYPES.keys())])
+        compatibility = (f"Only {unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
+        compatibility_content =  f'EXPECTED FAIL<br><br>{compatibility}'
         results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content, title=f'{xfail_html}')
         results_table.loc[results_table[ENGINE] == e, PASS_FAIL] = f'{xfail_html}' 
 

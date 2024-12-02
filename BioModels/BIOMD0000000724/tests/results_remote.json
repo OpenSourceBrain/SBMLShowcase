@@ -1,11 +1,11 @@
 {
     "amici": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/673f096ab678b3883bb8ea33",
-        "download": "https://api.biosimulations.org/results/673f096ab678b3883bb8ea33/download",
-        "logs": "https://api.biosimulations.org/logs/673f096ab678b3883bb8ea33?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/674dc64e10bb4455d6187637",
+        "download": "https://api.biosimulations.org/results/674dc64e10bb4455d6187637/download",
+        "logs": "https://api.biosimulations.org/logs/674dc64e10bb4455d6187637?includeOutput=true",
         "log_yml": {
-            "duration": 2.8015,
+            "duration": 2.773027,
             "exception": {
                 "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Cannot turn parameter ModelValue_0 into a constant/fixed parameter since it either has an initial assignment or is the target of an assignment or rate rule.\n  \n    target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='LCK_switch'] is not a valid XPath to an attribute of a model element",
                 "type": "CombineArchiveExecutionError"
@@ -13,7 +13,7 @@
             "output": "",
             "sedDocuments": [
                 {
-                    "duration": 2.261169,
+                    "duration": 2.257669,
                     "exception": {
                         "message": "The SED document did not execute successfully:\n\n  Cannot turn parameter ModelValue_0 into a constant/fixed parameter since it either has an initial assignment or is the target of an assignment or rate rule.\n\n  target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='LCK_switch'] is not a valid XPath to an attribute of a model element",
                         "type": "SedmlExecutionError"
@@ -28,7 +28,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.103632,
+                            "duration": 0.10247,
                             "exception": null,
                             "id": "plot_6_task2",
                             "output": "",
@@ -42,7 +42,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.101721,
+                            "duration": 0.098795,
                             "exception": null,
                             "id": "plot_7_task2",
                             "output": "",
@@ -60,7 +60,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.100973,
+                            "duration": 0.103154,
                             "exception": null,
                             "id": "plot_8_task2",
                             "output": "",
@@ -74,7 +74,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.104821,
+                            "duration": 0.108454,
                             "exception": null,
                             "id": "plot_9_task2",
                             "output": "",
@@ -88,7 +88,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.108128,
+                            "duration": 0.102384,
                             "exception": null,
                             "id": "plot_10_task2",
                             "output": "",
@@ -578,7 +578,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.057605,
+                            "duration": 0.053332,
                             "exception": null,
                             "id": "autogen_report_for_task2",
                             "output": "",
@@ -591,7 +591,7 @@
                     "tasks": [
                         {
                             "algorithm": null,
-                            "duration": 0.160217,
+                            "duration": 0.157507,
                             "exception": {
                                 "message": "Cannot turn parameter ModelValue_0 into a constant/fixed parameter since it either has an initial assignment or is the target of an assignment or rate rule.",
                                 "type": "SBMLException"
@@ -604,7 +604,7 @@
                         },
                         {
                             "algorithm": null,
-                            "duration": 0.042324,
+                            "duration": 0.039869,
                             "exception": {
                                 "message": "target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='LCK_switch'] is not a valid XPath to an attribute of a model element",
                                 "type": "ValueError"
@@ -624,11 +624,11 @@
     },
     "brian2": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/673f096c0d09353e8f12900d",
-        "download": "https://api.biosimulations.org/results/673f096c0d09353e8f12900d/download",
-        "logs": "https://api.biosimulations.org/logs/673f096c0d09353e8f12900d?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/674dc650261553b9bc253e95",
+        "download": "https://api.biosimulations.org/results/674dc650261553b9bc253e95/download",
+        "logs": "https://api.biosimulations.org/logs/674dc650261553b9bc253e95?includeOutput=true",
         "log_yml": {
-            "duration": 0.080772,
+            "duration": 0.061717,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -641,11 +641,11 @@
     },
     "bionetgen": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/673f096eb678b3883bb8ea36",
-        "download": "https://api.biosimulations.org/results/673f096eb678b3883bb8ea36/download",
-        "logs": "https://api.biosimulations.org/logs/673f096eb678b3883bb8ea36?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/674dc651261553b9bc253e98",
+        "download": "https://api.biosimulations.org/results/674dc651261553b9bc253e98/download",
+        "logs": "https://api.biosimulations.org/logs/674dc651261553b9bc253e98?includeOutput=true",
         "log_yml": {
-            "duration": 0.244687,
+            "duration": 0.246259,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -658,11 +658,11 @@
     },
     "boolnet": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/673f0970b678b3883bb8ea39",
-        "download": "https://api.biosimulations.org/results/673f0970b678b3883bb8ea39/download",
-        "logs": "https://api.biosimulations.org/logs/673f0970b678b3883bb8ea39?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/674dc653ef911d5d45259ac2",
+        "download": "https://api.biosimulations.org/results/674dc653ef911d5d45259ac2/download",
+        "logs": "https://api.biosimulations.org/logs/674dc653ef911d5d45259ac2?includeOutput=true",
         "log_yml": {
-            "duration": 0.252483,
+            "duration": 0.301955,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -675,11 +675,11 @@
     },
     "cbmpy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/673f09725a60072d20f78c1a",
-        "download": "https://api.biosimulations.org/results/673f09725a60072d20f78c1a/download",
-        "logs": "https://api.biosimulations.org/logs/673f09725a60072d20f78c1a?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/674dc655261553b9bc253e9b",
+        "download": "https://api.biosimulations.org/results/674dc655261553b9bc253e9b/download",
+        "logs": "https://api.biosimulations.org/logs/674dc655261553b9bc253e9b?includeOutput=true",
         "log_yml": {
-            "duration": 0.41417,
+            "duration": 0.348016,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -692,11 +692,11 @@
     },
     "cobrapy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/673f0974b678b3883bb8ea3e",
-        "download": "https://api.biosimulations.org/results/673f0974b678b3883bb8ea3e/download",
-        "logs": "https://api.biosimulations.org/logs/673f0974b678b3883bb8ea3e?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/674dc658261553b9bc253ea0",
+        "download": "https://api.biosimulations.org/results/674dc658261553b9bc253ea0/download",
+        "logs": "https://api.biosimulations.org/logs/674dc658261553b9bc253ea0?includeOutput=true",
         "log_yml": {
-            "duration": 0.275443,
+            "duration": 0.254102,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -709,16 +709,16 @@
     },
     "copasi": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/673f0977b678b3883bb8ea43",
-        "download": "https://api.biosimulations.org/results/673f0977b678b3883bb8ea43/download",
-        "logs": "https://api.biosimulations.org/logs/673f0977b678b3883bb8ea43?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/674dc65aef911d5d45259acd",
+        "download": "https://api.biosimulations.org/results/674dc65aef911d5d45259acd/download",
+        "logs": "https://api.biosimulations.org/logs/674dc65aef911d5d45259acd?includeOutput=true",
         "log_yml": {
-            "duration": 2.638286,
+            "duration": 2.764347,
             "exception": null,
             "output": "",
             "sedDocuments": [
                 {
-                    "duration": 2.138636,
+                    "duration": 2.259948,
                     "exception": null,
                     "location": "Theinmozhi_2018.sedml",
                     "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 2 tasks, 1 reports, and 5 plots:\r\n  Theinmozhi_2018.sedml:\r\n    Tasks (2):\r\n      task1\r\n      task2\r\n    Reports (1):\r\n      autogen_report_for_task2: 120 data sets\r\n    Plots (5):\r\n      plot_10_task2: 1 curves\r\n      plot_6_task2: 1 curves\r\n      plot_7_task2: 1 curves\r\n      plot_8_task2: 2 curves\r\n      plot_9_task2: 1 curves\r\n\r\nExecuting SED-ML file 1: Theinmozhi_2018.sedml ...\r\n  Found 1 tasks and 6 outputs:\r\n    Tasks:\r\n      `task2`\r\n    Outputs:\r\n      `autogen_report_for_task2`\r\n      `plot_10_task2`\r\n      `plot_6_task2`\r\n      `plot_7_task2`\r\n      `plot_8_task2`\r\n      `plot_9_task2`\r\n  Executing task 1: `task2`\r\n    Executing simulation ...woohoo!\r\nwoohoo!\r\n \u001b[34msucceeded\u001b[0m\r\n    Generating 6 outputs ...\r\n      Generating output 1: `plot_6_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `plot_7_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 3: `plot_8_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 4: `plot_9_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 5: `plot_10_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 6: `autogen_report_for_task2` ...",
@@ -730,7 +730,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.395741,
+                            "duration": 0.431834,
                             "exception": null,
                             "id": "plot_6_task2",
                             "output": "",
@@ -744,7 +744,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.131878,
+                            "duration": 0.144277,
                             "exception": null,
                             "id": "plot_7_task2",
                             "output": "",
@@ -762,7 +762,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.146345,
+                            "duration": 0.159484,
                             "exception": null,
                             "id": "plot_8_task2",
                             "output": "",
@@ -776,7 +776,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.121179,
+                            "duration": 0.131023,
                             "exception": null,
                             "id": "plot_9_task2",
                             "output": "",
@@ -790,7 +790,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.137603,
+                            "duration": 0.126484,
                             "exception": null,
                             "id": "plot_10_task2",
                             "output": "",
@@ -1280,7 +1280,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.223248,
+                            "duration": 0.210016,
                             "exception": null,
                             "id": "autogen_report_for_task2",
                             "output": "",
@@ -1293,7 +1293,7 @@
                     "tasks": [
                         {
                             "algorithm": null,
-                            "duration": 0.599113,
+                            "duration": 0.630906,
                             "exception": null,
                             "id": "task2",
                             "output": "",
@@ -1310,11 +1310,11 @@
     },
     "gillespy2": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/673f09790d09353e8f129017",
-        "download": "https://api.biosimulations.org/results/673f09790d09353e8f129017/download",
-        "logs": "https://api.biosimulations.org/logs/673f09790d09353e8f129017?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/674dc65c10bb4455d6187641",
+        "download": "https://api.biosimulations.org/results/674dc65c10bb4455d6187641/download",
+        "logs": "https://api.biosimulations.org/logs/674dc65c10bb4455d6187641?includeOutput=true",
         "log_yml": {
-            "duration": 0.249863,
+            "duration": 0.259848,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -1327,11 +1327,11 @@
     },
     "ginsim": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/673f097b5a60072d20f78c22",
-        "download": "https://api.biosimulations.org/results/673f097b5a60072d20f78c22/download",
-        "logs": "https://api.biosimulations.org/logs/673f097b5a60072d20f78c22?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/674dc65e10bb4455d6187644",
+        "download": "https://api.biosimulations.org/results/674dc65e10bb4455d6187644/download",
+        "logs": "https://api.biosimulations.org/logs/674dc65e10bb4455d6187644?includeOutput=true",
         "log_yml": {
-            "duration": 0.253163,
+            "duration": 0.244446,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -1344,11 +1344,11 @@
     },
     "libsbmlsim": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/673f097d0d09353e8f12901f",
-        "download": "https://api.biosimulations.org/results/673f097d0d09353e8f12901f/download",
-        "logs": "https://api.biosimulations.org/logs/673f097d0d09353e8f12901f?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/674dc66010bb4455d6187647",
+        "download": "https://api.biosimulations.org/results/674dc66010bb4455d6187647/download",
+        "logs": "https://api.biosimulations.org/logs/674dc66010bb4455d6187647?includeOutput=true",
         "log_yml": {
-            "duration": 0.251582,
+            "duration": 0.277522,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -1361,11 +1361,11 @@
     },
     "masspy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/673f0980b678b3883bb8ea67",
-        "download": "https://api.biosimulations.org/results/673f0980b678b3883bb8ea67/download",
-        "logs": "https://api.biosimulations.org/logs/673f0980b678b3883bb8ea67?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/674dc662261553b9bc253ea7",
+        "download": "https://api.biosimulations.org/results/674dc662261553b9bc253ea7/download",
+        "logs": "https://api.biosimulations.org/logs/674dc662261553b9bc253ea7?includeOutput=true",
         "log_yml": {
-            "duration": 3.590214,
+            "duration": 3.670606,
             "exception": {
                 "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Could not load MassModel '_30356330_Theinmozhi_PDL1_TCR_regulation'\n  \n    target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='LCK_switch'] cannot be changed by XML manipulation, as the target is not an attribute of a model element",
                 "type": "CombineArchiveExecutionError"
@@ -1373,7 +1373,7 @@
             "output": "",
             "sedDocuments": [
                 {
-                    "duration": 2.941841,
+                    "duration": 3.014484,
                     "exception": {
                         "message": "The SED document did not execute successfully:\n\n  Could not load MassModel '_30356330_Theinmozhi_PDL1_TCR_regulation'\n\n  target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='LCK_switch'] cannot be changed by XML manipulation, as the target is not an attribute of a model element",
                         "type": "SedmlExecutionError"
@@ -1388,7 +1388,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.270617,
+                            "duration": 0.279203,
                             "exception": null,
                             "id": "plot_6_task2",
                             "output": "",
@@ -1402,7 +1402,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.119935,
+                            "duration": 0.115149,
                             "exception": null,
                             "id": "plot_7_task2",
                             "output": "",
@@ -1420,7 +1420,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.112718,
+                            "duration": 0.119025,
                             "exception": null,
                             "id": "plot_8_task2",
                             "output": "",
@@ -1434,7 +1434,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.122592,
+                            "duration": 0.118494,
                             "exception": null,
                             "id": "plot_9_task2",
                             "output": "",
@@ -1448,7 +1448,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.11494,
+                            "duration": 0.11552,
                             "exception": null,
                             "id": "plot_10_task2",
                             "output": "",
@@ -1938,7 +1938,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.055546,
+                            "duration": 0.059872,
                             "exception": null,
                             "id": "autogen_report_for_task2",
                             "output": "",
@@ -1951,7 +1951,7 @@
                     "tasks": [
                         {
                             "algorithm": null,
-                            "duration": 0.501887,
+                            "duration": 0.504816,
                             "exception": {
                                 "message": "Could not load MassModel '_30356330_Theinmozhi_PDL1_TCR_regulation'",
                                 "type": "MassSimulationError"
@@ -1964,7 +1964,7 @@
                         },
                         {
                             "algorithm": null,
-                            "duration": 0.043516,
+                            "duration": 0.044124,
                             "exception": {
                                 "message": "target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='LCK_switch'] cannot be changed by XML manipulation, as the target is not an attribute of a model element",
                                 "type": "NotImplementedError"
@@ -1984,11 +1984,11 @@
     },
     "netpyne": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/673f0981b678b3883bb8ea6d",
-        "download": "https://api.biosimulations.org/results/673f0981b678b3883bb8ea6d/download",
-        "logs": "https://api.biosimulations.org/logs/673f0981b678b3883bb8ea6d?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/674dc664ef911d5d45259ad4",
+        "download": "https://api.biosimulations.org/results/674dc664ef911d5d45259ad4/download",
+        "logs": "https://api.biosimulations.org/logs/674dc664ef911d5d45259ad4?includeOutput=true",
         "log_yml": {
-            "duration": 0.061764,
+            "duration": 0.060705,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -2001,11 +2001,11 @@
     },
     "neuron": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/673f09835a60072d20f78c3b",
-        "download": "https://api.biosimulations.org/results/673f09835a60072d20f78c3b/download",
-        "logs": "https://api.biosimulations.org/logs/673f09835a60072d20f78c3b?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/674dc665261553b9bc253eb4",
+        "download": "https://api.biosimulations.org/results/674dc665261553b9bc253eb4/download",
+        "logs": "https://api.biosimulations.org/logs/674dc665261553b9bc253eb4?includeOutput=true",
         "log_yml": {
-            "duration": 0.05949,
+            "duration": 0.061233,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -2018,16 +2018,16 @@
     },
     "opencor": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/673f09855a60072d20f78c4a",
-        "download": "https://api.biosimulations.org/results/673f09855a60072d20f78c4a/download",
-        "logs": "https://api.biosimulations.org/logs/673f09855a60072d20f78c4a?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/674dc667ef911d5d45259ae3",
+        "download": "https://api.biosimulations.org/results/674dc667ef911d5d45259ae3/download",
+        "logs": "https://api.biosimulations.org/logs/674dc667ef911d5d45259ae3?includeOutput=true",
         "log_yml": {
-            "duration": 0.048542,
+            "duration": 0.070162,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
             },
-            "output": "/home/opencor/OpenCOR/python/lib/python3.7/site-packages/biosimulators_utils/warnings.py:31: SedmlFeatureNotSupportedWarning: \u001b[33m`/tmp/tmptipf71q0/./Theinmozhi_2018.sedml` is encoded using L1V4. Only features available in L1V3 are supported. Newer features such as simple repeated tasks are not yet supported.\u001b[0m\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\n",
+            "output": "/home/opencor/OpenCOR/python/lib/python3.7/site-packages/biosimulators_utils/warnings.py:31: SedmlFeatureNotSupportedWarning: \u001b[33m`/tmp/tmpmn01a13j/./Theinmozhi_2018.sedml` is encoded using L1V4. Only features available in L1V3 are supported. Newer features such as simple repeated tasks are not yet supported.\u001b[0m\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\n",
             "sedDocuments": [],
             "skipReason": null,
             "status": "FAILED"
@@ -2035,11 +2035,11 @@
     },
     "pyneuroml": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/673f0987b678b3883bb8ea7d",
-        "download": "https://api.biosimulations.org/results/673f0987b678b3883bb8ea7d/download",
-        "logs": "https://api.biosimulations.org/logs/673f0987b678b3883bb8ea7d?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/674dc66910bb4455d618766d",
+        "download": "https://api.biosimulations.org/results/674dc66910bb4455d618766d/download",
+        "logs": "https://api.biosimulations.org/logs/674dc66910bb4455d618766d?includeOutput=true",
         "log_yml": {
-            "duration": 0.084096,
+            "duration": 0.078418,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -2052,19 +2052,19 @@
     },
     "pysces": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/673f09895a60072d20f78c5a",
-        "download": "https://api.biosimulations.org/results/673f09895a60072d20f78c5a/download",
-        "logs": "https://api.biosimulations.org/logs/673f09895a60072d20f78c5a?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/674dc66b10bb4455d6187671",
+        "download": "https://api.biosimulations.org/results/674dc66b10bb4455d6187671/download",
+        "logs": "https://api.biosimulations.org/logs/674dc66b10bb4455d6187671?includeOutput=true",
         "log_yml": {
-            "duration": 5.49219,
+            "duration": 5.360377,
             "exception": null,
             "output": "libtk8.6.so: cannot open shared object file: No such file or directory\r\n\r\nPySCeS defaults to matplotlib's TKagg backend if not specified                          in the user configuration file, set \"matplotlib_backend = <backend>\" \r\nMatplotlib interface loaded (pysces.plt.m)\r\nPitcon routines available\r\nNLEQ2 routines available\r\nSBML support available\r\nYou are using NumPy (2.1.2) with SciPy (1.14.1)\r\nAssimulo CVode available\r\nRateChar is available\r\nParallel scanner is available\r\n\r\nPySCeS environment\r\n******************\r\npysces.model_dir = /home/FCAM/crbmapi/Pysces/psc\r\npysces.output_dir = /home/FCAM/crbmapi/Pysces\r\n\r\n\r\n***********************************************************************\r\n* Welcome to PySCeS (1.2.2) - Python Simulator for Cellular Systems   *\r\n*                http://pysces.sourceforge.net                        *\r\n* Copyright(C) B.G. Olivier, J.M. Rohwer, J.-H.S. Hofmeyr, 2004-2024  *\r\n* Triple-J Group for Molecular Cell Physiology                        *\r\n* Stellenbosch University, ZA and VU University Amsterdam, NL         *\r\n* PySCeS is distributed under the PySCeS (BSD style) licence, see     *\r\n* LICENCE.txt (supplied with this release) for details                *\r\n* Please cite PySCeS with: doi:10.1093/bioinformatics/bti046          *\r\n***********************************************************************\r\n",
             "sedDocuments": [
                 {
-                    "duration": 5.001784,
+                    "duration": 4.704026,
                     "exception": null,
                     "location": "Theinmozhi_2018.sedml",
-                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 2 tasks, 1 reports, and 5 plots:\r\n  Theinmozhi_2018.sedml:\r\n    Tasks (2):\r\n      task1\r\n      task2\r\n    Reports (1):\r\n      autogen_report_for_task2: 120 data sets\r\n    Plots (5):\r\n      plot_10_task2: 1 curves\r\n      plot_6_task2: 1 curves\r\n      plot_7_task2: 1 curves\r\n      plot_8_task2: 2 curves\r\n      plot_9_task2: 1 curves\r\n\r\nExecuting SED-ML file 1: Theinmozhi_2018.sedml ...\r\n  Found 1 tasks and 6 outputs:\r\n    Tasks:\r\n      `task2`\r\n    Outputs:\r\n      `autogen_report_for_task2`\r\n      `plot_10_task2`\r\n      `plot_6_task2`\r\n      `plot_7_task2`\r\n      `plot_8_task2`\r\n      `plot_9_task2`\r\n  Executing task 1: `task2`\r\n    Executing simulation ...Info: single compartment model: locating \"CP2_DP_CP1\" in default compartment\r\nInfo: single compartment model: locating \"CP1_Diss_PD1_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CD28i_P_CD28a\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_DP_CD28i\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_Bd_PI3K\" in default compartment\r\nInfo: single compartment model: locating \"CD3i_P_CD3a\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_DP_CD3i\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_Bd_ZAP70\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70i_P_ZAP70a1\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70a1_P_ZAP70a2\" in default compartment\r\nInfo: single compartment model: locating \"LATi_P_LATa\" in default compartment\r\nInfo: single compartment model: locating \"LATa_Bd_GADS\" in default compartment\r\nInfo: single compartment model: locating \"GADSa_Bd_SLP76\" in default compartment\r\nInfo: single compartment model: locating \"SLP76i_P_SLC76a\" in default compartment\r\nWriting file: /tmp/tmpswmf3i9m.psc\r\n\r\nSBML2PSC\r\nin : /tmp/tmpawm80_xd.xml\r\nout: /tmp/tmpswmf3i9m.psc\r\nUsing model directory: /home/FCAM/crbmapi/Pysces/psc\r\n/tmp/tmpswmf3i9m.psc loading ..... \r\nParsing file: /tmp/tmpswmf3i9m.psc\r\nWarning: species \"LCKinactive\" (fixed) does not occur in any reaction\r\nWarning: species \"CD3t\" (fixed) does not occur in any reaction\r\nWarning: species \"SLP76t\" (fixed) does not occur in any reaction\r\nWarning: species \"GADSt\" (fixed) does not occur in any reaction\r\nWarning: species \"LATt\" (fixed) does not occur in any reaction\r\nWarning: species \"ZAP70t\" (fixed) does not occur in any reaction\r\nWarning: species \"PI3Kt\" (fixed) does not occur in any reaction\r\nWarning: species \"CD28t\" (fixed) does not occur in any reaction\r\nWarning: species \"CPactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKt\" (fixed) does not occur in any reaction\r\nInfo: \"CD28t\" has been initialised but does not occur in a rate equation\r\nInfo: \"PI3Kt\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LATt\" has been initialised but does not occur in a rate equation\r\nInfo: \"GADSt\" has been initialised but does not occur in a rate equation\r\nInfo: \"SLP76t\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCKinactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"Kdpa_yiya\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_bound\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3z_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD28_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_PI3K_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_ZAP70_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y315\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y93\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y505\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y394\" has been initialised but does not occur in a rate equation\r\nInfo: \"LAT_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_active\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_inactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_switch\" has been initialised but does not occur in a rate equation\r\nInfo: \"ModelValue_0\" has been initialised but does not occur in a rate equation\r\n \r\nCalculating L matrix . . . . . . . . .  done.\r\nCalculating K matrix . . . . . . . . . . .  done.\r\n \r\n\r\nAssignment rule(s) detected.\r\nINFO: Assignment Rules detected and Assimulo installed,\r\nswitching to CVODE (mod.mode_integrator='CVODE').\r\n\r\nCVODE time for 101 points: 0.15860843658447266\r\n \u001b[34msucceeded\u001b[0m\r\n    Generating 6 outputs ...\r\n      Generating output 1: `plot_6_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `plot_7_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 3: `plot_8_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 4: `plot_9_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 5: `plot_10_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 6: `autogen_report_for_task2` ...",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 2 tasks, 1 reports, and 5 plots:\r\n  Theinmozhi_2018.sedml:\r\n    Tasks (2):\r\n      task1\r\n      task2\r\n    Reports (1):\r\n      autogen_report_for_task2: 120 data sets\r\n    Plots (5):\r\n      plot_10_task2: 1 curves\r\n      plot_6_task2: 1 curves\r\n      plot_7_task2: 1 curves\r\n      plot_8_task2: 2 curves\r\n      plot_9_task2: 1 curves\r\n\r\nExecuting SED-ML file 1: Theinmozhi_2018.sedml ...\r\n  Found 1 tasks and 6 outputs:\r\n    Tasks:\r\n      `task2`\r\n    Outputs:\r\n      `autogen_report_for_task2`\r\n      `plot_10_task2`\r\n      `plot_6_task2`\r\n      `plot_7_task2`\r\n      `plot_8_task2`\r\n      `plot_9_task2`\r\n  Executing task 1: `task2`\r\n    Executing simulation ...Info: single compartment model: locating \"CP2_DP_CP1\" in default compartment\r\nInfo: single compartment model: locating \"CP1_Diss_PD1_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CD28i_P_CD28a\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_DP_CD28i\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_Bd_PI3K\" in default compartment\r\nInfo: single compartment model: locating \"CD3i_P_CD3a\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_DP_CD3i\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_Bd_ZAP70\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70i_P_ZAP70a1\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70a1_P_ZAP70a2\" in default compartment\r\nInfo: single compartment model: locating \"LATi_P_LATa\" in default compartment\r\nInfo: single compartment model: locating \"LATa_Bd_GADS\" in default compartment\r\nInfo: single compartment model: locating \"GADSa_Bd_SLP76\" in default compartment\r\nInfo: single compartment model: locating \"SLP76i_P_SLC76a\" in default compartment\r\nWriting file: /tmp/tmppsz5bkq_.psc\r\n\r\nSBML2PSC\r\nin : /tmp/tmpf_2pl9st.xml\r\nout: /tmp/tmppsz5bkq_.psc\r\nUsing model directory: /home/FCAM/crbmapi/Pysces/psc\r\n/tmp/tmppsz5bkq_.psc loading ..... \r\nParsing file: /tmp/tmppsz5bkq_.psc\r\nWarning: species \"LCKinactive\" (fixed) does not occur in any reaction\r\nWarning: species \"CD3t\" (fixed) does not occur in any reaction\r\nWarning: species \"SLP76t\" (fixed) does not occur in any reaction\r\nWarning: species \"GADSt\" (fixed) does not occur in any reaction\r\nWarning: species \"LATt\" (fixed) does not occur in any reaction\r\nWarning: species \"ZAP70t\" (fixed) does not occur in any reaction\r\nWarning: species \"PI3Kt\" (fixed) does not occur in any reaction\r\nWarning: species \"CD28t\" (fixed) does not occur in any reaction\r\nWarning: species \"CPactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKt\" (fixed) does not occur in any reaction\r\nInfo: \"CD28t\" has been initialised but does not occur in a rate equation\r\nInfo: \"PI3Kt\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LATt\" has been initialised but does not occur in a rate equation\r\nInfo: \"GADSt\" has been initialised but does not occur in a rate equation\r\nInfo: \"SLP76t\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCKinactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"Kdpa_yiya\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_bound\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3z_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD28_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_PI3K_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_ZAP70_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y315\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y93\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y505\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y394\" has been initialised but does not occur in a rate equation\r\nInfo: \"LAT_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_active\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_inactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_switch\" has been initialised but does not occur in a rate equation\r\nInfo: \"ModelValue_0\" has been initialised but does not occur in a rate equation\r\n \r\nCalculating L matrix . . . . . . . . .  done.\r\nCalculating K matrix . . . . . . . . . . .  done.\r\n \r\n\r\nAssignment rule(s) detected.\r\nINFO: Assignment Rules detected and Assimulo installed,\r\nswitching to CVODE (mod.mode_integrator='CVODE').\r\n\r\nCVODE time for 101 points: 0.15407371520996094\r\n \u001b[34msucceeded\u001b[0m\r\n    Generating 6 outputs ...\r\n      Generating output 1: `plot_6_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `plot_7_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 3: `plot_8_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 4: `plot_9_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 5: `plot_10_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 6: `autogen_report_for_task2` ...",
                     "outputs": [
                         {
                             "curves": [
@@ -2073,7 +2073,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.334935,
+                            "duration": 0.31045,
                             "exception": null,
                             "id": "plot_6_task2",
                             "output": "",
@@ -2087,7 +2087,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.3404,
+                            "duration": 0.146464,
                             "exception": null,
                             "id": "plot_7_task2",
                             "output": "",
@@ -2105,7 +2105,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.14569,
+                            "duration": 0.17892,
                             "exception": null,
                             "id": "plot_8_task2",
                             "output": "",
@@ -2119,7 +2119,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.123601,
+                            "duration": 0.130808,
                             "exception": null,
                             "id": "plot_9_task2",
                             "output": "",
@@ -2133,7 +2133,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.141253,
+                            "duration": 0.127922,
                             "exception": null,
                             "id": "plot_10_task2",
                             "output": "",
@@ -2623,7 +2623,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.195031,
+                            "duration": 0.196404,
                             "exception": null,
                             "id": "autogen_report_for_task2",
                             "output": "",
@@ -2636,10 +2636,10 @@
                     "tasks": [
                         {
                             "algorithm": null,
-                            "duration": 3.118912,
+                            "duration": 3.152147,
                             "exception": null,
                             "id": "task2",
-                            "output": "Check SBML support is at action level 2\r\nSBML file is L2V4\r\n\r\n*******************************************************************\r\nIssues encountered in SBML translation (model processed anyway)\r\nSBML source: /tmp/tmp73s17a1d.xml\r\n*******************************************************************\r\n\r\nParameter units ignored for parameters:\r\n['Kdpa_yiya', 'Kdpi_yi', 'Kdpi_yiya', 'Kdpa_ya', 'Kdpa_pi', 'Kpi_i', 'Kpi_ya', 'Kpa_i', 'Kpa_yi', 'Kp_pd1', 'KMp_pd1', 'Ka_shp', 'Kd1_shp', 'Kd2_shp', 'Kdp_cp2', 'Kp_cd28', 'KMp_cd28', 'Kdp_cd28', 'KMdp_cd28', 'Ka_pi3k', 'Kd_pi3k', 'Kp_cd3', 'KMp_cd3', 'Kdp_cd3', 'KMdp_cd3', 'Ka_zap', 'Kd_zap', 'Kp1_zap', 'Kp2_zap', 'Kp_lat', 'Ka_gads', 'Kd_gads', 'Ka_slp', 'Kd_slp', 'Kp_slp', 'perc_SHP2_bound'] \r\n\r\n*******************************************************************\r\n\r\nInfo: single compartment model: locating \"LCK_P_LCKyi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCK_P_LCKya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_P_LCKyiya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_P_LCKpi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKya\" in default compartment\r\nInfo: single compartment model: locating \"LCKpi_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"PD1_P_PD1p1_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_P_PD1p2_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"PD1p2_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CP2_Diss_SHP2_PD1p1\" in default compartment\r\nInfo: single compartment model: locating \"CP2_DP_CP1\" in default compartment\r\nInfo: single compartment model: locating \"CP1_Diss_PD1_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CD28i_P_CD28a\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_DP_CD28i\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_Bd_PI3K\" in default compartment\r\nInfo: single compartment model: locating \"CD3i_P_CD3a\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_DP_CD3i\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_Bd_ZAP70\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70i_P_ZAP70a1\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70a1_P_ZAP70a2\" in default compartment\r\nInfo: single compartment model: locating \"LATi_P_LATa\" in default compartment\r\nInfo: single compartment model: locating \"LATa_Bd_GADS\" in default compartment\r\nInfo: single compartment model: locating \"GADSa_Bd_SLP76\" in default compartment\r\nInfo: single compartment model: locating \"SLP76i_P_SLC76a\" in default compartment\r\nWriting file: /tmp/tmpno55m8h8.psc\r\n\r\nSBML2PSC\r\nin : /tmp/tmp73s17a1d.xml\r\nout: /tmp/tmpno55m8h8.psc\r\nUsing model directory: /home/FCAM/crbmapi/Pysces/psc\r\n/tmp/tmpno55m8h8.psc loading ..... \r\nParsing file: /tmp/tmpno55m8h8.psc\r\nWarning: species \"LCKinactive\" (fixed) does not occur in any reaction\r\nWarning: species \"CD3t\" (fixed) does not occur in any reaction\r\nWarning: species \"SLP76t\" (fixed) does not occur in any reaction\r\nWarning: species \"GADSt\" (fixed) does not occur in any reaction\r\nWarning: species \"LATt\" (fixed) does not occur in any reaction\r\nWarning: species \"ZAP70t\" (fixed) does not occur in any reaction\r\nWarning: species \"PI3Kt\" (fixed) does not occur in any reaction\r\nWarning: species \"CD28t\" (fixed) does not occur in any reaction\r\nWarning: species \"CPactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKt\" (fixed) does not occur in any reaction\r\nInfo: \"CD28t\" has been initialised but does not occur in a rate equation\r\nInfo: \"PI3Kt\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LATt\" has been initialised but does not occur in a rate equation\r\nInfo: \"GADSt\" has been initialised but does not occur in a rate equation\r\nInfo: \"SLP76t\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCKinactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"Kdpa_yiya\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_bound\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3z_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD28_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_PI3K_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_ZAP70_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y315\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y93\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y505\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y394\" has been initialised but does not occur in a rate equation\r\nInfo: \"LAT_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_active\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_inactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_switch\" has been initialised but does not occur in a rate equation\r\nInfo: \"ModelValue_0\" has been initialised but does not occur in a rate equation\r\n \r\nCalculating L matrix . . . . . . . . .  done.\r\nCalculating K matrix . . . . . . . . . . .  done.\r\n \r\n\r\nAssignment rule(s) detected.\r\nINFO: Assignment Rules detected and Assimulo installed,\r\nswitching to CVODE (mod.mode_integrator='CVODE').\r\n\r\nCVODE time for 101 points: 0.17305326461791992\r\nCheck SBML support is at action level 2\r\nSBML file is L2V4\r\n\r\n*******************************************************************\r\nIssues encountered in SBML translation (model processed anyway)\r\nSBML source: /tmp/tmpawm80_xd.xml\r\n*******************************************************************\r\n\r\nParameter units ignored for parameters:\r\n['Kdpa_yiya', 'Kdpi_yi', 'Kdpi_yiya', 'Kdpa_ya', 'Kdpa_pi', 'Kpi_i', 'Kpi_ya', 'Kpa_i', 'Kpa_yi', 'Kp_pd1', 'KMp_pd1', 'Ka_shp', 'Kd1_shp', 'Kd2_shp', 'Kdp_cp2', 'Kp_cd28', 'KMp_cd28', 'Kdp_cd28', 'KMdp_cd28', 'Ka_pi3k', 'Kd_pi3k', 'Kp_cd3', 'KMp_cd3', 'Kdp_cd3', 'KMdp_cd3', 'Ka_zap', 'Kd_zap', 'Kp1_zap', 'Kp2_zap', 'Kp_lat', 'Ka_gads', 'Kd_gads', 'Ka_slp', 'Kd_slp', 'Kp_slp', 'perc_SHP2_bound'] \r\n\r\n*******************************************************************\r\n\r\nInfo: single compartment model: locating \"LCK_P_LCKyi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCK_P_LCKya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_P_LCKyiya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_P_LCKpi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKya\" in default compartment\r\nInfo: single compartment model: locating \"LCKpi_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"PD1_P_PD1p1_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_P_PD1p2_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"PD1p2_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CP2_Diss_SHP2_PD1p1\" in default compartment\r\n",
+                            "output": "Check SBML support is at action level 2\r\nSBML file is L2V4\r\n\r\n*******************************************************************\r\nIssues encountered in SBML translation (model processed anyway)\r\nSBML source: /tmp/tmphhfyi34z.xml\r\n*******************************************************************\r\n\r\nParameter units ignored for parameters:\r\n['Kdpa_yiya', 'Kdpi_yi', 'Kdpi_yiya', 'Kdpa_ya', 'Kdpa_pi', 'Kpi_i', 'Kpi_ya', 'Kpa_i', 'Kpa_yi', 'Kp_pd1', 'KMp_pd1', 'Ka_shp', 'Kd1_shp', 'Kd2_shp', 'Kdp_cp2', 'Kp_cd28', 'KMp_cd28', 'Kdp_cd28', 'KMdp_cd28', 'Ka_pi3k', 'Kd_pi3k', 'Kp_cd3', 'KMp_cd3', 'Kdp_cd3', 'KMdp_cd3', 'Ka_zap', 'Kd_zap', 'Kp1_zap', 'Kp2_zap', 'Kp_lat', 'Ka_gads', 'Kd_gads', 'Ka_slp', 'Kd_slp', 'Kp_slp', 'perc_SHP2_bound'] \r\n\r\n*******************************************************************\r\n\r\nInfo: single compartment model: locating \"LCK_P_LCKyi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCK_P_LCKya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_P_LCKyiya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_P_LCKpi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKya\" in default compartment\r\nInfo: single compartment model: locating \"LCKpi_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"PD1_P_PD1p1_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_P_PD1p2_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"PD1p2_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CP2_Diss_SHP2_PD1p1\" in default compartment\r\nInfo: single compartment model: locating \"CP2_DP_CP1\" in default compartment\r\nInfo: single compartment model: locating \"CP1_Diss_PD1_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CD28i_P_CD28a\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_DP_CD28i\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_Bd_PI3K\" in default compartment\r\nInfo: single compartment model: locating \"CD3i_P_CD3a\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_DP_CD3i\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_Bd_ZAP70\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70i_P_ZAP70a1\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70a1_P_ZAP70a2\" in default compartment\r\nInfo: single compartment model: locating \"LATi_P_LATa\" in default compartment\r\nInfo: single compartment model: locating \"LATa_Bd_GADS\" in default compartment\r\nInfo: single compartment model: locating \"GADSa_Bd_SLP76\" in default compartment\r\nInfo: single compartment model: locating \"SLP76i_P_SLC76a\" in default compartment\r\nWriting file: /tmp/tmpq4zmjtzv.psc\r\n\r\nSBML2PSC\r\nin : /tmp/tmphhfyi34z.xml\r\nout: /tmp/tmpq4zmjtzv.psc\r\nUsing model directory: /home/FCAM/crbmapi/Pysces/psc\r\n/tmp/tmpq4zmjtzv.psc loading ..... \r\nParsing file: /tmp/tmpq4zmjtzv.psc\r\nWarning: species \"LCKinactive\" (fixed) does not occur in any reaction\r\nWarning: species \"CD3t\" (fixed) does not occur in any reaction\r\nWarning: species \"SLP76t\" (fixed) does not occur in any reaction\r\nWarning: species \"GADSt\" (fixed) does not occur in any reaction\r\nWarning: species \"LATt\" (fixed) does not occur in any reaction\r\nWarning: species \"ZAP70t\" (fixed) does not occur in any reaction\r\nWarning: species \"PI3Kt\" (fixed) does not occur in any reaction\r\nWarning: species \"CD28t\" (fixed) does not occur in any reaction\r\nWarning: species \"CPactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKt\" (fixed) does not occur in any reaction\r\nInfo: \"CD28t\" has been initialised but does not occur in a rate equation\r\nInfo: \"PI3Kt\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LATt\" has been initialised but does not occur in a rate equation\r\nInfo: \"GADSt\" has been initialised but does not occur in a rate equation\r\nInfo: \"SLP76t\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCKinactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"Kdpa_yiya\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_bound\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3z_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD28_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_PI3K_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_ZAP70_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y315\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y93\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y505\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y394\" has been initialised but does not occur in a rate equation\r\nInfo: \"LAT_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_active\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_inactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_switch\" has been initialised but does not occur in a rate equation\r\nInfo: \"ModelValue_0\" has been initialised but does not occur in a rate equation\r\n \r\nCalculating L matrix . . . . . . . . .  done.\r\nCalculating K matrix . . . . . . . . . . .  done.\r\n \r\n\r\nAssignment rule(s) detected.\r\nINFO: Assignment Rules detected and Assimulo installed,\r\nswitching to CVODE (mod.mode_integrator='CVODE').\r\n\r\nCVODE time for 101 points: 0.17607879638671875\r\nCheck SBML support is at action level 2\r\nSBML file is L2V4\r\n\r\n*******************************************************************\r\nIssues encountered in SBML translation (model processed anyway)\r\nSBML source: /tmp/tmpf_2pl9st.xml\r\n*******************************************************************\r\n\r\nParameter units ignored for parameters:\r\n['Kdpa_yiya', 'Kdpi_yi', 'Kdpi_yiya', 'Kdpa_ya', 'Kdpa_pi', 'Kpi_i', 'Kpi_ya', 'Kpa_i', 'Kpa_yi', 'Kp_pd1', 'KMp_pd1', 'Ka_shp', 'Kd1_shp', 'Kd2_shp', 'Kdp_cp2', 'Kp_cd28', 'KMp_cd28', 'Kdp_cd28', 'KMdp_cd28', 'Ka_pi3k', 'Kd_pi3k', 'Kp_cd3', 'KMp_cd3', 'Kdp_cd3', 'KMdp_cd3', 'Ka_zap', 'Kd_zap', 'Kp1_zap', 'Kp2_zap', 'Kp_lat', 'Ka_gads', 'Kd_gads', 'Ka_slp', 'Kd_slp', 'Kp_slp', 'perc_SHP2_bound'] \r\n\r\n*******************************************************************\r\n\r\nInfo: single compartment model: locating \"LCK_P_LCKyi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCK_P_LCKya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_P_LCKyiya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_P_LCKpi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKya\" in default compartment\r\nInfo: single compartment model: locating \"LCKpi_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"PD1_P_PD1p1_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_P_PD1p2_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"PD1p2_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CP2_Diss_SHP2_PD1p1\" in default compartment\r\n",
                             "simulatorDetails": null,
                             "skipReason": null,
                             "status": "SUCCEEDED"
@@ -2653,11 +2653,11 @@
     },
     "rbapy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/673f098b5a60072d20f78c62",
-        "download": "https://api.biosimulations.org/results/673f098b5a60072d20f78c62/download",
-        "logs": "https://api.biosimulations.org/logs/673f098b5a60072d20f78c62?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/674dc66def911d5d45259af7",
+        "download": "https://api.biosimulations.org/results/674dc66def911d5d45259af7/download",
+        "logs": "https://api.biosimulations.org/logs/674dc66def911d5d45259af7?includeOutput=true",
         "log_yml": {
-            "duration": 0.243458,
+            "duration": 0.251659,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -2670,11 +2670,11 @@
     },
     "smoldyn": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/673f098d0d09353e8f129050",
-        "download": "https://api.biosimulations.org/results/673f098d0d09353e8f129050/download",
-        "logs": "https://api.biosimulations.org/logs/673f098d0d09353e8f129050?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/674dc66f10bb4455d6187678",
+        "download": "https://api.biosimulations.org/results/674dc66f10bb4455d6187678/download",
+        "logs": "https://api.biosimulations.org/logs/674dc66f10bb4455d6187678?includeOutput=true",
         "log_yml": {
-            "duration": 0.063684,
+            "duration": 0.062385,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -2687,16 +2687,16 @@
     },
     "tellurium": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/673f098fb678b3883bb8ea97",
-        "download": "https://api.biosimulations.org/results/673f098fb678b3883bb8ea97/download",
-        "logs": "https://api.biosimulations.org/logs/673f098fb678b3883bb8ea97?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/674dc67110bb4455d6187681",
+        "download": "https://api.biosimulations.org/results/674dc67110bb4455d6187681/download",
+        "logs": "https://api.biosimulations.org/logs/674dc67110bb4455d6187681?includeOutput=true",
         "log_yml": {
-            "duration": 4.20042,
+            "duration": 3.978802,
             "exception": null,
             "output": "",
             "sedDocuments": [
                 {
-                    "duration": 3.537789,
+                    "duration": 3.347017,
                     "exception": null,
                     "location": "Theinmozhi_2018.sedml",
                     "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 2 tasks, 1 reports, and 5 plots:\r\n  Theinmozhi_2018.sedml:\r\n    Tasks (2):\r\n      task1\r\n      task2\r\n    Reports (1):\r\n      autogen_report_for_task2: 120 data sets\r\n    Plots (5):\r\n      plot_10_task2: 1 curves\r\n      plot_6_task2: 1 curves\r\n      plot_7_task2: 1 curves\r\n      plot_8_task2: 2 curves\r\n      plot_9_task2: 1 curves\r\n\r\nExecuting SED-ML file 1: Theinmozhi_2018.sedml ...\r\n  Found 2 tasks and 6 outputs:\r\n    Tasks:\r\n      `task1`\r\n      `task2`\r\n    Outputs:\r\n      `autogen_report_for_task2`\r\n      `plot_10_task2`\r\n      `plot_6_task2`\r\n      `plot_7_task2`\r\n      `plot_8_task2`\r\n      `plot_9_task2`\r\n  Executing task 1: `task1`\r\n    Executing simulation ... \u001b[34msucceeded\u001b[0m\r\n    Generating 6 outputs ...\r\n      Generating output 1: `plot_6_task2` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `plot_7_task2` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 3: `plot_8_task2` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 4: `plot_9_task2` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 5: `plot_10_task2` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 6: `autogen_report_for_task2` ... \u001b[36mqueued\u001b[0m\r\n  Executing task 2: `task2`\r\n    Executing simulation ... \u001b[34msucceeded\u001b[0m\r\n    Generating 6 outputs ...\r\n      Generating output 1: `plot_6_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `plot_7_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 3: `plot_8_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 4: `plot_9_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 5: `plot_10_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 6: `autogen_report_for_task2` ...",
@@ -2708,7 +2708,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.137474,
+                            "duration": 0.139389,
                             "exception": null,
                             "id": "plot_6_task2",
                             "output": "",
@@ -2722,7 +2722,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.145418,
+                            "duration": 0.143154,
                             "exception": null,
                             "id": "plot_7_task2",
                             "output": "",
@@ -2740,7 +2740,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.149499,
+                            "duration": 0.148739,
                             "exception": null,
                             "id": "plot_8_task2",
                             "output": "",
@@ -2754,7 +2754,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.136322,
+                            "duration": 0.138961,
                             "exception": null,
                             "id": "plot_9_task2",
                             "output": "",
@@ -2768,7 +2768,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.130725,
+                            "duration": 0.144982,
                             "exception": null,
                             "id": "plot_10_task2",
                             "output": "",
@@ -3258,7 +3258,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.203147,
+                            "duration": 0.213115,
                             "exception": null,
                             "id": "autogen_report_for_task2",
                             "output": "",
@@ -3271,7 +3271,7 @@
                     "tasks": [
                         {
                             "algorithm": "KISAO_0000019",
-                            "duration": 0.365925,
+                            "duration": 0.377119,
                             "exception": null,
                             "id": "task1",
                             "output": "",
@@ -3338,7 +3338,7 @@
                         },
                         {
                             "algorithm": null,
-                            "duration": 0.300798,
+                            "duration": 0.322538,
                             "exception": null,
                             "id": "task2",
                             "output": "",
@@ -3355,28 +3355,25 @@
     },
     "vcell": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/673f09935a60072d20f78c95",
-        "download": "https://api.biosimulations.org/results/673f09935a60072d20f78c95/download",
-        "logs": "https://api.biosimulations.org/logs/673f09935a60072d20f78c95?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/674dc674261553b9bc253ed9",
+        "download": "https://api.biosimulations.org/results/674dc674261553b9bc253ed9/download",
+        "logs": "https://api.biosimulations.org/logs/674dc674261553b9bc253ed9?includeOutput=true",
         "log_yml": {
-            "duration": 7,
+            "duration": 15,
             "exception": null,
             "output": "Processing Theinmozhi_2018.sedml.  Done",
             "sedDocuments": [
                 {
                     "duration": null,
-                    "exception": {
-                        "message": "Unable to initialize bioModel for the given selection cannot set float node to NaNcannot set float node to NaNFailure executing the sed document.",
-                        "type": "RuntimeException"
-                    },
+                    "exception": null,
                     "location": "Theinmozhi_2018.sedml",
-                    "output": "Initializing SED-ML document... done. Successful translation of SED-ML file. Building solvers and starting simulation of all tasks... Generating outputs... Generating HDF5 file...",
+                    "output": "Initializing SED-ML document... done. Successful translation of SED-ML file. Building solvers and starting simulation of all tasks... Generating outputs... Generating CSV file... Done. Generating HDF5 file...",
                     "outputs": [
                         {
                             "curves": [
                                 {
                                     "id": "p1_curve_1_task2",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 }
                             ],
                             "duration": null,
@@ -3384,13 +3381,13 @@
                             "id": "plot_6_task2",
                             "output": null,
                             "skipReason": null,
-                            "status": "QUEUED"
+                            "status": "SUCCEEDED"
                         },
                         {
                             "curves": [
                                 {
                                     "id": "p2_curve_1_task2",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 }
                             ],
                             "duration": null,
@@ -3398,17 +3395,17 @@
                             "id": "plot_7_task2",
                             "output": null,
                             "skipReason": null,
-                            "status": "QUEUED"
+                            "status": "SUCCEEDED"
                         },
                         {
                             "curves": [
                                 {
                                     "id": "p3_curve_1_task2",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "p3_curve_2_task2",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 }
                             ],
                             "duration": null,
@@ -3416,13 +3413,13 @@
                             "id": "plot_8_task2",
                             "output": null,
                             "skipReason": null,
-                            "status": "QUEUED"
+                            "status": "SUCCEEDED"
                         },
                         {
                             "curves": [
                                 {
                                     "id": "p4_curve_1_task2",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 }
                             ],
                             "duration": null,
@@ -3430,13 +3427,13 @@
                             "id": "plot_9_task2",
                             "output": null,
                             "skipReason": null,
-                            "status": "QUEUED"
+                            "status": "SUCCEEDED"
                         },
                         {
                             "curves": [
                                 {
                                     "id": "p5_curve_1_task2",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 }
                             ],
                             "duration": null,
@@ -3444,489 +3441,489 @@
                             "id": "plot_10_task2",
                             "output": null,
                             "skipReason": null,
-                            "status": "QUEUED"
+                            "status": "SUCCEEDED"
                         },
                         {
                             "dataSets": [
                                 {
                                     "id": "autogen_time_for_task2",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_perc_PI3K_free",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_perc_ZAP70_free",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_perc_LCK_active",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_perc_LCK_inactive",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_SLP76a",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_ZAP70a2",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LCKi",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LCKyi",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LCKya",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LCKyiya",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LCKpi",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LCKt",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LCKactive",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_PD1",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_PD1p1",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_PD1p2",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_CP1",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_SHP2",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_CP2",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_CPactive",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_CD28a",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_CD28i",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_PI3K",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_PI3Kb",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_CD28t",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_CD3a",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_CD3i",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_ZAP70a1",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_ZAP70i",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_ZAP70",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_PI3Kt",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_ZAP70t",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LATa",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LATi",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LATt",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_GADS",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_SLP76",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_SLP76i",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_GADSt",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_SLP76t",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_CD3t",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_GADSa",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LCKinactive",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kdpa_yiya",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kdpi_yi",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kdpi_yiya",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kdpa_ya",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kdpa_pi",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kpi_i",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kpi_ya",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kpa_i",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kpa_yi",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_k",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kp_pd1",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_KMp_pd1",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Ka_shp",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kd1_shp",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kd2_shp",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kdp_cp2",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kp_cd28",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_KMp_cd28",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kdp_cd28",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_KMdp_cd28",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Ka_pi3k",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kd_pi3k",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kp_cd3",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_KMp_cd3",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kdp_cd3",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_KMdp_cd3",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Ka_zap",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kd_zap",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kp1_zap",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kp2_zap",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kp_lat",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Ka_gads",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kd_gads",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Ka_slp",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kd_slp",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Kp_slp",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_perc_SHP2_bound",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_CD3z_phosphorylated",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_CD28_phosphorylated",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_perc_SHP2_free",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_ZAP70_phos_Y315",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_ZAP70_phos_Y93",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LCK_phos_Y505",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LCK_phos_Y394",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LAT_phosphorylated",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LCK_switch",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_ModelValue_0",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_Cell",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LCK_P_LCKyi_inh",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LCK_P_LCKya_act",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LCKya_P_LCKyiya_act",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LCKyi_P_LCKpi_inh",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LCKyiya_DP_LCKyi",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LCKya_DP_LCKi",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LCKyi_DP_LCKi",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LCKyiya_DP_LCKya",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LCKpi_DP_LCKyi",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_PD1_P_PD1p1_act",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_PD1p1_P_PD1p2_act",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_PD1p1_Bd_SHP2",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_PD1p2_Bd_SHP2",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_CP2_Diss_SHP2_PD1p1",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_CP2_DP_CP1",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_CP1_Diss_PD1_SHP2",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_CD28i_P_CD28a",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_CD28a_DP_CD28i",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_CD28a_Bd_PI3K",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_CD3i_P_CD3a",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_CD3a_DP_CD3i",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_CD3a_Bd_ZAP70",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_ZAP70i_P_ZAP70a1",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_ZAP70a1_P_ZAP70a2",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LATi_P_LATa",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_LATa_Bd_GADS",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_GADSa_Bd_SLP76",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task2_SLP76i_P_SLC76a",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 }
                             ],
                             "duration": null,
@@ -3934,31 +3931,31 @@
                             "id": "autogen_report_for_task2",
                             "output": null,
                             "skipReason": null,
-                            "status": "QUEUED"
+                            "status": "SUCCEEDED"
                         }
                     ],
                     "skipReason": null,
-                    "status": "FAILED",
+                    "status": "SUCCEEDED",
                     "tasks": [
                         {
-                            "algorithm": null,
-                            "duration": null,
+                            "algorithm": "KISAO_0000019",
+                            "duration": 1,
                             "exception": null,
                             "id": "task1",
                             "output": null,
                             "simulatorDetails": null,
                             "skipReason": null,
-                            "status": "QUEUED"
+                            "status": "SUCCEEDED"
                         },
                         {
-                            "algorithm": null,
-                            "duration": null,
+                            "algorithm": "KISAO_0000019",
+                            "duration": 1,
                             "exception": null,
                             "id": "task2",
-                            "output": null,
+                            "output": "Initializing simulation job 0 ... done. Starting simulation... done.",
                             "simulatorDetails": null,
                             "skipReason": null,
-                            "status": "QUEUED"
+                            "status": "SUCCEEDED"
                         }
                     ]
                 }
@@ -3969,11 +3966,11 @@
     },
     "xpp": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/673f09950d09353e8f12907a",
-        "download": "https://api.biosimulations.org/results/673f09950d09353e8f12907a/download",
-        "logs": "https://api.biosimulations.org/logs/673f09950d09353e8f12907a?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/674dc676ef911d5d45259b20",
+        "download": "https://api.biosimulations.org/results/674dc676ef911d5d45259b20/download",
+        "logs": "https://api.biosimulations.org/logs/674dc676ef911d5d45259b20?includeOutput=true",
         "log_yml": {
-            "duration": 0.057006,
+            "duration": 0.060415,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
