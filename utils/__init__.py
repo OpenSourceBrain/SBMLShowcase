@@ -227,49 +227,10 @@ def get_entry_format(file_path, file_type):
 
     return file_entry_format
 
-
-def add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, output_filepath=None):
-    '''
-    add an xmlns:sbml attribute to the sedml file that matches the sbml file
-    raise an error if the attribute is already present
-    output fixed file to output_filepath which defaults to sedml_filepath
-    '''
-
-    # read the sedml file as a string
-    with open(sedml_filepath, 'r') as file:
-        sedstr = file.read()
-
-    m = re.search(r'<sedML[^>]*>', sedstr)
-
-    if m == None:
-        raise ValueError(f'Invalid SedML file: main <sedML> tag not found in {sedml_filepath}')
-
-    # read the sbml file as a string to add the xmlns attribute if it is missing
-    if "xmlns:sbml" in m.group():
-        raise ValueError(f'xmlns:sbml attribute already present in file {sedml_filepath}')
-
-    with open(sbml_filepath, 'r') as file:
-        sbml_str = file.read()
-
-    sbml_xmlns = re.search(r'xmlns="([^"]*)"', sbml_str).group(1)
-    missing_sbml_attribute = 'xmlns:sbml="' + sbml_xmlns + '"'
-
-    sedstr = re.sub(r'<sedML ', r'<sedML ' + missing_sbml_attribute + ' ', sedstr)
-
-    if output_filepath == None:
-        output_filepath = sedml_filepath
-
-    with open(output_filepath,"w") as fout:
-        fout.write(sedstr)
-
-def add_xmlns_fbc_attribute(sedml_filepath, sbml_filepath, temp_sedml_filepath=None):
-    '''
-    Adds an xmlns:fbc attribute to the SED-ML file. 
-
-    If a temp_sedml_filepath (which could already contain a xmlns:sbml fix) is provided, 
-    this instead of the original SED-ML file is used.
-    '''
-    
+def temp_sedml_file_if_not_empty(sedml_filepath, temp_sedml_filepath):
+    """ 
+    If the temp_sedml_filepath is not empty, return its content, otherwise return the original content of the sedml file
+    """
     sedstr = ""
 
     if temp_sedml_filepath:
@@ -280,6 +241,51 @@ def add_xmlns_fbc_attribute(sedml_filepath, sbml_filepath, temp_sedml_filepath=N
     if sedstr == "":
         with open(sedml_filepath, 'r') as file:
             sedstr = file.read()
+
+    return sedstr
+
+def add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, temp_sedml_filepath=None):
+    '''
+    add an xmlns:sbml attribute to the sedml file that matches the sbml file
+    raise an error if the attribute is already present
+    output fixed file to output_filepath which defaults to sedml_filepath
+
+    If no temp_sedml_filepath is provided, the original sedml file is overwritten.
+    '''
+
+    sed_str = temp_sedml_file_if_not_empty(sedml_filepath, temp_sedml_filepath)
+
+    m = re.search(r'<sedML[^>]*>', sed_str)
+
+    if m == None:
+        raise ValueError(f'Invalid SedML file: main <sedML> tag not found in {sedml_filepath}')
+
+    if "xmlns:sbml" in m.group():
+        raise ValueError(f'xmlns:sbml attribute already present in file {sedml_filepath}')
+
+    with open(sbml_filepath, 'r') as file:
+        sbml_str = file.read()
+
+    sbml_xmlns = re.search(r'xmlns="([^"]*)"', sbml_str).group(1)
+    missing_sbml_attribute = 'xmlns:sbml="' + sbml_xmlns + '"'
+
+    sed_str = re.sub(r'<sedML ', r'<sedML ' + missing_sbml_attribute + ' ', sed_str)
+
+    if temp_sedml_filepath == None:
+        temp_sedml_filepath = sedml_filepath
+
+    with open(temp_sedml_filepath,"w") as fout:
+        fout.write(sed_str)
+
+def add_xmlns_fbc_attribute(sedml_filepath, sbml_filepath, temp_sedml_filepath=None):
+    '''
+    Adds an xmlns:fbc attribute to the SED-ML file. 
+
+    If a temp_sedml_filepath (which could already contain a xmlns:sbml fix) is provided, 
+    this instead of the original SED-ML file is used.
+    '''
+    
+    sedstr = temp_sedml_file_if_not_empty(sedml_filepath, temp_sedml_filepath)
 
     m = re.search(r'<sedML[^>]*>', sedstr)
 
@@ -293,13 +299,11 @@ def add_xmlns_fbc_attribute(sedml_filepath, sbml_filepath, temp_sedml_filepath=N
     fbc_xmlns = re.search(r'xmlns:fbc="([^"]*)"', sbml_str).group(1)
     missing_fbc_attribute = 'xmlns:fbc="' + fbc_xmlns + '"'
     sedstr = sedstr[:location] + ' ' + missing_fbc_attribute + sedstr[location:]
-    
 
     if temp_sedml_filepath == None:
         temp_sedml_filepath = sedml_filepath
 
     with open(temp_sedml_filepath,"w") as fout:
-      
         fout.write(sedstr)
 
 
@@ -347,6 +351,24 @@ def get_temp_file():
     '''
     return f"tmp{random.randrange(1000000)}"
 
+def remove_spaces_from_filename(file_path):
+    '''
+    create another file with the same content but with filename spaces replaced by underscores
+    '''
+    dir_name = os.path.dirname(file_path)
+    if ' ' in dir_name:
+        raise ValueError(f'File directory path should not contain spaces: {dir_name}')
+    old_filename = os.path.basename(file_path)
+    if ' ' not in old_filename:
+        return file_path
+    if ' ' in old_filename:
+        new_filename = old_filename.replace(' ', '_')
+        new_file_path = os.path.join(dir_name, new_filename) 
+        shutil.copy(file_path, new_file_path)
+        return new_file_path
+        
+ 
+
 def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None, silent_overwrite=True, add_missing_xmlns=True):
     '''
     wrap a sedml and an sbml file in a combine archive omex file
@@ -367,13 +389,17 @@ def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None, silent_overwr
         os.remove(omex_filepath)
 
     tmp_sedml_filepath = get_temp_file()
+
     if add_missing_xmlns:
-        if xmlns_sbml_attribute_missing(sedml_filepath):
+        xmlns_sbml_missing = xmlns_sbml_attribute_missing(sedml_filepath)
+        xmlns_fbc_missing = xmlns_fbc_attribute_missing(sbml_filepath,sedml_filepath)
+        if xmlns_sbml_missing:
             add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, tmp_sedml_filepath)
-        if xmlns_fbc_attribute_missing(sbml_filepath,sedml_filepath):
+        if xmlns_fbc_missing:
             add_xmlns_fbc_attribute(sedml_filepath, sbml_filepath, tmp_sedml_filepath)
-        
-    sedml_filepath = tmp_sedml_filepath
+        if xmlns_sbml_missing or xmlns_fbc_missing:
+            sedml_filepath = tmp_sedml_filepath
+
     sbml_file_entry_format = get_entry_format(sbml_filepath, 'SBML')
     sedml_file_entry_format = get_entry_format(sedml_filepath, 'SEDML')
 
@@ -397,7 +423,7 @@ def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None, silent_overwr
     )
     om.to_omex(Path(omex_filepath))
 
-    if tmp_sedml_filepath:
+    if os.path.exists(tmp_sedml_filepath):
         os.remove(tmp_sedml_filepath)
 
     return omex_filepath
@@ -529,6 +555,7 @@ def check_file_compatibility_test(engine, model_filepath, experiment_filepath):
     if file_extensions in engine_filetypes_tuple_list:
         return 'pass', (f"The file extensions {file_extensions} suggest the input file types are {filetypes_strings}.<br><br> {unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
     
+    
     if 'xml' in file_extensions:
         model_sbml = 'sbml' in model_filepath
         model_sedml = 'sedml' in model_filepath
@@ -536,6 +563,7 @@ def check_file_compatibility_test(engine, model_filepath, experiment_filepath):
         experiment_sedml = 'sedml' in experiment_filepath
 
         if model_sbml and experiment_sbml and experiment_sedml and not model_sedml:
+
             file_types_tuple = ('sbml', 'sedml')
             file_types = [TYPES[i] for i in file_types_tuple]
             filetypes_strings = ', '.join(file_types[:-1]) + ' and ' + file_types[-1] if len(file_types) > 1 else file_types[0]
@@ -543,8 +571,11 @@ def check_file_compatibility_test(engine, model_filepath, experiment_filepath):
                 return 'pass', (f"The filenames '{model_filepath}' and '{experiment_filepath}' suggest the input files are {filetypes_strings} which is compatible with {engine_name}.<br><br>{unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
             else:
                 return 'FAIL', (f"The filenames '{model_filepath}' and '{experiment_filepath}' suggest the input files are {filetypes_strings} which is not compatible with {engine_name}.<br><br>{unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
+        else:
+            return 'unsure', (f"The file extensions {file_extensions} suggest the input file types may not be compatibe with {engine_name}.<br><br>{unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
     else:
         return 'unsure', (f"The file extensions {file_extensions} suggest the input file types may not be compatibe with {engine_name}.<br><br>{unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
+
 
 
 def collapsible_content(content, title='Details'):
@@ -609,8 +640,9 @@ def run_biosimulators_remote(engine,sedml_filepath,sbml_filepath):
     results_urls = biosimulations.submit_simulation_archive(\
         archive_file=omex_file_name,\
         sim_dict=sim_dict)
-    
-    os.remove(omex_filepath)
+
+    if os.path.exists(omex_filepath):
+        os.remove(omex_filepath)
 
     return results_urls 
 
@@ -673,7 +705,8 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='out
             detailed_error_log_dict['status'] = 'FAIL'
             detailed_error_log_dict['error_message'] = "Runtime Exception"
 
-    os.remove(omex_filepath)
+    if os.path.exists(omex_filepath):
+        os.remove(omex_filepath)
     
     return {"exception_message":exception_message,"log_yml":log_yml_dict, "detailed_error_log":detailed_error_log_dict}
 
@@ -689,9 +722,12 @@ def biosimulators_core(engine,omex_filepath,output_dir=None):
     output_dir: folder to write the simulation outputs to
     '''
 
+    omex_filepath_no_spaces = remove_spaces_from_filename(omex_filepath)
+
     #directory containing omex file needs mapping into the container as the input folders
-    omex_dir = os.path.dirname(os.path.abspath(omex_filepath))
-    omex_file = os.path.basename(os.path.abspath(omex_filepath))
+    omex_dir = os.path.dirname(os.path.abspath(omex_filepath_no_spaces))
+    omex_file = os.path.basename(os.path.abspath(omex_filepath_no_spaces))
+
     mount_in = docker.types.Mount("/root/in",omex_dir,type="bind",read_only=True)
 
     #we want the output folder to be different to the input folder
@@ -705,8 +741,11 @@ def biosimulators_core(engine,omex_filepath,output_dir=None):
     client = docker.from_env()
     client.containers.run(f"ghcr.io/biosimulators/{engine}",
                         mounts=[mount_in,mount_out],
-                        command=f"-i /root/in/{omex_file} -o /root/out",
+                        command=f"-i '/root/in/{omex_file}' -o /root/out",
                         auto_remove=True)
+    
+    if os.path.exists(omex_filepath_no_spaces):
+        os.remove(omex_filepath_no_spaces)
 
 def test_engine(engine,filename,error_categories=error_categories):
     '''
@@ -1167,8 +1206,10 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
     # add xfail to engines that do not support sbml
     sbml_incompatible_ENGINES = [e for e in ENGINES.keys() if 'sbml' not in ENGINES[e]['formats'][0]]
     for e in sbml_incompatible_ENGINES:
-        compatibility = check_file_compatibility_test(e, sbml_filepath, sedml_filepath)
-        compatibility_content =  f'EXPECTED FAIL<br><br>{compatibility[1]}'
+        engine_name = ENGINES[e]['name']
+        unique_compatible_filetpyes_strings = ', '.join([TYPES[i] for i in ENGINES[e]['formats'][0] if i in list(TYPES.keys())])
+        compatibility = (f"Only {unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
+        compatibility_content =  f'EXPECTED FAIL<br><br>{compatibility}'
         results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content, title=f'{xfail_html}')
         results_table.loc[results_table[ENGINE] == e, PASS_FAIL] = f'{xfail_html}' 
 
