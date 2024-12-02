@@ -12,9 +12,6 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".
 import utils
 import argparse
 
-engines = utils.ENGINES
-types_dict = utils.TYPES
-
 # Save the current working directory
 cwd = os.getcwd()
 print('Current working directory:', cwd)
