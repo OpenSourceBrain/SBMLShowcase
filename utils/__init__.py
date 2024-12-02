@@ -353,12 +353,15 @@ def remove_spaces_from_filename(file_path):
     '''
     create another file with the same content but with filename spaces replaced by underscores
     '''
+    dir_name = os.path.dirname(file_path)
+    if ' ' in dir_name:
+        raise ValueError(f'File directory path should not contain spaces: {dir_name}')
     old_filename = os.path.basename(file_path)
     if ' ' not in old_filename:
         return file_path
     if ' ' in old_filename:
         new_filename = old_filename.replace(' ', '_')
-        new_file_path = os.path.join(os.path.dirname(file_path), new_filename) 
+        new_file_path = os.path.join(dir_name, new_filename) 
         shutil.copy(file_path, new_file_path)
         return new_file_path
         
@@ -749,7 +752,7 @@ def biosimulators_core(engine,omex_filepath,output_dir=None):
     client = docker.from_env()
     client.containers.run(f"ghcr.io/biosimulators/{engine}",
                         mounts=[mount_in,mount_out],
-                        command=f"-i /root/in/{omex_file} -o /root/out",
+                        command=f"-i '/root/in/{omex_file}' -o /root/out",
                         auto_remove=True)
     
     if os.path.exists(omex_filepath_no_spaces):
