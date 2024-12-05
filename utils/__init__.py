@@ -637,10 +637,15 @@ def run_biosimulators_remote(engine,sedml_filepath,sbml_filepath):
                 "email": "",
                 }
 
-    results_urls = biosimulations.submit_simulation_archive(\
-        archive_file=omex_file_name,\
-        sim_dict=sim_dict)
-
+    try:
+        results_urls = biosimulations.submit_simulation_archive(\
+            archive_file=omex_file_name,\
+            sim_dict=sim_dict)
+        results_urls['response']  = results_urls['response'].status_code
+    except Exception as exception_message:
+        print(f"There was an error submitting the simulation archive:{exception_message}")
+        results_urls = {"response":"","view": "", "download": "", "logs": "","exception": exception_message}
+    
     if os.path.exists(omex_filepath):
         os.remove(omex_filepath)
 
@@ -1290,7 +1295,6 @@ def run_biosimulators_remotely(engine_keys,
     results_remote = dict()
     for e in engines.keys():
         results_remote[e] = run_biosimulators_remote(e, sedml_file_name, sbml_file_name)
-        results_remote[e]['response']  = results_remote[e]['response'].status_code
         
     extract_dir_dict = dict()
     for e, link in results_remote.items():
