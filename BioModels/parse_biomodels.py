@@ -198,7 +198,7 @@ def main():
     count = 0
     starting_dir = os.getcwd()
 
-    for model_id in model_ids[0:3]:
+    for model_id in model_ids[0:2]:
         #allow testing on a small sample of models
         if max_count > 0 and count >= max_count: break
         count += 1
@@ -242,33 +242,29 @@ def main():
         mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_file)
         sup.restore()
 
-        try:
-            engine_keys = ["copasi","tellurium"]
-            test_folder = 'tests'
-            d1_plots_remote_dir = os.path.join(test_folder, 'd1_plots_remote')
-            results_remote = utils.run_biosimulators_remotely(engine_keys,
-                                            sedml_file_name=sedml_file, 
-                                            sbml_file_name=sbml_file,
-                                            d1_plots_remote_dir=d1_plots_remote_dir, 
-                                            test_folder=test_folder)
+
+        engine_keys = ["copasi","tellurium"]
+        test_folder = 'tests'
+        d1_plots_remote_dir = os.path.join(test_folder, 'd1_plots_remote')
+        results_remote = utils.run_biosimulators_remotely(engine_keys,
+                                        sedml_file_name=sedml_file, 
+                                        sbml_file_name=sbml_file,
+                                        d1_plots_remote_dir=d1_plots_remote_dir, 
+                                        test_folder=test_folder)
             
             
-            for e in engine_keys:
-                results_remote_processed = utils.process_log_yml_dict(results_remote[e]["log_yml"])
-                remote_outcome_key = f'{e}_remote_outcome'
-                download_link = results_remote[e]['download']
-                if results_remote_processed["error_message"] == "":
-                    mtab[remote_outcome_key] = [results_remote_processed['status'], f'Download: {download_link}']
-                else:
-                    error_message_string = f'Download: {download_link}<br><br>Error message: {results_remote_processed["error_message"]}<br><br>Exception type: {results_remote_processed["exception_type"]}'
-                    mtab[remote_outcome_key] = [results_remote_processed['status'], error_message_string]  
-        
-        except Exception as emessage:
-            print(f'Error running remote tests for {model_id}')
-            for e in engine_keys:
-                remote_outcome_key = f'{e}_remote_outcome'
-                mtab[remote_outcome_key] = ['Error', f'Error running remote test.<br><br>Error message: {emessage}']   
-            continue
+        for e in engine_keys:
+            results_remote_processed = utils.process_log_yml_dict(results_remote[e]["log_yml"])
+            mtab_remote_outcome_key = f'{e}_remote_outcome'
+
+            info_submission = f"Download: {results_remote[e]['download']}<br><br>Logs: {results_remote[e]['logs']}<br><br>View: {results_remote[e]['view']}<br><br>HTTP response: {str(results_remote[e]['response'])}"
+            error_message_string = f'Error message: {results_remote_processed["error_message"]}<br><br>Exception type: {results_remote_processed["exception_type"]}'
+
+            if results_remote_processed["error_message"] != "":
+                info_submission = info_submission + f'<br><br>{error_message_string}'
+
+            mtab[mtab_remote_outcome_key] = [results_remote_processed['status'], info_submission]
+
 
         #stop matplotlib plots from building up
         matplotlib.pyplot.close()
