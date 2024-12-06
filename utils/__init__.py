@@ -1301,7 +1301,7 @@ def run_biosimulators_remotely(engine_keys,
         try:
             extract_dir = get_remote_results(e, link["download"], remote_output_dir)
         except HTTPError as emessage:
-            results_remote[e] = ["FAIL", str(emessage), type(emessage).__name__]
+            results_remote[e] ={'response': '', 'view': '', 'download': '', 'logs': '', 'exception': str(emessage), 'exception_type': type(emessage).__name__}
             continue
         extract_dir_dict[e] = extract_dir
 
