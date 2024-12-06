@@ -10,13 +10,11 @@ import requests
 from collections import defaultdict
 from pathlib import Path
 import random
-from pymetadata.console import console
 from pymetadata import omex
 import docker
 import yaml
 import libsbml
 import libsedml
-import tempfile
 import glob
 from pyneuroml import biosimulations
 import pandas as pd
@@ -229,24 +227,39 @@ def get_entry_format(file_path, file_type):
 
     return file_entry_format
 
+def temp_sedml_file_if_not_empty(sedml_filepath, temp_sedml_filepath):
+    """ 
+    If the temp_sedml_filepath is not empty, return its content, otherwise return the original content of the sedml file
+    """
+    sedstr = ""
 
-def add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, output_filepath=None):
+    if temp_sedml_filepath:
+        if os.path.exists(temp_sedml_filepath):
+            with open(temp_sedml_filepath, 'r') as file:
+                sedstr = file.read()    
+                
+    if sedstr == "":
+        with open(sedml_filepath, 'r') as file:
+            sedstr = file.read()
+
+    return sedstr
+
+def add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, temp_sedml_filepath=None):
     '''
     add an xmlns:sbml attribute to the sedml file that matches the sbml file
     raise an error if the attribute is already present
     output fixed file to output_filepath which defaults to sedml_filepath
+
+    If no temp_sedml_filepath is provided, the original sedml file is overwritten.
     '''
 
-    # read the sedml file as a string
-    with open(sedml_filepath, 'r') as file:
-        sedstr = file.read()
+    sed_str = temp_sedml_file_if_not_empty(sedml_filepath, temp_sedml_filepath)
 
-    m = re.search(r'<sedML[^>]*>', sedstr)
+    m = re.search(r'<sedML[^>]*>', sed_str)
 
     if m == None:
         raise ValueError(f'Invalid SedML file: main <sedML> tag not found in {sedml_filepath}')
 
-    # read the sbml file as a string to add the xmlns attribute if it is missing
     if "xmlns:sbml" in m.group():
         raise ValueError(f'xmlns:sbml attribute already present in file {sedml_filepath}')
 
@@ -256,18 +269,47 @@ def add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, output_filepath=None
     sbml_xmlns = re.search(r'xmlns="([^"]*)"', sbml_str).group(1)
     missing_sbml_attribute = 'xmlns:sbml="' + sbml_xmlns + '"'
 
-    sedstr = re.sub(r'<sedML ', r'<sedML ' + missing_sbml_attribute + ' ', sedstr)
+    sed_str = re.sub(r'<sedML ', r'<sedML ' + missing_sbml_attribute + ' ', sed_str)
 
-    if output_filepath == None:
-        output_filepath = sedml_filepath
+    if temp_sedml_filepath == None:
+        temp_sedml_filepath = sedml_filepath
 
-    with open(output_filepath,"w") as fout:
+    with open(temp_sedml_filepath,"w") as fout:
+        fout.write(sed_str)
+
+def add_xmlns_fbc_attribute(sedml_filepath, sbml_filepath, temp_sedml_filepath=None):
+    '''
+    Adds an xmlns:fbc attribute to the SED-ML file. 
+
+    If a temp_sedml_filepath (which could already contain a xmlns:sbml fix) is provided, 
+    this instead of the original SED-ML file is used.
+    '''
+    
+    sedstr = temp_sedml_file_if_not_empty(sedml_filepath, temp_sedml_filepath)
+
+    m = re.search(r'<sedML[^>]*>', sedstr)
+
+    if m == None:
+        raise ValueError(f'Invalid SedML file: main <sedML> tag not found in {sedml_filepath}')
+
+    location = m.span()[1]-1
+    with open(sbml_filepath, 'r') as file:
+        sbml_str = file.read()
+
+    fbc_xmlns = re.search(r'xmlns:fbc="([^"]*)"', sbml_str).group(1)
+    missing_fbc_attribute = 'xmlns:fbc="' + fbc_xmlns + '"'
+    sedstr = sedstr[:location] + ' ' + missing_fbc_attribute + sedstr[location:]
+
+    if temp_sedml_filepath == None:
+        temp_sedml_filepath = sedml_filepath
+
+    with open(temp_sedml_filepath,"w") as fout:
         fout.write(sedstr)
 
 
 def xmlns_sbml_attribute_missing(sedml_filepath):
     '''
-    report True if the xmlns:sbml attribute is missing from the main sedml tag
+    True if the xmlns:sbml attribute is missing from the main sedml tag
     '''
 
     with open(sedml_filepath, 'r') as file:
@@ -282,12 +324,50 @@ def xmlns_sbml_attribute_missing(sedml_filepath):
         return True
     else:
         return False
+    
+
+def xmlns_fbc_attribute_missing(sbml_filepath,sedml_filepath):
+    '''
+    True if the xmlns:fbc attribute is missing from the main sedml tag of the SED-ML file but present in the SBML file
+    '''
+    with open(sbml_filepath, 'r') as file:
+        sbmlstr = file.read()
+
+    with open(sedml_filepath, 'r') as file:
+        sedstr = file.read()
+    
+    sbmlstr_fbc = re.search(r'xmlns:fbc="([^"]*)"', sbmlstr)
+    sedstr_fbc = re.search(r'xmlns:fbc="([^"]*)"', sedstr)
+
+    if sbmlstr_fbc and not sedstr_fbc:
+        return True
+    else:
+        return False
+
 
 def get_temp_file():
     '''
     create a temporary filename in the current working directory
     '''
     return f"tmp{random.randrange(1000000)}"
+
+def remove_spaces_from_filename(file_path):
+    '''
+    create another file with the same content but with filename spaces replaced by underscores
+    '''
+    dir_name = os.path.dirname(file_path)
+    if ' ' in dir_name:
+        raise ValueError(f'File directory path should not contain spaces: {dir_name}')
+    old_filename = os.path.basename(file_path)
+    if ' ' not in old_filename:
+        return file_path
+    if ' ' in old_filename:
+        new_filename = old_filename.replace(' ', '_')
+        new_file_path = os.path.join(dir_name, new_filename) 
+        shutil.copy(file_path, new_file_path)
+        return new_file_path
+        
+ 
 
 def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None, silent_overwrite=True, add_missing_xmlns=True):
     '''
@@ -308,12 +388,16 @@ def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None, silent_overwr
     if os.path.exists(omex_filepath) and silent_overwrite:
         os.remove(omex_filepath)
 
-    tmp_sedml_filepath = None
+    tmp_sedml_filepath = get_temp_file()
+
     if add_missing_xmlns:
-        if xmlns_sbml_attribute_missing(sedml_filepath):
-            #create a temporary sedml file with the missing attribute added
-            tmp_sedml_filepath = get_temp_file()
+        xmlns_sbml_missing = xmlns_sbml_attribute_missing(sedml_filepath)
+        xmlns_fbc_missing = xmlns_fbc_attribute_missing(sbml_filepath,sedml_filepath)
+        if xmlns_sbml_missing:
             add_xmlns_sbml_attribute(sedml_filepath, sbml_filepath, tmp_sedml_filepath)
+        if xmlns_fbc_missing:
+            add_xmlns_fbc_attribute(sedml_filepath, sbml_filepath, tmp_sedml_filepath)
+        if xmlns_sbml_missing or xmlns_fbc_missing:
             sedml_filepath = tmp_sedml_filepath
 
     sbml_file_entry_format = get_entry_format(sbml_filepath, 'SBML')
@@ -339,7 +423,7 @@ def create_omex(sedml_filepath, sbml_filepath, omex_filepath=None, silent_overwr
     )
     om.to_omex(Path(omex_filepath))
 
-    if tmp_sedml_filepath:
+    if os.path.exists(tmp_sedml_filepath):
         os.remove(tmp_sedml_filepath)
 
     return omex_filepath
@@ -455,23 +539,44 @@ def check_file_compatibility_test(engine, model_filepath, experiment_filepath):
     '''
     file_extensions = get_filetypes(model_filepath, experiment_filepath)
     engine_filetypes_tuple_list = ENGINES[engine]['formats']
+    engine_name = ENGINES[engine]['name']
     flat_engine_filetypes_tuple_list = [item for sublist in engine_filetypes_tuple_list for item in sublist if sublist != 'unclear']
     compatible_filetypes = [TYPES[i] for i in flat_engine_filetypes_tuple_list if i in list(TYPES.keys())]
+    unique_compatible_filetpyes = list(set(compatible_filetypes))
+
+    unique_compatible_filetpyes_strings = ', '.join(unique_compatible_filetpyes[:-1]) + ' and ' + unique_compatible_filetpyes[-1] if len(unique_compatible_filetpyes) > 1 else unique_compatible_filetpyes[0]
+    
+    file_types = [TYPES[i] for i in file_extensions]
+    filetypes_strings = ', '.join(file_types[:-1]) + ' and ' + file_types[-1] if len(file_types) > 1 else file_types[0]
+
+    if file_extensions == ('sbml', 'sedml') and file_extensions not in engine_filetypes_tuple_list:
+        return 'FAIL', (f"The file extensions {file_extensions} suggest the input file types are {filetypes_strings} which is not compatible with {engine_name}.<br><br>{unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
 
     if file_extensions in engine_filetypes_tuple_list:
-        file_types = [TYPES[i] for i in file_extensions]
-        return 'pass', (f"The file extensions {file_extensions} suggest the input file types are '{file_types}'. {compatible_filetypes} are compatible with {engine}.")
-    if 'xml' in file_extensions:
-            if 'sbml' in model_filepath and 'sedml' not in model_filepath:
-                if 'sbml' in experiment_filepath and 'sedml' in experiment_filepath:
-                    file_types = ('sbml', 'sedml')
-                    if file_types in engine_filetypes_tuple_list:
-                        return 'pass', (f"The filenames '{model_filepath}' and '{experiment_filepath}' suggest the input files are {[TYPES[i] for i in file_types]} which is compatible with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
-                    else: 
-                        return 'unsure', (f"The filenames '{model_filepath}' and '{experiment_filepath}' suggest the input files are {[TYPES[i] for i in file_types]} which is not compatible with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
-    else:
-        return 'unsure', (f"The file extensions {file_extensions} suggest the input file types may not be compatibe with {engine}.<br><br>{compatible_filetypes} are compatible with {engine}.")
+        return 'pass', (f"The file extensions {file_extensions} suggest the input file types are {filetypes_strings}.<br><br> {unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
     
+    
+    if 'xml' in file_extensions:
+        model_sbml = 'sbml' in model_filepath
+        model_sedml = 'sedml' in model_filepath
+        experiment_sbml = 'sbml' in experiment_filepath
+        experiment_sedml = 'sedml' in experiment_filepath
+
+        if model_sbml and experiment_sbml and experiment_sedml and not model_sedml:
+
+            file_types_tuple = ('sbml', 'sedml')
+            file_types = [TYPES[i] for i in file_types_tuple]
+            filetypes_strings = ', '.join(file_types[:-1]) + ' and ' + file_types[-1] if len(file_types) > 1 else file_types[0]
+            if file_types_tuple in engine_filetypes_tuple_list:
+                return 'pass', (f"The filenames '{model_filepath}' and '{experiment_filepath}' suggest the input files are {filetypes_strings} which is compatible with {engine_name}.<br><br>{unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
+            else:
+                return 'FAIL', (f"The filenames '{model_filepath}' and '{experiment_filepath}' suggest the input files are {filetypes_strings} which is not compatible with {engine_name}.<br><br>{unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
+        else:
+            return 'unsure', (f"The file extensions {file_extensions} suggest the input file types may not be compatibe with {engine_name}.<br><br>{unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
+    else:
+        return 'unsure', (f"The file extensions {file_extensions} suggest the input file types may not be compatibe with {engine_name}.<br><br>{unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
+
+
 
 def collapsible_content(content, title='Details'):
     """
@@ -495,25 +600,6 @@ def get_filetypes(model_filepath, simulation_filepath):
     simulation_ext = os.path.splitext(simulation_filepath)[-1].lstrip('.')
     
     return (model_ext, simulation_ext)
-
-# def get_filetypes(model_filepath, simulation_filepath):
-#     """
-#     Get the filetypes of the model and simulation files
-
-#     Input: model_filepath, simulation_filepath
-#     Output: tuple of filetypes
-#     """
-#     if model_filepath.endswith(".sbml") and simulation_filepath.endswith(".sedml"):
-#         filetypes = ('sbml', 'sedml')
-#     elif model_filepath.endswith(".xml") and simulation_filepath.endswith(".xml"):
-#         filetypes = ('xml', 'xml')
-#     elif model_filepath.endswith(".xml") and simulation_filepath.endswith(".sedml"):
-#         filetypes = ('xml', 'sedml')
-#     elif model_filepath.endswith(".sbml") and simulation_filepath.endswith(".xml"):
-#         filetypes = ('sbml', 'xml')
-#     else:
-#         filetypes = "other"
-#     return filetypes
 
 def delete_output_folder(output_dir):
     '''
@@ -554,7 +640,10 @@ def run_biosimulators_remote(engine,sedml_filepath,sbml_filepath):
     results_urls = biosimulations.submit_simulation_archive(\
         archive_file=omex_file_name,\
         sim_dict=sim_dict)
-       
+
+    if os.path.exists(omex_filepath):
+        os.remove(omex_filepath)
+
     return results_urls 
 
 def get_remote_results(engine, download_link, output_dir='remote_results'):
@@ -615,6 +704,9 @@ def run_biosimulators_docker(engine,sedml_filepath,sbml_filepath,output_dir='out
         if 'RuntimeException' in detailed_error_log:
             detailed_error_log_dict['status'] = 'FAIL'
             detailed_error_log_dict['error_message'] = "Runtime Exception"
+
+    if os.path.exists(omex_filepath):
+        os.remove(omex_filepath)
     
     return {"exception_message":exception_message,"log_yml":log_yml_dict, "detailed_error_log":detailed_error_log_dict}
 
@@ -630,9 +722,12 @@ def biosimulators_core(engine,omex_filepath,output_dir=None):
     output_dir: folder to write the simulation outputs to
     '''
 
+    omex_filepath_no_spaces = remove_spaces_from_filename(omex_filepath)
+
     #directory containing omex file needs mapping into the container as the input folders
-    omex_dir = os.path.dirname(os.path.abspath(omex_filepath))
-    omex_file = os.path.basename(os.path.abspath(omex_filepath))
+    omex_dir = os.path.dirname(os.path.abspath(omex_filepath_no_spaces))
+    omex_file = os.path.basename(os.path.abspath(omex_filepath_no_spaces))
+
     mount_in = docker.types.Mount("/root/in",omex_dir,type="bind",read_only=True)
 
     #we want the output folder to be different to the input folder
@@ -646,8 +741,11 @@ def biosimulators_core(engine,omex_filepath,output_dir=None):
     client = docker.from_env()
     client.containers.run(f"ghcr.io/biosimulators/{engine}",
                         mounts=[mount_in,mount_out],
-                        command=f"-i /root/in/{omex_file} -o /root/out",
+                        command=f"-i '/root/in/{omex_file}' -o /root/out",
                         auto_remove=True)
+    
+    if os.path.exists(omex_filepath_no_spaces):
+        os.remove(omex_filepath_no_spaces)
 
 def test_engine(engine,filename,error_categories=error_categories):
     '''
@@ -1018,14 +1116,14 @@ def safe_md_string(value):
 
 import time
 
-def download_file_from_link(engine, download_link, output_file='results.zip', max_wait_time=120, wait_time=2):
+def download_file_from_link(engine, download_link, output_file='results.zip', max_wait_time=600, wait_time=2):
     """
     Function to download a file from a given URL.
 
     Parameters:
     download_link (str): The URL of the file to download.
     output_file (str): The name of the file to save the download as. Defaults to 'results.zip'.
-    max_wait_time (int): The maximum time to wait for the file to be ready to download. Defaults to 120 seconds.
+    max_wait_time (int): The maximum time to wait for the file to be ready to download. Defaults to 300 seconds.
     wait_time (int): The time to wait between checks if the file is ready to download. Defaults to 2 seconds.
 
     Returns:
@@ -1035,23 +1133,16 @@ def download_file_from_link(engine, download_link, output_file='results.zip', ma
     start_time = time.time()
 
     while True:
-        # Check status of download_link
         response = requests.get(download_link)
-
-        # If status is not 404 or max_wait_time has passed, break the loop
         if response.status_code != 404 or time.time() - start_time > max_wait_time:
             break
-
-        # Wait for wait_time seconds before checking again
         time.sleep(wait_time)
 
-    # If status == 200 then download the results
     if response.status_code == 200:
         print(f'Downloading {engine} results...')
         with requests.get(download_link, stream=True) as r:
             with open(output_file, 'wb') as f:
                 shutil.copyfileobj(r.raw, f)
-        # filepath where the file is downloaded
         filepath = os.path.abspath(output_file)
         return filepath
     else:
@@ -1115,8 +1206,10 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
     # add xfail to engines that do not support sbml
     sbml_incompatible_ENGINES = [e for e in ENGINES.keys() if 'sbml' not in ENGINES[e]['formats'][0]]
     for e in sbml_incompatible_ENGINES:
-        compatibility = check_file_compatibility_test(e, sbml_filepath, sedml_filepath)
-        compatibility_content =  f'EXPECTED FAIL<br><br>{compatibility[1]}'
+        engine_name = ENGINES[e]['name']
+        unique_compatible_filetpyes_strings = ', '.join([TYPES[i] for i in ENGINES[e]['formats'][0] if i in list(TYPES.keys())])
+        compatibility = (f"Only {unique_compatible_filetpyes_strings} are compatible with {engine_name}.")
+        compatibility_content =  f'EXPECTED FAIL<br><br>{compatibility}'
         results_table.loc[results_table[ENGINE] == e, COMPAT] = collapsible_content(compatibility_content, title=f'{xfail_html}')
         results_table.loc[results_table[ENGINE] == e, PASS_FAIL] = f'{xfail_html}' 
 

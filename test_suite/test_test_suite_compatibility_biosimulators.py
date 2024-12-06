@@ -54,7 +54,7 @@ def parse_arguments():
     )
 
     parser.add_argument(
-        "--suite-path",
+        "--suite_path",
         action="store",
         type=str,
         default=".",
@@ -148,6 +148,7 @@ def process_cases(args):
         print(f"Changed to {new_directory}")
 
         engine_list = list(engines.keys()) 
+        # engine_list = engine_list[:5]
         
         utils.run_biosimulators_remotely_and_locally(engine_list,
                                  os.path.basename(sedml_file_path), 
@@ -158,7 +159,9 @@ def process_cases(args):
 
 
 if __name__ == "__main__":
-    args = parse_arguments()    
-
+    args = parse_arguments()   
+    args.cases = ['00001','01186'] 
+    args.sbml_level_version = 'l3v2'
+    user_folder = os.path.expanduser("~")
+    args.suite_path = os.path.join(user_folder, "Documents", "compbiolibs", "SBML_test_suite", "semantic")
     process_cases(args)
-
