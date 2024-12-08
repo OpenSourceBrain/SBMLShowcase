@@ -20,6 +20,7 @@ import os
 import urllib
 import sys
 import matplotlib
+import pickle
 
 sys.path.append("..")
 import utils
@@ -197,8 +198,18 @@ def main():
     model_ids = cache.do_request(f"{API_URL}/model/identifiers?format={out_format}").json()['models']
     count = 0
     starting_dir = os.getcwd()
+        
+    for model_id in model_ids:
 
-    for model_id in model_ids[0:2]:
+        pickle_name = f"{model_id}_mtab.p"
+        pickle_path = os.path.join(starting_dir,tmp_dir,model_id,pickle_name)
+        if os.path.exists(pickle_path) and use_pickles:
+            print(f"\r{model_id} {count}/{len(model_ids)}       ",end='')
+            print(f"loading {pickle_path}...")
+            mtab_dict = pickle.load(open(pickle_path, "rb"))
+            mtab.new_row()
+            mtab = mtab_dict['mtab_row']
+            continue
         #allow testing on a small sample of models
         if max_count > 0 and count >= max_count: break
         count += 1
@@ -254,7 +265,11 @@ def main():
             
             
         for e in engine_keys:
-            results_remote_processed = utils.process_log_yml_dict(results_remote[e]["log_yml"])
+            # only if log_yml key is present 
+            if "log_yml" in results_remote[e]:
+                results_remote_processed = utils.process_log_yml_dict(results_remote[e]["log_yml"])
+            else:
+                results_remote_processed = {"status": "ERROR", "error_message": "log_yml key not found", "exception_type": "KeyError"}
             mtab_remote_outcome_key = f'{e}_remote_outcome'
 
             info_submission = f"Download: {results_remote[e]['download']}<br><br>Logs: {results_remote[e]['logs']}<br><br>View: {results_remote[e]['view']}<br><br>HTTP response: {str(results_remote[e]['response'])}"
@@ -265,9 +280,12 @@ def main():
 
             mtab[mtab_remote_outcome_key] = [results_remote_processed['status'], info_submission]
 
-
         #stop matplotlib plots from building up
         matplotlib.pyplot.close()
+
+        mtab_dict = {'mtab_row': mtab,'results_remote': results_remote}
+        pickle.dump(mtab_dict, open(pickle_name, "wb"))
+
 
     print() #end progress counter, go to next line of stdout
 
@@ -286,9 +304,11 @@ def main():
 
     #write out to file
     os.chdir(starting_dir)
-    with open('README.md', "w") as fout:
+    with open('README.md', "w", encoding="utf-8") as fout:
         fout.write(md_description)
         mtab.write(fout)
 
 if __name__ == "__main__":
+    use_pickles = True
+    # model_id_n = 443
     main()

@@ -330,10 +330,11 @@ def xmlns_fbc_attribute_missing(sbml_filepath,sedml_filepath):
     '''
     True if the xmlns:fbc attribute is missing from the main sedml tag of the SED-ML file but present in the SBML file
     '''
-    with open(sbml_filepath, 'r') as file:
+    
+    with open(sbml_filepath, 'r', encoding='utf-8') as file:
         sbmlstr = file.read()
 
-    with open(sedml_filepath, 'r') as file:
+    with open(sedml_filepath, 'r', encoding='utf-8') as file:
         sedstr = file.read()
     
     sbmlstr_fbc = re.search(r'xmlns:fbc="([^"]*)"', sbmlstr)
@@ -1300,8 +1301,8 @@ def run_biosimulators_remotely(engine_keys,
     for e, link in results_remote.items():
         try:
             extract_dir = get_remote_results(e, link["download"], remote_output_dir)
-        except HTTPError as emessage:
-            results_remote[e] ={'response': '', 'view': '', 'download': '', 'logs': '', 'exception': str(emessage), 'exception_type': type(emessage).__name__}
+        except Exception as emessage:
+            print(f'Error downloading {e} results: {emessage}')
             continue
         extract_dir_dict[e] = extract_dir
 
