@@ -20,10 +20,12 @@ import os
 import urllib
 import sys
 import matplotlib
+import pickle
 
 sys.path.append("..")
 import utils
 
+matplotlib.use('agg') #prevent matplotlib from trying to open a window
 API_URL: str = "https://www.ebi.ac.uk/biomodels"
 
 out_format="json"
@@ -185,8 +187,8 @@ def main():
 
     #accumulate results in columns defined by keys which correspond to the local variable names to be used below
     #to allow automated loading into the columns
-    column_labels = "Model     |valid-sbml|valid-sbml-units|valid-sedml|broken-ref|tellurium"
-    column_keys  =  "model_desc|valid_sbml|valid_sbml_units|valid_sedml|broken_ref|tellurium_outcome"
+    column_labels = "Model     |valid-sbml|valid-sbml-units|valid-sedml|broken-ref|tellurium|tellurium-remote|copasi-remote"
+    column_keys  =  "model_desc|valid_sbml|valid_sbml_units|valid_sedml|broken_ref|tellurium_outcome|tellurium_remote_outcome|copasi_remote_outcome"
     mtab = utils.MarkdownTable(column_labels,column_keys)
 
     #allow stdout/stderr from validation tests to be suppressed to improve progress count visibility
@@ -196,8 +198,18 @@ def main():
     model_ids = cache.do_request(f"{API_URL}/model/identifiers?format={out_format}").json()['models']
     count = 0
     starting_dir = os.getcwd()
-
+        
     for model_id in model_ids:
+
+        pickle_name = f"{model_id}_mtab.p"
+        pickle_path = os.path.join(starting_dir,tmp_dir,model_id,pickle_name)
+        if os.path.exists(pickle_path) and use_pickles:
+            print(f"\r{model_id} {count}/{len(model_ids)}       ",end='')
+            print(f"loading {pickle_path}...")
+            mtab_dict = pickle.load(open(pickle_path, "rb"))
+            mtab.new_row()
+            mtab = mtab_dict['mtab_row']
+            continue
         #allow testing on a small sample of models
         if max_count > 0 and count >= max_count: break
         count += 1
@@ -241,8 +253,39 @@ def main():
         mtab['tellurium_outcome'] = utils.test_engine("tellurium",sedml_file)
         sup.restore()
 
+
+        engine_keys = ["copasi","tellurium"]
+        test_folder = 'tests'
+        d1_plots_remote_dir = os.path.join(test_folder, 'd1_plots_remote')
+        results_remote = utils.run_biosimulators_remotely(engine_keys,
+                                        sedml_file_name=sedml_file, 
+                                        sbml_file_name=sbml_file,
+                                        d1_plots_remote_dir=d1_plots_remote_dir, 
+                                        test_folder=test_folder)
+            
+            
+        for e in engine_keys:
+            # only if log_yml key is present 
+            if "log_yml" in results_remote[e]:
+                results_remote_processed = utils.process_log_yml_dict(results_remote[e]["log_yml"])
+            else:
+                results_remote_processed = {"status": "ERROR", "error_message": "log_yml key not found", "exception_type": "KeyError"}
+            mtab_remote_outcome_key = f'{e}_remote_outcome'
+
+            info_submission = f"Download: {results_remote[e]['download']}<br><br>Logs: {results_remote[e]['logs']}<br><br>View: {results_remote[e]['view']}<br><br>HTTP response: {str(results_remote[e]['response'])}"
+            error_message_string = f'Error message: {results_remote_processed["error_message"]}<br><br>Exception type: {results_remote_processed["exception_type"]}'
+
+            if results_remote_processed["error_message"] != "":
+                info_submission = info_submission + f'<br><br>{error_message_string}'
+
+            mtab[mtab_remote_outcome_key] = [results_remote_processed['status'], info_submission]
+
         #stop matplotlib plots from building up
         matplotlib.pyplot.close()
+
+        mtab_dict = {'mtab_row': mtab,'results_remote': results_remote}
+        pickle.dump(mtab_dict, open(pickle_name, "wb"))
+
 
     print() #end progress counter, go to next line of stdout
 
@@ -251,7 +294,7 @@ def main():
 
     #count occurrences of each cell value, convert to final form
     for key in ['valid_sbml','valid_sbml_units','valid_sedml','broken_ref',
-                'tellurium_outcome']:
+                'tellurium_outcome','tellurium_remote_outcome', 'copasi_remote_outcome']:
         mtab.simple_summary(key)
         mtab.transform_column(key)
 
@@ -261,9 +304,11 @@ def main():
 
     #write out to file
     os.chdir(starting_dir)
-    with open('README.md', "w") as fout:
+    with open('README.md', "w", encoding="utf-8") as fout:
         fout.write(md_description)
         mtab.write(fout)
 
 if __name__ == "__main__":
+    use_pickles = True
+    # model_id_n = 443
     main()
