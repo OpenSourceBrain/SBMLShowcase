@@ -1,11 +1,11 @@
 {
     "amici": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc5a4ef911d5d452599d0",
-        "download": "https://api.biosimulations.org/results/674dc5a4ef911d5d452599d0/download",
-        "logs": "https://api.biosimulations.org/logs/674dc5a4ef911d5d452599d0?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6756f219c3054f763d559520",
+        "download": "https://api.biosimulations.org/results/6756f219c3054f763d559520/download",
+        "logs": "https://api.biosimulations.org/logs/6756f219c3054f763d559520?includeOutput=true",
         "log_yml": {
-            "duration": 0.367675,
+            "duration": 0.269805,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
                 "type": "ValueError"
@@ -18,11 +18,11 @@
     },
     "brian2": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc5a6261553b9bc253da5",
-        "download": "https://api.biosimulations.org/results/674dc5a6261553b9bc253da5/download",
-        "logs": "https://api.biosimulations.org/logs/674dc5a6261553b9bc253da5?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6756f21bc3054f763d559523",
+        "download": "https://api.biosimulations.org/results/6756f21bc3054f763d559523/download",
+        "logs": "https://api.biosimulations.org/logs/6756f21bc3054f763d559523?includeOutput=true",
         "log_yml": {
-            "duration": 0.060828,
+            "duration": 0.047268,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -35,11 +35,11 @@
     },
     "bionetgen": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc5a8ef911d5d452599d3",
-        "download": "https://api.biosimulations.org/results/674dc5a8ef911d5d452599d3/download",
-        "logs": "https://api.biosimulations.org/logs/674dc5a8ef911d5d452599d3?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6756f21c9fa297efdca21288",
+        "download": "https://api.biosimulations.org/results/6756f21c9fa297efdca21288/download",
+        "logs": "https://api.biosimulations.org/logs/6756f21c9fa297efdca21288?includeOutput=true",
         "log_yml": {
-            "duration": 0.225267,
+            "duration": 0.191921,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
                 "type": "ValueError"
@@ -52,11 +52,11 @@
     },
     "boolnet": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc5aaef911d5d452599d6",
-        "download": "https://api.biosimulations.org/results/674dc5aaef911d5d452599d6/download",
-        "logs": "https://api.biosimulations.org/logs/674dc5aaef911d5d452599d6?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6756f21e707aa641045f4c43",
+        "download": "https://api.biosimulations.org/results/6756f21e707aa641045f4c43/download",
+        "logs": "https://api.biosimulations.org/logs/6756f21e707aa641045f4c43?includeOutput=true",
         "log_yml": {
-            "duration": 0.221115,
+            "duration": 0.187688,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
                 "type": "ValueError"
@@ -69,11 +69,11 @@
     },
     "cbmpy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc5abef911d5d452599d9",
-        "download": "https://api.biosimulations.org/results/674dc5abef911d5d452599d9/download",
-        "logs": "https://api.biosimulations.org/logs/674dc5abef911d5d452599d9?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6756f2209fa297efdca2128d",
+        "download": "https://api.biosimulations.org/results/6756f2209fa297efdca2128d/download",
+        "logs": "https://api.biosimulations.org/logs/6756f2209fa297efdca2128d?includeOutput=true",
         "log_yml": {
-            "duration": 0.391473,
+            "duration": 0.272744,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
                 "type": "ValueError"
@@ -86,11 +86,11 @@
     },
     "cobrapy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc5ae10bb4455d618755b",
-        "download": "https://api.biosimulations.org/results/674dc5ae10bb4455d618755b/download",
-        "logs": "https://api.biosimulations.org/logs/674dc5ae10bb4455d618755b?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6756f222c3054f763d559528",
+        "download": "https://api.biosimulations.org/results/6756f222c3054f763d559528/download",
+        "logs": "https://api.biosimulations.org/logs/6756f222c3054f763d559528?includeOutput=true",
         "log_yml": {
-            "duration": 0.205544,
+            "duration": 0.186545,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
                 "type": "ValueError"
@@ -103,11 +103,11 @@
     },
     "copasi": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc5b010bb4455d6187562",
-        "download": "https://api.biosimulations.org/results/674dc5b010bb4455d6187562/download",
-        "logs": "https://api.biosimulations.org/logs/674dc5b010bb4455d6187562?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6756f224c3054f763d55952d",
+        "download": "https://api.biosimulations.org/results/6756f224c3054f763d55952d/download",
+        "logs": "https://api.biosimulations.org/logs/6756f224c3054f763d55952d?includeOutput=true",
         "log_yml": {
-            "duration": 0.241913,
+            "duration": 0.198296,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
                 "type": "ValueError"
@@ -120,11 +120,11 @@
     },
     "gillespy2": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc5b2ef911d5d452599de",
-        "download": "https://api.biosimulations.org/results/674dc5b2ef911d5d452599de/download",
-        "logs": "https://api.biosimulations.org/logs/674dc5b2ef911d5d452599de?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6756f2269fa297efdca21294",
+        "download": "https://api.biosimulations.org/results/6756f2269fa297efdca21294/download",
+        "logs": "https://api.biosimulations.org/logs/6756f2269fa297efdca21294?includeOutput=true",
         "log_yml": {
-            "duration": 0.219933,
+            "duration": 0.196275,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
                 "type": "ValueError"
@@ -137,11 +137,11 @@
     },
     "ginsim": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc5b4ef911d5d452599e3",
-        "download": "https://api.biosimulations.org/results/674dc5b4ef911d5d452599e3/download",
-        "logs": "https://api.biosimulations.org/logs/674dc5b4ef911d5d452599e3?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6756f228707aa641045f4c4d",
+        "download": "https://api.biosimulations.org/results/6756f228707aa641045f4c4d/download",
+        "logs": "https://api.biosimulations.org/logs/6756f228707aa641045f4c4d?includeOutput=true",
         "log_yml": {
-            "duration": 0.2174,
+            "duration": 0.196109,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
                 "type": "ValueError"
@@ -154,11 +154,11 @@
     },
     "libsbmlsim": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc5b6ef911d5d452599e6",
-        "download": "https://api.biosimulations.org/results/674dc5b6ef911d5d452599e6/download",
-        "logs": "https://api.biosimulations.org/logs/674dc5b6ef911d5d452599e6?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6756f22ac3054f763d559537",
+        "download": "https://api.biosimulations.org/results/6756f22ac3054f763d559537/download",
+        "logs": "https://api.biosimulations.org/logs/6756f22ac3054f763d559537?includeOutput=true",
         "log_yml": {
-            "duration": 0.214185,
+            "duration": 0.19705,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
                 "type": "ValueError"
@@ -171,11 +171,11 @@
     },
     "masspy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc5b9261553b9bc253db3",
-        "download": "https://api.biosimulations.org/results/674dc5b9261553b9bc253db3/download",
-        "logs": "https://api.biosimulations.org/logs/674dc5b9261553b9bc253db3?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6756f22cc3054f763d559543",
+        "download": "https://api.biosimulations.org/results/6756f22cc3054f763d559543/download",
+        "logs": "https://api.biosimulations.org/logs/6756f22cc3054f763d559543?includeOutput=true",
         "log_yml": {
-            "duration": 0.434822,
+            "duration": 0.404767,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
                 "type": "ValueError"
@@ -188,11 +188,11 @@
     },
     "netpyne": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc5bb261553b9bc253db8",
-        "download": "https://api.biosimulations.org/results/674dc5bb261553b9bc253db8/download",
-        "logs": "https://api.biosimulations.org/logs/674dc5bb261553b9bc253db8?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6756f22d707aa641045f4c66",
+        "download": "https://api.biosimulations.org/results/6756f22d707aa641045f4c66/download",
+        "logs": "https://api.biosimulations.org/logs/6756f22d707aa641045f4c66?includeOutput=true",
         "log_yml": {
-            "duration": 0.057637,
+            "duration": 0.049768,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -205,11 +205,11 @@
     },
     "neuron": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc5bcef911d5d452599f3",
-        "download": "https://api.biosimulations.org/results/674dc5bcef911d5d452599f3/download",
-        "logs": "https://api.biosimulations.org/logs/674dc5bcef911d5d452599f3?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6756f22f9fa297efdca212b4",
+        "download": "https://api.biosimulations.org/results/6756f22f9fa297efdca212b4/download",
+        "logs": "https://api.biosimulations.org/logs/6756f22f9fa297efdca212b4?includeOutput=true",
         "log_yml": {
-            "duration": 0.053141,
+            "duration": 0.046303,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -222,16 +222,16 @@
     },
     "opencor": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc5beef911d5d452599f6",
-        "download": "https://api.biosimulations.org/results/674dc5beef911d5d452599f6/download",
-        "logs": "https://api.biosimulations.org/logs/674dc5beef911d5d452599f6?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6756f230707aa641045f4c76",
+        "download": "https://api.biosimulations.org/results/6756f230707aa641045f4c76/download",
+        "logs": "https://api.biosimulations.org/logs/6756f230707aa641045f4c76?includeOutput=true",
         "log_yml": {
-            "duration": 0.036307,
+            "duration": 0.032148,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
             },
-            "output": "/home/opencor/OpenCOR/python/lib/python3.7/site-packages/biosimulators_utils/warnings.py:31: SedmlFeatureNotSupportedWarning: \u001b[33m`/tmp/tmpsxy4ki5b/./BIOMD0000000138_url.sedml` is encoded using L1V4. Only features available in L1V3 are supported. Newer features such as simple repeated tasks are not yet supported.\u001b[0m\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\n",
+            "output": "/home/opencor/OpenCOR/python/lib/python3.7/site-packages/biosimulators_utils/warnings.py:31: SedmlFeatureNotSupportedWarning: \u001b[33m`/tmp/tmpf33_j97n/./BIOMD0000000138_url.sedml` is encoded using L1V4. Only features available in L1V3 are supported. Newer features such as simple repeated tasks are not yet supported.\u001b[0m\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\n",
             "sedDocuments": [],
             "skipReason": null,
             "status": "FAILED"
@@ -239,11 +239,11 @@
     },
     "pyneuroml": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc5c0ef911d5d452599fd",
-        "download": "https://api.biosimulations.org/results/674dc5c0ef911d5d452599fd/download",
-        "logs": "https://api.biosimulations.org/logs/674dc5c0ef911d5d452599fd?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6756f2329fa297efdca212ca",
+        "download": "https://api.biosimulations.org/results/6756f2329fa297efdca212ca/download",
+        "logs": "https://api.biosimulations.org/logs/6756f2329fa297efdca212ca?includeOutput=true",
         "log_yml": {
-            "duration": 0.050251,
+            "duration": 0.053697,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -256,11 +256,11 @@
     },
     "pysces": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc5c1261553b9bc253dcc",
-        "download": "https://api.biosimulations.org/results/674dc5c1261553b9bc253dcc/download",
-        "logs": "https://api.biosimulations.org/logs/674dc5c1261553b9bc253dcc?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6756f2349fa297efdca212e0",
+        "download": "https://api.biosimulations.org/results/6756f2349fa297efdca212e0/download",
+        "logs": "https://api.biosimulations.org/logs/6756f2349fa297efdca212e0?includeOutput=true",
         "log_yml": {
-            "duration": 0.202896,
+            "duration": 0.215506,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
                 "type": "ValueError"
@@ -273,11 +273,11 @@
     },
     "rbapy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc5c3ef911d5d45259a11",
-        "download": "https://api.biosimulations.org/results/674dc5c3ef911d5d45259a11/download",
-        "logs": "https://api.biosimulations.org/logs/674dc5c3ef911d5d45259a11?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6756f235707aa641045f4c8c",
+        "download": "https://api.biosimulations.org/results/6756f235707aa641045f4c8c/download",
+        "logs": "https://api.biosimulations.org/logs/6756f235707aa641045f4c8c?includeOutput=true",
         "log_yml": {
-            "duration": 0.188687,
+            "duration": 0.222761,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
                 "type": "ValueError"
@@ -290,11 +290,11 @@
     },
     "smoldyn": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc5c5ef911d5d45259a27",
-        "download": "https://api.biosimulations.org/results/674dc5c5ef911d5d45259a27/download",
-        "logs": "https://api.biosimulations.org/logs/674dc5c5ef911d5d45259a27?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6756f237707aa641045f4c95",
+        "download": "https://api.biosimulations.org/results/6756f237707aa641045f4c95/download",
+        "logs": "https://api.biosimulations.org/logs/6756f237707aa641045f4c95?includeOutput=true",
         "log_yml": {
-            "duration": 0.047552,
+            "duration": 0.048602,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -307,11 +307,11 @@
     },
     "tellurium": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc5c710bb4455d6187595",
-        "download": "https://api.biosimulations.org/results/674dc5c710bb4455d6187595/download",
-        "logs": "https://api.biosimulations.org/logs/674dc5c710bb4455d6187595?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6756f239707aa641045f4ca6",
+        "download": "https://api.biosimulations.org/results/6756f239707aa641045f4ca6/download",
+        "logs": "https://api.biosimulations.org/logs/6756f239707aa641045f4ca6?includeOutput=true",
         "log_yml": {
-            "duration": 0.304898,
+            "duration": 0.317933,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
                 "type": "ValueError"
@@ -324,11 +324,11 @@
     },
     "vcell": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc5ca10bb4455d618759a",
-        "download": "https://api.biosimulations.org/results/674dc5ca10bb4455d618759a/download",
-        "logs": "https://api.biosimulations.org/logs/674dc5ca10bb4455d618759a?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6756f23cc3054f763d5595ab",
+        "download": "https://api.biosimulations.org/results/6756f23cc3054f763d5595ab/download",
+        "logs": "https://api.biosimulations.org/logs/6756f23cc3054f763d5595ab?includeOutput=true",
         "log_yml": {
-            "duration": 3,
+            "duration": 2,
             "exception": null,
             "output": "Processing BIOMD0000000138_url.sedml.  Done",
             "sedDocuments": [
@@ -587,11 +587,11 @@
     },
     "xpp": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc5ccef911d5d45259a3d",
-        "download": "https://api.biosimulations.org/results/674dc5ccef911d5d45259a3d/download",
-        "logs": "https://api.biosimulations.org/logs/674dc5ccef911d5d45259a3d?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6756f23f707aa641045f4cbb",
+        "download": "https://api.biosimulations.org/results/6756f23f707aa641045f4cbb/download",
+        "logs": "https://api.biosimulations.org/logs/6756f23f707aa641045f4cbb?includeOutput=true",
         "log_yml": {
-            "duration": 0.047449,
+            "duration": 0.083421,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
