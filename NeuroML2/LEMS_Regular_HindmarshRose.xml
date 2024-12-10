@@ -19,7 +19,7 @@
 <network id="net1">
     <population id="hr_regular_pop" component="hr_regular" size="1"/>
 </network>
-        
+
 
 <Simulation id="sim1" length="1400s" step="0.0025s" target="net1">
 
@@ -40,14 +40,14 @@
         <Line id ="z" quantity="hr_regular_pop[0]/z" scale="1"
             color="#00ff00" timeScale="1s"/>
     </Display>
-    
-    
+
+
     <OutputFile id="of0" fileName="hr.dat">
       <OutputColumn id="x" quantity="hr_regular_pop[0]/x"/>
       <OutputColumn id="y" quantity="hr_regular_pop[0]/y"/>
       <OutputColumn id="z" quantity="hr_regular_pop[0]/z"/>
     </OutputFile>
-    
+
 </Simulation>
 
 </Lems>

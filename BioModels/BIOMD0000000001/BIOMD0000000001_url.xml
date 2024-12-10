@@ -72,11 +72,11 @@
           </div>
         </div>
         <div class="dc:publisher">
-          <p>This model is hosted on 
+          <p>This model is hosted on
   <a href="http://www.ebi.ac.uk/biomodels/">BioModels Database</a>
-  and identified by: 
+  and identified by:
   <a href="http://identifiers.org/biomodels.db/BIOMD0000000001">BIOMD0000000001</a>.</p>
-          <p>To cite BioModels Database, please use: 
+          <p>To cite BioModels Database, please use:
   <a href="http://identifiers.org/pubmed/20587024" title="Latest BioModels Database publication">BioModels Database:
   An enhanced, curated and annotated resource for published
   quantitative kinetic models</a>.</p>
@@ -84,7 +84,7 @@
         <div class="dc:license">
           <p>To the extent possible under law, all copyright and related or
   neighbouring rights to this encoded model have been dedicated to
-  the public domain worldwide. Please refer to 
+  the public domain worldwide. Please refer to
   <a href="http://creativecommons.org/publicdomain/zero/1.0/" title="Access to: CC0 1.0 Universal (CC0 1.0), Public Domain Dedication">CC0
   Public Domain Dedication</a> for more information.</p>
         </div>
@@ -141,7 +141,7 @@
 	</rdf:Bag>
 	</bqbiol:hasTaxon>
 	</rdf:Description>
-	
+
       </rdf:RDF>
     </annotation>
       <listOfCompartments>
@@ -155,7 +155,7 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
             </compartment>
@@ -177,7 +177,7 @@
 	</rdf:Bag>
 	</bqbiol:isVersionOf>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
             </species>
@@ -197,7 +197,7 @@
 	</rdf:Bag>
 	</bqbiol:isVersionOf>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
             </species>
@@ -217,7 +217,7 @@
 	</rdf:Bag>
 	</bqbiol:isVersionOf>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
             </species>
@@ -237,7 +237,7 @@
 	</rdf:Bag>
 	</bqbiol:isVersionOf>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
             </species>
@@ -257,7 +257,7 @@
 	</rdf:Bag>
 	</bqbiol:isVersionOf>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
             </species>
@@ -277,7 +277,7 @@
 	</rdf:Bag>
 	</bqbiol:isVersionOf>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
             </species>
@@ -297,7 +297,7 @@
 	</rdf:Bag>
 	</bqbiol:isVersionOf>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
             </species>
@@ -317,7 +317,7 @@
 	</rdf:Bag>
 	</bqbiol:isVersionOf>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
             </species>
@@ -337,7 +337,7 @@
 	</rdf:Bag>
 	</bqbiol:isVersionOf>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
             </species>
@@ -357,7 +357,7 @@
 	</rdf:Bag>
 	</bqbiol:isVersionOf>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
             </species>
@@ -377,7 +377,7 @@
 	</rdf:Bag>
 	</bqbiol:isVersionOf>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
             </species>
@@ -397,7 +397,7 @@
 	</rdf:Bag>
 	</bqbiol:isVersionOf>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
             </species>
@@ -455,7 +455,7 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
               <listOfReactants>
@@ -470,7 +470,7 @@
               <p>kf_0 * B - kr_0 * BL</p>
             </body>
           </notes>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> comp1 </ci>
@@ -506,7 +506,7 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
               <listOfReactants>
@@ -521,7 +521,7 @@
               <p>kf_1 * BL - kr_1 * BLL</p>
             </body>
           </notes>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> comp1 </ci>
@@ -557,7 +557,7 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
               <listOfReactants>
@@ -572,7 +572,7 @@
               <p>kf_2 * BLL - kr_2 * ALL</p>
             </body>
           </notes>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> comp1 </ci>
@@ -608,7 +608,7 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
               <listOfReactants>
@@ -623,7 +623,7 @@
               <p>kf_3 * A - kr_3 * AL</p>
             </body>
           </notes>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> comp1 </ci>
@@ -659,7 +659,7 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
               <listOfReactants>
@@ -674,7 +674,7 @@
               <p>kf_4 * AL - kr_4 * ALL</p>
             </body>
           </notes>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> comp1 </ci>
@@ -710,7 +710,7 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
               <listOfReactants>
@@ -725,7 +725,7 @@
               <p>kf_5 * B - kr_5 * A</p>
             </body>
           </notes>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> comp1 </ci>
@@ -761,7 +761,7 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
               <listOfReactants>
@@ -776,7 +776,7 @@
               <p>kf_6 * BL - kr_6 * AL</p>
             </body>
           </notes>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> comp1 </ci>
@@ -812,7 +812,7 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
               <listOfReactants>
@@ -827,7 +827,7 @@
               <p>kf_7 * I - kr_7 * IL</p>
             </body>
           </notes>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> comp1 </ci>
@@ -863,7 +863,7 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
               <listOfReactants>
@@ -878,7 +878,7 @@
               <p>kf_8 * IL - kr_8 * ILL</p>
             </body>
           </notes>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> comp1 </ci>
@@ -914,7 +914,7 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
               <listOfReactants>
@@ -929,7 +929,7 @@
               <p>kf_9 * A - kr_9 * I</p>
             </body>
           </notes>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> comp1 </ci>
@@ -965,7 +965,7 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
               <listOfReactants>
@@ -980,7 +980,7 @@
               <p>kf_10 * AL - kr_10 * IL</p>
             </body>
           </notes>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> comp1 </ci>
@@ -1016,7 +1016,7 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
               <listOfReactants>
@@ -1031,7 +1031,7 @@
               <p>kf_11 * ALL - kr_11 * ILL</p>
             </body>
           </notes>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> comp1 </ci>
@@ -1067,7 +1067,7 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
               <listOfReactants>
@@ -1082,7 +1082,7 @@
               <p>kf_12 * D - kr_12 * DL</p>
             </body>
           </notes>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> comp1 </ci>
@@ -1118,7 +1118,7 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
               <listOfReactants>
@@ -1133,7 +1133,7 @@
               <p>kf_13 * DL - kr_13 * DLL</p>
             </body>
           </notes>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> comp1 </ci>
@@ -1172,7 +1172,7 @@
               <p>kf_14 * I - kr_14 * D</p>
             </body>
           </notes>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> comp1 </ci>
@@ -1211,7 +1211,7 @@
               <p>kf_15 * IL - kr_15 * DL</p>
             </body>
           </notes>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> comp1 </ci>
@@ -1250,7 +1250,7 @@
               <p>kf_16 * ILL - kr_16 * DLL</p>
             </body>
           </notes>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> comp1 </ci>
@@ -1283,11 +1283,11 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
+
           </rdf:RDF>
         </annotation>
               <trigger metaid="_323956">
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <gt/>
               <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> time </csymbol>
@@ -1297,42 +1297,42 @@
                 </trigger>
         <listOfEventAssignments>
           <eventAssignment metaid="_323968" variable="kf_0">
-            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
               <cn> 0 </cn>
             </math>
                     </eventAssignment>
           <eventAssignment metaid="_323980" variable="kf_3">
-            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
               <cn> 0 </cn>
             </math>
                     </eventAssignment>
           <eventAssignment metaid="_323992" variable="kf_7">
-            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
               <cn> 0 </cn>
             </math>
                     </eventAssignment>
           <eventAssignment metaid="_324004" variable="kf_12">
-            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
               <cn> 0 </cn>
             </math>
                     </eventAssignment>
           <eventAssignment metaid="_324016" variable="kf_1">
-            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
               <cn> 0 </cn>
             </math>
                     </eventAssignment>
           <eventAssignment metaid="_324028" variable="kf_4">
-            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
               <cn> 0 </cn>
             </math>
                     </eventAssignment>
           <eventAssignment metaid="_324041" variable="kf_8">
-            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
               <cn> 0 </cn>
             </math>
                     </eventAssignment>
           <eventAssignment metaid="_324053" variable="kf_13">
-            <math xmlns="http://www.w3.org/1998/Math/MathML">            
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
               <cn> 0 </cn>
             </math>
                     </eventAssignment>

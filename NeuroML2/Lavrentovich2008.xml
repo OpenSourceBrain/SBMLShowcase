@@ -1,6 +1,6 @@
 <Lems>
 
-    
+
     <ComponentType name="Lavrentovich2008" standalone="false">
         <Parameter name="vin" dimension="none"/>
         <Parameter name="kout" dimension="none"/>
@@ -46,18 +46,18 @@
         <Constant name="init_Z" value="0.1 " dimension="none"/>
         <Constant name="tscale" value="1per_s" dimension="per_time"/>
     </ComponentType>
-    
-    
-    
+
+
+
     <ComponentType  name="sbmlHelperCell"
                    extends="baseCellMembPotCap"
                    description="SBML model wrapped in a baseCell">
 
 
         <Child name="sbml" type="Lavrentovich2008"/>
-        
+
         <Dynamics simultaneous="false">
-            
+
             <StateVariable name="v" dimension="voltage" exposure="v"/>
 
             <TimeDerivative variable="v" value="0"/>
@@ -65,17 +65,16 @@
             <OnStart>
                 <StateAssignment variable="v" value="0"/>
             </OnStart>
-            
+
         </Dynamics>
 
     </ComponentType>
-    
+
     <sbmlHelperCell id="LavrentovichSBML"  C="100 pF">  <!-- C (capacitance) is just there to keep NEURON happy... -->
-        <sbml id="sbml" 
-                                      vin="0.05" kout="0.5" vM3="40.0" k_CaA="0.15" n="2.02" 
-                                      k_CaI="0.15" m="2.2" kip3="0.1" vM2="15.0" k2="0.1" 
+        <sbml id="sbml"
+                                      vin="0.05" kout="0.5" vM3="40.0" k_CaA="0.15" n="2.02"
+                                      k_CaI="0.15" m="2.2" kip3="0.1" vM2="15.0" k2="0.1"
                                       kf="0.5" vp="0.05" kp="0.3" kdeg="0.08"/>
     </sbmlHelperCell>
-    
+
 </Lems>
-    

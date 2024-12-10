@@ -14,7 +14,7 @@
             <p>To cite BioModels Database, please use:      <a href="http://www.ncbi.nlm.nih.gov/pubmed/20587024" target="_blank">Li C, Donizelli M, Rodriguez N, Dharuri H, Endler L, Chelliah V, Li L, He E, Henry A, Stefan MI, Snoep JL, Hucka M, Le Novère N, Laibe C (2010) BioModels Database: An enhanced, curated and annotated resource for published quantitative kinetic models. BMC Syst Biol., 4:92.</a>
                 </p>
             </body>
-      
+
     </notes>
     <annotation>
 	<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
@@ -72,7 +72,7 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
+
 	</rdf:RDF>
 	</annotation>
       <listOfUnitDefinitions>
@@ -103,7 +103,7 @@
 	</rdf:Bag>
 	</bqbiol:isVersionOf>
 	</rdf:Description>
-	
+
 	</rdf:RDF>
 	</annotation>
             </compartment>
@@ -113,7 +113,7 @@
         <notes>
           <p xmlns="http://www.w3.org/1999/xhtml">
         The concentration of Ca range can change from 0.1 to 0.3</p>
-          
+
         </notes>
         <annotation>
 	<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
@@ -125,7 +125,7 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
+
 	</rdf:RDF>
 	</annotation>
             </species>
@@ -141,7 +141,7 @@
         <notes>
           <p xmlns="http://www.w3.org/1999/xhtml">
         For figure 5A, ga=0, figure5B, ga=8, figure5C, ga=25</p>
-          
+
         </notes>
       </parameter>
       <parameter id="gf" metaid="metaid_0000015" value="0"/>
@@ -180,7 +180,7 @@
     </listOfParameters>
     <listOfRules>
       <assignmentRule metaid="metaid_0000046" variable="phik">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <divide/>
             <cn type="integer"> 1 </cn>
@@ -204,7 +204,7 @@
         </math>
             </assignmentRule>
       <assignmentRule metaid="metaid_0000047" variable="phia">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <divide/>
             <cn type="integer"> 1 </cn>
@@ -228,7 +228,7 @@
         </math>
             </assignmentRule>
       <assignmentRule metaid="metaid_0000048" variable="phih">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <divide/>
             <cn type="integer"> 1 </cn>
@@ -252,7 +252,7 @@
         </math>
             </assignmentRule>
       <assignmentRule metaid="metaid_0000049" variable="phif">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <divide/>
             <cn type="integer"> 1 </cn>
@@ -276,7 +276,7 @@
         </math>
             </assignmentRule>
       <assignmentRule metaid="metaid_0000050" variable="phical">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <divide/>
             <cn type="integer"> 1 </cn>
@@ -300,7 +300,7 @@
         </math>
             </assignmentRule>
       <assignmentRule metaid="metaid_0000052" variable="ica">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <times/>
             <ci> gcal </ci>
@@ -314,7 +314,7 @@
         </math>
             </assignmentRule>
       <assignmentRule metaid="metaid_0000056" variable="cinf">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <divide/>
             <apply>
@@ -339,7 +339,7 @@
         </math>
             </assignmentRule>
       <assignmentRule metaid="metaid_0000057" variable="isk">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <times/>
             <ci> gsk </ci>
@@ -353,7 +353,7 @@
         </math>
             </assignmentRule>
       <assignmentRule metaid="metaid_0000058" variable="ibk">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <times/>
             <ci> gf </ci>
@@ -367,7 +367,7 @@
         </math>
             </assignmentRule>
       <assignmentRule metaid="metaid_0000059" variable="ikdr">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <times/>
             <ci> gk </ci>
@@ -381,7 +381,7 @@
         </math>
             </assignmentRule>
       <assignmentRule metaid="metaid_0000060" variable="ia">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <times/>
             <ci> ga </ci>
@@ -396,7 +396,7 @@
         </math>
             </assignmentRule>
       <assignmentRule metaid="metaid_0000061" variable="ik">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <plus/>
             <ci> isk </ci>
@@ -416,10 +416,10 @@
 	</rdf:Bag>
 	</bqbiol:isVersionOf>
 	</rdf:Description>
-	
+
 	</rdf:RDF>
 	</annotation>
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <divide/>
             <apply>
@@ -445,10 +445,10 @@
 	</rdf:Bag>
 	</bqbiol:isVersionOf>
 	</rdf:Description>
-	
+
 	</rdf:RDF>
 	</annotation>
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <divide/>
             <apply>
@@ -475,10 +475,10 @@
 	</rdf:Bag>
 	</bqbiol:isVersionOf>
 	</rdf:Description>
-	
+
 	</rdf:RDF>
 	</annotation>
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <divide/>
             <apply>
@@ -502,14 +502,14 @@
 	</rdf:Bag>
 	</bqbiol:isVersionOf>
 	</rdf:Description>
-	
+
 	</rdf:RDF>
 	</annotation>
               <listOfProducts>
           <speciesReference metaid="_052329" species="c"/>
         </listOfProducts>
         <kineticLaw metaid="_052342">
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <apply>

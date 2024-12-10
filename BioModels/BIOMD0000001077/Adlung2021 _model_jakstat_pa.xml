@@ -68,9 +68,9 @@
 	</rdf:Bag>
 	</bqmodel:is>
 	</rdf:Description>
-	
-	
-	
+
+
+
       </rdf:RDF>
       <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
         <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">
@@ -116,7 +116,7 @@
     </annotation>
       <listOfFunctionDefinitions>
       <functionDefinition id="Function_for_v_5" name="Function for v_5">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
               <ci> EpoRActJAK2 </ci>
@@ -158,7 +158,7 @@
         </math>
             </functionDefinition>
       <functionDefinition id="Function_for_v_21" name="Function for v_21">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
               <ci> CISEqc </ci>
@@ -179,7 +179,7 @@
         </math>
             </functionDefinition>
       <functionDefinition id="Function_for_v_0" name="Function for v_0">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
               <ci> Epo </ci>
@@ -225,7 +225,7 @@
         </math>
             </functionDefinition>
       <functionDefinition id="Function_for_v_13" name="Function for v_13">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
               <ci> EpoRpJAK2 </ci>
@@ -286,7 +286,7 @@
         </math>
             </functionDefinition>
       <functionDefinition id="Function_for_v_25" name="Function for v_25">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
               <ci> SOCS3Eqc </ci>
@@ -311,7 +311,7 @@
         </math>
             </functionDefinition>
       <functionDefinition id="Function_for_v_1" name="Function for v_1">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
               <ci> DeaEpoRJAKActSHP1 </ci>
@@ -339,7 +339,7 @@
         </math>
             </functionDefinition>
       <functionDefinition id="Function_for_v_6" name="Function for v_6">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
               <ci> DeaEpoRJAKActSHP1 </ci>
@@ -367,7 +367,7 @@
         </math>
             </functionDefinition>
       <functionDefinition id="Function_for_v_8" name="Function for v_8">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
               <ci> DeaEpoRJAKActSHP1 </ci>
@@ -395,7 +395,7 @@
         </math>
             </functionDefinition>
       <functionDefinition id="Function_for_v_7" name="Function for v_7">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
               <ci> DeaEpoRJAKActSHP1 </ci>
@@ -423,7 +423,7 @@
         </math>
             </functionDefinition>
       <functionDefinition id="Function_for_v_11" name="Function for v_11">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
               <ci> EpoRpJAK2 </ci>
@@ -459,7 +459,7 @@
         </math>
             </functionDefinition>
       <functionDefinition id="Function_for_v_16" name="Function for v_16">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
               <ci> STAT5Exp </ci>
@@ -480,7 +480,7 @@
         </math>
             </functionDefinition>
       <functionDefinition id="Function_for_v_3" name="Function for v_3">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
               <ci> EpoRActJAK2 </ci>
@@ -523,7 +523,7 @@
         </math>
             </functionDefinition>
       <functionDefinition id="Function_for_v_2" name="Function for v_2">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
               <ci> EpoRActJAK2 </ci>
@@ -565,7 +565,7 @@
         </math>
             </functionDefinition>
       <functionDefinition id="Function_for_v_14" name="Function for v_14">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
               <ci> CIS </ci>
@@ -647,7 +647,7 @@
         </math>
             </functionDefinition>
       <functionDefinition id="Function_for_v_19" name="Function for v_19">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
               <ci> CISRNADelay </ci>
@@ -668,7 +668,7 @@
         </math>
             </functionDefinition>
       <functionDefinition id="Function_for_v_17" name="Function for v_17">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
               <ci> ActD </ci>
@@ -700,7 +700,7 @@
         </math>
             </functionDefinition>
       <functionDefinition id="Function_for_v_15" name="Function for v_15">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
               <ci> STAT5Imp </ci>
@@ -721,7 +721,7 @@
         </math>
             </functionDefinition>
       <functionDefinition id="Function_for_v_23" name="Function for v_23">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
               <ci> ActD </ci>
@@ -757,7 +757,7 @@
         </math>
             </functionDefinition>
       <functionDefinition id="Function_for_v_4" name="Function for v_4">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <lambda>
             <bvar>
               <ci> EpoRActJAK2 </ci>
@@ -838,9 +838,9 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -861,9 +861,9 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -890,16 +890,16 @@
 	<rdf:li rdf:resource="http://identifiers.org/uniprot/P19235"/>
 	</rdf:Bag>
 	</bqbiol:hasPart>
-	
+
 	<bqbiol:hasPart>
 	<rdf:Bag>
 	<rdf:li rdf:resource="http://identifiers.org/uniprot/P01588"/>
 	</rdf:Bag>
 	</bqbiol:hasPart>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -931,16 +931,16 @@
 	<rdf:li rdf:resource="http://identifiers.org/uniprot/O60674"/>
 	</rdf:Bag>
 	</bqbiol:hasPart>
-	
+
 	<bqbiol:hasProperty>
 	<rdf:Bag>
 	<rdf:li rdf:resource="http://identifiers.org/bao/0002007"/>
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -973,16 +973,16 @@
 	<rdf:li rdf:resource="http://identifiers.org/uniprot/P19235"/>
 	</rdf:Bag>
 	</bqbiol:hasPart>
-	
+
 	<bqbiol:hasProperty>
 	<rdf:Bag>
 	<rdf:li rdf:resource="http://identifiers.org/bao/0002007"/>
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1015,16 +1015,16 @@
 	<rdf:li rdf:resource="http://identifiers.org/uniprot/P01588"/>
 	</rdf:Bag>
 	</bqbiol:hasPart>
-	
+
 	<bqbiol:hasProperty>
 	<rdf:Bag>
 	<rdf:li rdf:resource="http://identifiers.org/bao/0002007"/>
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1057,16 +1057,16 @@
 	<rdf:li rdf:resource="http://identifiers.org/uniprot/P01588"/>
 	</rdf:Bag>
 	</bqbiol:hasPart>
-	
+
 	<bqbiol:hasProperty>
 	<rdf:Bag>
 	<rdf:li rdf:resource="http://identifiers.org/bao/0002007"/>
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1090,9 +1090,9 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1112,16 +1112,16 @@
 	<rdf:li rdf:resource="http://identifiers.org/uniprot/P29350"/>
 	</rdf:Bag>
 	</bqbiol:is>
-	
+
 	<bqbiol:hasProperty>
 	<rdf:Bag>
 	<rdf:li rdf:resource="http://identifiers.org/bao/0002007"/>
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1143,9 +1143,9 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1165,16 +1165,16 @@
 	<rdf:li rdf:resource="http://identifiers.org/uniprot/P42229"/>
 	</rdf:Bag>
 	</bqbiol:is>
-	
+
 	<bqbiol:hasProperty>
 	<rdf:Bag>
 	<rdf:li rdf:resource="http://identifiers.org/bao/0002007"/>
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1195,16 +1195,16 @@
 	<rdf:li rdf:resource="http://identifiers.org/uniprot/P42229"/>
 	</rdf:Bag>
 	</bqbiol:is>
-	
+
 	<bqbiol:hasProperty>
 	<rdf:Bag>
 	<rdf:li rdf:resource="http://identifiers.org/bao/0002007"/>
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1225,16 +1225,16 @@
 	<rdf:li rdf:resource="http://identifiers.org/uniprot/Q9NSE2"/>
 	</rdf:Bag>
 	</bqbiol:is>
-	
+
 	<bqbiol:is>
 	<rdf:Bag>
 	<rdf:li rdf:resource="http://identifiers.org/efo/0003738"/>
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1255,16 +1255,16 @@
 	<rdf:li rdf:resource="http://identifiers.org/efo/0003738"/>
 	</rdf:Bag>
 	</bqbiol:is>
-	
+
 	<bqbiol:is>
 	<rdf:Bag>
 	<rdf:li rdf:resource="http://identifiers.org/uniprot/Q9NSE2"/>
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1285,16 +1285,16 @@
 	<rdf:li rdf:resource="http://identifiers.org/uniprot/Q9NSE2"/>
 	</rdf:Bag>
 	</bqbiol:is>
-	
+
 	<bqbiol:is>
 	<rdf:Bag>
 	<rdf:li rdf:resource="http://identifiers.org/efo/0003738"/>
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1316,9 +1316,9 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1339,9 +1339,9 @@
 	</rdf:Bag>
 	</bqbiol:is>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:CopasiMT="http://www.copasi.org/RDF/MiriamTerms#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1386,89 +1386,89 @@
     </listOfParameters>
     <listOfInitialAssignments>
       <initialAssignment symbol="EpoRJAK2">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <ci> init_EpoRJAK2 </ci>
         </math>
             </initialAssignment>
       <initialAssignment symbol="EpoRpJAK2">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <cn> 0 </cn>
         </math>
             </initialAssignment>
       <initialAssignment symbol="p1EpoRpJAK2">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <cn> 0 </cn>
         </math>
             </initialAssignment>
       <initialAssignment symbol="p2EpoRpJAK2">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <cn> 0 </cn>
         </math>
             </initialAssignment>
       <initialAssignment symbol="p12EpoRpJAK2">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <cn> 0 </cn>
         </math>
             </initialAssignment>
       <initialAssignment symbol="SHP1">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <ci> init_SHP1 </ci>
         </math>
             </initialAssignment>
       <initialAssignment symbol="SHP1Act">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <cn> 0 </cn>
         </math>
             </initialAssignment>
       <initialAssignment symbol="STAT5">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <ci> init_STAT5 </ci>
         </math>
             </initialAssignment>
       <initialAssignment symbol="pSTAT5">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <cn> 0 </cn>
         </math>
             </initialAssignment>
       <initialAssignment symbol="npSTAT5">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <cn> 0 </cn>
         </math>
             </initialAssignment>
       <initialAssignment symbol="CISnRNA1">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <cn> 0 </cn>
         </math>
             </initialAssignment>
       <initialAssignment symbol="CISnRNA2">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <cn> 0 </cn>
         </math>
             </initialAssignment>
       <initialAssignment symbol="CISRNA">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <cn> 0 </cn>
         </math>
             </initialAssignment>
       <initialAssignment symbol="CIS">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <cn> 0 </cn>
         </math>
             </initialAssignment>
       <initialAssignment symbol="SOCS3">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <cn> 0 </cn>
         </math>
             </initialAssignment>
     </listOfInitialAssignments>
     <listOfRules>
       <assignmentRule variable="Epo">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <ci> epo_level </ci>
         </math>
             </assignmentRule>
       <assignmentRule variable="Total_STAT5">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <plus/>
             <ci> STAT5 </ci>
@@ -1482,7 +1482,7 @@
         </math>
             </assignmentRule>
       <assignmentRule variable="measuralbe_pSTAT5">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <times/>
             <apply>
@@ -1495,7 +1495,7 @@
         </math>
             </assignmentRule>
       <assignmentRule variable="_pSTAT5_Total_STAT5">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">        
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <apply>
             <times/>
             <apply>
@@ -1519,9 +1519,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1541,7 +1541,7 @@
           <modifierSpeciesReference species="SOCS3"/>
         </listOfModifiers>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> cyt </ci>
@@ -1568,9 +1568,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1590,7 +1590,7 @@
           <modifierSpeciesReference species="SHP1Act"/>
         </listOfModifiers>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> cyt </ci>
@@ -1615,9 +1615,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1637,7 +1637,7 @@
           <modifierSpeciesReference species="SOCS3"/>
         </listOfModifiers>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> cyt </ci>
@@ -1663,9 +1663,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1685,7 +1685,7 @@
           <modifierSpeciesReference species="SOCS3"/>
         </listOfModifiers>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> cyt </ci>
@@ -1711,9 +1711,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1733,7 +1733,7 @@
           <modifierSpeciesReference species="SOCS3"/>
         </listOfModifiers>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> cyt </ci>
@@ -1759,9 +1759,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1781,7 +1781,7 @@
           <modifierSpeciesReference species="SOCS3"/>
         </listOfModifiers>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> cyt </ci>
@@ -1807,9 +1807,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1829,7 +1829,7 @@
           <modifierSpeciesReference species="SHP1Act"/>
         </listOfModifiers>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> cyt </ci>
@@ -1854,9 +1854,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1876,7 +1876,7 @@
           <modifierSpeciesReference species="SHP1Act"/>
         </listOfModifiers>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> cyt </ci>
@@ -1901,9 +1901,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1923,7 +1923,7 @@
           <modifierSpeciesReference species="SHP1Act"/>
         </listOfModifiers>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> cyt </ci>
@@ -1948,9 +1948,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -1971,7 +1971,7 @@
           <modifierSpeciesReference species="p2EpoRpJAK2"/>
         </listOfModifiers>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> cyt </ci>
@@ -1998,9 +1998,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -2014,7 +2014,7 @@
           <speciesReference species="SHP1Act" stoichiometry="1"/>
         </listOfReactants>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> cyt </ci>
@@ -2034,9 +2034,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -2060,7 +2060,7 @@
           <modifierSpeciesReference species="p2EpoRpJAK2"/>
         </listOfModifiers>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> cyt </ci>
@@ -2090,9 +2090,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -2115,7 +2115,7 @@
           <modifierSpeciesReference species="p1EpoRpJAK2"/>
         </listOfModifiers>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> cyt </ci>
@@ -2146,9 +2146,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -2165,7 +2165,7 @@
           <speciesReference species="npSTAT5" stoichiometry="1"/>
         </listOfProducts>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <ci> Function_for_v_15 </ci>
               <ci> STAT5Imp </ci>
@@ -2185,9 +2185,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -2204,7 +2204,7 @@
           <speciesReference species="STAT5" stoichiometry="1"/>
         </listOfProducts>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <ci> Function_for_v_16 </ci>
               <ci> STAT5Exp </ci>
@@ -2224,9 +2224,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -2243,7 +2243,7 @@
           <modifierSpeciesReference species="npSTAT5"/>
         </listOfModifiers>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> nuc </ci>
@@ -2268,9 +2268,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -2287,7 +2287,7 @@
           <speciesReference species="CISnRNA2" stoichiometry="1"/>
         </listOfProducts>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> nuc </ci>
@@ -2307,9 +2307,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -2326,7 +2326,7 @@
           <speciesReference species="CISRNA" stoichiometry="1"/>
         </listOfProducts>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <ci> Function_for_v_19 </ci>
               <ci> CISRNADelay </ci>
@@ -2346,9 +2346,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -2362,7 +2362,7 @@
           <speciesReference species="CISRNA" stoichiometry="1"/>
         </listOfReactants>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> cyt </ci>
@@ -2382,9 +2382,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -2401,7 +2401,7 @@
           <modifierSpeciesReference species="CISRNA"/>
         </listOfModifiers>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> cyt </ci>
@@ -2425,9 +2425,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -2441,7 +2441,7 @@
           <speciesReference species="CIS" stoichiometry="1"/>
         </listOfReactants>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> cyt </ci>
@@ -2461,9 +2461,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -2480,7 +2480,7 @@
           <modifierSpeciesReference species="npSTAT5"/>
         </listOfModifiers>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <ci> Function_for_v_23 </ci>
               <ci> ActD </ci>
@@ -2502,9 +2502,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -2518,7 +2518,7 @@
           <speciesReference species="SOCS3" stoichiometry="1"/>
         </listOfReactants>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> cyt </ci>
@@ -2538,9 +2538,9 @@
 	</rdf:Bag>
 	</bqbiol:hasProperty>
 	</rdf:Description>
-	
-	
-	
+
+
+
           </rdf:RDF>
           <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
             <rdf:RDF xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -2554,7 +2554,7 @@
           <speciesReference species="SOCS3" stoichiometry="1"/>
         </listOfProducts>
         <kineticLaw>
-          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
               <times/>
               <ci> cyt </ci>

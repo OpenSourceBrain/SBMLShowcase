@@ -45,5 +45,3 @@ jobs:
           cd SBML/tests
           sudo rm -rf output
           python ./test_biosimulators_local.py --output-dir=tmp_plots
-  
-  
