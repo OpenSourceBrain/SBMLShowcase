@@ -2,7 +2,7 @@
 
 <neuroml xmlns="http://www.neuroml.org/schema/neuroml2"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2  https://raw.githubusercontent.com/NeuroML/NeuroML2/master/Schemas/NeuroML2/NeuroML_v2beta4.xsd"   
+         xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2  https://raw.githubusercontent.com/NeuroML/NeuroML2/master/Schemas/NeuroML2/NeuroML_v2beta4.xsd"
          id="Test">
 
     <include href="Lavrentovich2008.xml"/>
@@ -11,11 +11,11 @@
 
 
     <network id="Test">
-        
+
         <notes>Testing...</notes>
         <property tag="recommended_dt_ms" value="10"/>
         <property tag="recommended_duration_ms" value="1000000"/>
-    
+
 
         <population id="cellA" component="LavrentovichA" type="populationList" size="1">
            <annotation>
@@ -43,9 +43,7 @@
                 <location x="40" y="0" z="0"/>
             </instance>
         </population>
-        
+
     </network>
 
 </neuroml>
-
-

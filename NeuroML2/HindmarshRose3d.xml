@@ -6,7 +6,7 @@
 
     LEMS definition of the Hindmarsh Rose neuron model (see below
     for reference).
-    
+
     The Hindmarsh Rose model consists in a fast spiking subsystem,
     which is a generalization of the Fitzhugh-Nagumo (aka
     Bonhoeffer-van der Pol) oscillator, coupled to a slower subsystem
@@ -28,7 +28,7 @@
     dynamical variables x,y,z correspond to the membrane potential, a
     recovery variable, and a slower adaptation current, respectively.
     ">
-    
+
     <Parameter name="a" dimension="none" description="cubic term in x nullcline"/>
     <Parameter name="b" dimension="none" description="quadratic term in x nullcline"/>
     <Parameter name="c" dimension="none" description="constant term in y nullcline"/>
@@ -51,9 +51,9 @@
     <Exposure name="phi" dimension="none"/>
     <Exposure name="chi" dimension="none"/>
     <Exposure name="rho" dimension="none"/>
-    
+
     <Dynamics>
-        
+
         <StateVariable name="x" dimension="none" exposure="x"/>
         <StateVariable name="y" dimension="none" exposure="y"/>
         <StateVariable name="z" dimension="none" exposure="z"/>
@@ -64,15 +64,15 @@
         <TimeDerivative variable="x" value="(phi - z) / SEC"/>
         <TimeDerivative variable="y" value="chi / SEC"/>
         <TimeDerivative variable="z" value="r * rho / SEC"/>
-        
+
         <OnStart>
             <StateAssignment variable="x" value="x0"/>
             <StateAssignment variable="y" value="y0"/>
             <StateAssignment variable="z" value="z0"/>
         </OnStart>
-        
+
     </Dynamics>
-    
+
 </ComponentType>
 
 <!-- parameter set for regular saddle-node/homoclinic (aka square wave) bursting -->
@@ -81,4 +81,3 @@
     x0="-1.1" y0="-9" z0="1.0"/>
 
 </Lems>
-

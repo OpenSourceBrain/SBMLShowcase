@@ -1,16 +1,16 @@
 {
     "amici": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc49e10bb4455d6187451",
-        "download": "https://api.biosimulations.org/results/674dc49e10bb4455d6187451/download",
-        "logs": "https://api.biosimulations.org/logs/674dc49e10bb4455d6187451?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675873f3c3054f763d55b7b7",
+        "download": "https://api.biosimulations.org/results/675873f3c3054f763d55b7b7/download",
+        "logs": "https://api.biosimulations.org/logs/675873f3c3054f763d55b7b7?includeOutput=true",
         "log_yml": {
-            "duration": 34.42093,
+            "duration": 348.497507,
             "exception": null,
             "output": "",
             "sedDocuments": [
                 {
-                    "duration": 33.900116,
+                    "duration": 348.095326,
                     "exception": null,
                     "location": "BIOMD0000000001_url.sedml",
                     "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  BIOMD0000000001_url.sedml:\r\n    Tasks (1):\r\n      task1\r\n    Reports (1):\r\n      autogen_report_for_task1: 66 data sets\r\n    Plots (1):\r\n      autogen_plot_for_task1: 12 curves\r\n\r\nExecuting SED-ML file 1: BIOMD0000000001_url.sedml ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task1`\r\n    Outputs:\r\n      `autogen_plot_for_task1`\r\n      `autogen_report_for_task1`\r\n  Executing task 1: `task1`\r\n    Executing simulation ... \u001b[34msucceeded\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `autogen_report_for_task1` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `autogen_plot_for_task1` ...",
@@ -282,7 +282,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.432449,
+                            "duration": 24.812542,
                             "exception": null,
                             "id": "autogen_report_for_task1",
                             "output": "",
@@ -340,7 +340,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.581878,
+                            "duration": 10.823728,
                             "exception": null,
                             "id": "autogen_plot_for_task1",
                             "output": "",
@@ -353,10 +353,10 @@
                     "tasks": [
                         {
                             "algorithm": "KISAO_0000496",
-                            "duration": 32.711017,
+                            "duration": 312.26085,
                             "exception": null,
                             "id": "task1",
-                            "output": "",
+                            "output": "2024-12-10 12:06:59.442 - amici.swig_wrappers - DEBUG - [CVODES:CVode:TOO_MUCH_WORK] AMICI ERROR: in module CVODES in function CVode : At t = 455.172, mxstep steps taken before reaching tout. \r\n2024-12-10 12:06:59.443 - amici.swig_wrappers - ERROR - [FORWARD_FAILURE] AMICI forward simulation failed at t = 455.172: AMICI failed to integrate the forward problem\r\n",
                             "simulatorDetails": [
                                 {
                                     "key": "solver",
@@ -383,11 +383,11 @@
     },
     "brian2": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc4a0261553b9bc253ca0",
-        "download": "https://api.biosimulations.org/results/674dc4a0261553b9bc253ca0/download",
-        "logs": "https://api.biosimulations.org/logs/674dc4a0261553b9bc253ca0?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675873f49fa297efdca23260",
+        "download": "https://api.biosimulations.org/results/675873f49fa297efdca23260/download",
+        "logs": "https://api.biosimulations.org/logs/675873f49fa297efdca23260?includeOutput=true",
         "log_yml": {
-            "duration": 0.078477,
+            "duration": 0.051682,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -400,11 +400,11 @@
     },
     "bionetgen": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc4a2261553b9bc253ca3",
-        "download": "https://api.biosimulations.org/results/674dc4a2261553b9bc253ca3/download",
-        "logs": "https://api.biosimulations.org/logs/674dc4a2261553b9bc253ca3?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675873f6707aa641045f6e31",
+        "download": "https://api.biosimulations.org/results/675873f6707aa641045f6e31/download",
+        "logs": "https://api.biosimulations.org/logs/675873f6707aa641045f6e31?includeOutput=true",
         "log_yml": {
-            "duration": 0.198329,
+            "duration": 0.181258,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000001_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -417,11 +417,11 @@
     },
     "boolnet": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc4a4261553b9bc253ca6",
-        "download": "https://api.biosimulations.org/results/674dc4a4261553b9bc253ca6/download",
-        "logs": "https://api.biosimulations.org/logs/674dc4a4261553b9bc253ca6?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675873f8707aa641045f6e34",
+        "download": "https://api.biosimulations.org/results/675873f8707aa641045f6e34/download",
+        "logs": "https://api.biosimulations.org/logs/675873f8707aa641045f6e34?includeOutput=true",
         "log_yml": {
-            "duration": 0.192251,
+            "duration": 0.207529,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000001_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -434,11 +434,11 @@
     },
     "cbmpy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc4a610bb4455d6187455",
-        "download": "https://api.biosimulations.org/results/674dc4a610bb4455d6187455/download",
-        "logs": "https://api.biosimulations.org/logs/674dc4a610bb4455d6187455?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675873f9c3054f763d55b7bb",
+        "download": "https://api.biosimulations.org/results/675873f9c3054f763d55b7bb/download",
+        "logs": "https://api.biosimulations.org/logs/675873f9c3054f763d55b7bb?includeOutput=true",
         "log_yml": {
-            "duration": 0.292882,
+            "duration": 0.303911,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000001_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -451,11 +451,11 @@
     },
     "cobrapy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc4a810bb4455d6187458",
-        "download": "https://api.biosimulations.org/results/674dc4a810bb4455d6187458/download",
-        "logs": "https://api.biosimulations.org/logs/674dc4a810bb4455d6187458?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675873fb707aa641045f6e38",
+        "download": "https://api.biosimulations.org/results/675873fb707aa641045f6e38/download",
+        "logs": "https://api.biosimulations.org/logs/675873fb707aa641045f6e38?includeOutput=true",
         "log_yml": {
-            "duration": 0.22812,
+            "duration": 0.214701,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000001_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -468,16 +468,16 @@
     },
     "copasi": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc4aa261553b9bc253cad",
-        "download": "https://api.biosimulations.org/results/674dc4aa261553b9bc253cad/download",
-        "logs": "https://api.biosimulations.org/logs/674dc4aa261553b9bc253cad?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675873fd707aa641045f6e3e",
+        "download": "https://api.biosimulations.org/results/675873fd707aa641045f6e3e/download",
+        "logs": "https://api.biosimulations.org/logs/675873fd707aa641045f6e3e?includeOutput=true",
         "log_yml": {
-            "duration": 2.005031,
+            "duration": 52.027168,
             "exception": null,
             "output": "",
             "sedDocuments": [
                 {
-                    "duration": 1.627087,
+                    "duration": 51.659194,
                     "exception": null,
                     "location": "BIOMD0000000001_url.sedml",
                     "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  BIOMD0000000001_url.sedml:\r\n    Tasks (1):\r\n      task1\r\n    Reports (1):\r\n      autogen_report_for_task1: 66 data sets\r\n    Plots (1):\r\n      autogen_plot_for_task1: 12 curves\r\n\r\nExecuting SED-ML file 1: BIOMD0000000001_url.sedml ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task1`\r\n    Outputs:\r\n      `autogen_plot_for_task1`\r\n      `autogen_report_for_task1`\r\n  Executing task 1: `task1`\r\n    Executing simulation ...woohoo!\r\n \u001b[34msucceeded\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `autogen_report_for_task1` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `autogen_plot_for_task1` ...",
@@ -749,7 +749,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.617875,
+                            "duration": 32.748307,
                             "exception": null,
                             "id": "autogen_report_for_task1",
                             "output": "",
@@ -807,7 +807,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.591273,
+                            "duration": 13.41637,
                             "exception": null,
                             "id": "autogen_plot_for_task1",
                             "output": "",
@@ -820,7 +820,7 @@
                     "tasks": [
                         {
                             "algorithm": "KISAO_0000560",
-                            "duration": 0.239033,
+                            "duration": 5.334897,
                             "exception": null,
                             "id": "task1",
                             "output": "",
@@ -846,11 +846,11 @@
     },
     "gillespy2": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc4ac10bb4455d618745d",
-        "download": "https://api.biosimulations.org/results/674dc4ac10bb4455d618745d/download",
-        "logs": "https://api.biosimulations.org/logs/674dc4ac10bb4455d618745d?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67587400707aa641045f6e43",
+        "download": "https://api.biosimulations.org/results/67587400707aa641045f6e43/download",
+        "logs": "https://api.biosimulations.org/logs/67587400707aa641045f6e43?includeOutput=true",
         "log_yml": {
-            "duration": 0.21099,
+            "duration": 0.208636,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000001_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -863,11 +863,11 @@
     },
     "ginsim": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc4ae261553b9bc253cb2",
-        "download": "https://api.biosimulations.org/results/674dc4ae261553b9bc253cb2/download",
-        "logs": "https://api.biosimulations.org/logs/674dc4ae261553b9bc253cb2?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675874029fa297efdca2326c",
+        "download": "https://api.biosimulations.org/results/675874029fa297efdca2326c/download",
+        "logs": "https://api.biosimulations.org/logs/675874029fa297efdca2326c?includeOutput=true",
         "log_yml": {
-            "duration": 0.183826,
+            "duration": 0.203169,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000001_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -880,11 +880,11 @@
     },
     "libsbmlsim": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc4b0ef911d5d452598d2",
-        "download": "https://api.biosimulations.org/results/674dc4b0ef911d5d452598d2/download",
-        "logs": "https://api.biosimulations.org/logs/674dc4b0ef911d5d452598d2?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67587403707aa641045f6e4a",
+        "download": "https://api.biosimulations.org/results/67587403707aa641045f6e4a/download",
+        "logs": "https://api.biosimulations.org/logs/67587403707aa641045f6e4a?includeOutput=true",
         "log_yml": {
-            "duration": 0.238018,
+            "duration": 0.213187,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000001_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -897,11 +897,11 @@
     },
     "masspy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc4b210bb4455d6187463",
-        "download": "https://api.biosimulations.org/results/674dc4b210bb4455d6187463/download",
-        "logs": "https://api.biosimulations.org/logs/674dc4b210bb4455d6187463?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67587405707aa641045f6e4f",
+        "download": "https://api.biosimulations.org/results/67587405707aa641045f6e4f/download",
+        "logs": "https://api.biosimulations.org/logs/67587405707aa641045f6e4f?includeOutput=true",
         "log_yml": {
-            "duration": 1.69877,
+            "duration": 1.548999,
             "exception": {
                 "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Could not load MassModel 'BIOMD0000000001'",
                 "type": "CombineArchiveExecutionError"
@@ -909,7 +909,7 @@
             "output": "",
             "sedDocuments": [
                 {
-                    "duration": 1.072114,
+                    "duration": 0.989293,
                     "exception": {
                         "message": "The SED document did not execute successfully:\n\n  Could not load MassModel 'BIOMD0000000001'",
                         "type": "SedmlExecutionError"
@@ -1184,7 +1184,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.074924,
+                            "duration": 0.084524,
                             "exception": null,
                             "id": "autogen_report_for_task1",
                             "output": "",
@@ -1242,7 +1242,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.376117,
+                            "duration": 0.322955,
                             "exception": null,
                             "id": "autogen_plot_for_task1",
                             "output": "",
@@ -1255,7 +1255,7 @@
                     "tasks": [
                         {
                             "algorithm": null,
-                            "duration": 0.395851,
+                            "duration": 0.34588,
                             "exception": {
                                 "message": "Could not load MassModel 'BIOMD0000000001'",
                                 "type": "MassSimulationError"
@@ -1275,11 +1275,11 @@
     },
     "netpyne": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc4b410bb4455d6187470",
-        "download": "https://api.biosimulations.org/results/674dc4b410bb4455d6187470/download",
-        "logs": "https://api.biosimulations.org/logs/674dc4b410bb4455d6187470?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67587407707aa641045f6e58",
+        "download": "https://api.biosimulations.org/results/67587407707aa641045f6e58/download",
+        "logs": "https://api.biosimulations.org/logs/67587407707aa641045f6e58?includeOutput=true",
         "log_yml": {
-            "duration": 0.068815,
+            "duration": 0.064023,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -1292,11 +1292,11 @@
     },
     "neuron": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc4b5261553b9bc253cc5",
-        "download": "https://api.biosimulations.org/results/674dc4b5261553b9bc253cc5/download",
-        "logs": "https://api.biosimulations.org/logs/674dc4b5261553b9bc253cc5?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67587408c3054f763d55b7e7",
+        "download": "https://api.biosimulations.org/results/67587408c3054f763d55b7e7/download",
+        "logs": "https://api.biosimulations.org/logs/67587408c3054f763d55b7e7?includeOutput=true",
         "log_yml": {
-            "duration": 0.072554,
+            "duration": 0.052813,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -1309,16 +1309,16 @@
     },
     "opencor": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc4b710bb4455d6187475",
-        "download": "https://api.biosimulations.org/results/674dc4b710bb4455d6187475/download",
-        "logs": "https://api.biosimulations.org/logs/674dc4b710bb4455d6187475?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6758740a707aa641045f6e64",
+        "download": "https://api.biosimulations.org/results/6758740a707aa641045f6e64/download",
+        "logs": "https://api.biosimulations.org/logs/6758740a707aa641045f6e64?includeOutput=true",
         "log_yml": {
-            "duration": 0.064603,
+            "duration": 0.038149,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
             },
-            "output": "/home/opencor/OpenCOR/python/lib/python3.7/site-packages/biosimulators_utils/warnings.py:31: SedmlFeatureNotSupportedWarning: \u001b[33m`/tmp/tmp8qdnji7v/./BIOMD0000000001_url.sedml` is encoded using L1V4. Only features available in L1V3 are supported. Newer features such as simple repeated tasks are not yet supported.\u001b[0m\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\n",
+            "output": "/home/opencor/OpenCOR/python/lib/python3.7/site-packages/biosimulators_utils/warnings.py:31: SedmlFeatureNotSupportedWarning: \u001b[33m`/tmp/tmp24yxh5jg/./BIOMD0000000001_url.sedml` is encoded using L1V4. Only features available in L1V3 are supported. Newer features such as simple repeated tasks are not yet supported.\u001b[0m\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\n",
             "sedDocuments": [],
             "skipReason": null,
             "status": "FAILED"
@@ -1326,11 +1326,11 @@
     },
     "pyneuroml": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc4b910bb4455d618747c",
-        "download": "https://api.biosimulations.org/results/674dc4b910bb4455d618747c/download",
-        "logs": "https://api.biosimulations.org/logs/674dc4b910bb4455d618747c?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6758740cc3054f763d55b804",
+        "download": "https://api.biosimulations.org/results/6758740cc3054f763d55b804/download",
+        "logs": "https://api.biosimulations.org/logs/6758740cc3054f763d55b804?includeOutput=true",
         "log_yml": {
-            "duration": 0.091066,
+            "duration": 0.05591,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -1343,19 +1343,19 @@
     },
     "pysces": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc4bbef911d5d452598e2",
-        "download": "https://api.biosimulations.org/results/674dc4bbef911d5d452598e2/download",
-        "logs": "https://api.biosimulations.org/logs/674dc4bbef911d5d452598e2?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6758740e9fa297efdca2328d",
+        "download": "https://api.biosimulations.org/results/6758740e9fa297efdca2328d/download",
+        "logs": "https://api.biosimulations.org/logs/6758740e9fa297efdca2328d?includeOutput=true",
         "log_yml": {
-            "duration": 1.614328,
+            "duration": 52.715633,
             "exception": null,
             "output": "libtk8.6.so: cannot open shared object file: No such file or directory\r\n\r\nPySCeS defaults to matplotlib's TKagg backend if not specified                          in the user configuration file, set \"matplotlib_backend = <backend>\" \r\nMatplotlib interface loaded (pysces.plt.m)\r\nPitcon routines available\r\nNLEQ2 routines available\r\nSBML support available\r\nYou are using NumPy (2.1.2) with SciPy (1.14.1)\r\nAssimulo CVode available\r\nRateChar is available\r\nParallel scanner is available\r\n\r\nPySCeS environment\r\n******************\r\npysces.model_dir = /home/FCAM/crbmapi/Pysces/psc\r\npysces.output_dir = /home/FCAM/crbmapi/Pysces\r\n\r\n\r\n***********************************************************************\r\n* Welcome to PySCeS (1.2.2) - Python Simulator for Cellular Systems   *\r\n*                http://pysces.sourceforge.net                        *\r\n* Copyright(C) B.G. Olivier, J.M. Rohwer, J.-H.S. Hofmeyr, 2004-2024  *\r\n* Triple-J Group for Molecular Cell Physiology                        *\r\n* Stellenbosch University, ZA and VU University Amsterdam, NL         *\r\n* PySCeS is distributed under the PySCeS (BSD style) licence, see     *\r\n* LICENCE.txt (supplied with this release) for details                *\r\n* Please cite PySCeS with: doi:10.1093/bioinformatics/bti046          *\r\n***********************************************************************\r\n",
             "sedDocuments": [
                 {
-                    "duration": 1.296853,
+                    "duration": 52.316375,
                     "exception": null,
                     "location": "BIOMD0000000001_url.sedml",
-                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  BIOMD0000000001_url.sedml:\r\n    Tasks (1):\r\n      task1\r\n    Reports (1):\r\n      autogen_report_for_task1: 66 data sets\r\n    Plots (1):\r\n      autogen_plot_for_task1: 12 curves\r\n\r\nExecuting SED-ML file 1: BIOMD0000000001_url.sedml ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task1`\r\n    Outputs:\r\n      `autogen_plot_for_task1`\r\n      `autogen_report_for_task1`\r\n  Executing task 1: `task1`\r\n    Executing simulation ...Check SBML support is at action level 2\r\nSBML file is L2V4\r\nINFO: Rescaling compartment with size 1e-16 to 1.0\r\ncsymbol time defined as \"time\" in event \r\nInfo: single compartment model: locating \"React0\" in default compartment\r\nInfo: single compartment model: locating \"React1\" in default compartment\r\nInfo: single compartment model: locating \"React2\" in default compartment\r\nInfo: single compartment model: locating \"React3\" in default compartment\r\nInfo: single compartment model: locating \"React4\" in default compartment\r\nInfo: single compartment model: locating \"React5\" in default compartment\r\nInfo: single compartment model: locating \"React6\" in default compartment\r\nInfo: single compartment model: locating \"React7\" in default compartment\r\nInfo: single compartment model: locating \"React8\" in default compartment\r\nInfo: single compartment model: locating \"React9\" in default compartment\r\nInfo: single compartment model: locating \"React10\" in default compartment\r\nInfo: single compartment model: locating \"React11\" in default compartment\r\nInfo: single compartment model: locating \"React12\" in default compartment\r\nInfo: single compartment model: locating \"React13\" in default compartment\r\nInfo: single compartment model: locating \"React14\" in default compartment\r\nInfo: single compartment model: locating \"React15\" in default compartment\r\nInfo: single compartment model: locating \"React16\" in default compartment\r\nWriting file: /tmp/tmpnk0gukmy.psc\r\n\r\nSBML2PSC\r\nin : /tmp/tmpef1rqg3q.xml\r\nout: /tmp/tmpnk0gukmy.psc\r\nUsing model directory: /home/FCAM/crbmapi/Pysces/psc\r\n/tmp/tmpnk0gukmy.psc loading ..... \r\nParsing file: /tmp/tmpnk0gukmy.psc\r\nInfo: No reagents have been fixed\r\nInfo: \"t2\" has been initialised but does not occur in a rate equation\r\n \r\nCalculating L matrix . . . . . . .  done.\r\nCalculating K matrix . . . . . . .  done.\r\n \r\nEvent(s) detected.\r\n\r\nINFO: events detected and we have Assimulo installed,\r\nswitching to CVODE (mod.mode_integrator='CVODE').\r\nCVODE time for 1001 points: 0.07132816314697266\r\n \u001b[34msucceeded\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `autogen_report_for_task1` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `autogen_plot_for_task1` ...",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  BIOMD0000000001_url.sedml:\r\n    Tasks (1):\r\n      task1\r\n    Reports (1):\r\n      autogen_report_for_task1: 66 data sets\r\n    Plots (1):\r\n      autogen_plot_for_task1: 12 curves\r\n\r\nExecuting SED-ML file 1: BIOMD0000000001_url.sedml ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task1`\r\n    Outputs:\r\n      `autogen_plot_for_task1`\r\n      `autogen_report_for_task1`\r\n  Executing task 1: `task1`\r\n    Executing simulation ...Check SBML support is at action level 2\r\nSBML file is L2V4\r\nINFO: Rescaling compartment with size 1e-16 to 1.0\r\ncsymbol time defined as \"time\" in event \r\nInfo: single compartment model: locating \"React0\" in default compartment\r\nInfo: single compartment model: locating \"React1\" in default compartment\r\nInfo: single compartment model: locating \"React2\" in default compartment\r\nInfo: single compartment model: locating \"React3\" in default compartment\r\nInfo: single compartment model: locating \"React4\" in default compartment\r\nInfo: single compartment model: locating \"React5\" in default compartment\r\nInfo: single compartment model: locating \"React6\" in default compartment\r\nInfo: single compartment model: locating \"React7\" in default compartment\r\nInfo: single compartment model: locating \"React8\" in default compartment\r\nInfo: single compartment model: locating \"React9\" in default compartment\r\nInfo: single compartment model: locating \"React10\" in default compartment\r\nInfo: single compartment model: locating \"React11\" in default compartment\r\nInfo: single compartment model: locating \"React12\" in default compartment\r\nInfo: single compartment model: locating \"React13\" in default compartment\r\nInfo: single compartment model: locating \"React14\" in default compartment\r\nInfo: single compartment model: locating \"React15\" in default compartment\r\nInfo: single compartment model: locating \"React16\" in default compartment\r\nWriting file: /tmp/tmpn56551jm.psc\r\n\r\nSBML2PSC\r\nin : /tmp/tmps98ke73m.xml\r\nout: /tmp/tmpn56551jm.psc\r\nUsing model directory: /home/FCAM/crbmapi/Pysces/psc\r\n/tmp/tmpn56551jm.psc loading ..... \r\nParsing file: /tmp/tmpn56551jm.psc\r\nInfo: No reagents have been fixed\r\nInfo: \"t2\" has been initialised but does not occur in a rate equation\r\n \r\nCalculating L matrix . . . . . . .  done.\r\nCalculating K matrix . . . . . . .  done.\r\n \r\nEvent(s) detected.\r\n\r\nINFO: events detected and we have Assimulo installed,\r\nswitching to CVODE (mod.mode_integrator='CVODE').\r\n\r\nevent RemovalACh is evaluating at 20.000998\r\nevent RemovalACh is assigning at 20.000998 (delay=0.0)\r\nexecuting RemovalACh\r\nCVODE time for 100001 points: 8.845444202423096\r\n \u001b[34msucceeded\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `autogen_report_for_task1` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `autogen_plot_for_task1` ...",
                     "outputs": [
                         {
                             "dataSets": [
@@ -1624,7 +1624,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.354192,
+                            "duration": 29.796995,
                             "exception": null,
                             "id": "autogen_report_for_task1",
                             "output": "",
@@ -1682,7 +1682,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.457523,
+                            "duration": 13.168761,
                             "exception": null,
                             "id": "autogen_plot_for_task1",
                             "output": "",
@@ -1695,7 +1695,7 @@
                     "tasks": [
                         {
                             "algorithm": "KISAO_0000019",
-                            "duration": 0.31707,
+                            "duration": 9.157004,
                             "exception": null,
                             "id": "task1",
                             "output": "",
@@ -1733,11 +1733,11 @@
     },
     "rbapy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc4bcef911d5d452598e9",
-        "download": "https://api.biosimulations.org/results/674dc4bcef911d5d452598e9/download",
-        "logs": "https://api.biosimulations.org/logs/674dc4bcef911d5d452598e9?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/6758740f707aa641045f6e7b",
+        "download": "https://api.biosimulations.org/results/6758740f707aa641045f6e7b/download",
+        "logs": "https://api.biosimulations.org/logs/6758740f707aa641045f6e7b?includeOutput=true",
         "log_yml": {
-            "duration": 0.177701,
+            "duration": 0.209025,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000001_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -1750,11 +1750,11 @@
     },
     "smoldyn": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc4be10bb4455d6187487",
-        "download": "https://api.biosimulations.org/results/674dc4be10bb4455d6187487/download",
-        "logs": "https://api.biosimulations.org/logs/674dc4be10bb4455d6187487?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67587411707aa641045f6e82",
+        "download": "https://api.biosimulations.org/results/67587411707aa641045f6e82/download",
+        "logs": "https://api.biosimulations.org/logs/67587411707aa641045f6e82?includeOutput=true",
         "log_yml": {
-            "duration": 0.051893,
+            "duration": 0.055209,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -1767,16 +1767,16 @@
     },
     "tellurium": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc4c010bb4455d618748a",
-        "download": "https://api.biosimulations.org/results/674dc4c010bb4455d618748a/download",
-        "logs": "https://api.biosimulations.org/logs/674dc4c010bb4455d618748a?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67587413707aa641045f6eaf",
+        "download": "https://api.biosimulations.org/results/67587413707aa641045f6eaf/download",
+        "logs": "https://api.biosimulations.org/logs/67587413707aa641045f6eaf?includeOutput=true",
         "log_yml": {
-            "duration": 2.16265,
+            "duration": 46.87483,
             "exception": null,
             "output": "",
             "sedDocuments": [
                 {
-                    "duration": 1.573024,
+                    "duration": 46.345908,
                     "exception": null,
                     "location": "BIOMD0000000001_url.sedml",
                     "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  BIOMD0000000001_url.sedml:\r\n    Tasks (1):\r\n      task1\r\n    Reports (1):\r\n      autogen_report_for_task1: 66 data sets\r\n    Plots (1):\r\n      autogen_plot_for_task1: 12 curves\r\n\r\nExecuting SED-ML file 1: BIOMD0000000001_url.sedml ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task1`\r\n    Outputs:\r\n      `autogen_plot_for_task1`\r\n      `autogen_report_for_task1`\r\n  Executing task 1: `task1`\r\n    Executing simulation ... \u001b[34msucceeded\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `autogen_report_for_task1` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `autogen_plot_for_task1` ...",
@@ -2048,7 +2048,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.430861,
+                            "duration": 31.390457,
                             "exception": null,
                             "id": "autogen_report_for_task1",
                             "output": "",
@@ -2106,7 +2106,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.633544,
+                            "duration": 13.439034,
                             "exception": null,
                             "id": "autogen_plot_for_task1",
                             "output": "",
@@ -2119,7 +2119,7 @@
                     "tasks": [
                         {
                             "algorithm": "KISAO_0000019",
-                            "duration": 0.30838,
+                            "duration": 1.335289,
                             "exception": null,
                             "id": "task1",
                             "output": "",
@@ -2193,13 +2193,13 @@
     },
     "vcell": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc4c510bb4455d61874b6",
-        "download": "https://api.biosimulations.org/results/674dc4c510bb4455d61874b6/download",
-        "logs": "https://api.biosimulations.org/logs/674dc4c510bb4455d61874b6?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675874179fa297efdca232cd",
+        "download": "https://api.biosimulations.org/results/675874179fa297efdca232cd/download",
+        "logs": "https://api.biosimulations.org/logs/675874179fa297efdca232cd?includeOutput=true",
         "log_yml": {
-            "duration": 14,
+            "duration": 41,
             "exception": null,
-            "output": "Processing BIOMD0000000001_url.sedml.  Done",
+            "output": null,
             "sedDocuments": [
                 {
                     "duration": null,
@@ -2545,7 +2545,7 @@
                     "tasks": [
                         {
                             "algorithm": "KISAO_0000019",
-                            "duration": 1,
+                            "duration": 5,
                             "exception": null,
                             "id": "task1",
                             "output": "Initializing simulation job 0 ... done. Starting simulation... done.",
@@ -2562,11 +2562,11 @@
     },
     "xpp": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc4c7ef911d5d45259935",
-        "download": "https://api.biosimulations.org/results/674dc4c7ef911d5d45259935/download",
-        "logs": "https://api.biosimulations.org/logs/674dc4c7ef911d5d45259935?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675874199fa297efdca232d4",
+        "download": "https://api.biosimulations.org/results/675874199fa297efdca232d4/download",
+        "logs": "https://api.biosimulations.org/logs/675874199fa297efdca232d4?includeOutput=true",
         "log_yml": {
-            "duration": 0.077165,
+            "duration": 0.051224,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"

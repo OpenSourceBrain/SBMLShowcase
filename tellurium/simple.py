@@ -1,6 +1,6 @@
-
 import tellurium as te
-te.setDefaultPlottingEngine('matplotlib')
+
+te.setDefaultPlottingEngine("matplotlib")
 
 model = """
 model test
@@ -24,6 +24,7 @@ r.simulate(0, 50, 100)
 print("Simulation finished...")
 
 import sys
-if not '-nogui' in sys.argv:
+
+if not "-nogui" in sys.argv:
     # plot the simulation
     r.plot()

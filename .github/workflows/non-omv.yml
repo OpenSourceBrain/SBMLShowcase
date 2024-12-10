@@ -6,7 +6,7 @@ on:
     branches: [ master, development, experimental, test*, feature/* ]
   pull_request:
     branches: [ master, development, experimental, test*, feature/* ]
-      
+
 jobs:
   build:
 
@@ -41,7 +41,7 @@ jobs:
 
         cd ../SBML/tests
         pip install python-libsedml
-        python ./test_tellurium.py 
+        python ./test_tellurium.py
 
     - name: Test validity of files
       run: |
@@ -52,12 +52,12 @@ jobs:
     - name: Test omex file creation
       run: |
         pip install "pymetadata>=0.4.2" docker "requests<2.32.0"
-        cd SBML/tests    
+        cd SBML/tests
         python ./test_biosimulators_docker.py
 
     - name: Test test_suite output regeneration
       run: |
-        cd test_suite        
+        cd test_suite
         ./test_results_regeneration.sh
 
     - name: Final version info

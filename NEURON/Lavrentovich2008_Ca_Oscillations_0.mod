@@ -38,11 +38,11 @@ NEURON {
     RANGE rate__R5                          : derived variable
     RANGE rate__R6                          : derived variable
     RANGE rate__R7                          : derived variable
-    
+
 }
 
 UNITS {
-    
+
     (nA) = (nanoamp)
     (uA) = (microamp)
     (mA) = (milliamp)
@@ -58,11 +58,11 @@ UNITS {
     (umol) = (micromole)
     (pC) = (picocoulomb)
     (S) = (siemens)
-    
+
 }
 
 PARAMETER {
-    
+
     vin = 0.05                             : was: 0.05 (none)
     kout = 0.5                             : was: 0.5 (none)
     vM3 = 40                               : was: 40.0 (none)
@@ -96,45 +96,45 @@ ASSIGNED {
     rate_X (/ms)
     rate_Y (/ms)
     rate_Z (/ms)
-    
+
 }
 
 STATE {
     X  : dimension: none
     Y  : dimension: none
     Z  : dimension: none
-    
+
 }
 
 INITIAL {
     rates()
     rates() ? To ensure correct initialisation.
-    
+
     X = init_X
-    
+
     Y = init_Y
-    
+
     Z = init_Z
-    
+
 }
 
 BREAKPOINT {
-    
+
     SOLVE states METHOD cnexp
-    
-    
+
+
 }
 
 DERIVATIVE states {
     rates()
-    X' = rate_X 
-    Y' = rate_Y 
-    Z' = rate_Z 
-    
+    X' = rate_X
+    Y' = rate_Y
+    Z' = rate_Z
+
 }
 
 PROCEDURE rates() {
-    
+
     rate__R1 = (  compartment   *   vin  ) ? evaluable
     rate__R2 = ((  compartment   *   kout  ) *    X   ) ? evaluable
     rate__R3 = ((((((  ER   * 4.0) *   vM3  ) * (  k_CaA   ^   n  )) * ((   X    ^   n  ) / (((   X    ^   n  ) + (  k_CaA   ^   n  )) * ((   X    ^   n  ) + (  k_CaI   ^   n  ))))) * ((   Z    ^   m  ) / ((   Z    ^   m  ) + (  kip3   ^   m  )))) * (   Y    -    X   )) ? evaluable
@@ -145,8 +145,7 @@ PROCEDURE rates() {
     rate_X = tscale  * (  rate__R1   -  rate__R2  +  rate__R3  -  rate__R4  +   rate__R5  ) /  compartment ? Note units of all quantities used here need to be consistent!
     rate_Y = tscale  * (-1*  rate__R3   +  rate__R4  -   rate__R5  ) /  ER ? Note units of all quantities used here need to be consistent!
     rate_Z = tscale  * (  rate__R6   -   rate__R7  ) /  compartment ? Note units of all quantities used here need to be consistent!
-    
-     
-    
-}
 
+
+
+}
