@@ -24,3 +24,16 @@ Note these features can be accessed easily with the [pyNeuroML](https://docs.neu
 
 See also https://github.com/ModECI/modelspec/blob/main/examples/COMBINE.md.
 
+## setup instructions
+
+### Step 1: Clone the Repository
+```
+clone https://github.com/yourusername/SBMLShowcase.git
+cd SBMLShowcase
+```
+### Step 2: Create an Environment (e.g. conda)
+```
+conda create -n sbmlshowcase-dev -c conda-forge python=3.10
+conda activate sbmlshowcase-dev
+pip install -e .
+```
