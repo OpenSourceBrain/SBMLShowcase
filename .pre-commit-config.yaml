@@ -4,29 +4,38 @@ repos:
     hooks:
       - id: black
         language_version: python3
+        files: \.py$
 
   - repo: https://github.com/PyCQA/flake8
     rev: 4.0.1
     hooks:
       - id: flake8
         additional_dependencies: [flake8-bugbear]
+        files: \.py$
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
     hooks:
       - id: trailing-whitespace
+        files: \.py$
       - id: check-case-conflict
+        files: \.py$
       - id: check-docstring-first
+        files: \.py$
       - id: check-merge-conflict
+        files: \.py$
       - id: check-toml
       - id: end-of-file-fixer
+        files: \.py$
       - id: mixed-line-ending
         args:
           - --fix=lf
+        files: \.py$
 
-# sorts imports
+  # sorts imports
   - repo: https://github.com/PyCQA/isort
     rev: 5.12.0
     hooks:
       - id: isort
         language_version: python3
+        files: \.py$
