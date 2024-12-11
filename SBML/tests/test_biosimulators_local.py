@@ -5,15 +5,16 @@ This script tests the compatibility of different biosimulation engines with a gi
 It runs each engine and saves a JSON file with the log.yml file (as a dict), and the d1 plot for each engine.
 """
 
-import sys
 import os
+import sys
 
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 )  # to import utils
-import utils
 import argparse
 import json
+
+import utils
 
 # Save the current working directory
 cwd = os.getcwd()

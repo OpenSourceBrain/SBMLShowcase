@@ -1,25 +1,25 @@
-import shutil
+import glob
+import hashlib
+import json
 import os
 import pickle
-import hashlib
-import sys
-from dataclasses import dataclass
-from pyneuroml import tellurium
-import re
-import requests
-from collections import defaultdict
-from pathlib import Path
 import random
-from pymetadata import omex
+import re
+import shutil
+import sys
+from collections import defaultdict
+from dataclasses import dataclass
+from pathlib import Path
+
 import docker
-import yaml
 import libsbml
 import libsedml
-import glob
-from pyneuroml import biosimulations
 import pandas as pd
+import requests
+import yaml
+from pymetadata import omex
+from pyneuroml import biosimulations, tellurium
 from requests.exceptions import HTTPError
-import json
 
 ENGINES = {
     "amici": {

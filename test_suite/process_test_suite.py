@@ -7,14 +7,15 @@ get this version of the test suite that includes sedml versions or the sedml val
 https://github.com/sbmlteam/sbml-test-suite/releases/download/3.4.0/semantic_tests_with_sedml_and_graphs.v3.4.0.zip
 """
 
-import os
 import glob
-from pyneuroml.sbml import validate_sbml_files
-from pyneuroml.sedml import validate_sedml_files
-import matplotlib
+import os
+import re
 import sys
 import warnings
-import re
+
+import matplotlib
+from pyneuroml.sbml import validate_sbml_files
+from pyneuroml.sedml import validate_sedml_files
 
 sys.path.append("..")
 import utils

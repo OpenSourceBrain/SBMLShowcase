@@ -10,7 +10,6 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 import utils
 
-
 cwd = os.getcwd()
 print("Current working directory:", cwd)
 path_to_sbml_folder = os.path.abspath(os.path.join(cwd, os.pardir))

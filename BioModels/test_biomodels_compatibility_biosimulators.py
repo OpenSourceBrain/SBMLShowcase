@@ -1,8 +1,8 @@
-import re
 import os
-import urllib
-import sys
+import re
 import shutil
+import sys
+import urllib
 
 sys.path.append("..")
 import utils

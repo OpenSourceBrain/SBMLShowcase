@@ -11,15 +11,15 @@ Outputs to the Markdown Table below.
 a broken source='model.xml' reference which was corrected to the name of the model's provided SBML file.
 """
 
+import os
+import pickle
+import re
+import sys
+import urllib
+
+import matplotlib
 import pyneuroml.sbml  # for validate_sbml_files
 import pyneuroml.sedml  # for validate_sedml_files
-
-import re
-import os
-import urllib
-import sys
-import matplotlib
-import pickle
 
 sys.path.append("..")
 import utils

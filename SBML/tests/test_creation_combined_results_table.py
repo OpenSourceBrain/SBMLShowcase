@@ -1,12 +1,13 @@
-import sys
 import os
+import sys
 
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 )  # to import utils
-import utils
 import argparse
 import json
+
+import utils
 
 # Save the current working directory
 cwd = os.getcwd()

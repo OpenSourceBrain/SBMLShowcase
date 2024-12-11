@@ -13,13 +13,12 @@ Components:
 
 """
 
-import neuron
-
-import time
 import datetime
-import sys
-
 import hashlib
+import sys
+import time
+
+import neuron
 
 h = neuron.h
 h.load_file("stdlib.hoc")

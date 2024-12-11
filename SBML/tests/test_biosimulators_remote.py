@@ -6,16 +6,16 @@ It runs each engine and saves the d1 plots, and a JSON file containing the log.y
 links for accessing the remote results, for each engine.
 """
 
-import sys
 import os
+import sys
 
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 )  # to import utils
-import utils
 import argparse
 import json
 
+import utils
 
 # Save the current working directory
 cwd = os.getcwd()

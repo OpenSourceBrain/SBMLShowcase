@@ -6,14 +6,15 @@ It runs each engine and records the result (pass/fail) and any error messages en
 The results are then displayed in a table and saved to a markdown file.
 """
 
-import sys
 import os
+import sys
 
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 )  # to import utils
-import utils
 import argparse
+
+import utils
 
 # Save the current working directory
 cwd = os.getcwd()
