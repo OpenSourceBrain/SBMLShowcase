@@ -712,6 +712,7 @@ def run_biosimulators_remote(engine, sedml_filepath, sbml_filepath):
         )
         results_urls["response"] = results_urls["response"].status_code
     except Exception as exception_message:
+
         print(
             f"There was an error submitting the simulation archive:{exception_message}"
         )
@@ -727,6 +728,7 @@ def run_biosimulators_remote(engine, sedml_filepath, sbml_filepath):
         os.remove(omex_filepath)
 
     return results_urls
+
 
 
 def get_remote_results(engine, download_link, output_dir="remote_results"):
@@ -789,9 +791,6 @@ def run_biosimulators_docker(
             detailed_error_log_dict["status"] = "FAIL"
             detailed_error_log_dict["error_message"] = "Runtime Exception"
 
-    if os.path.exists(omex_filepath):
-        os.remove(omex_filepath)
-
     return {
         "exception_message": exception_message,
         "log_yml": log_yml_dict,
@@ -828,6 +827,7 @@ def biosimulators_core(engine, omex_filepath, output_dir=None):
 
     mount_out = docker.types.Mount("/root/out", output_dir, type="bind")
     client = docker.from_env()
+
     client.containers.run(
         f"ghcr.io/biosimulators/{engine}",
         mounts=[mount_in, mount_out],
@@ -835,8 +835,7 @@ def biosimulators_core(engine, omex_filepath, output_dir=None):
         auto_remove=True,
     )
 
-    if os.path.exists(omex_filepath_no_spaces):
-        os.remove(omex_filepath_no_spaces)
+
 
 
 def test_engine(engine, filename, error_categories=error_categories):
