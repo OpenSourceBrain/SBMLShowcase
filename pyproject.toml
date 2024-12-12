@@ -1,24 +1,26 @@
-
 [project]
 name = "SBMLShowcase"
 dynamic = ["version"]
 requires-python = ">=3.9"
+readme = "README.md"
+keywords = ["SBML", "SED-ML","Biosimulators","BioModels","BioSimulations"]
 
 dependencies = [
+    "docker",
     "pre-commit",
     "pyNeuroML[annotations]",
-    "python-libsedml",
-    "pytest",
-    "tellurium",
     "pymetadata>=0.4.2",
-    "docker",
+    "pytest",
+    "python-libsedml",
     "requests<2.32.0",
+    "ruff",
+    "tellurium==2.2.10",
 ]
 
-
 [build-system]
-requires = ["setuptools>=42", "wheel", "setuptools-scm"]
+requires = ["setuptools>=42", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
+# why do I need tools.setuptools with packages = [] for this to work?
 [tool.setuptools]
-packages = { find = { include = ["utils"] } }
+packages = []
