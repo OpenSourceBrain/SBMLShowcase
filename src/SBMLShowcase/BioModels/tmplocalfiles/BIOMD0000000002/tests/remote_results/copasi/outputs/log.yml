@@ -1,0 +1,207 @@
+duration: 1.628302
+exception: null
+output: ''
+sedDocuments:
+- duration: 1.300503
+  exception: null
+  location: BIOMD0000000002_url.sedml
+  output: "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks,\
+    \ 1 reports, and 1 plots:\r\n  BIOMD0000000002_url.sedml:\r\n    Tasks (1):\r\n\
+    \      task1\r\n    Reports (1):\r\n      autogen_report_for_task1: 66 data sets\r\
+    \n    Plots (1):\r\n      autogen_plot_for_task1: 13 curves\r\n\r\nExecuting SED-ML\
+    \ file 1: BIOMD0000000002_url.sedml ...\r\n  Found 1 tasks and 2 outputs:\r\n\
+    \    Tasks:\r\n      `task1`\r\n    Outputs:\r\n      `autogen_plot_for_task1`\r\
+    \n      `autogen_report_for_task1`\r\n  Executing task 1: `task1`\r\n    Executing\
+    \ simulation ...woohoo!\r\n \e[34msucceeded\e[0m\r\n    Generating 2 outputs ...\r\
+    \n      Generating output 1: `autogen_report_for_task1` ... \e[34msucceeded\e\
+    [0m\r\n      Generating output 2: `autogen_plot_for_task1` ..."
+  outputs:
+  - dataSets:
+    - id: autogen_time_for_task1
+      status: SUCCEEDED
+    - id: autogen_task1_BLL
+      status: SUCCEEDED
+    - id: autogen_task1_IL
+      status: SUCCEEDED
+    - id: autogen_task1_AL
+      status: SUCCEEDED
+    - id: autogen_task1_A
+      status: SUCCEEDED
+    - id: autogen_task1_BL
+      status: SUCCEEDED
+    - id: autogen_task1_B
+      status: SUCCEEDED
+    - id: autogen_task1_DLL
+      status: SUCCEEDED
+    - id: autogen_task1_D
+      status: SUCCEEDED
+    - id: autogen_task1_ILL
+      status: SUCCEEDED
+    - id: autogen_task1_DL
+      status: SUCCEEDED
+    - id: autogen_task1_I
+      status: SUCCEEDED
+    - id: autogen_task1_ALL
+      status: SUCCEEDED
+    - id: autogen_task1_L
+      status: SUCCEEDED
+    - id: autogen_task1_kf_0
+      status: SUCCEEDED
+    - id: autogen_task1_kr_0
+      status: SUCCEEDED
+    - id: autogen_task1_kf_1
+      status: SUCCEEDED
+    - id: autogen_task1_kr_1
+      status: SUCCEEDED
+    - id: autogen_task1_kf_2
+      status: SUCCEEDED
+    - id: autogen_task1_kr_2
+      status: SUCCEEDED
+    - id: autogen_task1_kf_3
+      status: SUCCEEDED
+    - id: autogen_task1_kr_3
+      status: SUCCEEDED
+    - id: autogen_task1_kf_4
+      status: SUCCEEDED
+    - id: autogen_task1_kr_4
+      status: SUCCEEDED
+    - id: autogen_task1_kf_5
+      status: SUCCEEDED
+    - id: autogen_task1_kr_5
+      status: SUCCEEDED
+    - id: autogen_task1_kf_6
+      status: SUCCEEDED
+    - id: autogen_task1_kr_6
+      status: SUCCEEDED
+    - id: autogen_task1_kf_7
+      status: SUCCEEDED
+    - id: autogen_task1_kr_7
+      status: SUCCEEDED
+    - id: autogen_task1_kf_8
+      status: SUCCEEDED
+    - id: autogen_task1_kr_8
+      status: SUCCEEDED
+    - id: autogen_task1_kf_9
+      status: SUCCEEDED
+    - id: autogen_task1_kr_9
+      status: SUCCEEDED
+    - id: autogen_task1_kf_10
+      status: SUCCEEDED
+    - id: autogen_task1_kr_10
+      status: SUCCEEDED
+    - id: autogen_task1_kf_11
+      status: SUCCEEDED
+    - id: autogen_task1_kr_11
+      status: SUCCEEDED
+    - id: autogen_task1_kf_12
+      status: SUCCEEDED
+    - id: autogen_task1_kr_12
+      status: SUCCEEDED
+    - id: autogen_task1_kf_13
+      status: SUCCEEDED
+    - id: autogen_task1_kr_13
+      status: SUCCEEDED
+    - id: autogen_task1_kf_14
+      status: SUCCEEDED
+    - id: autogen_task1_kr_14
+      status: SUCCEEDED
+    - id: autogen_task1_kf_15
+      status: SUCCEEDED
+    - id: autogen_task1_kr_15
+      status: SUCCEEDED
+    - id: autogen_task1_kf_16
+      status: SUCCEEDED
+    - id: autogen_task1_kr_16
+      status: SUCCEEDED
+    - id: autogen_task1_comp1
+      status: SUCCEEDED
+    - id: autogen_task1_React0
+      status: SUCCEEDED
+    - id: autogen_task1_React1
+      status: SUCCEEDED
+    - id: autogen_task1_React2
+      status: SUCCEEDED
+    - id: autogen_task1_React3
+      status: SUCCEEDED
+    - id: autogen_task1_React4
+      status: SUCCEEDED
+    - id: autogen_task1_React5
+      status: SUCCEEDED
+    - id: autogen_task1_React6
+      status: SUCCEEDED
+    - id: autogen_task1_React7
+      status: SUCCEEDED
+    - id: autogen_task1_React8
+      status: SUCCEEDED
+    - id: autogen_task1_React9
+      status: SUCCEEDED
+    - id: autogen_task1_React10
+      status: SUCCEEDED
+    - id: autogen_task1_React11
+      status: SUCCEEDED
+    - id: autogen_task1_React12
+      status: SUCCEEDED
+    - id: autogen_task1_React13
+      status: SUCCEEDED
+    - id: autogen_task1_React14
+      status: SUCCEEDED
+    - id: autogen_task1_React15
+      status: SUCCEEDED
+    - id: autogen_task1_React16
+      status: SUCCEEDED
+    duration: 0.349091
+    exception: null
+    id: autogen_report_for_task1
+    output: ''
+    skipReason: null
+    status: SUCCEEDED
+  - curves:
+    - id: autogen_curve_task1_BLL
+      status: SUCCEEDED
+    - id: autogen_curve_task1_IL
+      status: SUCCEEDED
+    - id: autogen_curve_task1_AL
+      status: SUCCEEDED
+    - id: autogen_curve_task1_A
+      status: SUCCEEDED
+    - id: autogen_curve_task1_BL
+      status: SUCCEEDED
+    - id: autogen_curve_task1_B
+      status: SUCCEEDED
+    - id: autogen_curve_task1_DLL
+      status: SUCCEEDED
+    - id: autogen_curve_task1_D
+      status: SUCCEEDED
+    - id: autogen_curve_task1_ILL
+      status: SUCCEEDED
+    - id: autogen_curve_task1_DL
+      status: SUCCEEDED
+    - id: autogen_curve_task1_I
+      status: SUCCEEDED
+    - id: autogen_curve_task1_ALL
+      status: SUCCEEDED
+    - id: autogen_curve_task1_L
+      status: SUCCEEDED
+    duration: 0.569689
+    exception: null
+    id: autogen_plot_for_task1
+    output: ''
+    skipReason: null
+    status: SUCCEEDED
+  skipReason: null
+  status: SUCCEEDED
+  tasks:
+  - algorithm: KISAO_0000560
+    duration: 0.205023
+    exception: null
+    id: task1
+    output: ''
+    simulatorDetails:
+    - key: methodName
+      value: lsoda
+    - key: parameters
+      value: null
+    skipReason: null
+    status: SUCCEEDED
+skipReason: null
+status: SUCCEEDED

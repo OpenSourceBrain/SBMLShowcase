@@ -1,0 +1,137 @@
+duration: 2.83395
+exception: null
+output: "/usr/local/lib/python3.11/site-packages/biosimulators_utils/warnings.py:31:\
+  \ BioSimulatorsWarning:\r\n\r\n\e[33mThe SED document is potentially incorrect.\r\
+  \n  - Model `net1` has warnings.\r\n    - The model file `LEMS_NML2_Ex9_FN.sbml`\
+  \ has warnings.\r\n      - 2 warnings of type SBML unit consistency (99505). The\
+  \ following is the first warning at line 40, column 12:\r\n        - In situations\
+  \ where a mathematical expression contains literal numbers or parameters whose units\
+  \ have not been declared, it is not possible to verify accurately the consistency\
+  \ of the units in the expression. \r\n           The units of the <rateRule> <math>\
+  \ expression '(V - pow(V, 3) / 3 - W + I) / SEC' cannot be fully checked. Unit consistency\
+  \ reported as either no errors or further unit errors related to this object may\
+  \ not be accurate.\r\n      - 4 warnings of type Modeling practice (80701). The\
+  \ following is the first warning at line 32, column 12:\r\n        - As a principle\
+  \ of best modeling practice, the units of a <parameter> should be declared rather\
+  \ than be left undefined. Doing so improves the ability of software to check the\
+  \ consistency of units and helps make it easier to detect potential errors in models.\r\
+  \n           The <parameter> with the id 'I' does not have a 'units' attribute.\e\
+  [0m\r\n\r\n/usr/local/lib/python3.11/site-packages/biosimulators_utils/warnings.py:31:\
+  \ BioSimulatorsWarning:\r\n\r\n\e[33mThe COMBINE/OMEX archive has warnings.\r\n\
+  \  - OMEX manifests should not contain content entries for themselves.\r\n  - The\
+  \ SED-ML file at location `./tmp871031` has warnings.\r\n    - Model `net1` has\
+  \ warnings.\r\n      - The model file `LEMS_NML2_Ex9_FN.sbml` has warnings.\r\n\
+  \        - 2 warnings of type SBML unit consistency (99505). The following is the\
+  \ first warning at line 40, column 12:\r\n          - In situations where a mathematical\
+  \ expression contains literal numbers or parameters whose units have not been declared,\
+  \ it is not possible to verify accurately the consistency of the units in the expression.\
+  \ \r\n             The units of the <rateRule> <math> expression '(V - pow(V, 3)\
+  \ / 3 - W + I) / SEC' cannot be fully checked. Unit consistency reported as either\
+  \ no errors or further unit errors related to this object may not be accurate.\r\
+  \n        - 4 warnings of type Modeling practice (80701). The following is the first\
+  \ warning at line 32, column 12:\r\n          - As a principle of best modeling\
+  \ practice, the units of a <parameter> should be declared rather than be left undefined.\
+  \ Doing so improves the ability of software to check the consistency of units and\
+  \ helps make it easier to detect potential errors in models.\r\n             The\
+  \ <parameter> with the id 'I' does not have a 'units' attribute.\e[0m\r\n\r\n"
+sedDocuments:
+- duration: 1.86126
+  exception: null
+  location: tmp871031
+  output: "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks,\
+    \ 1 reports, and 1 plots:\r\n  tmp871031:\r\n    Tasks (1):\r\n      sim1_net1\r\
+    \n    Reports (1):\r\n      ex9: 3 data sets\r\n    Plots (1):\r\n      d1: 2\
+    \ curves\r\n\r\nExecuting SED-ML file 1: tmp871031 ...\r\n  Found 1 tasks and\
+    \ 2 outputs:\r\n    Tasks:\r\n      `sim1_net1`\r\n    Outputs:\r\n      `d1`\r\
+    \n      `ex9`\r\n  Executing task 1: `sim1_net1`\r\n    Executing simulation ...\
+    \ \e[34msucceeded\e[0m\r\n    Generating 2 outputs ...\r\n      Generating output\
+    \ 1: `d1` ... \e[34msucceeded\e[0m\r\n      Generating output 2: `ex9` ..."
+  outputs:
+  - curves:
+    - id: curve_V
+      status: SUCCEEDED
+    - id: curve_W
+      status: SUCCEEDED
+    duration: 0.942783
+    exception: null
+    id: d1
+    output: "/usr/local/lib/python3.11/site-packages/biosimulators_utils/warnings.py:31:\
+      \ IllogicalVizWarning:\r\n\r\n\e[33mA title could not be inferred for the Y\
+      \ axis because the Y data generators have inconsistent names.\e[0m\r\n\r\n"
+    skipReason: null
+    status: SUCCEEDED
+  - dataSets:
+    - id: ex9_time
+      status: SUCCEEDED
+    - id: ex9_V
+      status: SUCCEEDED
+    - id: ex9_W
+      status: SUCCEEDED
+    duration: 0.401662
+    exception: null
+    id: ex9
+    output: ''
+    skipReason: null
+    status: SUCCEEDED
+  skipReason: null
+  status: SUCCEEDED
+  tasks:
+  - algorithm: KISAO_0000019
+    duration: 0.149847
+    exception: null
+    id: sim1_net1
+    output: "/usr/local/lib/python3.11/site-packages/biosimulators_utils/warnings.py:31:\
+      \ BioSimulatorsWarning:\r\n\r\n\e[33m- Variable `DISPLAY__d1_V_fnPop1_0_V` has\
+      \ warnings.\r\n  - XPath could not be validated.\r\n- Variable `DISPLAY__d1_W_fnPop1_0_W`\
+      \ has warnings.\r\n  - XPath could not be validated.\r\n- Variable `OUTPUT__of1_V_fnPop1_0_V`\
+      \ has warnings.\r\n  - XPath could not be validated.\r\n- Variable `OUTPUT__of1_W_fnPop1_0_W`\
+      \ has warnings.\r\n  - XPath could not be validated.\e[0m\r\n\r\n/usr/local/lib/python3.11/site-packages/biosimulators_utils/warnings.py:31:\
+      \ BioSimulatorsWarning:\r\n\r\n\e[33mModel `net1` may be invalid.\r\n  - The\
+      \ model file `/tmp/tmpyt7nyrct/./LEMS_NML2_Ex9_FN.sbml` has warnings.\r\n  \
+      \  - 2 warnings of type SBML unit consistency (99505). The following is the\
+      \ first warning at line 40, column 12:\r\n      - In situations where a mathematical\
+      \ expression contains literal numbers or parameters whose units have not been\
+      \ declared, it is not possible to verify accurately the consistency of the units\
+      \ in the expression. \r\n         The units of the <rateRule> <math> expression\
+      \ '(V - pow(V, 3) / 3 - W + I) / SEC' cannot be fully checked. Unit consistency\
+      \ reported as either no errors or further unit errors related to this object\
+      \ may not be accurate.\r\n    - 4 warnings of type Modeling practice (80701).\
+      \ The following is the first warning at line 32, column 12:\r\n      - As a\
+      \ principle of best modeling practice, the units of a <parameter> should be\
+      \ declared rather than be left undefined. Doing so improves the ability of software\
+      \ to check the consistency of units and helps make it easier to detect potential\
+      \ errors in models.\r\n         The <parameter> with the id 'I' does not have\
+      \ a 'units' attribute.\e[0m\r\n\r\n"
+    simulatorDetails:
+    - key: method
+      value: simulate
+    - key: solver
+      value: cvode
+    - key: relative_tolerance
+      value: 1.0e-06
+    - key: absolute_tolerance
+      value: 1.0e-12
+    - key: stiff
+      value: true
+    - key: maximum_bdf_order
+      value: 5
+    - key: maximum_adams_order
+      value: 12
+    - key: maximum_num_steps
+      value: 20000
+    - key: maximum_time_step
+      value: 0.0
+    - key: minimum_time_step
+      value: 0.0
+    - key: initial_time_step
+      value: 0.0
+    - key: multiple_steps
+      value: false
+    - key: variable_step_size
+      value: false
+    - key: max_output_rows
+      value: 100000
+    skipReason: null
+    status: SUCCEEDED
+skipReason: null
+status: SUCCEEDED
