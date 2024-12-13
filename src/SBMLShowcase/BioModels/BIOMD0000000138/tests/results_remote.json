@@ -1,605 +1,605 @@
 {
-    "amici": {
-        "response": 201,
-        "view": "https://api.biosimulations.org/runs/6758795bc3054f763d55b933",
-        "download": "https://api.biosimulations.org/results/6758795bc3054f763d55b933/download",
-        "logs": "https://api.biosimulations.org/logs/6758795bc3054f763d55b933?includeOutput=true",
-        "log_yml": {
-            "duration": 0.284334,
-            "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
-                "type": "ValueError"
-            },
-            "output": "",
-            "sedDocuments": [],
-            "skipReason": null,
-            "status": "FAILED"
-        }
-    },
-    "brian2": {
-        "response": 201,
-        "view": "https://api.biosimulations.org/runs/6758795dc3054f763d55b936",
-        "download": "https://api.biosimulations.org/results/6758795dc3054f763d55b936/download",
-        "logs": "https://api.biosimulations.org/logs/6758795dc3054f763d55b936?includeOutput=true",
-        "log_yml": {
-            "duration": 0.047676,
-            "exception": {
-                "message": "No module named 'libsbml'",
-                "type": "ModuleNotFoundError"
-            },
-            "output": "",
-            "sedDocuments": [],
-            "skipReason": null,
-            "status": "FAILED"
-        }
-    },
-    "bionetgen": {
-        "response": 201,
-        "view": "https://api.biosimulations.org/runs/6758795e707aa641045f6f8c",
-        "download": "https://api.biosimulations.org/results/6758795e707aa641045f6f8c/download",
-        "logs": "https://api.biosimulations.org/logs/6758795e707aa641045f6f8c?includeOutput=true",
-        "log_yml": {
-            "duration": 0.197144,
-            "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
-                "type": "ValueError"
-            },
-            "output": "",
-            "sedDocuments": [],
-            "skipReason": null,
-            "status": "FAILED"
-        }
-    },
-    "boolnet": {
-        "response": 201,
-        "view": "https://api.biosimulations.org/runs/67587960707aa641045f6f8f",
-        "download": "https://api.biosimulations.org/results/67587960707aa641045f6f8f/download",
-        "logs": "https://api.biosimulations.org/logs/67587960707aa641045f6f8f?includeOutput=true",
-        "log_yml": {
-            "duration": 0.187671,
-            "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
-                "type": "ValueError"
-            },
-            "output": "",
-            "sedDocuments": [],
-            "skipReason": null,
-            "status": "FAILED"
-        }
-    },
-    "cbmpy": {
-        "response": 201,
-        "view": "https://api.biosimulations.org/runs/67587962707aa641045f6f92",
-        "download": "https://api.biosimulations.org/results/67587962707aa641045f6f92/download",
-        "logs": "https://api.biosimulations.org/logs/67587962707aa641045f6f92?includeOutput=true",
-        "log_yml": {
-            "duration": 0.291849,
-            "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
-                "type": "ValueError"
-            },
-            "output": "\r\nINFO: No xlwt module available, Excel spreadsheet creation disabled\r\n\r\n\r\n\r\nNo module named 'cplex'\r\n\r\n\r\n\r\nCPLEX not available\r\n\r\n*****\r\nUsing GLPK\r\n*****\r\n\r\n\r\nINFO: No xlrd module available, Excel spreadsheet reading disabled\r\n\r\nCBMPy environment\r\n******************\r\nRevision: r689\r\n\r\n\r\n***********************************************************************\r\n* Welcome to CBMPy (0.7.25) - PySCeS Constraint Based Modelling       *\r\n*                http://cbmpy.sourceforge.net                         *\r\n* Copyright(C) Brett G. Olivier 2014 - 2019                           *\r\n* Dept. of Systems Bioinformatics                                     *\r\n* Vrije Universiteit Amsterdam, Amsterdam, The Netherlands            *\r\n* CBMPy is developed as part of the BeBasic MetaToolKit Project       *\r\n* Distributed under the GNU GPL v 3.0 licence, see                    *\r\n* LICENCE (supplied with this release) for details                    *\r\n***********************************************************************\r\n\r\n",
-            "sedDocuments": [],
-            "skipReason": null,
-            "status": "FAILED"
-        }
-    },
-    "cobrapy": {
-        "response": 201,
-        "view": "https://api.biosimulations.org/runs/67587964c3054f763d55b93e",
-        "download": "https://api.biosimulations.org/results/67587964c3054f763d55b93e/download",
-        "logs": "https://api.biosimulations.org/logs/67587964c3054f763d55b93e?includeOutput=true",
-        "log_yml": {
-            "duration": 0.182352,
-            "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
-                "type": "ValueError"
-            },
-            "output": "",
-            "sedDocuments": [],
-            "skipReason": null,
-            "status": "FAILED"
-        }
-    },
-    "copasi": {
-        "response": 201,
-        "view": "https://api.biosimulations.org/runs/67587966c3054f763d55b941",
-        "download": "https://api.biosimulations.org/results/67587966c3054f763d55b941/download",
-        "logs": "https://api.biosimulations.org/logs/67587966c3054f763d55b941?includeOutput=true",
-        "log_yml": {
-            "duration": 0.237344,
-            "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
-                "type": "ValueError"
-            },
-            "output": "",
-            "sedDocuments": [],
-            "skipReason": null,
-            "status": "FAILED"
-        }
-    },
-    "gillespy2": {
-        "response": 201,
-        "view": "https://api.biosimulations.org/runs/67587969707aa641045f6f9c",
-        "download": "https://api.biosimulations.org/results/67587969707aa641045f6f9c/download",
-        "logs": "https://api.biosimulations.org/logs/67587969707aa641045f6f9c?includeOutput=true",
-        "log_yml": {
-            "duration": 0.18858,
-            "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
-                "type": "ValueError"
-            },
-            "output": "",
-            "sedDocuments": [],
-            "skipReason": null,
-            "status": "FAILED"
-        }
-    },
-    "ginsim": {
-        "response": 201,
-        "view": "https://api.biosimulations.org/runs/6758796b9fa297efdca233ad",
-        "download": "https://api.biosimulations.org/results/6758796b9fa297efdca233ad/download",
-        "logs": "https://api.biosimulations.org/logs/6758796b9fa297efdca233ad?includeOutput=true",
-        "log_yml": {
-            "duration": 0.184582,
-            "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
-                "type": "ValueError"
-            },
-            "output": "",
-            "sedDocuments": [],
-            "skipReason": null,
-            "status": "FAILED"
-        }
-    },
-    "libsbmlsim": {
-        "response": 201,
-        "view": "https://api.biosimulations.org/runs/6758796dc3054f763d55b94c",
-        "download": "https://api.biosimulations.org/results/6758796dc3054f763d55b94c/download",
-        "logs": "https://api.biosimulations.org/logs/6758796dc3054f763d55b94c?includeOutput=true",
-        "log_yml": {
-            "duration": 0.201415,
-            "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
-                "type": "ValueError"
-            },
-            "output": "",
-            "sedDocuments": [],
-            "skipReason": null,
-            "status": "FAILED"
-        }
-    },
-    "masspy": {
-        "response": 201,
-        "view": "https://api.biosimulations.org/runs/6758796f9fa297efdca233b2",
-        "download": "https://api.biosimulations.org/results/6758796f9fa297efdca233b2/download",
-        "logs": "https://api.biosimulations.org/logs/6758796f9fa297efdca233b2?includeOutput=true",
-        "log_yml": {
-            "duration": 0.40219,
-            "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
-                "type": "ValueError"
-            },
-            "output": "",
-            "sedDocuments": [],
-            "skipReason": null,
-            "status": "FAILED"
-        }
-    },
-    "netpyne": {
-        "response": 201,
-        "view": "https://api.biosimulations.org/runs/67587970707aa641045f6faa",
-        "download": "https://api.biosimulations.org/results/67587970707aa641045f6faa/download",
-        "logs": "https://api.biosimulations.org/logs/67587970707aa641045f6faa?includeOutput=true",
-        "log_yml": {
-            "duration": 0.068817,
-            "exception": {
-                "message": "No module named 'libsbml'",
-                "type": "ModuleNotFoundError"
-            },
-            "output": "",
-            "sedDocuments": [],
-            "skipReason": null,
-            "status": "FAILED"
-        }
-    },
-    "neuron": {
-        "response": 201,
-        "view": "https://api.biosimulations.org/runs/67587972707aa641045f6faf",
-        "download": "https://api.biosimulations.org/results/67587972707aa641045f6faf/download",
-        "logs": "https://api.biosimulations.org/logs/67587972707aa641045f6faf?includeOutput=true",
-        "log_yml": {
-            "duration": 0.068306,
-            "exception": {
-                "message": "No module named 'libsbml'",
-                "type": "ModuleNotFoundError"
-            },
-            "output": "",
-            "sedDocuments": [],
-            "skipReason": null,
-            "status": "FAILED"
-        }
-    },
-    "opencor": {
-        "response": 201,
-        "view": "https://api.biosimulations.org/runs/67587973707aa641045f6fc3",
-        "download": "https://api.biosimulations.org/results/67587973707aa641045f6fc3/download",
-        "logs": "https://api.biosimulations.org/logs/67587973707aa641045f6fc3?includeOutput=true",
-        "log_yml": {
-            "duration": 0.059153,
-            "exception": {
-                "message": "No module named 'libsbml'",
-                "type": "ModuleNotFoundError"
-            },
-            "output": "/home/opencor/OpenCOR/python/lib/python3.7/site-packages/biosimulators_utils/warnings.py:31: SedmlFeatureNotSupportedWarning: \u001b[33m`/tmp/tmpyf_u0l6b/./BIOMD0000000138_url.sedml` is encoded using L1V4. Only features available in L1V3 are supported. Newer features such as simple repeated tasks are not yet supported.\u001b[0m\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\n",
-            "sedDocuments": [],
-            "skipReason": null,
-            "status": "FAILED"
-        }
-    },
-    "pyneuroml": {
-        "response": 201,
-        "view": "https://api.biosimulations.org/runs/67587975c3054f763d55b97c",
-        "download": "https://api.biosimulations.org/results/67587975c3054f763d55b97c/download",
-        "logs": "https://api.biosimulations.org/logs/67587975c3054f763d55b97c?includeOutput=true",
-        "log_yml": {
-            "duration": 0.055601,
-            "exception": {
-                "message": "No module named 'libsbml'",
-                "type": "ModuleNotFoundError"
-            },
-            "output": "",
-            "sedDocuments": [],
-            "skipReason": null,
-            "status": "FAILED"
-        }
-    },
-    "pysces": {
-        "response": 201,
-        "view": "https://api.biosimulations.org/runs/675879779fa297efdca233e2",
-        "download": "https://api.biosimulations.org/results/675879779fa297efdca233e2/download",
-        "logs": "https://api.biosimulations.org/logs/675879779fa297efdca233e2?includeOutput=true",
-        "log_yml": {
-            "duration": 0.230119,
-            "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
-                "type": "ValueError"
-            },
-            "output": "libtk8.6.so: cannot open shared object file: No such file or directory\r\n\r\nPySCeS defaults to matplotlib's TKagg backend if not specified                          in the user configuration file, set \"matplotlib_backend = <backend>\" \r\nMatplotlib interface loaded (pysces.plt.m)\r\nPitcon routines available\r\nNLEQ2 routines available\r\nSBML support available\r\nYou are using NumPy (2.1.2) with SciPy (1.14.1)\r\nAssimulo CVode available\r\nRateChar is available\r\nParallel scanner is available\r\n\r\nPySCeS environment\r\n******************\r\npysces.model_dir = /home/FCAM/crbmapi/Pysces/psc\r\npysces.output_dir = /home/FCAM/crbmapi/Pysces\r\n\r\n\r\n***********************************************************************\r\n* Welcome to PySCeS (1.2.2) - Python Simulator for Cellular Systems   *\r\n*                http://pysces.sourceforge.net                        *\r\n* Copyright(C) B.G. Olivier, J.M. Rohwer, J.-H.S. Hofmeyr, 2004-2024  *\r\n* Triple-J Group for Molecular Cell Physiology                        *\r\n* Stellenbosch University, ZA and VU University Amsterdam, NL         *\r\n* PySCeS is distributed under the PySCeS (BSD style) licence, see     *\r\n* LICENCE.txt (supplied with this release) for details                *\r\n* Please cite PySCeS with: doi:10.1093/bioinformatics/bti046          *\r\n***********************************************************************\r\n",
-            "sedDocuments": [],
-            "skipReason": null,
-            "status": "FAILED"
-        }
-    },
-    "rbapy": {
-        "response": 201,
-        "view": "https://api.biosimulations.org/runs/67587978c3054f763d55b995",
-        "download": "https://api.biosimulations.org/results/67587978c3054f763d55b995/download",
-        "logs": "https://api.biosimulations.org/logs/67587978c3054f763d55b995?includeOutput=true",
-        "log_yml": {
-            "duration": 0.198847,
-            "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
-                "type": "ValueError"
-            },
-            "output": "",
-            "sedDocuments": [],
-            "skipReason": null,
-            "status": "FAILED"
-        }
-    },
-    "smoldyn": {
-        "response": 201,
-        "view": "https://api.biosimulations.org/runs/6758797a707aa641045f6fee",
-        "download": "https://api.biosimulations.org/results/6758797a707aa641045f6fee/download",
-        "logs": "https://api.biosimulations.org/logs/6758797a707aa641045f6fee?includeOutput=true",
-        "log_yml": {
-            "duration": 0.046844,
-            "exception": {
-                "message": "No module named 'libsbml'",
-                "type": "ModuleNotFoundError"
-            },
-            "output": "",
-            "sedDocuments": [],
-            "skipReason": null,
-            "status": "FAILED"
-        }
-    },
-    "tellurium": {
-        "response": 201,
-        "view": "https://api.biosimulations.org/runs/6758797cc3054f763d55b99b",
-        "download": "https://api.biosimulations.org/results/6758797cc3054f763d55b99b/download",
-        "logs": "https://api.biosimulations.org/logs/6758797cc3054f763d55b99b?includeOutput=true",
-        "log_yml": {
-            "duration": 0.298719,
-            "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
-                "type": "ValueError"
-            },
-            "output": "",
-            "sedDocuments": [],
-            "skipReason": null,
-            "status": "FAILED"
-        }
-    },
-    "vcell": {
-        "response": 201,
-        "view": "https://api.biosimulations.org/runs/6758797fc3054f763d55b9ac",
-        "download": "https://api.biosimulations.org/results/6758797fc3054f763d55b9ac/download",
-        "logs": "https://api.biosimulations.org/logs/6758797fc3054f763d55b9ac?includeOutput=true",
-        "log_yml": {
-            "duration": 2,
-            "exception": null,
-            "output": "Processing BIOMD0000000138_url.sedml.  Done",
-            "sedDocuments": [
-                {
-                    "duration": null,
-                    "exception": {
-                        "message": "Cannot invoke 'org.jlibsedml.SedML.getPathForURI()' because 'this.sedml' is nullCannot invoke 'org.jlibsedml.SedML.getPathForURI()' because 'sedml' is nullFailure executing the sed document.",
-                        "type": "RuntimeException"
-                    },
-                    "location": "BIOMD0000000138_url.sedml",
-                    "output": "Initializing SED-ML document... done. Successful translation of SED-ML file. Building solvers and starting simulation of all tasks... Generating outputs... Generating HDF5 file...",
-                    "outputs": [
-                        {
-                            "curves": [
-                                {
-                                    "id": "autogen_curve_task1_c",
-                                    "status": "QUEUED"
-                                }
-                            ],
-                            "duration": null,
-                            "exception": null,
-                            "id": "autogen_plot1",
-                            "output": null,
-                            "skipReason": null,
-                            "status": "QUEUED"
-                        },
-                        {
-                            "curves": [
-                                {
-                                    "id": "autogen_curve_for_task1_V",
-                                    "status": "QUEUED"
-                                }
-                            ],
-                            "duration": null,
-                            "exception": null,
-                            "id": "autogen_plot2",
-                            "output": null,
-                            "skipReason": null,
-                            "status": "QUEUED"
-                        },
-                        {
-                            "curves": [],
-                            "duration": null,
-                            "exception": null,
-                            "id": "autogen_plot3",
-                            "output": null,
-                            "skipReason": null,
-                            "status": "QUEUED"
-                        },
-                        {
-                            "dataSets": [
-                                {
-                                    "id": "autogen_time_for_task1",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_c",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_vca",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_vk",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_Cm",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_gk",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_gcal",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_gsk",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_ga",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_gf",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_vn",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_va",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_vm",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_vh",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_vf",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_sn",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_sa",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_sm",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_sh",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_sf",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_taun",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_tauh",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_lambda",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_kc",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_ks",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_ff",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_alpha",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_phik",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_phia",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_phih",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_phif",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_phical",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_cinf",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_ica",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_isk",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_ibk",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_ikdr",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_ia",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_ik",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_n",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_h",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_V",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_cell",
-                                    "status": "QUEUED"
-                                },
-                                {
-                                    "id": "autogen_task1_reaction_0000004",
-                                    "status": "QUEUED"
-                                }
-                            ],
-                            "duration": null,
-                            "exception": null,
-                            "id": "autogen_report_for_task1",
-                            "output": null,
-                            "skipReason": null,
-                            "status": "QUEUED"
-                        }
-                    ],
-                    "skipReason": null,
-                    "status": "FAILED",
-                    "tasks": [
-                        {
-                            "algorithm": null,
-                            "duration": null,
-                            "exception": null,
-                            "id": "task1",
-                            "output": null,
-                            "simulatorDetails": null,
-                            "skipReason": null,
-                            "status": "QUEUED"
-                        }
-                    ]
-                }
-            ],
-            "skipReason": null,
-            "status": "SUCCEEDED"
-        }
-    },
-    "xpp": {
-        "response": 201,
-        "view": "https://api.biosimulations.org/runs/67587981c3054f763d55b9b9",
-        "download": "https://api.biosimulations.org/results/67587981c3054f763d55b9b9/download",
-        "logs": "https://api.biosimulations.org/logs/67587981c3054f763d55b9b9?includeOutput=true",
-        "log_yml": {
-            "duration": 0.044146,
-            "exception": {
-                "message": "No module named 'libsbml'",
-                "type": "ModuleNotFoundError"
-            },
-            "output": "",
-            "sedDocuments": [],
-            "skipReason": null,
-            "status": "FAILED"
-        }
+  "amici": {
+    "response": 201,
+    "view": "https://api.biosimulations.org/runs/6758795bc3054f763d55b933",
+    "download": "https://api.biosimulations.org/results/6758795bc3054f763d55b933/download",
+    "logs": "https://api.biosimulations.org/logs/6758795bc3054f763d55b933?includeOutput=true",
+    "log_yml": {
+      "duration": 0.284334,
+      "exception": {
+        "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
+        "type": "ValueError"
+      },
+      "output": "",
+      "sedDocuments": [],
+      "skipReason": null,
+      "status": "FAILED"
     }
+  },
+  "brian2": {
+    "response": 201,
+    "view": "https://api.biosimulations.org/runs/6758795dc3054f763d55b936",
+    "download": "https://api.biosimulations.org/results/6758795dc3054f763d55b936/download",
+    "logs": "https://api.biosimulations.org/logs/6758795dc3054f763d55b936?includeOutput=true",
+    "log_yml": {
+      "duration": 0.047676,
+      "exception": {
+        "message": "No module named 'libsbml'",
+        "type": "ModuleNotFoundError"
+      },
+      "output": "",
+      "sedDocuments": [],
+      "skipReason": null,
+      "status": "FAILED"
+    }
+  },
+  "bionetgen": {
+    "response": 201,
+    "view": "https://api.biosimulations.org/runs/6758795e707aa641045f6f8c",
+    "download": "https://api.biosimulations.org/results/6758795e707aa641045f6f8c/download",
+    "logs": "https://api.biosimulations.org/logs/6758795e707aa641045f6f8c?includeOutput=true",
+    "log_yml": {
+      "duration": 0.197144,
+      "exception": {
+        "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
+        "type": "ValueError"
+      },
+      "output": "",
+      "sedDocuments": [],
+      "skipReason": null,
+      "status": "FAILED"
+    }
+  },
+  "boolnet": {
+    "response": 201,
+    "view": "https://api.biosimulations.org/runs/67587960707aa641045f6f8f",
+    "download": "https://api.biosimulations.org/results/67587960707aa641045f6f8f/download",
+    "logs": "https://api.biosimulations.org/logs/67587960707aa641045f6f8f?includeOutput=true",
+    "log_yml": {
+      "duration": 0.187671,
+      "exception": {
+        "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
+        "type": "ValueError"
+      },
+      "output": "",
+      "sedDocuments": [],
+      "skipReason": null,
+      "status": "FAILED"
+    }
+  },
+  "cbmpy": {
+    "response": 201,
+    "view": "https://api.biosimulations.org/runs/67587962707aa641045f6f92",
+    "download": "https://api.biosimulations.org/results/67587962707aa641045f6f92/download",
+    "logs": "https://api.biosimulations.org/logs/67587962707aa641045f6f92?includeOutput=true",
+    "log_yml": {
+      "duration": 0.291849,
+      "exception": {
+        "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
+        "type": "ValueError"
+      },
+      "output": "\r\nINFO: No xlwt module available, Excel spreadsheet creation disabled\r\n\r\n\r\n\r\nNo module named 'cplex'\r\n\r\n\r\n\r\nCPLEX not available\r\n\r\n*****\r\nUsing GLPK\r\n*****\r\n\r\n\r\nINFO: No xlrd module available, Excel spreadsheet reading disabled\r\n\r\nCBMPy environment\r\n******************\r\nRevision: r689\r\n\r\n\r\n***********************************************************************\r\n* Welcome to CBMPy (0.7.25) - PySCeS Constraint Based Modelling       *\r\n*                http://cbmpy.sourceforge.net                         *\r\n* Copyright(C) Brett G. Olivier 2014 - 2019                           *\r\n* Dept. of Systems Bioinformatics                                     *\r\n* Vrije Universiteit Amsterdam, Amsterdam, The Netherlands            *\r\n* CBMPy is developed as part of the BeBasic MetaToolKit Project       *\r\n* Distributed under the GNU GPL v 3.0 licence, see                    *\r\n* LICENCE (supplied with this release) for details                    *\r\n***********************************************************************\r\n\r\n",
+      "sedDocuments": [],
+      "skipReason": null,
+      "status": "FAILED"
+    }
+  },
+  "cobrapy": {
+    "response": 201,
+    "view": "https://api.biosimulations.org/runs/67587964c3054f763d55b93e",
+    "download": "https://api.biosimulations.org/results/67587964c3054f763d55b93e/download",
+    "logs": "https://api.biosimulations.org/logs/67587964c3054f763d55b93e?includeOutput=true",
+    "log_yml": {
+      "duration": 0.182352,
+      "exception": {
+        "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
+        "type": "ValueError"
+      },
+      "output": "",
+      "sedDocuments": [],
+      "skipReason": null,
+      "status": "FAILED"
+    }
+  },
+  "copasi": {
+    "response": 201,
+    "view": "https://api.biosimulations.org/runs/67587966c3054f763d55b941",
+    "download": "https://api.biosimulations.org/results/67587966c3054f763d55b941/download",
+    "logs": "https://api.biosimulations.org/logs/67587966c3054f763d55b941?includeOutput=true",
+    "log_yml": {
+      "duration": 0.237344,
+      "exception": {
+        "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
+        "type": "ValueError"
+      },
+      "output": "",
+      "sedDocuments": [],
+      "skipReason": null,
+      "status": "FAILED"
+    }
+  },
+  "gillespy2": {
+    "response": 201,
+    "view": "https://api.biosimulations.org/runs/67587969707aa641045f6f9c",
+    "download": "https://api.biosimulations.org/results/67587969707aa641045f6f9c/download",
+    "logs": "https://api.biosimulations.org/logs/67587969707aa641045f6f9c?includeOutput=true",
+    "log_yml": {
+      "duration": 0.18858,
+      "exception": {
+        "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
+        "type": "ValueError"
+      },
+      "output": "",
+      "sedDocuments": [],
+      "skipReason": null,
+      "status": "FAILED"
+    }
+  },
+  "ginsim": {
+    "response": 201,
+    "view": "https://api.biosimulations.org/runs/6758796b9fa297efdca233ad",
+    "download": "https://api.biosimulations.org/results/6758796b9fa297efdca233ad/download",
+    "logs": "https://api.biosimulations.org/logs/6758796b9fa297efdca233ad?includeOutput=true",
+    "log_yml": {
+      "duration": 0.184582,
+      "exception": {
+        "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
+        "type": "ValueError"
+      },
+      "output": "",
+      "sedDocuments": [],
+      "skipReason": null,
+      "status": "FAILED"
+    }
+  },
+  "libsbmlsim": {
+    "response": 201,
+    "view": "https://api.biosimulations.org/runs/6758796dc3054f763d55b94c",
+    "download": "https://api.biosimulations.org/results/6758796dc3054f763d55b94c/download",
+    "logs": "https://api.biosimulations.org/logs/6758796dc3054f763d55b94c?includeOutput=true",
+    "log_yml": {
+      "duration": 0.201415,
+      "exception": {
+        "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
+        "type": "ValueError"
+      },
+      "output": "",
+      "sedDocuments": [],
+      "skipReason": null,
+      "status": "FAILED"
+    }
+  },
+  "masspy": {
+    "response": 201,
+    "view": "https://api.biosimulations.org/runs/6758796f9fa297efdca233b2",
+    "download": "https://api.biosimulations.org/results/6758796f9fa297efdca233b2/download",
+    "logs": "https://api.biosimulations.org/logs/6758796f9fa297efdca233b2?includeOutput=true",
+    "log_yml": {
+      "duration": 0.40219,
+      "exception": {
+        "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
+        "type": "ValueError"
+      },
+      "output": "",
+      "sedDocuments": [],
+      "skipReason": null,
+      "status": "FAILED"
+    }
+  },
+  "netpyne": {
+    "response": 201,
+    "view": "https://api.biosimulations.org/runs/67587970707aa641045f6faa",
+    "download": "https://api.biosimulations.org/results/67587970707aa641045f6faa/download",
+    "logs": "https://api.biosimulations.org/logs/67587970707aa641045f6faa?includeOutput=true",
+    "log_yml": {
+      "duration": 0.068817,
+      "exception": {
+        "message": "No module named 'libsbml'",
+        "type": "ModuleNotFoundError"
+      },
+      "output": "",
+      "sedDocuments": [],
+      "skipReason": null,
+      "status": "FAILED"
+    }
+  },
+  "neuron": {
+    "response": 201,
+    "view": "https://api.biosimulations.org/runs/67587972707aa641045f6faf",
+    "download": "https://api.biosimulations.org/results/67587972707aa641045f6faf/download",
+    "logs": "https://api.biosimulations.org/logs/67587972707aa641045f6faf?includeOutput=true",
+    "log_yml": {
+      "duration": 0.068306,
+      "exception": {
+        "message": "No module named 'libsbml'",
+        "type": "ModuleNotFoundError"
+      },
+      "output": "",
+      "sedDocuments": [],
+      "skipReason": null,
+      "status": "FAILED"
+    }
+  },
+  "opencor": {
+    "response": 201,
+    "view": "https://api.biosimulations.org/runs/67587973707aa641045f6fc3",
+    "download": "https://api.biosimulations.org/results/67587973707aa641045f6fc3/download",
+    "logs": "https://api.biosimulations.org/logs/67587973707aa641045f6fc3?includeOutput=true",
+    "log_yml": {
+      "duration": 0.059153,
+      "exception": {
+        "message": "No module named 'libsbml'",
+        "type": "ModuleNotFoundError"
+      },
+      "output": "/home/opencor/OpenCOR/python/lib/python3.7/site-packages/biosimulators_utils/warnings.py:31: SedmlFeatureNotSupportedWarning: \u001b[33m`/tmp/tmpyf_u0l6b/./BIOMD0000000138_url.sedml` is encoded using L1V4. Only features available in L1V3 are supported. Newer features such as simple repeated tasks are not yet supported.\u001b[0m\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\n",
+      "sedDocuments": [],
+      "skipReason": null,
+      "status": "FAILED"
+    }
+  },
+  "pyneuroml": {
+    "response": 201,
+    "view": "https://api.biosimulations.org/runs/67587975c3054f763d55b97c",
+    "download": "https://api.biosimulations.org/results/67587975c3054f763d55b97c/download",
+    "logs": "https://api.biosimulations.org/logs/67587975c3054f763d55b97c?includeOutput=true",
+    "log_yml": {
+      "duration": 0.055601,
+      "exception": {
+        "message": "No module named 'libsbml'",
+        "type": "ModuleNotFoundError"
+      },
+      "output": "",
+      "sedDocuments": [],
+      "skipReason": null,
+      "status": "FAILED"
+    }
+  },
+  "pysces": {
+    "response": 201,
+    "view": "https://api.biosimulations.org/runs/675879779fa297efdca233e2",
+    "download": "https://api.biosimulations.org/results/675879779fa297efdca233e2/download",
+    "logs": "https://api.biosimulations.org/logs/675879779fa297efdca233e2?includeOutput=true",
+    "log_yml": {
+      "duration": 0.230119,
+      "exception": {
+        "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
+        "type": "ValueError"
+      },
+      "output": "libtk8.6.so: cannot open shared object file: No such file or directory\r\n\r\nPySCeS defaults to matplotlib's TKagg backend if not specified                          in the user configuration file, set \"matplotlib_backend = <backend>\" \r\nMatplotlib interface loaded (pysces.plt.m)\r\nPitcon routines available\r\nNLEQ2 routines available\r\nSBML support available\r\nYou are using NumPy (2.1.2) with SciPy (1.14.1)\r\nAssimulo CVode available\r\nRateChar is available\r\nParallel scanner is available\r\n\r\nPySCeS environment\r\n******************\r\npysces.model_dir = /home/FCAM/crbmapi/Pysces/psc\r\npysces.output_dir = /home/FCAM/crbmapi/Pysces\r\n\r\n\r\n***********************************************************************\r\n* Welcome to PySCeS (1.2.2) - Python Simulator for Cellular Systems   *\r\n*                http://pysces.sourceforge.net                        *\r\n* Copyright(C) B.G. Olivier, J.M. Rohwer, J.-H.S. Hofmeyr, 2004-2024  *\r\n* Triple-J Group for Molecular Cell Physiology                        *\r\n* Stellenbosch University, ZA and VU University Amsterdam, NL         *\r\n* PySCeS is distributed under the PySCeS (BSD style) licence, see     *\r\n* LICENCE.txt (supplied with this release) for details                *\r\n* Please cite PySCeS with: doi:10.1093/bioinformatics/bti046          *\r\n***********************************************************************\r\n",
+      "sedDocuments": [],
+      "skipReason": null,
+      "status": "FAILED"
+    }
+  },
+  "rbapy": {
+    "response": 201,
+    "view": "https://api.biosimulations.org/runs/67587978c3054f763d55b995",
+    "download": "https://api.biosimulations.org/results/67587978c3054f763d55b995/download",
+    "logs": "https://api.biosimulations.org/logs/67587978c3054f763d55b995?includeOutput=true",
+    "log_yml": {
+      "duration": 0.198847,
+      "exception": {
+        "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
+        "type": "ValueError"
+      },
+      "output": "",
+      "sedDocuments": [],
+      "skipReason": null,
+      "status": "FAILED"
+    }
+  },
+  "smoldyn": {
+    "response": 201,
+    "view": "https://api.biosimulations.org/runs/6758797a707aa641045f6fee",
+    "download": "https://api.biosimulations.org/results/6758797a707aa641045f6fee/download",
+    "logs": "https://api.biosimulations.org/logs/6758797a707aa641045f6fee?includeOutput=true",
+    "log_yml": {
+      "duration": 0.046844,
+      "exception": {
+        "message": "No module named 'libsbml'",
+        "type": "ModuleNotFoundError"
+      },
+      "output": "",
+      "sedDocuments": [],
+      "skipReason": null,
+      "status": "FAILED"
+    }
+  },
+  "tellurium": {
+    "response": 201,
+    "view": "https://api.biosimulations.org/runs/6758797cc3054f763d55b99b",
+    "download": "https://api.biosimulations.org/results/6758797cc3054f763d55b99b/download",
+    "logs": "https://api.biosimulations.org/logs/6758797cc3054f763d55b99b?includeOutput=true",
+    "log_yml": {
+      "duration": 0.298719,
+      "exception": {
+        "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
+        "type": "ValueError"
+      },
+      "output": "",
+      "sedDocuments": [],
+      "skipReason": null,
+      "status": "FAILED"
+    }
+  },
+  "vcell": {
+    "response": 201,
+    "view": "https://api.biosimulations.org/runs/6758797fc3054f763d55b9ac",
+    "download": "https://api.biosimulations.org/results/6758797fc3054f763d55b9ac/download",
+    "logs": "https://api.biosimulations.org/logs/6758797fc3054f763d55b9ac?includeOutput=true",
+    "log_yml": {
+      "duration": 2,
+      "exception": null,
+      "output": "Processing BIOMD0000000138_url.sedml.  Done",
+      "sedDocuments": [
+        {
+          "duration": null,
+          "exception": {
+            "message": "Cannot invoke 'org.jlibsedml.SedML.getPathForURI()' because 'this.sedml' is nullCannot invoke 'org.jlibsedml.SedML.getPathForURI()' because 'sedml' is nullFailure executing the sed document.",
+            "type": "RuntimeException"
+          },
+          "location": "BIOMD0000000138_url.sedml",
+          "output": "Initializing SED-ML document... done. Successful translation of SED-ML file. Building solvers and starting simulation of all tasks... Generating outputs... Generating HDF5 file...",
+          "outputs": [
+            {
+              "curves": [
+                {
+                  "id": "autogen_curve_task1_c",
+                  "status": "QUEUED"
+                }
+              ],
+              "duration": null,
+              "exception": null,
+              "id": "autogen_plot1",
+              "output": null,
+              "skipReason": null,
+              "status": "QUEUED"
+            },
+            {
+              "curves": [
+                {
+                  "id": "autogen_curve_for_task1_V",
+                  "status": "QUEUED"
+                }
+              ],
+              "duration": null,
+              "exception": null,
+              "id": "autogen_plot2",
+              "output": null,
+              "skipReason": null,
+              "status": "QUEUED"
+            },
+            {
+              "curves": [],
+              "duration": null,
+              "exception": null,
+              "id": "autogen_plot3",
+              "output": null,
+              "skipReason": null,
+              "status": "QUEUED"
+            },
+            {
+              "dataSets": [
+                {
+                  "id": "autogen_time_for_task1",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_c",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_vca",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_vk",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_Cm",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_gk",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_gcal",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_gsk",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_ga",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_gf",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_vn",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_va",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_vm",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_vh",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_vf",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_sn",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_sa",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_sm",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_sh",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_sf",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_taun",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_tauh",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_lambda",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_kc",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_ks",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_ff",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_alpha",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_phik",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_phia",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_phih",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_phif",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_phical",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_cinf",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_ica",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_isk",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_ibk",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_ikdr",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_ia",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_ik",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_n",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_h",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_V",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_cell",
+                  "status": "QUEUED"
+                },
+                {
+                  "id": "autogen_task1_reaction_0000004",
+                  "status": "QUEUED"
+                }
+              ],
+              "duration": null,
+              "exception": null,
+              "id": "autogen_report_for_task1",
+              "output": null,
+              "skipReason": null,
+              "status": "QUEUED"
+            }
+          ],
+          "skipReason": null,
+          "status": "FAILED",
+          "tasks": [
+            {
+              "algorithm": null,
+              "duration": null,
+              "exception": null,
+              "id": "task1",
+              "output": null,
+              "simulatorDetails": null,
+              "skipReason": null,
+              "status": "QUEUED"
+            }
+          ]
+        }
+      ],
+      "skipReason": null,
+      "status": "SUCCEEDED"
+    }
+  },
+  "xpp": {
+    "response": 201,
+    "view": "https://api.biosimulations.org/runs/67587981c3054f763d55b9b9",
+    "download": "https://api.biosimulations.org/results/67587981c3054f763d55b9b9/download",
+    "logs": "https://api.biosimulations.org/logs/67587981c3054f763d55b9b9?includeOutput=true",
+    "log_yml": {
+      "duration": 0.044146,
+      "exception": {
+        "message": "No module named 'libsbml'",
+        "type": "ModuleNotFoundError"
+      },
+      "output": "",
+      "sedDocuments": [],
+      "skipReason": null,
+      "status": "FAILED"
+    }
+  }
 }

@@ -51,7 +51,6 @@ def download_file(model_id, filename, output_file, cache):
     """
     request the given file and save it to disk
     """
-
     qfilename = urllib.parse.quote_plus(filename)
 
     response = cache.do_request(
@@ -74,14 +73,13 @@ def replace_model_xml(sedml_path, sbml_filename):
 
     returns True if the SBML reference already seemed valid
     """
-
     if sbml_filename == "model.xml":
         return True
 
     with open(sedml_path, encoding="utf-8") as f:
         data = f.read()
 
-    if not 'source="model.xml"' in data:
+    if 'source="model.xml"' not in data:
         return True
 
     data = data.replace('source="model.xml"', f'source="{sbml_filename}"')
@@ -98,9 +96,8 @@ def validate_sbml_file(model_id, mtab, info, cache, sup):
     return None to indicate aborting any further tests on this model
     otherwise return the SBML filename
     """
-
     # handle only single SBML files
-    if not info["format"]["name"] == "SBML":
+    if info["format"]["name"] != "SBML":
         mtab["valid_sbml"] = [
             "NonSBML",
             f"{info['format']['name']}:{info['files']['main']}",
@@ -146,10 +143,9 @@ def validate_sedml_file(model_id, mtab, info, cache, sup, sbml_file):
     return None to indicate aborting any further tests on this model
     otherwise return the SEDML filename
     """
-
     # must have a SEDML file as well in order to be executed
-    if not "additional" in info["files"]:
-        mtab["valid_sedml"] = f"NoSEDML"
+    if "additional" not in info["files"]:
+        mtab["valid_sedml"] = "NoSEDML"
         return None
 
     sedml_file = []
@@ -199,7 +195,6 @@ def main():
     download the BioModel model files, run various validation steps
     report the results as a markdown table README file with a summary row at the top
     """
-
     # caching is used to prevent the need to download the same responses from the remote server multiple times during testing
     # mode="off" to disable caching, "store" to wipe and store fresh results, "reuse" to use the stored cache
     cache = utils.RequestCache(mode="auto", direc="cache")
@@ -238,7 +233,7 @@ def main():
 
         # only process curated models
         # BIOMD ids should be the curated models
-        if not "BIOMD" in model_id:
+        if "BIOMD" not in model_id:
             continue
 
         # skip if on the list to be skipped
@@ -256,9 +251,9 @@ def main():
             model_details = f"<sup>{info['name']}</sup>"
             mtab["model_desc"] = mtab.make_fold(model_summary, model_details)
         else:
-            mtab[
-                "model_desc"
-            ] = f"[{model_id}]({API_URL}/{model_id})<br/><sup>{info['name']}</sup>"
+            mtab["model_desc"] = (
+                f"[{model_id}]({API_URL}/{model_id})<br/><sup>{info['name']}</sup>"
+            )
 
         # make temporary downloads of the sbml and sedml files
         model_dir = os.path.join(starting_dir, tmp_dir, model_id)
@@ -305,7 +300,7 @@ def main():
                 }
             mtab_remote_outcome_key = f"{e}_remote_outcome"
 
-            info_submission = f"Download: {results_remote[e]['download']}<br><br>Logs: {results_remote[e]['logs']}<br><br>View: {results_remote[e]['view']}<br><br>HTTP response: {str(results_remote[e]['response'])}"
+            info_submission = f"Download: {results_remote[e]['download']}<br><br>Logs: {results_remote[e]['logs']}<br><br>View: {results_remote[e]['view']}<br><br>HTTP response: {results_remote[e]['response']!s}"
             error_message_string = f'Error message: {results_remote_processed["error_message"]}<br><br>Exception type: {results_remote_processed["exception_type"]}'
 
             if results_remote_processed["error_message"] != "":

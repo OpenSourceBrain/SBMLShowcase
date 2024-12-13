@@ -11,11 +11,11 @@ Components:
          org.neuroml.model   v1.10.1
          jLEMS               v0.11.1
 """
+
 import sys
 from math import *
 
 import numpy as np
-
 from brian import *
 
 if len(sys.argv) > 1 and sys.argv[1] == "-nogui":

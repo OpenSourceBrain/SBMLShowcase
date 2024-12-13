@@ -48,7 +48,7 @@ results_paths = {
 
 results = {}
 for key, path in results_paths.items():
-    with open(path, "r") as f:
+    with open(path) as f:
         results[key] = json.load(f)
 
 results_table = utils.create_combined_results_table(

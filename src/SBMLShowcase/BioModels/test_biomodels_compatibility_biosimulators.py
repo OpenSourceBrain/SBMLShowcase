@@ -23,7 +23,6 @@ def download_file(model_id, filename, output_file, cache):
     """
     request the given file and save it to disk
     """
-
     qfilename = urllib.parse.quote_plus(filename)
 
     response = cache.do_request(
@@ -46,14 +45,13 @@ def replace_model_xml(sedml_path, sbml_filename):
 
     returns True if the SBML reference already seemed valid
     """
-
     if sbml_filename == "model.xml":
         return True
 
     with open(sedml_path, encoding="utf-8") as f:
         data = f.read()
 
-    if not 'source="model.xml"' in data:
+    if 'source="model.xml"' not in data:
         return True
 
     data = data.replace('source="model.xml"', f'source="{sbml_filename}"')
@@ -75,7 +73,7 @@ def download_sbml_file(model_id, info, cache):
 
 
 def download_sedml_file(model_id, info, cache, sbml_file):
-    if not "additional" in info["files"]:
+    if "additional" not in info["files"]:
         print(f"no additional files for {model_id}")
 
     sedml_file = []
@@ -103,7 +101,6 @@ def main():
     download the BioModel model files, run various validation steps
     report the results as a markdown table README file with a summary row at the top
     """
-
     # mode="off" to disable caching, "store" to wipe and store fresh results, "reuse" to use the stored cache
     cache = utils.RequestCache(mode="store", direc="cache")
     count = 0
@@ -122,7 +119,7 @@ def main():
         print(f"\r{model_id} {count}/{len(model_ids)}       ", end="")
 
         # BIOMD ids should be the curated models
-        if not "BIOMD" in model_id:
+        if "BIOMD" not in model_id:
             continue
         if count in skip or model_id in skip:
             continue

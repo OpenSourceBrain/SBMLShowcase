@@ -25,6 +25,6 @@ print("Simulation finished...")
 
 import sys
 
-if not "-nogui" in sys.argv:
+if "-nogui" not in sys.argv:
     # plot the simulation
     r.plot()

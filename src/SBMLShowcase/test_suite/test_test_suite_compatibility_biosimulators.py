@@ -12,9 +12,6 @@ import os
 import shutil
 import sys
 
-from pyneuroml.sbml import validate_sbml_files
-from pyneuroml.sedml import validate_sedml_files
-
 sys.path.append("..")
 import utils
 
@@ -31,8 +28,7 @@ suppress_stdout = True
 
 
 def parse_arguments():
-    "Parse command line arguments"
-
+    """Parse command line arguments"""
     import argparse
 
     parser = argparse.ArgumentParser(
@@ -103,7 +99,6 @@ def process_cases(args):
     To test cases 00001 and 01186 in the test suite:
     python test_test_suite_compatibility_biosimulators.py --cases 00001 01186 --suite-path /path/to/sbml-test-suite/cases/semantic --sbml-level_version highest
     """
-
     starting_dir = os.getcwd()  # where results will be written
 
     os.chdir(args.suite_path)  # change to test suite directory

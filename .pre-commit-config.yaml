@@ -1,5 +1,5 @@
-# Formatting shouldn't be applied to auto generated files, 
-# or files taken verbatim from external resources. 
+# Formatting shouldn't be applied to auto generated files,
+# or files taken verbatim from external resources.
 exclude: |-
   (?x)^(
       LEMS/.*|

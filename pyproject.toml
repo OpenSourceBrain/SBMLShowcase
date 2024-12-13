@@ -18,19 +18,18 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
 ]
 dependencies = [
-    "pyNeuroML[annotations]",
-    "python-libsedml",
-    "tellurium==2.2.10",
-    "pymetadata>=0.4.2",
     "docker",
+    "pyNeuroML[annotations]",
+    "pymetadata>=0.4.2",
+    "python-libsedml",
     "requests<2.32.0",
+    "tellurium==2.2.10",
 ]
 description = "Tests SBML compatibility with BioSimulators registered simulation engines"
 dynamic = [
     "version",
 ]
-keywords = ["SBML", "SED-ML","Biosimulators","BioModels","BioSimulations"]
-
+keywords = ["BioModels", "BioSimulations", "Biosimulators", "SBML", "SED-ML"]
 name = "SBMLShowcase"
 optional-dependencies = {dev = [
     "build",
@@ -118,11 +117,11 @@ overrides."tool.tox.env_run_base.commands".inline_arrays = false
 
 [tool.tox]
 env_list = [
-    "py39",
     "py310",
     "py311",
     "py312",
     "py313",
+    "py39",
 ]
 env_run_base = {commands = [
     [
@@ -140,8 +139,7 @@ env.docs = {commands = [
 ], extras = [
     "docs",
 ]}
-
-gh.python."3.9" = ["py39"]
 gh.python."3.10" = ["py310"]
 gh.python."3.11" = ["py311"]
 gh.python."3.12" = ["py312"]
+gh.python."3.9" = ["py39"]

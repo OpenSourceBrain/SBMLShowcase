@@ -9,7 +9,6 @@ https://github.com/sbmlteam/sbml-test-suite/releases/download/3.4.0/semantic_tes
 
 import glob
 import os
-import re
 import sys
 import warnings
 
@@ -30,8 +29,7 @@ suppress_stdout = True
 
 
 def parse_arguments():
-    "Parse command line arguments"
-
+    """Parse command line arguments"""
     import argparse
 
     parser = argparse.ArgumentParser(
@@ -99,7 +97,6 @@ def add_case_url(case, fpath, url_base):
     but will not handle all possible variations of globs and base directories
     in which case it should be disabled by setting --suite-url-base=''
     """
-
     url = os.path.join(url_base, fpath)
     new_item = f"[{case}]({url})"
     return new_item

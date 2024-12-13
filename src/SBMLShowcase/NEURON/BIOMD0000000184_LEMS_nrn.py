@@ -13,9 +13,7 @@ Components:
 
 """
 
-import datetime
 import hashlib
-import sys
 import time
 
 import neuron
