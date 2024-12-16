@@ -3,21 +3,23 @@ name = "SBMLShowcase"
 dynamic = ["version"]
 requires-python = ">=3.9"
 
-dependencies = [
-    "pre-commit",       
+dependencies = [      
     "pyNeuroML[annotations]",
-    "python-libsedml",
-    "pytest",
+    "python-libsedml", 
     "tellurium",
     "pymetadata>=0.4.2",
     "docker",
     "requests<2.32.0",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pre-commit",
+]
 
 [build-system]
 requires = ["setuptools>=42", "wheel", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = { find = { include = ["utils"] } }
+packages = []
