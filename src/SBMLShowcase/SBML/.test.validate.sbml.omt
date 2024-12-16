@@ -1,0 +1,5 @@
+# Script for running automated tests on OSB using github actions, see https://github.com/OpenSourceBrain/osb-model-validation
+
+# This test will validate the SBML files in the current directory using: pynml -validate-sbml *.xml *.sbml
+target: "*.xml *.sbml"
+engine: pyNeuroML_validate_sbml

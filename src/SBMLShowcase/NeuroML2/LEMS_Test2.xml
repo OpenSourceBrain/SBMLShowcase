@@ -1,0 +1,47 @@
+<Lems>
+
+<!-- Specify which component to run -->
+<Target component="sim1"/>
+
+<!-- Include core NeuroML2 ComponentType definitions -->
+<Include file="Cells.xml"/>
+<Include file="Networks.xml"/>
+<Include file="Simulation.xml"/>
+
+
+<Include file="TestMulti.net.nml"/>
+
+
+<Simulation id="sim1" length="1000s" step="0.01s" target="Test">
+
+
+    <Display id="A" title="SBML A" timeScale="1s" xmin="-100" xmax="1100" ymin="-.5" ymax="5">
+        <Line id ="X" quantity="cellA/0/LavrentovichA/sbml/X" scale="1"  color="#ff0000" timeScale="1s"/>
+        <Line id ="Y" quantity="cellA/0/LavrentovichA/sbml/Y" scale="1"  color="#00ff00" timeScale="1s"/>
+        <Line id ="Z" quantity="cellA/0/LavrentovichA/sbml/Z" scale="1"  color="#0000ff" timeScale="1s"/>
+    </Display>
+
+    <Display id="B" title="SBML B" timeScale="1s" xmin="-100" xmax="1100" ymin="-.5" ymax="5">
+        <Line id ="X" quantity="cellB/0/LavrentovichB/sbml/X" scale="1"  color="#ff0000" timeScale="1s"/>
+        <Line id ="Y" quantity="cellB/0/LavrentovichB/sbml/Y" scale="1"  color="#00ff00" timeScale="1s"/>
+        <Line id ="Z" quantity="cellB/0/LavrentovichB/sbml/Z" scale="1"  color="#0000ff" timeScale="1s"/>
+    </Display>
+
+    <Display id="C" title="SBML C" timeScale="1s" xmin="-100" xmax="1100" ymin="-.5" ymax="5">
+        <Line id ="X" quantity="cellC/0/LavrentovichC/sbml/X" scale="1"  color="#ff0000" timeScale="1s"/>
+        <Line id ="Y" quantity="cellC/0/LavrentovichC/sbml/Y" scale="1"  color="#00ff00" timeScale="1s"/>
+        <Line id ="Z" quantity="cellC/0/LavrentovichC/sbml/Z" scale="1"  color="#0000ff" timeScale="1s"/>
+    </Display>
+
+
+    <Display id="v" title="SBML" timeScale="1s" xmin="-100" xmax="1100" ymin="-100" ymax="100">
+        <!--<Line id ="A v2" quantity="cellA/0/LavrentovichA/targetv" scale="1mV"  color="#fffff0" timeScale="1s"/>-->
+        <Line id ="A v" quantity="cellA/0/LavrentovichA/v" scale="1mV"  color="#ff0000" timeScale="1s"/>
+        <Line id ="B v" quantity="cellB/0/LavrentovichB/v" scale="1mV"  color="#ffff00" timeScale="1s"/>
+        <Line id ="C v" quantity="cellC/0/LavrentovichC/v" scale="1mV"  color="#ff00ff" timeScale="1s"/>
+    </Display>
+
+
+</Simulation>
+
+</Lems>

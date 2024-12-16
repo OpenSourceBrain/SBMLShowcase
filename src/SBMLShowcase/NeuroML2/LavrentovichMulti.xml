@@ -1,0 +1,25 @@
+<Lems>
+
+
+    <sbmlHelperCell id="LavrentovichA" C="100 pF">  <!-- C (capacitance) is just there to keep NEURON happy... -->
+        <sbml id="sbml"
+                                      vin="0.05" kout="0.5" vM3="40.0" k_CaA="0.15" n="2.02"
+                                      k_CaI="0.15" m="2.2" kip3="0.1" vM2="15.0" k2="0.1"
+                                      kf="0.5" vp="0.05" kp="0.3" kdeg="0.08"/>
+    </sbmlHelperCell>
+
+    <sbmlHelperCell id="LavrentovichB" C="100 pF">  <!-- C (capacitance) is just there to keep NEURON happy... -->
+        <sbml id="sbml"
+                                      vin="0.05" kout="0.5" vM3="40.0" k_CaA="0.15" n="2.02"
+                                      k_CaI="0.15" m="2.2" kip3="0.1" vM2="15.0" k2="0.1"
+                                      kf="0.5" vp="0.05" kp="0.3" kdeg="0.055"/>
+    </sbmlHelperCell>
+
+    <sbmlHelperCell id="LavrentovichC" C="100 pF">  <!-- C (capacitance) is just there to keep NEURON happy... -->
+        <sbml id="sbml"
+                                      vin="0.05" kout="0.5" vM3="40.0" k_CaA="0.15" n="2.02"
+                                      k_CaI="0.15" m="2.2" kip3="0.1" vM2="15.0" k2="0.1"
+                                      kf="0.5" vp="0.05" kp="0.3" kdeg="0.2"/>
+    </sbmlHelperCell>
+
+</Lems>

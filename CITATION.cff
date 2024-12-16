@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - family-names: ""
+    given-names: "Open Source Brain"
+    email: "info@opensourcebrain.org"
+repository-code: "https://github.com/OpenSourceBrain/SBMLShowcase"
+title: "SBML Showcase: Tests SBML compatibility with BioSimulators registered simulation engines"
+license: "BSD-3"
