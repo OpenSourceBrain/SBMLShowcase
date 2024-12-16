@@ -45,6 +45,6 @@ jobs:
 
       - name: Test remote biosimulators compatibility table creation
         run: |
-          cd src/SBMLShowcase/SBML/SBML/tests
+          cd src/SBMLShowcase/SBML/tests
           sudo rm -rf output
           python ./test_biosimulators_remote.py --output-dir=tmp_plots
