@@ -4,7 +4,7 @@
     <model id="BIOMD0000000138_url" language="urn:sedml:language:sbml" source="BIOMD0000000138_url.xml"/>
   </listOfModels>
   <listOfSimulations>
-    <uniformTimeCourse id="auto_ten_seconds" initialTime="0" outputStartTime="0" outputEndTime="3000" numberOfSteps="100000">
+    <uniformTimeCourse id="auto_ten_seconds" initialTime="0" outputStartTime="0" outputEndTime="10" numberOfSteps="1000">
       <algorithm name="ODE solver" kisaoID="KISAO:0000694"/>
     </uniformTimeCourse>
   </listOfSimulations>
@@ -414,24 +414,12 @@
         <dataSet id="autogen_task1_reaction_0000004" label="reaction_0000004" dataReference="auto_dg_for_task1_reaction_0000004"/>
       </listOfDataSets>
     </report>
-    <plot2D id="autogen_plot1" name="c">
+    <plot2D id="autogen_plot_for_task1" name="Auto-generated plot for task1, including all species.">
       <xAxis name="Time" type="linear"/>
       <yAxis name="Species" type="linear"/>
       <listOfCurves>
         <curve id="autogen_curve_task1_c" name="c" logX="false" xDataReference="auto_time_for_task1" logY="false" yDataReference="auto_dg_for_task1_c"/>
-          </listOfCurves>
-    </plot2D>
-    <plot2D id="autogen_plot2" name="V">
-      <xAxis name="Time" type="linear"/>
-      <yAxis name="Species" type="linear"/>
-      <listOfCurves>
-         <curve id="autogen_curve_for_task1_V" name="V" logX="false" xDataReference="auto_time_for_task1" logY="false" yDataReference="auto_dg_for_task1_V"/>
       </listOfCurves>
-    </plot2D>
-
-    <plot2D id="autogen_plot3" name="vk">
-      <xAxis name="Time" type="linear"/>
-      <yAxis name="Species" type="linear"/>
     </plot2D>
   </listOfOutputs>
 </sedML>
