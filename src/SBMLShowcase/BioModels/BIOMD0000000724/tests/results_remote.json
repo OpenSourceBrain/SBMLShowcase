@@ -1,11 +1,19 @@
 {
     "amici": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039d367468f9f3fc06bc7",
         "download": "https://api.biosimulations.org/results/676039d367468f9f3fc06bc7/download",
         "logs": "https://api.biosimulations.org/logs/676039d367468f9f3fc06bc7?includeOutput=true",
         "log_yml": {
             "duration": 3.080054,
+=======
+        "view": "https://api.biosimulations.org/runs/675999e9c3054f763d585989",
+        "download": "https://api.biosimulations.org/results/675999e9c3054f763d585989/download",
+        "logs": "https://api.biosimulations.org/logs/675999e9c3054f763d585989?includeOutput=true",
+        "log_yml": {
+            "duration": 2.719446,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
             "exception": {
                 "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Cannot turn parameter ModelValue_0 into a constant/fixed parameter since it either has an initial assignment or is the target of an assignment or rate rule.\n  \n    target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='LCK_switch'] is not a valid XPath to an attribute of a model element",
                 "type": "CombineArchiveExecutionError"
@@ -13,7 +21,11 @@
             "output": "",
             "sedDocuments": [
                 {
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                     "duration": 2.49766,
+=======
+                    "duration": 2.213391,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                     "exception": {
                         "message": "The SED document did not execute successfully:\n\n  Cannot turn parameter ModelValue_0 into a constant/fixed parameter since it either has an initial assignment or is the target of an assignment or rate rule.\n\n  target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='LCK_switch'] is not a valid XPath to an attribute of a model element",
                         "type": "SedmlExecutionError"
@@ -28,7 +40,11 @@
                                     "status": "SKIPPED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.123407,
+=======
+                            "duration": 0.102998,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_6_task2",
                             "output": "",
@@ -42,7 +58,11 @@
                                     "status": "SKIPPED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.11707,
+=======
+                            "duration": 0.104245,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_7_task2",
                             "output": "",
@@ -60,7 +80,11 @@
                                     "status": "SKIPPED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.122914,
+=======
+                            "duration": 0.109426,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_8_task2",
                             "output": "",
@@ -74,7 +98,11 @@
                                     "status": "SKIPPED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.115634,
+=======
+                            "duration": 0.106596,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_9_task2",
                             "output": "",
@@ -88,7 +116,11 @@
                                     "status": "SKIPPED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.114269,
+=======
+                            "duration": 0.104431,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_10_task2",
                             "output": "",
@@ -578,7 +610,11 @@
                                     "status": "SKIPPED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.059981,
+=======
+                            "duration": 0.053558,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "autogen_report_for_task2",
                             "output": "",
@@ -591,7 +627,11 @@
                     "tasks": [
                         {
                             "algorithm": null,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.163107,
+=======
+                            "duration": 0.153917,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": {
                                 "message": "Cannot turn parameter ModelValue_0 into a constant/fixed parameter since it either has an initial assignment or is the target of an assignment or rate rule.",
                                 "type": "SBMLException"
@@ -604,7 +644,11 @@
                         },
                         {
                             "algorithm": null,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.048244,
+=======
+                            "duration": 0.041214,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": {
                                 "message": "target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='LCK_switch'] is not a valid XPath to an attribute of a model element",
                                 "type": "ValueError"
@@ -624,11 +668,19 @@
     },
     "brian2": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039d567468f9f3fc06bca",
         "download": "https://api.biosimulations.org/results/676039d567468f9f3fc06bca/download",
         "logs": "https://api.biosimulations.org/logs/676039d567468f9f3fc06bca?includeOutput=true",
         "log_yml": {
             "duration": 0.09639,
+=======
+        "view": "https://api.biosimulations.org/runs/675999ebc3054f763d58598f",
+        "download": "https://api.biosimulations.org/results/675999ebc3054f763d58598f/download",
+        "logs": "https://api.biosimulations.org/logs/675999ebc3054f763d58598f?includeOutput=true",
+        "log_yml": {
+            "duration": 0.08301,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -641,11 +693,19 @@
     },
     "bionetgen": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039d7f8016f90e7c65537",
         "download": "https://api.biosimulations.org/results/676039d7f8016f90e7c65537/download",
         "logs": "https://api.biosimulations.org/logs/676039d7f8016f90e7c65537?includeOutput=true",
         "log_yml": {
             "duration": 0.288858,
+=======
+        "view": "https://api.biosimulations.org/runs/675999ec707aa64104620d7c",
+        "download": "https://api.biosimulations.org/results/675999ec707aa64104620d7c/download",
+        "logs": "https://api.biosimulations.org/logs/675999ec707aa64104620d7c?includeOutput=true",
+        "log_yml": {
+            "duration": 0.25008,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -658,11 +718,19 @@
     },
     "boolnet": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039d93e750b90a420edc1",
         "download": "https://api.biosimulations.org/results/676039d93e750b90a420edc1/download",
         "logs": "https://api.biosimulations.org/logs/676039d93e750b90a420edc1?includeOutput=true",
         "log_yml": {
             "duration": 0.282861,
+=======
+        "view": "https://api.biosimulations.org/runs/675999eec3054f763d585992",
+        "download": "https://api.biosimulations.org/results/675999eec3054f763d585992/download",
+        "logs": "https://api.biosimulations.org/logs/675999eec3054f763d585992?includeOutput=true",
+        "log_yml": {
+            "duration": 0.264474,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -675,11 +743,19 @@
     },
     "cbmpy": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039da67468f9f3fc06bcd",
         "download": "https://api.biosimulations.org/results/676039da67468f9f3fc06bcd/download",
         "logs": "https://api.biosimulations.org/logs/676039da67468f9f3fc06bcd?includeOutput=true",
         "log_yml": {
             "duration": 0.418622,
+=======
+        "view": "https://api.biosimulations.org/runs/675999f0c3054f763d585995",
+        "download": "https://api.biosimulations.org/results/675999f0c3054f763d585995/download",
+        "logs": "https://api.biosimulations.org/logs/675999f0c3054f763d585995?includeOutput=true",
+        "log_yml": {
+            "duration": 0.350226,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -692,11 +768,19 @@
     },
     "cobrapy": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039dc3e750b90a420edc6",
         "download": "https://api.biosimulations.org/results/676039dc3e750b90a420edc6/download",
         "logs": "https://api.biosimulations.org/logs/676039dc3e750b90a420edc6?includeOutput=true",
         "log_yml": {
             "duration": 0.274372,
+=======
+        "view": "https://api.biosimulations.org/runs/675999f29fa297efdca4d39e",
+        "download": "https://api.biosimulations.org/results/675999f29fa297efdca4d39e/download",
+        "logs": "https://api.biosimulations.org/logs/675999f29fa297efdca4d39e?includeOutput=true",
+        "log_yml": {
+            "duration": 0.261318,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -709,16 +793,28 @@
     },
     "copasi": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039def8016f90e7c6553f",
         "download": "https://api.biosimulations.org/results/676039def8016f90e7c6553f/download",
         "logs": "https://api.biosimulations.org/logs/676039def8016f90e7c6553f?includeOutput=true",
         "log_yml": {
             "duration": 2.853597,
+=======
+        "view": "https://api.biosimulations.org/runs/675999f4c3054f763d58599e",
+        "download": "https://api.biosimulations.org/results/675999f4c3054f763d58599e/download",
+        "logs": "https://api.biosimulations.org/logs/675999f4c3054f763d58599e?includeOutput=true",
+        "log_yml": {
+            "duration": 2.715015,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
             "exception": null,
             "output": "",
             "sedDocuments": [
                 {
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                     "duration": 2.29679,
+=======
+                    "duration": 2.186595,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                     "exception": null,
                     "location": "Theinmozhi_2018.sedml",
                     "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 2 tasks, 1 reports, and 5 plots:\r\n  Theinmozhi_2018.sedml:\r\n    Tasks (2):\r\n      task1\r\n      task2\r\n    Reports (1):\r\n      autogen_report_for_task2: 120 data sets\r\n    Plots (5):\r\n      plot_10_task2: 1 curves\r\n      plot_6_task2: 1 curves\r\n      plot_7_task2: 1 curves\r\n      plot_8_task2: 2 curves\r\n      plot_9_task2: 1 curves\r\n\r\nExecuting SED-ML file 1: Theinmozhi_2018.sedml ...\r\n  Found 1 tasks and 6 outputs:\r\n    Tasks:\r\n      `task2`\r\n    Outputs:\r\n      `autogen_report_for_task2`\r\n      `plot_10_task2`\r\n      `plot_6_task2`\r\n      `plot_7_task2`\r\n      `plot_8_task2`\r\n      `plot_9_task2`\r\n  Executing task 1: `task2`\r\n    Executing simulation ...woohoo!\r\nwoohoo!\r\n \u001b[34msucceeded\u001b[0m\r\n    Generating 6 outputs ...\r\n      Generating output 1: `plot_6_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `plot_7_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 3: `plot_8_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 4: `plot_9_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 5: `plot_10_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 6: `autogen_report_for_task2` ...",
@@ -730,7 +826,11 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.427414,
+=======
+                            "duration": 0.44773,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_6_task2",
                             "output": "",
@@ -744,7 +844,11 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.150614,
+=======
+                            "duration": 0.125284,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_7_task2",
                             "output": "",
@@ -762,7 +866,11 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.159495,
+=======
+                            "duration": 0.1364,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_8_task2",
                             "output": "",
@@ -776,7 +884,11 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.138541,
+=======
+                            "duration": 0.118575,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_9_task2",
                             "output": "",
@@ -790,7 +902,11 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.142053,
+=======
+                            "duration": 0.120286,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_10_task2",
                             "output": "",
@@ -1280,7 +1396,11 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.224539,
+=======
+                            "duration": 0.204297,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "autogen_report_for_task2",
                             "output": "",
@@ -1293,7 +1413,11 @@
                     "tasks": [
                         {
                             "algorithm": null,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.709565,
+=======
+                            "duration": 0.629107,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "task2",
                             "output": "",
@@ -1310,11 +1434,19 @@
     },
     "gillespy2": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039e067468f9f3fc06bd5",
         "download": "https://api.biosimulations.org/results/676039e067468f9f3fc06bd5/download",
         "logs": "https://api.biosimulations.org/logs/676039e067468f9f3fc06bd5?includeOutput=true",
         "log_yml": {
             "duration": 0.320045,
+=======
+        "view": "https://api.biosimulations.org/runs/675999f69fa297efdca4d3a4",
+        "download": "https://api.biosimulations.org/results/675999f69fa297efdca4d3a4/download",
+        "logs": "https://api.biosimulations.org/logs/675999f69fa297efdca4d3a4?includeOutput=true",
+        "log_yml": {
+            "duration": 0.256454,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -1327,11 +1459,19 @@
     },
     "ginsim": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039e23e750b90a420edce",
         "download": "https://api.biosimulations.org/results/676039e23e750b90a420edce/download",
         "logs": "https://api.biosimulations.org/logs/676039e23e750b90a420edce?includeOutput=true",
         "log_yml": {
             "duration": 0.281897,
+=======
+        "view": "https://api.biosimulations.org/runs/675999f89fa297efdca4d3a9",
+        "download": "https://api.biosimulations.org/results/675999f89fa297efdca4d3a9/download",
+        "logs": "https://api.biosimulations.org/logs/675999f89fa297efdca4d3a9?includeOutput=true",
+        "log_yml": {
+            "duration": 0.25789,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -1344,11 +1484,19 @@
     },
     "libsbmlsim": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039e43e750b90a420edd1",
         "download": "https://api.biosimulations.org/results/676039e43e750b90a420edd1/download",
         "logs": "https://api.biosimulations.org/logs/676039e43e750b90a420edd1?includeOutput=true",
         "log_yml": {
             "duration": 0.270323,
+=======
+        "view": "https://api.biosimulations.org/runs/675999fac3054f763d5859a8",
+        "download": "https://api.biosimulations.org/results/675999fac3054f763d5859a8/download",
+        "logs": "https://api.biosimulations.org/logs/675999fac3054f763d5859a8?includeOutput=true",
+        "log_yml": {
+            "duration": 0.248469,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -1361,11 +1509,19 @@
     },
     "masspy": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039e63e750b90a420eddf",
         "download": "https://api.biosimulations.org/results/676039e63e750b90a420eddf/download",
         "logs": "https://api.biosimulations.org/logs/676039e63e750b90a420eddf?includeOutput=true",
         "log_yml": {
             "duration": 3.969794,
+=======
+        "view": "https://api.biosimulations.org/runs/675999fc707aa64104620d98",
+        "download": "https://api.biosimulations.org/results/675999fc707aa64104620d98/download",
+        "logs": "https://api.biosimulations.org/logs/675999fc707aa64104620d98?includeOutput=true",
+        "log_yml": {
+            "duration": 3.400673,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
             "exception": {
                 "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Could not load MassModel '_30356330_Theinmozhi_PDL1_TCR_regulation'\n  \n    target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='LCK_switch'] cannot be changed by XML manipulation, as the target is not an attribute of a model element",
                 "type": "CombineArchiveExecutionError"
@@ -1373,7 +1529,11 @@
             "output": "",
             "sedDocuments": [
                 {
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                     "duration": 3.206075,
+=======
+                    "duration": 2.760737,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                     "exception": {
                         "message": "The SED document did not execute successfully:\n\n  Could not load MassModel '_30356330_Theinmozhi_PDL1_TCR_regulation'\n\n  target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='LCK_switch'] cannot be changed by XML manipulation, as the target is not an attribute of a model element",
                         "type": "SedmlExecutionError"
@@ -1388,7 +1548,11 @@
                                     "status": "SKIPPED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.366282,
+=======
+                            "duration": 0.24384,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_6_task2",
                             "output": "",
@@ -1402,7 +1566,11 @@
                                     "status": "SKIPPED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.130001,
+=======
+                            "duration": 0.104923,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_7_task2",
                             "output": "",
@@ -1420,7 +1588,11 @@
                                     "status": "SKIPPED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.130337,
+=======
+                            "duration": 0.10428,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_8_task2",
                             "output": "",
@@ -1434,7 +1606,11 @@
                                     "status": "SKIPPED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.129874,
+=======
+                            "duration": 0.106551,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_9_task2",
                             "output": "",
@@ -1448,7 +1624,11 @@
                                     "status": "SKIPPED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.133368,
+=======
+                            "duration": 0.1105,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_10_task2",
                             "output": "",
@@ -1938,7 +2118,11 @@
                                     "status": "SKIPPED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.064686,
+=======
+                            "duration": 0.055107,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "autogen_report_for_task2",
                             "output": "",
@@ -1951,7 +2135,11 @@
                     "tasks": [
                         {
                             "algorithm": null,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.513826,
+=======
+                            "duration": 0.46494,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": {
                                 "message": "Could not load MassModel '_30356330_Theinmozhi_PDL1_TCR_regulation'",
                                 "type": "MassSimulationError"
@@ -1964,7 +2152,11 @@
                         },
                         {
                             "algorithm": null,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.05092,
+=======
+                            "duration": 0.042945,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": {
                                 "message": "target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='LCK_switch'] cannot be changed by XML manipulation, as the target is not an attribute of a model element",
                                 "type": "NotImplementedError"
@@ -1984,11 +2176,19 @@
     },
     "netpyne": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039e867468f9f3fc06bed",
         "download": "https://api.biosimulations.org/results/676039e867468f9f3fc06bed/download",
         "logs": "https://api.biosimulations.org/logs/676039e867468f9f3fc06bed?includeOutput=true",
         "log_yml": {
             "duration": 0.075665,
+=======
+        "view": "https://api.biosimulations.org/runs/675999fdc3054f763d5859af",
+        "download": "https://api.biosimulations.org/results/675999fdc3054f763d5859af/download",
+        "logs": "https://api.biosimulations.org/logs/675999fdc3054f763d5859af?includeOutput=true",
+        "log_yml": {
+            "duration": 0.077607,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -2001,11 +2201,19 @@
     },
     "neuron": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039eaf8016f90e7c6555d",
         "download": "https://api.biosimulations.org/results/676039eaf8016f90e7c6555d/download",
         "logs": "https://api.biosimulations.org/logs/676039eaf8016f90e7c6555d?includeOutput=true",
         "log_yml": {
             "duration": 0.087306,
+=======
+        "view": "https://api.biosimulations.org/runs/675999ff707aa64104620db2",
+        "download": "https://api.biosimulations.org/results/675999ff707aa64104620db2/download",
+        "logs": "https://api.biosimulations.org/logs/675999ff707aa64104620db2?includeOutput=true",
+        "log_yml": {
+            "duration": 0.068771,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -2018,16 +2226,28 @@
     },
     "opencor": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039ec67468f9f3fc06c07",
         "download": "https://api.biosimulations.org/results/676039ec67468f9f3fc06c07/download",
         "logs": "https://api.biosimulations.org/logs/676039ec67468f9f3fc06c07?includeOutput=true",
         "log_yml": {
             "duration": 0.072194,
+=======
+        "view": "https://api.biosimulations.org/runs/67599a019fa297efdca4d3dc",
+        "download": "https://api.biosimulations.org/results/67599a019fa297efdca4d3dc/download",
+        "logs": "https://api.biosimulations.org/logs/67599a019fa297efdca4d3dc?includeOutput=true",
+        "log_yml": {
+            "duration": 0.050691,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
             },
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
             "output": "/home/opencor/OpenCOR/python/lib/python3.7/site-packages/biosimulators_utils/warnings.py:31: SedmlFeatureNotSupportedWarning: \u001b[33m`/tmp/tmp451xveek/./Theinmozhi_2018.sedml` is encoded using L1V4. Only features available in L1V3 are supported. Newer features such as simple repeated tasks are not yet supported.\u001b[0m\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\n",
+=======
+            "output": "/home/opencor/OpenCOR/python/lib/python3.7/site-packages/biosimulators_utils/warnings.py:31: SedmlFeatureNotSupportedWarning: \u001b[33m`/tmp/tmph4d09iiw/./Theinmozhi_2018.sedml` is encoded using L1V4. Only features available in L1V3 are supported. Newer features such as simple repeated tasks are not yet supported.\u001b[0m\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\n",
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
             "sedDocuments": [],
             "skipReason": null,
             "status": "FAILED"
@@ -2035,11 +2255,19 @@
     },
     "pyneuroml": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039edf8016f90e7c6558a",
         "download": "https://api.biosimulations.org/results/676039edf8016f90e7c6558a/download",
         "logs": "https://api.biosimulations.org/logs/676039edf8016f90e7c6558a?includeOutput=true",
         "log_yml": {
             "duration": 0.083921,
+=======
+        "view": "https://api.biosimulations.org/runs/67599a039fa297efdca4d3e7",
+        "download": "https://api.biosimulations.org/results/67599a039fa297efdca4d3e7/download",
+        "logs": "https://api.biosimulations.org/logs/67599a039fa297efdca4d3e7?includeOutput=true",
+        "log_yml": {
+            "duration": 0.061951,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -2052,19 +2280,34 @@
     },
     "pysces": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039ef67468f9f3fc06c17",
         "download": "https://api.biosimulations.org/results/676039ef67468f9f3fc06c17/download",
         "logs": "https://api.biosimulations.org/logs/676039ef67468f9f3fc06c17?includeOutput=true",
         "log_yml": {
             "duration": 5.504413,
+=======
+        "view": "https://api.biosimulations.org/runs/67599a059fa297efdca4d3ec",
+        "download": "https://api.biosimulations.org/results/67599a059fa297efdca4d3ec/download",
+        "logs": "https://api.biosimulations.org/logs/67599a059fa297efdca4d3ec?includeOutput=true",
+        "log_yml": {
+            "duration": 5.470218,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
             "exception": null,
             "output": "libtk8.6.so: cannot open shared object file: No such file or directory\r\n\r\nPySCeS defaults to matplotlib's TKagg backend if not specified                          in the user configuration file, set \"matplotlib_backend = <backend>\" \r\nMatplotlib interface loaded (pysces.plt.m)\r\nPitcon routines available\r\nNLEQ2 routines available\r\nSBML support available\r\nYou are using NumPy (2.1.2) with SciPy (1.14.1)\r\nAssimulo CVode available\r\nRateChar is available\r\nParallel scanner is available\r\n\r\nPySCeS environment\r\n******************\r\npysces.model_dir = /home/FCAM/crbmapi/Pysces/psc\r\npysces.output_dir = /home/FCAM/crbmapi/Pysces\r\n\r\n\r\n***********************************************************************\r\n* Welcome to PySCeS (1.2.2) - Python Simulator for Cellular Systems   *\r\n*                http://pysces.sourceforge.net                        *\r\n* Copyright(C) B.G. Olivier, J.M. Rohwer, J.-H.S. Hofmeyr, 2004-2024  *\r\n* Triple-J Group for Molecular Cell Physiology                        *\r\n* Stellenbosch University, ZA and VU University Amsterdam, NL         *\r\n* PySCeS is distributed under the PySCeS (BSD style) licence, see     *\r\n* LICENCE.txt (supplied with this release) for details                *\r\n* Please cite PySCeS with: doi:10.1093/bioinformatics/bti046          *\r\n***********************************************************************\r\n",
             "sedDocuments": [
                 {
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                     "duration": 4.912613,
                     "exception": null,
                     "location": "Theinmozhi_2018.sedml",
                     "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 2 tasks, 1 reports, and 5 plots:\r\n  Theinmozhi_2018.sedml:\r\n    Tasks (2):\r\n      task1\r\n      task2\r\n    Reports (1):\r\n      autogen_report_for_task2: 120 data sets\r\n    Plots (5):\r\n      plot_10_task2: 1 curves\r\n      plot_6_task2: 1 curves\r\n      plot_7_task2: 1 curves\r\n      plot_8_task2: 2 curves\r\n      plot_9_task2: 1 curves\r\n\r\nExecuting SED-ML file 1: Theinmozhi_2018.sedml ...\r\n  Found 1 tasks and 6 outputs:\r\n    Tasks:\r\n      `task2`\r\n    Outputs:\r\n      `autogen_report_for_task2`\r\n      `plot_10_task2`\r\n      `plot_6_task2`\r\n      `plot_7_task2`\r\n      `plot_8_task2`\r\n      `plot_9_task2`\r\n  Executing task 1: `task2`\r\n    Executing simulation ...Info: single compartment model: locating \"CP2_DP_CP1\" in default compartment\r\nInfo: single compartment model: locating \"CP1_Diss_PD1_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CD28i_P_CD28a\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_DP_CD28i\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_Bd_PI3K\" in default compartment\r\nInfo: single compartment model: locating \"CD3i_P_CD3a\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_DP_CD3i\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_Bd_ZAP70\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70i_P_ZAP70a1\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70a1_P_ZAP70a2\" in default compartment\r\nInfo: single compartment model: locating \"LATi_P_LATa\" in default compartment\r\nInfo: single compartment model: locating \"LATa_Bd_GADS\" in default compartment\r\nInfo: single compartment model: locating \"GADSa_Bd_SLP76\" in default compartment\r\nInfo: single compartment model: locating \"SLP76i_P_SLC76a\" in default compartment\r\nWriting file: /tmp/tmp8l3kz7rz.psc\r\n\r\nSBML2PSC\r\nin : /tmp/tmpry1o66uj.xml\r\nout: /tmp/tmp8l3kz7rz.psc\r\nUsing model directory: /home/FCAM/crbmapi/Pysces/psc\r\n/tmp/tmp8l3kz7rz.psc loading ..... \r\nParsing file: /tmp/tmp8l3kz7rz.psc\r\nWarning: species \"LCKinactive\" (fixed) does not occur in any reaction\r\nWarning: species \"CD3t\" (fixed) does not occur in any reaction\r\nWarning: species \"SLP76t\" (fixed) does not occur in any reaction\r\nWarning: species \"GADSt\" (fixed) does not occur in any reaction\r\nWarning: species \"LATt\" (fixed) does not occur in any reaction\r\nWarning: species \"ZAP70t\" (fixed) does not occur in any reaction\r\nWarning: species \"PI3Kt\" (fixed) does not occur in any reaction\r\nWarning: species \"CD28t\" (fixed) does not occur in any reaction\r\nWarning: species \"CPactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKt\" (fixed) does not occur in any reaction\r\nInfo: \"CD28t\" has been initialised but does not occur in a rate equation\r\nInfo: \"PI3Kt\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LATt\" has been initialised but does not occur in a rate equation\r\nInfo: \"GADSt\" has been initialised but does not occur in a rate equation\r\nInfo: \"SLP76t\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCKinactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"Kdpa_yiya\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_bound\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3z_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD28_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_PI3K_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_ZAP70_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y315\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y93\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y505\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y394\" has been initialised but does not occur in a rate equation\r\nInfo: \"LAT_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_active\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_inactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_switch\" has been initialised but does not occur in a rate equation\r\nInfo: \"ModelValue_0\" has been initialised but does not occur in a rate equation\r\n \r\nCalculating L matrix . . . . . . . . .  done.\r\nCalculating K matrix . . . . . . . . . . .  done.\r\n \r\n\r\nAssignment rule(s) detected.\r\nINFO: Assignment Rules detected and Assimulo installed,\r\nswitching to CVODE (mod.mode_integrator='CVODE').\r\n\r\nCVODE time for 101 points: 0.1955397129058838\r\n \u001b[34msucceeded\u001b[0m\r\n    Generating 6 outputs ...\r\n      Generating output 1: `plot_6_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `plot_7_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 3: `plot_8_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 4: `plot_9_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 5: `plot_10_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 6: `autogen_report_for_task2` ...",
+=======
+                    "duration": 4.911505,
+                    "exception": null,
+                    "location": "Theinmozhi_2018.sedml",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 2 tasks, 1 reports, and 5 plots:\r\n  Theinmozhi_2018.sedml:\r\n    Tasks (2):\r\n      task1\r\n      task2\r\n    Reports (1):\r\n      autogen_report_for_task2: 120 data sets\r\n    Plots (5):\r\n      plot_10_task2: 1 curves\r\n      plot_6_task2: 1 curves\r\n      plot_7_task2: 1 curves\r\n      plot_8_task2: 2 curves\r\n      plot_9_task2: 1 curves\r\n\r\nExecuting SED-ML file 1: Theinmozhi_2018.sedml ...\r\n  Found 1 tasks and 6 outputs:\r\n    Tasks:\r\n      `task2`\r\n    Outputs:\r\n      `autogen_report_for_task2`\r\n      `plot_10_task2`\r\n      `plot_6_task2`\r\n      `plot_7_task2`\r\n      `plot_8_task2`\r\n      `plot_9_task2`\r\n  Executing task 1: `task2`\r\n    Executing simulation ...Info: single compartment model: locating \"CP2_DP_CP1\" in default compartment\r\nInfo: single compartment model: locating \"CP1_Diss_PD1_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CD28i_P_CD28a\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_DP_CD28i\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_Bd_PI3K\" in default compartment\r\nInfo: single compartment model: locating \"CD3i_P_CD3a\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_DP_CD3i\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_Bd_ZAP70\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70i_P_ZAP70a1\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70a1_P_ZAP70a2\" in default compartment\r\nInfo: single compartment model: locating \"LATi_P_LATa\" in default compartment\r\nInfo: single compartment model: locating \"LATa_Bd_GADS\" in default compartment\r\nInfo: single compartment model: locating \"GADSa_Bd_SLP76\" in default compartment\r\nInfo: single compartment model: locating \"SLP76i_P_SLC76a\" in default compartment\r\nWriting file: /tmp/tmpa5k73wcn.psc\r\n\r\nSBML2PSC\r\nin : /tmp/tmpwxesupkw.xml\r\nout: /tmp/tmpa5k73wcn.psc\r\nUsing model directory: /home/FCAM/crbmapi/Pysces/psc\r\n/tmp/tmpa5k73wcn.psc loading ..... \r\nParsing file: /tmp/tmpa5k73wcn.psc\r\nWarning: species \"LCKinactive\" (fixed) does not occur in any reaction\r\nWarning: species \"CD3t\" (fixed) does not occur in any reaction\r\nWarning: species \"SLP76t\" (fixed) does not occur in any reaction\r\nWarning: species \"GADSt\" (fixed) does not occur in any reaction\r\nWarning: species \"LATt\" (fixed) does not occur in any reaction\r\nWarning: species \"ZAP70t\" (fixed) does not occur in any reaction\r\nWarning: species \"PI3Kt\" (fixed) does not occur in any reaction\r\nWarning: species \"CD28t\" (fixed) does not occur in any reaction\r\nWarning: species \"CPactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKt\" (fixed) does not occur in any reaction\r\nInfo: \"CD28t\" has been initialised but does not occur in a rate equation\r\nInfo: \"PI3Kt\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LATt\" has been initialised but does not occur in a rate equation\r\nInfo: \"GADSt\" has been initialised but does not occur in a rate equation\r\nInfo: \"SLP76t\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCKinactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"Kdpa_yiya\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_bound\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3z_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD28_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_PI3K_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_ZAP70_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y315\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y93\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y505\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y394\" has been initialised but does not occur in a rate equation\r\nInfo: \"LAT_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_active\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_inactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_switch\" has been initialised but does not occur in a rate equation\r\nInfo: \"ModelValue_0\" has been initialised but does not occur in a rate equation\r\n \r\nCalculating L matrix . . . . . . . . .  done.\r\nCalculating K matrix . . . . . . . . . . .  done.\r\n \r\n\r\nAssignment rule(s) detected.\r\nINFO: Assignment Rules detected and Assimulo installed,\r\nswitching to CVODE (mod.mode_integrator='CVODE').\r\n\r\nCVODE time for 101 points: 0.16897153854370117\r\n \u001b[34msucceeded\u001b[0m\r\n    Generating 6 outputs ...\r\n      Generating output 1: `plot_6_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `plot_7_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 3: `plot_8_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 4: `plot_9_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 5: `plot_10_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 6: `autogen_report_for_task2` ...",
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                     "outputs": [
                         {
                             "curves": [
@@ -2073,7 +2316,11 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.313208,
+=======
+                            "duration": 0.32564,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_6_task2",
                             "output": "",
@@ -2087,7 +2334,11 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.12797,
+=======
+                            "duration": 0.144236,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_7_task2",
                             "output": "",
@@ -2105,7 +2356,11 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.202335,
+=======
+                            "duration": 0.153901,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_8_task2",
                             "output": "",
@@ -2119,7 +2374,11 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.137489,
+=======
+                            "duration": 0.128691,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_9_task2",
                             "output": "",
@@ -2133,7 +2392,11 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.117316,
+=======
+                            "duration": 0.134497,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_10_task2",
                             "output": "",
@@ -2623,7 +2886,11 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.234365,
+=======
+                            "duration": 0.212811,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "autogen_report_for_task2",
                             "output": "",
@@ -2636,10 +2903,17 @@
                     "tasks": [
                         {
                             "algorithm": null,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 3.231254,
                             "exception": null,
                             "id": "task2",
                             "output": "Check SBML support is at action level 2\r\nSBML file is L2V4\r\n\r\n*******************************************************************\r\nIssues encountered in SBML translation (model processed anyway)\r\nSBML source: /tmp/tmp0bebsw41.xml\r\n*******************************************************************\r\n\r\nParameter units ignored for parameters:\r\n['Kdpa_yiya', 'Kdpi_yi', 'Kdpi_yiya', 'Kdpa_ya', 'Kdpa_pi', 'Kpi_i', 'Kpi_ya', 'Kpa_i', 'Kpa_yi', 'Kp_pd1', 'KMp_pd1', 'Ka_shp', 'Kd1_shp', 'Kd2_shp', 'Kdp_cp2', 'Kp_cd28', 'KMp_cd28', 'Kdp_cd28', 'KMdp_cd28', 'Ka_pi3k', 'Kd_pi3k', 'Kp_cd3', 'KMp_cd3', 'Kdp_cd3', 'KMdp_cd3', 'Ka_zap', 'Kd_zap', 'Kp1_zap', 'Kp2_zap', 'Kp_lat', 'Ka_gads', 'Kd_gads', 'Ka_slp', 'Kd_slp', 'Kp_slp', 'perc_SHP2_bound'] \r\n\r\n*******************************************************************\r\n\r\nInfo: single compartment model: locating \"LCK_P_LCKyi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCK_P_LCKya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_P_LCKyiya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_P_LCKpi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKya\" in default compartment\r\nInfo: single compartment model: locating \"LCKpi_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"PD1_P_PD1p1_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_P_PD1p2_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"PD1p2_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CP2_Diss_SHP2_PD1p1\" in default compartment\r\nInfo: single compartment model: locating \"CP2_DP_CP1\" in default compartment\r\nInfo: single compartment model: locating \"CP1_Diss_PD1_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CD28i_P_CD28a\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_DP_CD28i\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_Bd_PI3K\" in default compartment\r\nInfo: single compartment model: locating \"CD3i_P_CD3a\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_DP_CD3i\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_Bd_ZAP70\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70i_P_ZAP70a1\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70a1_P_ZAP70a2\" in default compartment\r\nInfo: single compartment model: locating \"LATi_P_LATa\" in default compartment\r\nInfo: single compartment model: locating \"LATa_Bd_GADS\" in default compartment\r\nInfo: single compartment model: locating \"GADSa_Bd_SLP76\" in default compartment\r\nInfo: single compartment model: locating \"SLP76i_P_SLC76a\" in default compartment\r\nWriting file: /tmp/tmpzi_zn8b6.psc\r\n\r\nSBML2PSC\r\nin : /tmp/tmp0bebsw41.xml\r\nout: /tmp/tmpzi_zn8b6.psc\r\nUsing model directory: /home/FCAM/crbmapi/Pysces/psc\r\n/tmp/tmpzi_zn8b6.psc loading ..... \r\nParsing file: /tmp/tmpzi_zn8b6.psc\r\nWarning: species \"LCKinactive\" (fixed) does not occur in any reaction\r\nWarning: species \"CD3t\" (fixed) does not occur in any reaction\r\nWarning: species \"SLP76t\" (fixed) does not occur in any reaction\r\nWarning: species \"GADSt\" (fixed) does not occur in any reaction\r\nWarning: species \"LATt\" (fixed) does not occur in any reaction\r\nWarning: species \"ZAP70t\" (fixed) does not occur in any reaction\r\nWarning: species \"PI3Kt\" (fixed) does not occur in any reaction\r\nWarning: species \"CD28t\" (fixed) does not occur in any reaction\r\nWarning: species \"CPactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKt\" (fixed) does not occur in any reaction\r\nInfo: \"CD28t\" has been initialised but does not occur in a rate equation\r\nInfo: \"PI3Kt\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LATt\" has been initialised but does not occur in a rate equation\r\nInfo: \"GADSt\" has been initialised but does not occur in a rate equation\r\nInfo: \"SLP76t\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCKinactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"Kdpa_yiya\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_bound\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3z_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD28_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_PI3K_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_ZAP70_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y315\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y93\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y505\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y394\" has been initialised but does not occur in a rate equation\r\nInfo: \"LAT_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_active\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_inactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_switch\" has been initialised but does not occur in a rate equation\r\nInfo: \"ModelValue_0\" has been initialised but does not occur in a rate equation\r\n \r\nCalculating L matrix . . . . . . . . .  done.\r\nCalculating K matrix . . . . . . . . . . .  done.\r\n \r\n\r\nAssignment rule(s) detected.\r\nINFO: Assignment Rules detected and Assimulo installed,\r\nswitching to CVODE (mod.mode_integrator='CVODE').\r\n\r\nCVODE time for 101 points: 0.22179317474365234\r\nCheck SBML support is at action level 2\r\nSBML file is L2V4\r\n\r\n*******************************************************************\r\nIssues encountered in SBML translation (model processed anyway)\r\nSBML source: /tmp/tmpry1o66uj.xml\r\n*******************************************************************\r\n\r\nParameter units ignored for parameters:\r\n['Kdpa_yiya', 'Kdpi_yi', 'Kdpi_yiya', 'Kdpa_ya', 'Kdpa_pi', 'Kpi_i', 'Kpi_ya', 'Kpa_i', 'Kpa_yi', 'Kp_pd1', 'KMp_pd1', 'Ka_shp', 'Kd1_shp', 'Kd2_shp', 'Kdp_cp2', 'Kp_cd28', 'KMp_cd28', 'Kdp_cd28', 'KMdp_cd28', 'Ka_pi3k', 'Kd_pi3k', 'Kp_cd3', 'KMp_cd3', 'Kdp_cd3', 'KMdp_cd3', 'Ka_zap', 'Kd_zap', 'Kp1_zap', 'Kp2_zap', 'Kp_lat', 'Ka_gads', 'Kd_gads', 'Ka_slp', 'Kd_slp', 'Kp_slp', 'perc_SHP2_bound'] \r\n\r\n*******************************************************************\r\n\r\nInfo: single compartment model: locating \"LCK_P_LCKyi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCK_P_LCKya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_P_LCKyiya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_P_LCKpi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKya\" in default compartment\r\nInfo: single compartment model: locating \"LCKpi_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"PD1_P_PD1p1_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_P_PD1p2_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"PD1p2_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CP2_Diss_SHP2_PD1p1\" in default compartment\r\n",
+=======
+                            "duration": 3.218214,
+                            "exception": null,
+                            "id": "task2",
+                            "output": "Check SBML support is at action level 2\r\nSBML file is L2V4\r\n\r\n*******************************************************************\r\nIssues encountered in SBML translation (model processed anyway)\r\nSBML source: /tmp/tmpuap7ro2k.xml\r\n*******************************************************************\r\n\r\nParameter units ignored for parameters:\r\n['Kdpa_yiya', 'Kdpi_yi', 'Kdpi_yiya', 'Kdpa_ya', 'Kdpa_pi', 'Kpi_i', 'Kpi_ya', 'Kpa_i', 'Kpa_yi', 'Kp_pd1', 'KMp_pd1', 'Ka_shp', 'Kd1_shp', 'Kd2_shp', 'Kdp_cp2', 'Kp_cd28', 'KMp_cd28', 'Kdp_cd28', 'KMdp_cd28', 'Ka_pi3k', 'Kd_pi3k', 'Kp_cd3', 'KMp_cd3', 'Kdp_cd3', 'KMdp_cd3', 'Ka_zap', 'Kd_zap', 'Kp1_zap', 'Kp2_zap', 'Kp_lat', 'Ka_gads', 'Kd_gads', 'Ka_slp', 'Kd_slp', 'Kp_slp', 'perc_SHP2_bound'] \r\n\r\n*******************************************************************\r\n\r\nInfo: single compartment model: locating \"LCK_P_LCKyi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCK_P_LCKya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_P_LCKyiya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_P_LCKpi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKya\" in default compartment\r\nInfo: single compartment model: locating \"LCKpi_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"PD1_P_PD1p1_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_P_PD1p2_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"PD1p2_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CP2_Diss_SHP2_PD1p1\" in default compartment\r\nInfo: single compartment model: locating \"CP2_DP_CP1\" in default compartment\r\nInfo: single compartment model: locating \"CP1_Diss_PD1_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CD28i_P_CD28a\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_DP_CD28i\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_Bd_PI3K\" in default compartment\r\nInfo: single compartment model: locating \"CD3i_P_CD3a\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_DP_CD3i\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_Bd_ZAP70\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70i_P_ZAP70a1\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70a1_P_ZAP70a2\" in default compartment\r\nInfo: single compartment model: locating \"LATi_P_LATa\" in default compartment\r\nInfo: single compartment model: locating \"LATa_Bd_GADS\" in default compartment\r\nInfo: single compartment model: locating \"GADSa_Bd_SLP76\" in default compartment\r\nInfo: single compartment model: locating \"SLP76i_P_SLC76a\" in default compartment\r\nWriting file: /tmp/tmpym7tk6hm.psc\r\n\r\nSBML2PSC\r\nin : /tmp/tmpuap7ro2k.xml\r\nout: /tmp/tmpym7tk6hm.psc\r\nUsing model directory: /home/FCAM/crbmapi/Pysces/psc\r\n/tmp/tmpym7tk6hm.psc loading ..... \r\nParsing file: /tmp/tmpym7tk6hm.psc\r\nWarning: species \"LCKinactive\" (fixed) does not occur in any reaction\r\nWarning: species \"CD3t\" (fixed) does not occur in any reaction\r\nWarning: species \"SLP76t\" (fixed) does not occur in any reaction\r\nWarning: species \"GADSt\" (fixed) does not occur in any reaction\r\nWarning: species \"LATt\" (fixed) does not occur in any reaction\r\nWarning: species \"ZAP70t\" (fixed) does not occur in any reaction\r\nWarning: species \"PI3Kt\" (fixed) does not occur in any reaction\r\nWarning: species \"CD28t\" (fixed) does not occur in any reaction\r\nWarning: species \"CPactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKt\" (fixed) does not occur in any reaction\r\nInfo: \"CD28t\" has been initialised but does not occur in a rate equation\r\nInfo: \"PI3Kt\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LATt\" has been initialised but does not occur in a rate equation\r\nInfo: \"GADSt\" has been initialised but does not occur in a rate equation\r\nInfo: \"SLP76t\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCKinactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"Kdpa_yiya\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_bound\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3z_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD28_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_PI3K_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_ZAP70_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y315\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y93\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y505\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y394\" has been initialised but does not occur in a rate equation\r\nInfo: \"LAT_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_active\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_inactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_switch\" has been initialised but does not occur in a rate equation\r\nInfo: \"ModelValue_0\" has been initialised but does not occur in a rate equation\r\n \r\nCalculating L matrix . . . . . . . . .  done.\r\nCalculating K matrix . . . . . . . . . . .  done.\r\n \r\n\r\nAssignment rule(s) detected.\r\nINFO: Assignment Rules detected and Assimulo installed,\r\nswitching to CVODE (mod.mode_integrator='CVODE').\r\n\r\nCVODE time for 101 points: 0.18651652336120605\r\nCheck SBML support is at action level 2\r\nSBML file is L2V4\r\n\r\n*******************************************************************\r\nIssues encountered in SBML translation (model processed anyway)\r\nSBML source: /tmp/tmpwxesupkw.xml\r\n*******************************************************************\r\n\r\nParameter units ignored for parameters:\r\n['Kdpa_yiya', 'Kdpi_yi', 'Kdpi_yiya', 'Kdpa_ya', 'Kdpa_pi', 'Kpi_i', 'Kpi_ya', 'Kpa_i', 'Kpa_yi', 'Kp_pd1', 'KMp_pd1', 'Ka_shp', 'Kd1_shp', 'Kd2_shp', 'Kdp_cp2', 'Kp_cd28', 'KMp_cd28', 'Kdp_cd28', 'KMdp_cd28', 'Ka_pi3k', 'Kd_pi3k', 'Kp_cd3', 'KMp_cd3', 'Kdp_cd3', 'KMdp_cd3', 'Ka_zap', 'Kd_zap', 'Kp1_zap', 'Kp2_zap', 'Kp_lat', 'Ka_gads', 'Kd_gads', 'Ka_slp', 'Kd_slp', 'Kp_slp', 'perc_SHP2_bound'] \r\n\r\n*******************************************************************\r\n\r\nInfo: single compartment model: locating \"LCK_P_LCKyi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCK_P_LCKya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_P_LCKyiya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_P_LCKpi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKya\" in default compartment\r\nInfo: single compartment model: locating \"LCKpi_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"PD1_P_PD1p1_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_P_PD1p2_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"PD1p2_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CP2_Diss_SHP2_PD1p1\" in default compartment\r\n",
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "simulatorDetails": null,
                             "skipReason": null,
                             "status": "SUCCEEDED"
@@ -2653,11 +2927,19 @@
     },
     "rbapy": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039f167468f9f3fc06c1f",
         "download": "https://api.biosimulations.org/results/676039f167468f9f3fc06c1f/download",
         "logs": "https://api.biosimulations.org/logs/676039f167468f9f3fc06c1f?includeOutput=true",
         "log_yml": {
             "duration": 0.279228,
+=======
+        "view": "https://api.biosimulations.org/runs/67599a079fa297efdca4d3f3",
+        "download": "https://api.biosimulations.org/results/67599a079fa297efdca4d3f3/download",
+        "logs": "https://api.biosimulations.org/logs/67599a079fa297efdca4d3f3?includeOutput=true",
+        "log_yml": {
+            "duration": 0.269646,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -2670,11 +2952,19 @@
     },
     "smoldyn": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039f3f8016f90e7c655a1",
         "download": "https://api.biosimulations.org/results/676039f3f8016f90e7c655a1/download",
         "logs": "https://api.biosimulations.org/logs/676039f3f8016f90e7c655a1?includeOutput=true",
         "log_yml": {
             "duration": 0.072239,
+=======
+        "view": "https://api.biosimulations.org/runs/67599a09c3054f763d585a0e",
+        "download": "https://api.biosimulations.org/results/67599a09c3054f763d585a0e/download",
+        "logs": "https://api.biosimulations.org/logs/67599a09c3054f763d585a0e?includeOutput=true",
+        "log_yml": {
+            "duration": 0.059965,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -2687,16 +2977,28 @@
     },
     "tellurium": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039f567468f9f3fc06c2f",
         "download": "https://api.biosimulations.org/results/676039f567468f9f3fc06c2f/download",
         "logs": "https://api.biosimulations.org/logs/676039f567468f9f3fc06c2f?includeOutput=true",
         "log_yml": {
             "duration": 4.413925,
+=======
+        "view": "https://api.biosimulations.org/runs/67599a0b707aa64104620de0",
+        "download": "https://api.biosimulations.org/results/67599a0b707aa64104620de0/download",
+        "logs": "https://api.biosimulations.org/logs/67599a0b707aa64104620de0?includeOutput=true",
+        "log_yml": {
+            "duration": 4.095218,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
             "exception": null,
             "output": "",
             "sedDocuments": [
                 {
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                     "duration": 3.718692,
+=======
+                    "duration": 3.452619,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                     "exception": null,
                     "location": "Theinmozhi_2018.sedml",
                     "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 2 tasks, 1 reports, and 5 plots:\r\n  Theinmozhi_2018.sedml:\r\n    Tasks (2):\r\n      task1\r\n      task2\r\n    Reports (1):\r\n      autogen_report_for_task2: 120 data sets\r\n    Plots (5):\r\n      plot_10_task2: 1 curves\r\n      plot_6_task2: 1 curves\r\n      plot_7_task2: 1 curves\r\n      plot_8_task2: 2 curves\r\n      plot_9_task2: 1 curves\r\n\r\nExecuting SED-ML file 1: Theinmozhi_2018.sedml ...\r\n  Found 2 tasks and 6 outputs:\r\n    Tasks:\r\n      `task1`\r\n      `task2`\r\n    Outputs:\r\n      `autogen_report_for_task2`\r\n      `plot_10_task2`\r\n      `plot_6_task2`\r\n      `plot_7_task2`\r\n      `plot_8_task2`\r\n      `plot_9_task2`\r\n  Executing task 1: `task1`\r\n    Executing simulation ... \u001b[34msucceeded\u001b[0m\r\n    Generating 6 outputs ...\r\n      Generating output 1: `plot_6_task2` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `plot_7_task2` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 3: `plot_8_task2` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 4: `plot_9_task2` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 5: `plot_10_task2` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 6: `autogen_report_for_task2` ... \u001b[36mqueued\u001b[0m\r\n  Executing task 2: `task2`\r\n    Executing simulation ... \u001b[34msucceeded\u001b[0m\r\n    Generating 6 outputs ...\r\n      Generating output 1: `plot_6_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `plot_7_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 3: `plot_8_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 4: `plot_9_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 5: `plot_10_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 6: `autogen_report_for_task2` ...",
@@ -2708,7 +3010,11 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.16647,
+=======
+                            "duration": 0.145862,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_6_task2",
                             "output": "",
@@ -2722,7 +3028,11 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.181366,
+=======
+                            "duration": 0.156146,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_7_task2",
                             "output": "",
@@ -2740,7 +3050,11 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.180779,
+=======
+                            "duration": 0.163612,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_8_task2",
                             "output": "",
@@ -2754,7 +3068,11 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.176056,
+=======
+                            "duration": 0.136252,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_9_task2",
                             "output": "",
@@ -2768,7 +3086,11 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.158043,
+=======
+                            "duration": 0.143398,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "plot_10_task2",
                             "output": "",
@@ -3258,7 +3580,11 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.251836,
+=======
+                            "duration": 0.221477,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "autogen_report_for_task2",
                             "output": "",
@@ -3271,7 +3597,11 @@
                     "tasks": [
                         {
                             "algorithm": "KISAO_0000019",
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.409081,
+=======
+                            "duration": 0.386098,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "task1",
                             "output": "",
@@ -3338,7 +3668,11 @@
                         },
                         {
                             "algorithm": null,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
                             "duration": 0.350365,
+=======
+                            "duration": 0.335437,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
                             "exception": null,
                             "id": "task2",
                             "output": "",
@@ -3355,9 +3689,15 @@
     },
     "vcell": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039f8f8016f90e7c655b6",
         "download": "https://api.biosimulations.org/results/676039f8f8016f90e7c655b6/download",
         "logs": "https://api.biosimulations.org/logs/676039f8f8016f90e7c655b6?includeOutput=true",
+=======
+        "view": "https://api.biosimulations.org/runs/67599a0e9fa297efdca4d411",
+        "download": "https://api.biosimulations.org/results/67599a0e9fa297efdca4d411/download",
+        "logs": "https://api.biosimulations.org/logs/67599a0e9fa297efdca4d411?includeOutput=true",
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
         "log_yml": {
             "duration": 16,
             "exception": null,
@@ -3966,11 +4306,19 @@
     },
     "xpp": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000724/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039fa3e750b90a420ee3d",
         "download": "https://api.biosimulations.org/results/676039fa3e750b90a420ee3d/download",
         "logs": "https://api.biosimulations.org/logs/676039fa3e750b90a420ee3d?includeOutput=true",
         "log_yml": {
             "duration": 0.063672,
+=======
+        "view": "https://api.biosimulations.org/runs/67599a109fa297efdca4d41c",
+        "download": "https://api.biosimulations.org/results/67599a109fa297efdca4d41c/download",
+        "logs": "https://api.biosimulations.org/logs/67599a109fa297efdca4d41c?includeOutput=true",
+        "log_yml": {
+            "duration": 0.064887,
+>>>>>>> development:BioModels/BIOMD0000000724/tests/results_remote.json
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"

@@ -1,28 +1,273 @@
 {
     "amici": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/6760393f67468f9f3fc06b01",
         "download": "https://api.biosimulations.org/results/6760393f67468f9f3fc06b01/download",
         "logs": "https://api.biosimulations.org/logs/6760393f67468f9f3fc06b01?includeOutput=true",
         "log_yml": {
             "duration": 0.415304,
+=======
+        "view": "https://api.biosimulations.org/runs/675999409fa297efdca4d2a4",
+        "download": "https://api.biosimulations.org/results/675999409fa297efdca4d2a4/download",
+        "logs": "https://api.biosimulations.org/logs/675999409fa297efdca4d2a4?includeOutput=true",
+        "log_yml": {
+            "duration": 0.971204,
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
-                "type": "ValueError"
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    rateRule \"lambda * (phik - n) / taun\" contains an unsupported expression: Sympify of expression 'could not parse 'lambda * (phik - n) / taun'' failed, because of exception being raised:\n    TokenError: Starred arguments in lambda not supported.",
+                "type": "CombineArchiveExecutionError"
             },
             "output": "",
-            "sedDocuments": [],
+            "sedDocuments": [
+                {
+                    "duration": 0.582419,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  rateRule \"lambda * (phik - n) / taun\" contains an unsupported expression: Sympify of expression 'could not parse 'lambda * (phik - n) / taun'' failed, because of exception being raised:\n  TokenError: Starred arguments in lambda not supported.",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "BIOMD0000000138_url.sedml",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  BIOMD0000000138_url.sedml:\r\n    Tasks (1):\r\n      task1\r\n    Reports (1):\r\n      autogen_report_for_task1: 44 data sets\r\n    Plots (1):\r\n      autogen_plot_for_task1: 1 curves\r\n\r\nExecuting SED-ML file 1: BIOMD0000000138_url.sedml ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task1`\r\n    Outputs:\r\n      `autogen_plot_for_task1`\r\n      `autogen_report_for_task1`\r\n  Executing task 1: `task1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `autogen_report_for_task1` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `autogen_plot_for_task1` ...",
+                    "outputs": [
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "autogen_time_for_task1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_c",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_vca",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_vk",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_Cm",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_gk",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_gcal",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_gsk",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ga",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_gf",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_vn",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_va",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_vm",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_vh",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_vf",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_sn",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_sa",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_sm",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_sh",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_sf",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_taun",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_tauh",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_lambda",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_kc",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ks",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ff",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_alpha",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_phik",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_phia",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_phih",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_phif",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_phical",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_cinf",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ica",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_isk",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ibk",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ikdr",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ia",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ik",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_n",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_h",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_V",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_cell",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_reaction_0000004",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.06155,
+                            "exception": null,
+                            "id": "autogen_report_for_task1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        },
+                        {
+                            "curves": [
+                                {
+                                    "id": "autogen_curve_task1_c",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.286159,
+                            "exception": null,
+                            "id": "autogen_plot_for_task1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.101771,
+                            "exception": {
+                                "message": "rateRule \"lambda * (phik - n) / taun\" contains an unsupported expression: Sympify of expression 'could not parse 'lambda * (phik - n) / taun'' failed, because of exception being raised:\nTokenError: Starred arguments in lambda not supported.",
+                                "type": "SBMLException"
+                            },
+                            "id": "task1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
             "skipReason": null,
             "status": "FAILED"
         }
     },
     "brian2": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039413e750b90a420ecd7",
         "download": "https://api.biosimulations.org/results/676039413e750b90a420ecd7/download",
         "logs": "https://api.biosimulations.org/logs/676039413e750b90a420ecd7?includeOutput=true",
         "log_yml": {
             "duration": 0.076085,
+=======
+        "view": "https://api.biosimulations.org/runs/67599942c3054f763d585837",
+        "download": "https://api.biosimulations.org/results/67599942c3054f763d585837/download",
+        "logs": "https://api.biosimulations.org/logs/67599942c3054f763d585837?includeOutput=true",
+        "log_yml": {
+            "duration": 0.051573,
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -35,13 +280,21 @@
     },
     "bionetgen": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/67603943f8016f90e7c6545a",
         "download": "https://api.biosimulations.org/results/67603943f8016f90e7c6545a/download",
         "logs": "https://api.biosimulations.org/logs/67603943f8016f90e7c6545a?includeOutput=true",
         "log_yml": {
             "duration": 0.216226,
+=======
+        "view": "https://api.biosimulations.org/runs/675999449fa297efdca4d2a7",
+        "download": "https://api.biosimulations.org/results/675999449fa297efdca4d2a7/download",
+        "logs": "https://api.biosimulations.org/logs/675999449fa297efdca4d2a7?includeOutput=true",
+        "log_yml": {
+            "duration": 0.180789,
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
+                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
             },
             "output": "",
@@ -52,13 +305,21 @@
     },
     "boolnet": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/67603944f8016f90e7c6545d",
         "download": "https://api.biosimulations.org/results/67603944f8016f90e7c6545d/download",
         "logs": "https://api.biosimulations.org/logs/67603944f8016f90e7c6545d?includeOutput=true",
         "log_yml": {
             "duration": 0.236939,
+=======
+        "view": "https://api.biosimulations.org/runs/67599946c3054f763d58583c",
+        "download": "https://api.biosimulations.org/results/67599946c3054f763d58583c/download",
+        "logs": "https://api.biosimulations.org/logs/67599946c3054f763d58583c?includeOutput=true",
+        "log_yml": {
+            "duration": 0.189244,
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
+                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
             },
             "output": "",
@@ -69,13 +330,21 @@
     },
     "cbmpy": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/6760394667468f9f3fc06b05",
         "download": "https://api.biosimulations.org/results/6760394667468f9f3fc06b05/download",
         "logs": "https://api.biosimulations.org/logs/6760394667468f9f3fc06b05?includeOutput=true",
         "log_yml": {
             "duration": 0.394602,
+=======
+        "view": "https://api.biosimulations.org/runs/67599947707aa64104620c8f",
+        "download": "https://api.biosimulations.org/results/67599947707aa64104620c8f/download",
+        "logs": "https://api.biosimulations.org/logs/67599947707aa64104620c8f?includeOutput=true",
+        "log_yml": {
+            "duration": 0.288107,
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
+                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
             },
             "output": "\r\nINFO: No xlwt module available, Excel spreadsheet creation disabled\r\n\r\n\r\n\r\nNo module named 'cplex'\r\n\r\n\r\n\r\nCPLEX not available\r\n\r\n*****\r\nUsing GLPK\r\n*****\r\n\r\n\r\nINFO: No xlrd module available, Excel spreadsheet reading disabled\r\n\r\nCBMPy environment\r\n******************\r\nRevision: r689\r\n\r\n\r\n***********************************************************************\r\n* Welcome to CBMPy (0.7.25) - PySCeS Constraint Based Modelling       *\r\n*                http://cbmpy.sourceforge.net                         *\r\n* Copyright(C) Brett G. Olivier 2014 - 2019                           *\r\n* Dept. of Systems Bioinformatics                                     *\r\n* Vrije Universiteit Amsterdam, Amsterdam, The Netherlands            *\r\n* CBMPy is developed as part of the BeBasic MetaToolKit Project       *\r\n* Distributed under the GNU GPL v 3.0 licence, see                    *\r\n* LICENCE (supplied with this release) for details                    *\r\n***********************************************************************\r\n\r\n",
@@ -86,13 +355,21 @@
     },
     "cobrapy": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/6760394867468f9f3fc06b09",
         "download": "https://api.biosimulations.org/results/6760394867468f9f3fc06b09/download",
         "logs": "https://api.biosimulations.org/logs/6760394867468f9f3fc06b09?includeOutput=true",
         "log_yml": {
             "duration": 0.202126,
+=======
+        "view": "https://api.biosimulations.org/runs/675999499fa297efdca4d2ae",
+        "download": "https://api.biosimulations.org/results/675999499fa297efdca4d2ae/download",
+        "logs": "https://api.biosimulations.org/logs/675999499fa297efdca4d2ae?includeOutput=true",
+        "log_yml": {
+            "duration": 0.206998,
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
+                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
             },
             "output": "",
@@ -103,6 +380,7 @@
     },
     "copasi": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/6760394af8016f90e7c65463",
         "download": "https://api.biosimulations.org/results/6760394af8016f90e7c65463/download",
         "logs": "https://api.biosimulations.org/logs/6760394af8016f90e7c65463?includeOutput=true",
@@ -112,21 +390,269 @@
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
                 "type": "ValueError"
             },
+=======
+        "view": "https://api.biosimulations.org/runs/6759994cc3054f763d58583f",
+        "download": "https://api.biosimulations.org/results/6759994cc3054f763d58583f/download",
+        "logs": "https://api.biosimulations.org/logs/6759994cc3054f763d58583f?includeOutput=true",
+        "log_yml": {
+            "duration": 1.402967,
+            "exception": null,
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
             "output": "",
-            "sedDocuments": [],
+            "sedDocuments": [
+                {
+                    "duration": 1.078911,
+                    "exception": null,
+                    "location": "BIOMD0000000138_url.sedml",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  BIOMD0000000138_url.sedml:\r\n    Tasks (1):\r\n      task1\r\n    Reports (1):\r\n      autogen_report_for_task1: 44 data sets\r\n    Plots (1):\r\n      autogen_plot_for_task1: 1 curves\r\n\r\nExecuting SED-ML file 1: BIOMD0000000138_url.sedml ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task1`\r\n    Outputs:\r\n      `autogen_plot_for_task1`\r\n      `autogen_report_for_task1`\r\n  Executing task 1: `task1`\r\n    Executing simulation ...woohoo!\r\n \u001b[34msucceeded\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `autogen_report_for_task1` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `autogen_plot_for_task1` ...",
+                    "outputs": [
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "autogen_time_for_task1",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_c",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_vca",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_vk",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_Cm",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_gk",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_gcal",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_gsk",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_ga",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_gf",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_vn",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_va",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_vm",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_vh",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_vf",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_sn",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_sa",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_sm",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_sh",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_sf",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_taun",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_tauh",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_lambda",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_kc",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_ks",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_ff",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_alpha",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_phik",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_phia",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_phih",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_phif",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_phical",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_cinf",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_ica",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_isk",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_ibk",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_ikdr",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_ia",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_ik",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_n",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_h",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_V",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_cell",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_reaction_0000004",
+                                    "status": "SUCCEEDED"
+                                }
+                            ],
+                            "duration": 0.301759,
+                            "exception": null,
+                            "id": "autogen_report_for_task1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        },
+                        {
+                            "curves": [
+                                {
+                                    "id": "autogen_curve_task1_c",
+                                    "status": "SUCCEEDED"
+                                }
+                            ],
+                            "duration": 0.44474,
+                            "exception": null,
+                            "id": "autogen_plot_for_task1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "SUCCEEDED",
+                    "tasks": [
+                        {
+                            "algorithm": "KISAO_0000560",
+                            "duration": 0.193466,
+                            "exception": null,
+                            "id": "task1",
+                            "output": "",
+                            "simulatorDetails": [
+                                {
+                                    "key": "methodName",
+                                    "value": "lsoda"
+                                },
+                                {
+                                    "key": "parameters",
+                                    "value": null
+                                }
+                            ],
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        }
+                    ]
+                }
+            ],
             "skipReason": null,
-            "status": "FAILED"
+            "status": "SUCCEEDED"
         }
     },
     "gillespy2": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/6760394cf8016f90e7c65467",
         "download": "https://api.biosimulations.org/results/6760394cf8016f90e7c65467/download",
         "logs": "https://api.biosimulations.org/logs/6760394cf8016f90e7c65467?includeOutput=true",
         "log_yml": {
             "duration": 0.234154,
+=======
+        "view": "https://api.biosimulations.org/runs/6759994e9fa297efdca4d2b6",
+        "download": "https://api.biosimulations.org/results/6759994e9fa297efdca4d2b6/download",
+        "logs": "https://api.biosimulations.org/logs/6759994e9fa297efdca4d2b6?includeOutput=true",
+        "log_yml": {
+            "duration": 0.196542,
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
+                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
             },
             "output": "",
@@ -137,13 +663,21 @@
     },
     "ginsim": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/6760394e3e750b90a420ece4",
         "download": "https://api.biosimulations.org/results/6760394e3e750b90a420ece4/download",
         "logs": "https://api.biosimulations.org/logs/6760394e3e750b90a420ece4?includeOutput=true",
         "log_yml": {
             "duration": 0.176617,
+=======
+        "view": "https://api.biosimulations.org/runs/6759994fc3054f763d585849",
+        "download": "https://api.biosimulations.org/results/6759994fc3054f763d585849/download",
+        "logs": "https://api.biosimulations.org/logs/6759994fc3054f763d585849?includeOutput=true",
+        "log_yml": {
+            "duration": 0.181475,
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
+                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
             },
             "output": "",
@@ -154,13 +688,21 @@
     },
     "libsbmlsim": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/67603950f8016f90e7c6546e",
         "download": "https://api.biosimulations.org/results/67603950f8016f90e7c6546e/download",
         "logs": "https://api.biosimulations.org/logs/67603950f8016f90e7c6546e?includeOutput=true",
         "log_yml": {
             "duration": 0.232679,
+=======
+        "view": "https://api.biosimulations.org/runs/67599951c3054f763d58584c",
+        "download": "https://api.biosimulations.org/results/67599951c3054f763d58584c/download",
+        "logs": "https://api.biosimulations.org/logs/67599951c3054f763d58584c?includeOutput=true",
+        "log_yml": {
+            "duration": 0.1971,
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
+                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
             },
             "output": "",
@@ -171,28 +713,273 @@
     },
     "masspy": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/67603952f8016f90e7c65474",
         "download": "https://api.biosimulations.org/results/67603952f8016f90e7c65474/download",
         "logs": "https://api.biosimulations.org/logs/67603952f8016f90e7c65474?includeOutput=true",
         "log_yml": {
             "duration": 0.465719,
+=======
+        "view": "https://api.biosimulations.org/runs/675999539fa297efdca4d2c4",
+        "download": "https://api.biosimulations.org/results/675999539fa297efdca4d2c4/download",
+        "logs": "https://api.biosimulations.org/logs/675999539fa297efdca4d2c4?includeOutput=true",
+        "log_yml": {
+            "duration": 1.160059,
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
-                "type": "ValueError"
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Something went wrong reading the SBML model. Most likely the SBML model is not valid. Please check that your model is valid using the `mass.io.sbml.validate_sbml_model` function or via the online validator at http://sbml.org/validator .\n    \t`(model, errors) = validate_sbml_model(filename)`\n    If the model is valid and cannot be read please open an issue at https://github.com/SBRG/masspy/issues .",
+                "type": "CombineArchiveExecutionError"
             },
             "output": "",
-            "sedDocuments": [],
+            "sedDocuments": [
+                {
+                    "duration": 0.641092,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  Something went wrong reading the SBML model. Most likely the SBML model is not valid. Please check that your model is valid using the `mass.io.sbml.validate_sbml_model` function or via the online validator at http://sbml.org/validator .\n  \t`(model, errors) = validate_sbml_model(filename)`\n  If the model is valid and cannot be read please open an issue at https://github.com/SBRG/masspy/issues .",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "BIOMD0000000138_url.sedml",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  BIOMD0000000138_url.sedml:\r\n    Tasks (1):\r\n      task1\r\n    Reports (1):\r\n      autogen_report_for_task1: 44 data sets\r\n    Plots (1):\r\n      autogen_plot_for_task1: 1 curves\r\n\r\nExecuting SED-ML file 1: BIOMD0000000138_url.sedml ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task1`\r\n    Outputs:\r\n      `autogen_plot_for_task1`\r\n      `autogen_report_for_task1`\r\n  Executing task 1: `task1`\r\n    Executing simulation ... \u001b[31mfailed\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `autogen_report_for_task1` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `autogen_plot_for_task1` ...",
+                    "outputs": [
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "autogen_time_for_task1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_c",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_vca",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_vk",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_Cm",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_gk",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_gcal",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_gsk",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ga",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_gf",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_vn",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_va",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_vm",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_vh",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_vf",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_sn",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_sa",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_sm",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_sh",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_sf",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_taun",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_tauh",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_lambda",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_kc",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ks",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ff",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_alpha",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_phik",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_phia",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_phih",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_phif",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_phical",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_cinf",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ica",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_isk",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ibk",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ikdr",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ia",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ik",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_n",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_h",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_V",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_cell",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_reaction_0000004",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.056229,
+                            "exception": null,
+                            "id": "autogen_report_for_task1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        },
+                        {
+                            "curves": [
+                                {
+                                    "id": "autogen_curve_task1_c",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.339426,
+                            "exception": null,
+                            "id": "autogen_plot_for_task1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 0.086716,
+                            "exception": {
+                                "message": "Something went wrong reading the SBML model. Most likely the SBML model is not valid. Please check that your model is valid using the `mass.io.sbml.validate_sbml_model` function or via the online validator at http://sbml.org/validator .\n\t`(model, errors) = validate_sbml_model(filename)`\nIf the model is valid and cannot be read please open an issue at https://github.com/SBRG/masspy/issues .",
+                                "type": "MassSBMLError"
+                            },
+                            "id": "task1",
+                            "output": "\u001b[93mWARNING:\u001b[0m \u001b[93mModel does not contain SBML fbc package\u001b[0m\r\n\u001b[93mWARNING:\u001b[0m \u001b[93mModel does not contain SBML groups package\u001b[0m\r\n\u001b[93mWARNING:\u001b[0m \u001b[93mNo key provided for note in Model 'model_0000001'. The note will be added to the notes attribute with key 'NOTES'.\u001b[0m\r\n\u001b[93mWARNING:\u001b[0m \u001b[93mNo key provided for note in Model 'model_0000001'. The note will be added to the notes attribute with key 'NOTES'.\u001b[0m\r\n",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
             "skipReason": null,
             "status": "FAILED"
         }
     },
     "netpyne": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039533e750b90a420ecec",
         "download": "https://api.biosimulations.org/results/676039533e750b90a420ecec/download",
         "logs": "https://api.biosimulations.org/logs/676039533e750b90a420ecec?includeOutput=true",
         "log_yml": {
             "duration": 0.055111,
+=======
+        "view": "https://api.biosimulations.org/runs/67599955c3054f763d585861",
+        "download": "https://api.biosimulations.org/results/67599955c3054f763d585861/download",
+        "logs": "https://api.biosimulations.org/logs/67599955c3054f763d585861?includeOutput=true",
+        "log_yml": {
+            "duration": 0.052541,
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -205,11 +992,19 @@
     },
     "neuron": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/67603955f8016f90e7c6547b",
         "download": "https://api.biosimulations.org/results/67603955f8016f90e7c6547b/download",
         "logs": "https://api.biosimulations.org/logs/67603955f8016f90e7c6547b?includeOutput=true",
         "log_yml": {
             "duration": 0.048936,
+=======
+        "view": "https://api.biosimulations.org/runs/67599956707aa64104620cab",
+        "download": "https://api.biosimulations.org/results/67599956707aa64104620cab/download",
+        "logs": "https://api.biosimulations.org/logs/67599956707aa64104620cab?includeOutput=true",
+        "log_yml": {
+            "duration": 0.048951,
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -222,16 +1017,28 @@
     },
     "opencor": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/6760395667468f9f3fc06b28",
         "download": "https://api.biosimulations.org/results/6760395667468f9f3fc06b28/download",
         "logs": "https://api.biosimulations.org/logs/6760395667468f9f3fc06b28?includeOutput=true",
         "log_yml": {
             "duration": 0.030383,
+=======
+        "view": "https://api.biosimulations.org/runs/67599958c3054f763d585873",
+        "download": "https://api.biosimulations.org/results/67599958c3054f763d585873/download",
+        "logs": "https://api.biosimulations.org/logs/67599958c3054f763d585873?includeOutput=true",
+        "log_yml": {
+            "duration": 0.029932,
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
             },
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
             "output": "/home/opencor/OpenCOR/python/lib/python3.7/site-packages/biosimulators_utils/warnings.py:31: SedmlFeatureNotSupportedWarning: \u001b[33m`/tmp/tmpfj6rawkc/./BIOMD0000000138_url.sedml` is encoded using L1V4. Only features available in L1V3 are supported. Newer features such as simple repeated tasks are not yet supported.\u001b[0m\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\n",
+=======
+            "output": "/home/opencor/OpenCOR/python/lib/python3.7/site-packages/biosimulators_utils/warnings.py:31: SedmlFeatureNotSupportedWarning: \u001b[33m`/tmp/tmpmyqps9wi/./BIOMD0000000138_url.sedml` is encoded using L1V4. Only features available in L1V3 are supported. Newer features such as simple repeated tasks are not yet supported.\u001b[0m\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\n",
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
             "sedDocuments": [],
             "skipReason": null,
             "status": "FAILED"
@@ -239,11 +1046,19 @@
     },
     "pyneuroml": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/6760395867468f9f3fc06b33",
         "download": "https://api.biosimulations.org/results/6760395867468f9f3fc06b33/download",
         "logs": "https://api.biosimulations.org/logs/6760395867468f9f3fc06b33?includeOutput=true",
         "log_yml": {
             "duration": 0.075059,
+=======
+        "view": "https://api.biosimulations.org/runs/67599959c3054f763d585886",
+        "download": "https://api.biosimulations.org/results/67599959c3054f763d585886/download",
+        "logs": "https://api.biosimulations.org/logs/67599959c3054f763d585886?includeOutput=true",
+        "log_yml": {
+            "duration": 0.048959,
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -256,30 +1071,275 @@
     },
     "pysces": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/676039593e750b90a420ed24",
         "download": "https://api.biosimulations.org/results/676039593e750b90a420ed24/download",
         "logs": "https://api.biosimulations.org/logs/676039593e750b90a420ed24?includeOutput=true",
         "log_yml": {
             "duration": 0.252524,
+=======
+        "view": "https://api.biosimulations.org/runs/6759995bc3054f763d58588c",
+        "download": "https://api.biosimulations.org/results/6759995bc3054f763d58588c/download",
+        "logs": "https://api.biosimulations.org/logs/6759995bc3054f763d58588c?includeOutput=true",
+        "log_yml": {
+            "duration": 2.135361,
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
-                "type": "ValueError"
+                "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    <class 'AttributeError'>:'PysMod' object has no attribute 'lambda'",
+                "type": "CombineArchiveExecutionError"
             },
             "output": "libtk8.6.so: cannot open shared object file: No such file or directory\r\n\r\nPySCeS defaults to matplotlib's TKagg backend if not specified                          in the user configuration file, set \"matplotlib_backend = <backend>\" \r\nMatplotlib interface loaded (pysces.plt.m)\r\nPitcon routines available\r\nNLEQ2 routines available\r\nSBML support available\r\nYou are using NumPy (2.1.2) with SciPy (1.14.1)\r\nAssimulo CVode available\r\nRateChar is available\r\nParallel scanner is available\r\n\r\nPySCeS environment\r\n******************\r\npysces.model_dir = /home/FCAM/crbmapi/Pysces/psc\r\npysces.output_dir = /home/FCAM/crbmapi/Pysces\r\n\r\n\r\n***********************************************************************\r\n* Welcome to PySCeS (1.2.2) - Python Simulator for Cellular Systems   *\r\n*                http://pysces.sourceforge.net                        *\r\n* Copyright(C) B.G. Olivier, J.M. Rohwer, J.-H.S. Hofmeyr, 2004-2024  *\r\n* Triple-J Group for Molecular Cell Physiology                        *\r\n* Stellenbosch University, ZA and VU University Amsterdam, NL         *\r\n* PySCeS is distributed under the PySCeS (BSD style) licence, see     *\r\n* LICENCE.txt (supplied with this release) for details                *\r\n* Please cite PySCeS with: doi:10.1093/bioinformatics/bti046          *\r\n***********************************************************************\r\n",
-            "sedDocuments": [],
+            "sedDocuments": [
+                {
+                    "duration": 1.817634,
+                    "exception": {
+                        "message": "The SED document did not execute successfully:\n\n  <class 'AttributeError'>:'PysMod' object has no attribute 'lambda'",
+                        "type": "SedmlExecutionError"
+                    },
+                    "location": "BIOMD0000000138_url.sedml",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  BIOMD0000000138_url.sedml:\r\n    Tasks (1):\r\n      task1\r\n    Reports (1):\r\n      autogen_report_for_task1: 44 data sets\r\n    Plots (1):\r\n      autogen_plot_for_task1: 1 curves\r\n\r\nExecuting SED-ML file 1: BIOMD0000000138_url.sedml ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task1`\r\n    Outputs:\r\n      `autogen_plot_for_task1`\r\n      `autogen_report_for_task1`\r\n  Executing task 1: `task1`\r\n    Executing simulation ...Check SBML support is at action level 2\r\nSBML file is L2V1\r\nlambda is a reserved symbol, replacing with Lambda\r\n\r\n*******************************************************************\r\nIssues encountered in SBML translation (model processed anyway)\r\nSBML source: /tmp/tmphf9ek76_.xml\r\n*******************************************************************\r\n\r\nReserved symbol lambda replaced with Lambda \r\n\r\n*******************************************************************\r\n\r\nInfo: single compartment model: locating \"reaction_0000004\" in default compartment\r\nWriting file: /tmp/tmpj7zz980a.psc\r\n\r\nSBML2PSC\r\nin : /tmp/tmphf9ek76_.xml\r\nout: /tmp/tmpj7zz980a.psc\r\nUsing model directory: /home/FCAM/crbmapi/Pysces/psc\r\n/tmp/tmpj7zz980a.psc loading ..... \r\nParsing file: /tmp/tmpj7zz980a.psc\r\nInfo: No reagents have been fixed\r\nInfo: \"vca\" has been initialised but does not occur in a rate equation\r\nInfo: \"vk\" has been initialised but does not occur in a rate equation\r\nInfo: \"Cm\" has been initialised but does not occur in a rate equation\r\nInfo: \"gk\" has been initialised but does not occur in a rate equation\r\nInfo: \"gcal\" has been initialised but does not occur in a rate equation\r\nInfo: \"gsk\" has been initialised but does not occur in a rate equation\r\nInfo: \"ga\" has been initialised but does not occur in a rate equation\r\nInfo: \"gf\" has been initialised but does not occur in a rate equation\r\nInfo: \"vn\" has been initialised but does not occur in a rate equation\r\nInfo: \"va\" has been initialised but does not occur in a rate equation\r\nInfo: \"vm\" has been initialised but does not occur in a rate equation\r\nInfo: \"vh\" has been initialised but does not occur in a rate equation\r\nInfo: \"vf\" has been initialised but does not occur in a rate equation\r\nInfo: \"sn\" has been initialised but does not occur in a rate equation\r\nInfo: \"sa\" has been initialised but does not occur in a rate equation\r\nInfo: \"sm\" has been initialised but does not occur in a rate equation\r\nInfo: \"sh\" has been initialised but does not occur in a rate equation\r\nInfo: \"sf\" has been initialised but does not occur in a rate equation\r\nInfo: \"taun\" has been initialised but does not occur in a rate equation\r\nInfo: \"tauh\" has been initialised but does not occur in a rate equation\r\nInfo: \"Lambda\" has been initialised but does not occur in a rate equation\r\nInfo: \"ks\" has been initialised but does not occur in a rate equation\r\nInfo: \"phik\" has been initialised but does not occur in a rate equation\r\nInfo: \"phia\" has been initialised but does not occur in a rate equation\r\nInfo: \"phih\" has been initialised but does not occur in a rate equation\r\nInfo: \"phif\" has been initialised but does not occur in a rate equation\r\nInfo: \"phical\" has been initialised but does not occur in a rate equation\r\nInfo: \"cinf\" has been initialised but does not occur in a rate equation\r\nInfo: \"isk\" has been initialised but does not occur in a rate equation\r\nInfo: \"ibk\" has been initialised but does not occur in a rate equation\r\nInfo: \"ikdr\" has been initialised but does not occur in a rate equation\r\nInfo: \"ia\" has been initialised but does not occur in a rate equation\r\nInfo: \"ik\" has been initialised but does not occur in a rate equation\r\nInfo: \"n\" has been initialised but does not occur in a rate equation\r\nInfo: \"h\" has been initialised but does not occur in a rate equation\r\nInfo: \"V\" has been initialised but does not occur in a rate equation\r\n \r\nCalculating L matrix . . . . . . .  done.\r\nCalculating K matrix . . . . . . . no flux conservation\r\n done.\r\n \r\n\r\nAssignment rule(s) detected.\r\nRate rule(s) detected.\r\nINFO: RateRules detected and Assimulo installed,\r\nswitching to CVODE (mod.mode_integrator='CVODE').\r\n\r\nINFO: Assignment Rules detected and Assimulo installed,\r\nswitching to CVODE (mod.mode_integrator='CVODE').\r\n\r\nCVODE time for 1001 points: 0.04923725128173828\r\nRateRules evaluated and added to mod.data_sim.\r\n \u001b[31mfailed - 'PysMod' object has no attribute 'lambda'\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `autogen_report_for_task1` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `autogen_plot_for_task1` ...",
+                    "outputs": [
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "autogen_time_for_task1",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_c",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_vca",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_vk",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_Cm",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_gk",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_gcal",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_gsk",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ga",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_gf",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_vn",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_va",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_vm",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_vh",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_vf",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_sn",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_sa",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_sm",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_sh",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_sf",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_taun",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_tauh",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_lambda",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_kc",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ks",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ff",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_alpha",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_phik",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_phia",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_phih",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_phif",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_phical",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_cinf",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ica",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_isk",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ibk",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ikdr",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ia",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_ik",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_n",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_h",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_V",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_cell",
+                                    "status": "SKIPPED"
+                                },
+                                {
+                                    "id": "autogen_task1_reaction_0000004",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.054186,
+                            "exception": null,
+                            "id": "autogen_report_for_task1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        },
+                        {
+                            "curves": [
+                                {
+                                    "id": "autogen_curve_task1_c",
+                                    "status": "SKIPPED"
+                                }
+                            ],
+                            "duration": 0.432871,
+                            "exception": null,
+                            "id": "autogen_plot_for_task1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SKIPPED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "FAILED",
+                    "tasks": [
+                        {
+                            "algorithm": null,
+                            "duration": 1.195812,
+                            "exception": {
+                                "message": "'PysMod' object has no attribute 'lambda'",
+                                "type": "AttributeError"
+                            },
+                            "id": "task1",
+                            "output": "",
+                            "simulatorDetails": null,
+                            "skipReason": null,
+                            "status": "FAILED"
+                        }
+                    ]
+                }
+            ],
             "skipReason": null,
             "status": "FAILED"
         }
     },
     "rbapy": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/6760395b3e750b90a420ed29",
         "download": "https://api.biosimulations.org/results/6760395b3e750b90a420ed29/download",
         "logs": "https://api.biosimulations.org/logs/6760395b3e750b90a420ed29?includeOutput=true",
         "log_yml": {
             "duration": 0.228661,
+=======
+        "view": "https://api.biosimulations.org/runs/6759995d9fa297efdca4d2f7",
+        "download": "https://api.biosimulations.org/results/6759995d9fa297efdca4d2f7/download",
+        "logs": "https://api.biosimulations.org/logs/6759995d9fa297efdca4d2f7?includeOutput=true",
+        "log_yml": {
+            "duration": 0.191285,
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
             "exception": {
-                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
+                "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Simulation `auto_ten_seconds` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
             },
             "output": "",
@@ -290,11 +1350,19 @@
     },
     "smoldyn": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/6760395d3e750b90a420ed2d",
         "download": "https://api.biosimulations.org/results/6760395d3e750b90a420ed2d/download",
         "logs": "https://api.biosimulations.org/logs/6760395d3e750b90a420ed2d?includeOutput=true",
         "log_yml": {
             "duration": 0.049606,
+=======
+        "view": "https://api.biosimulations.org/runs/6759995f707aa64104620cd9",
+        "download": "https://api.biosimulations.org/results/6759995f707aa64104620cd9/download",
+        "logs": "https://api.biosimulations.org/logs/6759995f707aa64104620cd9?includeOutput=true",
+        "log_yml": {
+            "duration": 0.048917,
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -307,6 +1375,7 @@
     },
     "tellurium": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/6760395ef8016f90e7c654c0",
         "download": "https://api.biosimulations.org/results/6760395ef8016f90e7c654c0/download",
         "logs": "https://api.biosimulations.org/logs/6760395ef8016f90e7c654c0?includeOutput=true",
@@ -316,245 +1385,513 @@
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./BIOMD0000000138_url.sedml` is invalid.\n    - Output `autogen_plot3` is invalid.\n      - Plot must have at least one curve.",
                 "type": "ValueError"
             },
+=======
+        "view": "https://api.biosimulations.org/runs/67599961707aa64104620ce4",
+        "download": "https://api.biosimulations.org/results/67599961707aa64104620ce4/download",
+        "logs": "https://api.biosimulations.org/logs/67599961707aa64104620ce4?includeOutput=true",
+        "log_yml": {
+            "duration": 1.480166,
+            "exception": null,
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
             "output": "",
-            "sedDocuments": [],
+            "sedDocuments": [
+                {
+                    "duration": 1.048799,
+                    "exception": null,
+                    "location": "BIOMD0000000138_url.sedml",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 1 tasks, 1 reports, and 1 plots:\r\n  BIOMD0000000138_url.sedml:\r\n    Tasks (1):\r\n      task1\r\n    Reports (1):\r\n      autogen_report_for_task1: 44 data sets\r\n    Plots (1):\r\n      autogen_plot_for_task1: 1 curves\r\n\r\nExecuting SED-ML file 1: BIOMD0000000138_url.sedml ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task1`\r\n    Outputs:\r\n      `autogen_plot_for_task1`\r\n      `autogen_report_for_task1`\r\n  Executing task 1: `task1`\r\n    Executing simulation ... \u001b[34msucceeded\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `autogen_report_for_task1` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `autogen_plot_for_task1` ...",
+                    "outputs": [
+                        {
+                            "dataSets": [
+                                {
+                                    "id": "autogen_time_for_task1",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_c",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_vca",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_vk",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_Cm",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_gk",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_gcal",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_gsk",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_ga",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_gf",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_vn",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_va",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_vm",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_vh",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_vf",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_sn",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_sa",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_sm",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_sh",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_sf",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_taun",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_tauh",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_lambda",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_kc",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_ks",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_ff",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_alpha",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_phik",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_phia",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_phih",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_phif",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_phical",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_cinf",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_ica",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_isk",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_ibk",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_ikdr",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_ia",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_ik",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_n",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_h",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_V",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_cell",
+                                    "status": "SUCCEEDED"
+                                },
+                                {
+                                    "id": "autogen_task1_reaction_0000004",
+                                    "status": "SUCCEEDED"
+                                }
+                            ],
+                            "duration": 0.279199,
+                            "exception": null,
+                            "id": "autogen_report_for_task1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        },
+                        {
+                            "curves": [
+                                {
+                                    "id": "autogen_curve_task1_c",
+                                    "status": "SUCCEEDED"
+                                }
+                            ],
+                            "duration": 0.359601,
+                            "exception": null,
+                            "id": "autogen_plot_for_task1",
+                            "output": "",
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        }
+                    ],
+                    "skipReason": null,
+                    "status": "SUCCEEDED",
+                    "tasks": [
+                        {
+                            "algorithm": "KISAO_0000019",
+                            "duration": 0.248306,
+                            "exception": null,
+                            "id": "task1",
+                            "output": "",
+                            "simulatorDetails": [
+                                {
+                                    "key": "method",
+                                    "value": "simulate"
+                                },
+                                {
+                                    "key": "solver",
+                                    "value": "cvode"
+                                },
+                                {
+                                    "key": "relative_tolerance",
+                                    "value": 1e-06
+                                },
+                                {
+                                    "key": "absolute_tolerance",
+                                    "value": 1e-12
+                                },
+                                {
+                                    "key": "stiff",
+                                    "value": true
+                                },
+                                {
+                                    "key": "maximum_bdf_order",
+                                    "value": 5
+                                },
+                                {
+                                    "key": "maximum_adams_order",
+                                    "value": 12
+                                },
+                                {
+                                    "key": "maximum_num_steps",
+                                    "value": 20000
+                                },
+                                {
+                                    "key": "maximum_time_step",
+                                    "value": 0.0
+                                },
+                                {
+                                    "key": "minimum_time_step",
+                                    "value": 0.0
+                                },
+                                {
+                                    "key": "initial_time_step",
+                                    "value": 0.0
+                                },
+                                {
+                                    "key": "multiple_steps",
+                                    "value": false
+                                },
+                                {
+                                    "key": "variable_step_size",
+                                    "value": false
+                                },
+                                {
+                                    "key": "max_output_rows",
+                                    "value": 100000
+                                }
+                            ],
+                            "skipReason": null,
+                            "status": "SUCCEEDED"
+                        }
+                    ]
+                }
+            ],
             "skipReason": null,
-            "status": "FAILED"
+            "status": "SUCCEEDED"
         }
     },
     "vcell": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/6760396167468f9f3fc06b6b",
         "download": "https://api.biosimulations.org/results/6760396167468f9f3fc06b6b/download",
         "logs": "https://api.biosimulations.org/logs/6760396167468f9f3fc06b6b?includeOutput=true",
+=======
+        "view": "https://api.biosimulations.org/runs/67599964707aa64104620cf9",
+        "download": "https://api.biosimulations.org/results/67599964707aa64104620cf9/download",
+        "logs": "https://api.biosimulations.org/logs/67599964707aa64104620cf9?includeOutput=true",
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
         "log_yml": {
-            "duration": 3,
+            "duration": 7,
             "exception": null,
             "output": "Processing BIOMD0000000138_url.sedml.  Done",
             "sedDocuments": [
                 {
                     "duration": null,
-                    "exception": {
-                        "message": "Cannot invoke 'org.jlibsedml.SedML.getPathForURI()' because 'this.sedml' is nullCannot invoke 'org.jlibsedml.SedML.getPathForURI()' because 'sedml' is nullFailure executing the sed document.",
-                        "type": "RuntimeException"
-                    },
+                    "exception": null,
                     "location": "BIOMD0000000138_url.sedml",
-                    "output": "Initializing SED-ML document... done. Successful translation of SED-ML file. Building solvers and starting simulation of all tasks... Generating outputs... Generating HDF5 file...",
+                    "output": "Initializing SED-ML document... done. Successful translation of SED-ML file. Building solvers and starting simulation of all tasks... Generating outputs... Generating CSV file... Done. Generating HDF5 file...",
                     "outputs": [
                         {
                             "curves": [
                                 {
                                     "id": "autogen_curve_task1_c",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 }
                             ],
                             "duration": null,
                             "exception": null,
-                            "id": "autogen_plot1",
+                            "id": "autogen_plot_for_task1",
                             "output": null,
                             "skipReason": null,
-                            "status": "QUEUED"
-                        },
-                        {
-                            "curves": [
-                                {
-                                    "id": "autogen_curve_for_task1_V",
-                                    "status": "QUEUED"
-                                }
-                            ],
-                            "duration": null,
-                            "exception": null,
-                            "id": "autogen_plot2",
-                            "output": null,
-                            "skipReason": null,
-                            "status": "QUEUED"
-                        },
-                        {
-                            "curves": [],
-                            "duration": null,
-                            "exception": null,
-                            "id": "autogen_plot3",
-                            "output": null,
-                            "skipReason": null,
-                            "status": "QUEUED"
+                            "status": "SUCCEEDED"
                         },
                         {
                             "dataSets": [
                                 {
                                     "id": "autogen_time_for_task1",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_c",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_vca",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_vk",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_Cm",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_gk",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_gcal",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_gsk",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_ga",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_gf",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_vn",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_va",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_vm",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_vh",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_vf",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_sn",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_sa",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_sm",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_sh",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_sf",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_taun",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_tauh",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_lambda",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_kc",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_ks",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_ff",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_alpha",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_phik",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_phia",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_phih",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_phif",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_phical",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_cinf",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_ica",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_isk",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_ibk",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_ikdr",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_ia",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_ik",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_n",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_h",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_V",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_cell",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 },
                                 {
                                     "id": "autogen_task1_reaction_0000004",
-                                    "status": "QUEUED"
+                                    "status": "SUCCEEDED"
                                 }
                             ],
                             "duration": null,
@@ -562,21 +1899,21 @@
                             "id": "autogen_report_for_task1",
                             "output": null,
                             "skipReason": null,
-                            "status": "QUEUED"
+                            "status": "SUCCEEDED"
                         }
                     ],
                     "skipReason": null,
-                    "status": "FAILED",
+                    "status": "SUCCEEDED",
                     "tasks": [
                         {
-                            "algorithm": null,
-                            "duration": null,
+                            "algorithm": "KISAO_0000019",
+                            "duration": 1,
                             "exception": null,
                             "id": "task1",
-                            "output": null,
+                            "output": "Initializing simulation job 0 ... done. Starting simulation... done.",
                             "simulatorDetails": null,
                             "skipReason": null,
-                            "status": "QUEUED"
+                            "status": "SUCCEEDED"
                         }
                     ]
                 }
@@ -587,11 +1924,19 @@
     },
     "xpp": {
         "response": 201,
+<<<<<<< HEAD:src/SBMLShowcase/BioModels/BIOMD0000000138/tests/results_remote.json
         "view": "https://api.biosimulations.org/runs/67603963f8016f90e7c654de",
         "download": "https://api.biosimulations.org/results/67603963f8016f90e7c654de/download",
         "logs": "https://api.biosimulations.org/logs/67603963f8016f90e7c654de?includeOutput=true",
         "log_yml": {
             "duration": 0.050965,
+=======
+        "view": "https://api.biosimulations.org/runs/67599966707aa64104620d00",
+        "download": "https://api.biosimulations.org/results/67599966707aa64104620d00/download",
+        "logs": "https://api.biosimulations.org/logs/67599966707aa64104620d00?includeOutput=true",
+        "log_yml": {
+            "duration": 0.047262,
+>>>>>>> development:BioModels/BIOMD0000000138/tests/results_remote.json
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
