@@ -723,9 +723,7 @@ def run_biosimulators_remote(engine, sedml_filepath, sbml_filepath):
             "logs": "",
             "exception": exception_message,
         }
-
-    if os.path.exists(omex_filepath):
-        os.remove(omex_filepath)
+        return results_urls
 
     return results_urls
 
@@ -789,9 +787,14 @@ def run_biosimulators_docker(
         if "RuntimeException" in detailed_error_log:
             detailed_error_log_dict["status"] = "FAIL"
             detailed_error_log_dict["error_message"] = "Runtime Exception"
-
-    if os.path.exists(omex_filepath):
-        os.remove(omex_filepath)
+            return {
+                "exception_message": exception_message,
+                "log_yml": log_yml_dict,
+                "detailed_error_log": detailed_error_log_dict,
+            }
+        if "RuntimeException" in detailed_error_log:
+            detailed_error_log_dict["status"] = "FAIL"
+            detailed_error_log_dict["error_message"] = "Runtime Exception"
 
     return {
         "exception_message": exception_message,
@@ -829,6 +832,12 @@ def biosimulators_core(engine, omex_filepath, output_dir=None):
 
     mount_out = docker.types.Mount("/root/out", output_dir, type="bind")
     client = docker.from_env()
+    client.containers.run(
+        f"ghcr.io/biosimulators/{engine}",
+        mounts=[mount_in, mount_out],
+        command=f"-i '/root/in/{omex_file}' -o /root/out",
+        auto_remove=True,
+    )
     client.containers.run(
         f"ghcr.io/biosimulators/{engine}",
         mounts=[mount_in, mount_out],
