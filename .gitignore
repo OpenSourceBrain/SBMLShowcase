@@ -37,6 +37,7 @@ arm64
 /SBML/hr.csv
 /test_suite/semantic/
 /test_suite/semantic_tests_with_sedml_and_graphs.v*.zip*
+**/test_suite/SBML_test_suite
 .vscode
 /BioModels/cache
 /BioModels/tmplocalfiles

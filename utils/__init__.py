@@ -733,7 +733,6 @@ def get_remote_results(engine, download_link, output_dir="remote_results"):
     extract_dir = os.path.join(os.getcwd(), output_dir, engine)
     shutil.unpack_archive(filepath_results, extract_dir=extract_dir)
     os.remove(filepath_results)
-
     return extract_dir
 
 
