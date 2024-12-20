@@ -158,9 +158,9 @@ def save_pickle(data, file_path):
     except pickle.PicklingError as e:
         print(f"Error saving pickle file {file_path}: {e}")
 
-def run_test_suite_batch_remotely(engine_keys, file_paths, limit=0, use_pickle=True):
-    
+def run_test_suite_batch_remotely(engine_keys, file_paths, limit=0, use_pickle=False):
     file_paths_items = list(file_paths.items())  # Convert dict_items to a list
+    results_remote_links = {}  # Initialize results_remote_links
 
     for subfolder, paths in (file_paths_items if limit == 0 else file_paths_items[:limit]):
         sbml_file_path = paths['sbml']
@@ -169,32 +169,31 @@ def run_test_suite_batch_remotely(engine_keys, file_paths, limit=0, use_pickle=T
         os.chdir(file_path_dir)
         
         pickle_file_path = os.path.join(file_path_dir, f"{subfolder}_remote_links.p")
-        
-        # Load existing results from pickle file if it exists
-        results_remote_links = load_pickle(pickle_file_path) if use_pickle else {}
-        
-        if subfolder in results_remote_links:
-            print(f"Using pickled results for test suite example {subfolder}")
-            results_remote_links[subfolder].update({"folder_dir": file_path_dir})
-            # Save results to pickle file after each subfolder
-            save_pickle(results_remote_links, pickle_file_path)
-            continue
+        results_remote_links = {subfolder: {"folder_dir": file_path_dir}}
 
+        if use_pickle:
+            if os.path.exists(pickle_file_path):
+                print(f"Pickled links found for test suite example {subfolder}")
+                continue
+            else:
+                print(f"No pickled links found for test suite example {subfolder}")
         
-
+        new_results_remote_links = {}
         for engine in engine_keys:
             try:
                 results_remote = utils.run_biosimulators_remote(
                     engine, os.path.basename(sedml_file_path), os.path.basename(sbml_file_path)
                 )
-                results_remote_links[subfolder][engine] = results_remote
+                new_results_remote_links[engine] = results_remote
             except Exception as e:
                 print(f"Error processing {subfolder} with engine {engine}: {e}")
-                results_remote_links[subfolder][engine] = {"error": str(e)}
-        
-        # Save results to pickle file after each subfolder
+                new_results_remote_links[engine] = {"error": str(e)}
+
+        results_remote_links[subfolder].update(new_results_remote_links)
         save_pickle(results_remote_links, pickle_file_path)
-    return print("All test suite examples submitted or pickled")
+        print("All test suite examples submitted for remote testing.")
+    return   
+
 
 def merge_pickled_links(file_paths, limit=0):
     file_paths_items = list(file_paths.items()) 
@@ -229,13 +228,12 @@ def download_remote_test_suite_results(links_dict, refresh=False, limit=0):
                 if not os.path.exists(folder):
                     os.makedirs(folder)
                 os.chdir(folder)
-                files_in_folder = os.listdir()
-                zip_in_folder = any([f.endswith(".zip") for f in files_in_folder])
+                zip_in_folder = any([f.endswith(".zip") for f in os.listdir()])
                 if not zip_in_folder or refresh:
                     extract_dir = utils.download_file_from_link(engine, engine_links["download"])
                     print(f"Downloaded {engine} results to {extract_dir}")
                 else:
-                    zip_path = [f for f in files_in_folder if f.endswith(".zip")][0]
+                    zip_path = [f for f in os.listdir() if f.endswith(".zip")][0]
                     extract_dir = os.path.join(folder_dir, folder, zip_path)
                 
                 subfolder_dict["extract_dir"][engine] = extract_dir
@@ -317,9 +315,6 @@ def process_cases(args):
     for subfolder in subfolders:
         subfolder_dir = os.path.join(suite_path_abs, subfolder)
         os.chdir(subfolder_dir)
-        pickle_name = f"{subfolder}_mtab.p"
-        pickle_path = os.path.join(subfolder_dir, tmp_dir, subfolder, pickle_name)
-
         # if sbml_level_version is empty string (default), find the highest level and version in the folder
         if args.sbml_level_version == "highest":
             sedml_file_paths = glob.glob("*-sbml-*sedml.xml")
@@ -436,20 +431,39 @@ def process_cases(args):
         mtab.write(fout)
 
 
+def get_remote_results_from_links2(suite_path, sbml_level_version, limit=0, use_pickle=False):
+    """Run with directory pointing towards the location of the sedml and sbml files"""
+    if use_pickle:
+        if os.path.exists("results_remote.p"):
+            results_remote = load_pickle("results_remote.p")
+            return results_remote
+        else: 
+            print("No pickled results found. Running remote tests.")
+    else:
+        print("Running remote tests.")  
+        file_paths = get_test_suite_files_paths(suite_path, sbml_level_version, limit)
+        run_test_suite_batch_remotely(["copasi", "tellurium"], file_paths, limit)
+        remote_links = merge_pickled_links(file_paths, limit)
+        extract_dir_dict = download_remote_test_suite_results(remote_links)
+        results_remote = process_results(extract_dir_dict)
+        os.chdir(os.path.dirname(os.path.realpath(__file__)))
+        save_pickle(results_remote, "results_remote.p")
+        remove_output_folders(extract_dir_dict)
+        return results_remote
+
 if __name__ == "__main__":
     args = parse_arguments()
 
     suite_path = r"C:\Users\prins\GitHub\SBMLShowcase\test_suite\SBML_test_suite\semantic"
     args.suite_path = suite_path
+    args.limit = 2
 
-    file_paths = get_test_suite_files_paths(args.suite_path, args.sbml_level_version, limit=0)
-    run_test_suite_batch_remotely(["copasi", "tellurium"], file_paths, limit=0)
-    remote_links = merge_pickled_links(file_paths, limit=0)
+    file_paths = get_test_suite_files_paths(args.suite_path, args.sbml_level_version, limit=args.limit)
+    run_test_suite_batch_remotely(["copasi", "tellurium"], file_paths, limit=args.limit,use_pickle=True)
+    remote_links = merge_pickled_links(file_paths, limit=args.limit )
     results_remote = get_remote_results_from_links(remote_links)
     # save results remote as pickle file in directory in which the current file lives
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
-    save_pickle(results_remote, "results_remote.p")
-
-    print(remote_links)
-
-    # process_cases(args)
+    # save_pickle(results_remote, "results_remote.p")
+    print(results_remote)
+    process_cases(args)
