@@ -155,7 +155,7 @@ def save_pickle(data, file_path):
     try:
         with open(file_path, 'wb') as f:
             pickle.dump(data, f)
-    except pickle.PicklingError as e:
+    except Exception as e:
         print(f"Error saving pickle file {file_path}: {e}")
 
 def run_test_suite_batch_remotely(engine_keys, file_paths, limit=0, use_pickle=False):
@@ -170,7 +170,7 @@ def run_test_suite_batch_remotely(engine_keys, file_paths, limit=0, use_pickle=F
         
         pickle_file_path = os.path.join(file_path_dir, f"{subfolder}_remote_links.p")
         results_remote_links = {subfolder: {"folder_dir": file_path_dir}}
-
+        
         if use_pickle:
             if os.path.exists(pickle_file_path):
                 print(f"Pickled links found for test suite example {subfolder}")
@@ -210,11 +210,13 @@ def merge_pickled_links(file_paths, limit=0):
 def get_remote_results_from_links(links_dict):
     """Run with directory pointing towards the location of the sedml and sbml files"""
     extract_dir_dict = download_remote_test_suite_results(links_dict)
-    results_remote = process_results(extract_dir_dict)
+    log_yml_dict = create_log_yml_dict(extract_dir_dict)
     # remove_output_folders(extract_dir_dict)
-    return results_remote
+    return log_yml_dict
 
-def download_remote_test_suite_results(links_dict, refresh=False, limit=0):
+
+
+def download_remote_test_suite_results(links_dict,refresh=False, limit=0):
     extract_dir_dict = {}
     for subfolder, links in (links_dict.items() if limit == 0 else list(links_dict.items())[:limit]):
         folder_dir = links["folder_dir"]
@@ -252,10 +254,10 @@ def unzip_files():
             zip_ref.extractall()
 
 
-def process_results(extract_dir_dict):
-    results_remote = {}
+def create_log_yml_dict(extract_dir_dict):
+    log_yml_dict = {}
     for subfolder, extract_dirs in extract_dir_dict.items():
-        results_remote[subfolder] = {}
+        log_yml_dict[subfolder] = {}
         for engine, zip_file in extract_dirs["extract_dir"].items():
             output_folder = os.path.dirname(zip_file)
             os.chdir(output_folder)
@@ -264,11 +266,31 @@ def process_results(extract_dir_dict):
             if log_yml_files:
                 log_yml_path = log_yml_files[0]
                 with open(log_yml_path) as f:
-                    log_yml_dict = yaml.safe_load(f)
+                    log_yml = yaml.safe_load(f)
             else:
-                log_yml_dict = {}
-            results_remote[subfolder][engine] = {"log_yml": log_yml_dict}
+                log_yml = {}
+            log_yml_dict[subfolder][engine] = {"log_yml": log_yml}
+    print('hello')
+    return log_yml_dict
 
+def process_log_yml_dict(log_yml_dict):
+    results_remote = {}
+    for subfolder in list(log_yml_dict.keys()):
+        print(subfolder)
+        if subfolder in log_yml_dict:
+            results_remote[subfolder] = {}
+            for e in list(log_yml_dict[subfolder].keys()):
+                # only if log_yml key is present
+                if "log_yml" in log_yml_dict[subfolder][e]:
+                    results_remote[subfolder][e] = utils.process_log_yml_dict(
+                        log_yml_dict[subfolder][e]["log_yml"]
+                    )
+                else:
+                    results_remote[subfolder][e] = {
+                        "status": "ERROR",
+                        "error_message": "log_yml key not found",
+                        "exception_type": "KeyError",
+                    }
     return results_remote
 
 def remove_output_folders(extract_dir_dict):
@@ -284,15 +306,14 @@ def process_cases(args):
     with links to the test case files online (as noted above the sedml files are actually in a zip file)
     with a summary of how many cases were tested and how many tests failed
     """
+
     # set up the markdown table
     column_labels = (
         "case|valid-sbml|valid-sbml-units|valid-sedml|tellurium|xmlns-sbml-missing|tellurium-remote|copasi-remote"
     )
     column_keys = "case|valid_sbml|valid_sbml_units|valid_sedml|tellurium_outcome|xmlns_sbml_missing|tellurium_remote_outcome|copasi_remote_outcome"
     mtab = utils.MarkdownTable(column_labels, column_keys)
-
     # set the path to the test suite
-    starting_dir = os.getcwd()  # where results will be written
     os.chdir(args.suite_path)  # change to test suite directory
     suite_path_abs = os.getcwd()  # absolute path to test suite
 
@@ -306,11 +327,13 @@ def process_cases(args):
         category=UserWarning,
         message="FigureCanvasAgg is non-interactive, and thus cannot be shown",
     )
-    subfolders = (
-        os.listdir(suite_path_abs)
-        if args.limit == 0
-        else os.listdir(suite_path_abs)[: args.limit]
-    )
+    
+    subfolders = [f for f in os.listdir(suite_path_abs) if os.path.isdir(os.path.join(suite_path_abs, f))]
+    if args.limit != 0:
+        subfolders = subfolders[:args.limit]
+        
+    # submit remote runs and get results or uaw pickled results
+    remote_results, remote_links = get_remote_results(suite_path=suite_path_abs, sbml_level_version=args.sbml_level_version, limit=args.limit, use_pickle=False)
 
     for subfolder in subfolders:
         subfolder_dir = os.path.join(suite_path_abs, subfolder)
@@ -368,48 +391,24 @@ def process_cases(args):
         sup.restore()
 
         mtab["xmlns_sbml_missing"] = utils.xmlns_sbml_attribute_missing(sedml_file_path)
+        
+    
+        if subfolder in remote_results.keys():
+            for e in list(remote_results[subfolder].keys()):
+                print(f"Processing remote results for {subfolder} with engine {e}")
+                mtab_remote_outcome_key = f"{e}_remote_outcome"
+                info_submission = f"Download: {remote_links[subfolder][e]['download']}<br><br>Logs: {remote_links[subfolder][e]['logs']}<br><br>View: {remote_links[subfolder][e]['view']}<br><br>HTTP response: {str(remote_links[subfolder][e]['response'])}"
 
-        # COPASI and Tellurium remote tests
-        engine_keys = ["copasi", "tellurium"]
-        test_folder = "tests"
-        d1_plots_remote_dir = os.path.join(test_folder, "d1_plots_remote")
+                if remote_results[subfolder][e]["error_message"] != "":
+                    error_message = utils.safe_md_string(remote_results[subfolder][e]["error_message"])
+                    exception_type = utils.safe_md_string(remote_results[subfolder][e]["exception_type"])
+                    error_message_string = f'Error message: {error_message}<br><br>Exception type: {exception_type}'
+                    info_submission = info_submission + f"<br><br>{error_message_string}"
 
-        results_remote = utils.run_biosimulators_remotely(
-            engine_keys,
-            sedml_file_name=os.path.basename(sedml_file_path),
-            sbml_file_name=os.path.basename(sbml_file_path),
-            d1_plots_remote_dir=d1_plots_remote_dir,
-            test_folder=test_folder,
-        )
-
-        for e in engine_keys:
-            # only if log_yml key is present
-            if "log_yml" in results_remote[e]:
-                results_remote_processed = utils.process_log_yml_dict(
-                    results_remote[e]["log_yml"]
-                )
-            else:
-                results_remote_processed = {
-                    "status": "ERROR",
-                    "error_message": "log_yml key not found",
-                    "exception_type": "KeyError",
-                }
-            mtab_remote_outcome_key = f"{e}_remote_outcome"
-
-            info_submission = f"Download: {results_remote[e]['download']}<br><br>Logs: {results_remote[e]['logs']}<br><br>View: {results_remote[e]['view']}<br><br>HTTP response: {str(results_remote[e]['response'])}"
-            error_message_string = f'Error message: {results_remote_processed["error_message"]}<br><br>Exception type: {results_remote_processed["exception_type"]}'
-
-            if results_remote_processed["error_message"] != "":
-                info_submission = info_submission + f"<br><br>{error_message_string}"
-
-            mtab[mtab_remote_outcome_key] = [
-                results_remote_processed["status"],
-                info_submission,
-            ]
+                mtab[mtab_remote_outcome_key] = f'<details><summary>{remote_results[subfolder][e]["status"]}</summary>{info_submission}</details>'
+                
 
         matplotlib.pyplot.close("all")  # supresses error from building up plots
-        mtab_dict = {"mtab_row": mtab, "results_remote": results_remote}
-        pickle.dump(mtab_dict, open(pickle_name, "wb"))
 
     # give failure counts
     for key in ["valid_sbml", "valid_sbml_units", "valid_sedml"]:
@@ -425,18 +424,21 @@ def process_cases(args):
     mtab.transform_column("tellurium_outcome")
 
     # write out to file
-    os.chdir(starting_dir)
+    os.chdir(os.path.dirname(os.path.realpath(__file__)))
+    print(f"Writing results to {args.output_file}")
     with open(args.output_file, "w") as fout:
         fout.write(md_description)
         mtab.write(fout)
 
 
-def get_remote_results_from_links2(suite_path, sbml_level_version, limit=0, use_pickle=False):
+def get_remote_results(suite_path, sbml_level_version, limit=0, use_pickle=False, remove_output=False):
     """Run with directory pointing towards the location of the sedml and sbml files"""
+
     if use_pickle:
-        if os.path.exists("results_remote.p"):
+        if os.path.exists("results_remote.p") and os.path.exists("remote_links.p"):
             results_remote = load_pickle("results_remote.p")
-            return results_remote
+            remote_links = load_pickle("remote_links.p")
+            return results_remote, remote_links
         else: 
             print("No pickled results found. Running remote tests.")
     else:
@@ -445,25 +447,22 @@ def get_remote_results_from_links2(suite_path, sbml_level_version, limit=0, use_
         run_test_suite_batch_remotely(["copasi", "tellurium"], file_paths, limit)
         remote_links = merge_pickled_links(file_paths, limit)
         extract_dir_dict = download_remote_test_suite_results(remote_links)
-        results_remote = process_results(extract_dir_dict)
+        log_yml_dict = create_log_yml_dict(extract_dir_dict)
+        results_remote = process_log_yml_dict(log_yml_dict)
         os.chdir(os.path.dirname(os.path.realpath(__file__)))
         save_pickle(results_remote, "results_remote.p")
-        remove_output_folders(extract_dir_dict)
-        return results_remote
+        save_pickle(remote_links, "remote_links.p")
+        if remove_output:
+            remove_output_folders(extract_dir_dict)
+        return results_remote, remote_links
 
 if __name__ == "__main__":
     args = parse_arguments()
 
     suite_path = r"C:\Users\prins\GitHub\SBMLShowcase\test_suite\SBML_test_suite\semantic"
     args.suite_path = suite_path
-    args.limit = 2
+    args.limit = 0
 
-    file_paths = get_test_suite_files_paths(args.suite_path, args.sbml_level_version, limit=args.limit)
-    run_test_suite_batch_remotely(["copasi", "tellurium"], file_paths, limit=args.limit,use_pickle=True)
-    remote_links = merge_pickled_links(file_paths, limit=args.limit )
-    results_remote = get_remote_results_from_links(remote_links)
-    # save results remote as pickle file in directory in which the current file lives
-    os.chdir(os.path.dirname(os.path.realpath(__file__)))
-    # save_pickle(results_remote, "results_remote.p")
-    print(results_remote)
+    # remote_results = get_remote_results(suite_path=args.suite_path, sbml_level_version=args.sbml_level_version, limit=args.limit, use_pickle=False)
+
     process_cases(args)

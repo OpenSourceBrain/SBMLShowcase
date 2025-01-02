@@ -1245,6 +1245,7 @@ def safe_md_string(value):
         .replace("\t", " ")
         .replace("   ", " ")
         .replace("  ", " ")
+        .replace("|", "<br>")
     )
 
 
