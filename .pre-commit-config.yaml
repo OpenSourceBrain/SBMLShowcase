@@ -11,6 +11,8 @@ exclude: |-
       .*\.sedml$|
       .*\.sbml$|
       .*\.omex$|
+      .*\.json$|
+      .*\.md$|
   )$
 
 repos:
