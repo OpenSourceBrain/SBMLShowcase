@@ -396,7 +396,6 @@ def process_cases(args):
         suite_path=suite_path_abs,
         sbml_level_version=args.sbml_level_version,
         subfolders=subfolders,
-        use_pickle=True,
     )
 
     for subfolder in subfolders:
@@ -485,11 +484,17 @@ def process_cases(args):
         "valid_sbml",
         "valid_sbml_units",
         "valid_sedml",
-        "tellurium_remote",
-        "copasi_remote",
     ]:
         mtab.add_count(key, lambda x: x is False, "n_fail={count}")
         mtab.transform_column(key, lambda x: "pass" if x else "FAIL")
+
+    for key in [
+        "tellurium_remote_outcome",
+        "copasi_remote_outcome",
+    ]:
+        mtab.add_count(
+            key, lambda x: "<details><summary>pass</summary>" in x, "pass={count}"
+        )
 
     # add counts for cases and missing xmlns_sbml attributes
     mtab.add_count("case", lambda _: True, "n={count}")
@@ -508,10 +513,11 @@ def process_cases(args):
 
 
 def get_remote_results(
-    suite_path, sbml_level_version, subfolders, use_pickle=True, remove_output=False
+    suite_path, sbml_level_version, subfolders, use_pickle=False, remove_output=False
 ):
     """Run with directory pointing towards the location of the sedml and sbml files"""
 
+    # pickle of all results_remote and remote_links together
     if use_pickle:
         os.chdir(suite_path)
         if os.path.exists("results_remote.p") and os.path.exists("remote_links.p"):
@@ -546,7 +552,7 @@ def remove_all_pickles_in_dir(dir_path):
 
 
 if __name__ == "__main__":
-    download_test_suite()
+    # download_test_suite(url="https://github.com/sbmlteam/sbml-test-suite/releases/download/3.4.0/semantic_tests_with_sedml_and_graphs.v3.4.0.zip")
     args = parse_arguments()
     suite_path = os.path.join(
         os.path.dirname(os.path.realpath(__file__)), "SBML_test_suite", "semantic"
@@ -568,7 +574,7 @@ if __name__ == "__main__":
             print(f"Error processing cases: {e}")
             retries += 1
             if retries < max_retries:
-                print(f"Retrying in 2 minutes... (Attempt {retries}/{max_retries})")
-                time.sleep(120)
+                print(f"Retrying in 10 seconds... (Attempt {retries}/{max_retries})")
+                time.sleep(10)
             else:
                 print("Max retries exceeded. Exiting script.")
