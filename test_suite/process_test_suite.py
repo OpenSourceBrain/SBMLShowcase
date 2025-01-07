@@ -396,7 +396,7 @@ def process_cases(args):
         suite_path=suite_path_abs,
         sbml_level_version=args.sbml_level_version,
         subfolders=subfolders,
-        use_pickle=False,
+        use_pickle=True,
     )
 
     for subfolder in subfolders:
@@ -481,7 +481,13 @@ def process_cases(args):
         matplotlib.pyplot.close("all")  # supresses error from building up plots
 
     # give failure counts
-    for key in ["valid_sbml", "valid_sbml_units", "valid_sedml"]:
+    for key in [
+        "valid_sbml",
+        "valid_sbml_units",
+        "valid_sedml",
+        "tellurium_remote",
+        "copasi_remote",
+    ]:
         mtab.add_count(key, lambda x: x is False, "n_fail={count}")
         mtab.transform_column(key, lambda x: "pass" if x else "FAIL")
 
@@ -514,24 +520,21 @@ def get_remote_results(
             return results_remote, remote_links
         else:
             print("No pickled results found. Running remote tests.")
-    else:
-        print("Running remote tests.")
-        file_paths = get_test_suite_files_paths(
-            suite_path, sbml_level_version, subfolders
-        )
-        run_test_suite_batch_remotely(["copasi", "tellurium"], file_paths, limit=0)
-        remote_links = merge_pickled_links(file_paths, limit=0)
-        extract_dir_dict = download_remote_test_suite_results(remote_links)
-        log_yml_dict = create_log_yml_dict(extract_dir_dict)
-        results_remote = process_log_yml_dict(log_yml_dict)
-        os.chdir(os.path.dirname(os.path.realpath(__file__)))
-        # in suite_path, save pickled results
-        os.chdir(suite_path)
-        save_pickle(results_remote, "results_remote.p")
-        save_pickle(remote_links, "remote_links.p")
-        if remove_output:
-            remove_output_folders(extract_dir_dict)
-        return results_remote, remote_links
+    print("Running remote tests.")
+    file_paths = get_test_suite_files_paths(suite_path, sbml_level_version, subfolders)
+    run_test_suite_batch_remotely(["copasi", "tellurium"], file_paths, limit=0)
+    remote_links = merge_pickled_links(file_paths, limit=0)
+    extract_dir_dict = download_remote_test_suite_results(remote_links)
+    log_yml_dict = create_log_yml_dict(extract_dir_dict)
+    results_remote = process_log_yml_dict(log_yml_dict)
+    os.chdir(os.path.dirname(os.path.realpath(__file__)))
+    # in suite_path, save pickled results
+    os.chdir(suite_path)
+    save_pickle(results_remote, "results_remote.p")
+    save_pickle(remote_links, "remote_links.p")
+    if remove_output:
+        remove_output_folders(extract_dir_dict)
+    return results_remote, remote_links
 
 
 def remove_all_pickles_in_dir(dir_path):
@@ -552,7 +555,7 @@ if __name__ == "__main__":
     args.limit = 0
 
     # args.cases = ["00918"]
-    remove_all_pickles_in_dir(suite_path)
+    # remove_all_pickles_in_dir(suite_path)
 
     max_retries = 10
     retries = 0
