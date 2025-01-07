@@ -300,6 +300,24 @@ def remove_output_folders(extract_dir_dict):
             shutil.rmtree("results_remote")   
     return
 
+def download_test_suite(url="https://github.com/sbmlteam/sbml-test-suite/releases/download/3.4.0/semantic_tests_with_sedml_and_graphs.v3.4.0.zip"):
+    """Download and unzip the test suite zip file, replacing existing files if they exist"""
+
+    if os.path.exists("SBML_test_suite"):
+        shutil.rmtree("SBML_test_suite")
+    os.makedirs("SBML_test_suite", exist_ok=True)
+    os.chdir("SBML_test_suite")
+    url_filename = os.path.basename(url)
+
+    # Download and extract the zip file
+    response = requests.get(url)
+    with open(url_filename, 'wb') as f:
+        f.write(response.content)
+    with zipfile.ZipFile(url_filename, 'r') as zip_ref:
+        zip_ref.extractall()
+    return
+
+
 def process_cases(args):
     """
     process the test cases and write results out as a markdown table
