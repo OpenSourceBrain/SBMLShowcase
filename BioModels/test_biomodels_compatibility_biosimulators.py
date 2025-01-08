@@ -163,7 +163,7 @@ def main():
 
 
 if __name__ == "__main__":
-    use_original_files = False
+    use_original_files = True
     biomodel_id_list = ["BIOMD0000000001",
                         "BIOMD0000000138",
                         "BIOMD0000000724",

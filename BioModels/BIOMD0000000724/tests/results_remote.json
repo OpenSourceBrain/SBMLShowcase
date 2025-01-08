@@ -1,11 +1,11 @@
 {
     "amici": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc64e10bb4455d6187637",
-        "download": "https://api.biosimulations.org/results/674dc64e10bb4455d6187637/download",
-        "logs": "https://api.biosimulations.org/logs/674dc64e10bb4455d6187637?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675999e9c3054f763d585989",
+        "download": "https://api.biosimulations.org/results/675999e9c3054f763d585989/download",
+        "logs": "https://api.biosimulations.org/logs/675999e9c3054f763d585989?includeOutput=true",
         "log_yml": {
-            "duration": 2.773027,
+            "duration": 2.719446,
             "exception": {
                 "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Cannot turn parameter ModelValue_0 into a constant/fixed parameter since it either has an initial assignment or is the target of an assignment or rate rule.\n  \n    target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='LCK_switch'] is not a valid XPath to an attribute of a model element",
                 "type": "CombineArchiveExecutionError"
@@ -13,7 +13,7 @@
             "output": "",
             "sedDocuments": [
                 {
-                    "duration": 2.257669,
+                    "duration": 2.213391,
                     "exception": {
                         "message": "The SED document did not execute successfully:\n\n  Cannot turn parameter ModelValue_0 into a constant/fixed parameter since it either has an initial assignment or is the target of an assignment or rate rule.\n\n  target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='LCK_switch'] is not a valid XPath to an attribute of a model element",
                         "type": "SedmlExecutionError"
@@ -28,7 +28,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.10247,
+                            "duration": 0.102998,
                             "exception": null,
                             "id": "plot_6_task2",
                             "output": "",
@@ -42,7 +42,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.098795,
+                            "duration": 0.104245,
                             "exception": null,
                             "id": "plot_7_task2",
                             "output": "",
@@ -60,7 +60,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.103154,
+                            "duration": 0.109426,
                             "exception": null,
                             "id": "plot_8_task2",
                             "output": "",
@@ -74,7 +74,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.108454,
+                            "duration": 0.106596,
                             "exception": null,
                             "id": "plot_9_task2",
                             "output": "",
@@ -88,7 +88,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.102384,
+                            "duration": 0.104431,
                             "exception": null,
                             "id": "plot_10_task2",
                             "output": "",
@@ -578,7 +578,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.053332,
+                            "duration": 0.053558,
                             "exception": null,
                             "id": "autogen_report_for_task2",
                             "output": "",
@@ -591,7 +591,7 @@
                     "tasks": [
                         {
                             "algorithm": null,
-                            "duration": 0.157507,
+                            "duration": 0.153917,
                             "exception": {
                                 "message": "Cannot turn parameter ModelValue_0 into a constant/fixed parameter since it either has an initial assignment or is the target of an assignment or rate rule.",
                                 "type": "SBMLException"
@@ -604,7 +604,7 @@
                         },
                         {
                             "algorithm": null,
-                            "duration": 0.039869,
+                            "duration": 0.041214,
                             "exception": {
                                 "message": "target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='LCK_switch'] is not a valid XPath to an attribute of a model element",
                                 "type": "ValueError"
@@ -624,11 +624,11 @@
     },
     "brian2": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc650261553b9bc253e95",
-        "download": "https://api.biosimulations.org/results/674dc650261553b9bc253e95/download",
-        "logs": "https://api.biosimulations.org/logs/674dc650261553b9bc253e95?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675999ebc3054f763d58598f",
+        "download": "https://api.biosimulations.org/results/675999ebc3054f763d58598f/download",
+        "logs": "https://api.biosimulations.org/logs/675999ebc3054f763d58598f?includeOutput=true",
         "log_yml": {
-            "duration": 0.061717,
+            "duration": 0.08301,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -641,11 +641,11 @@
     },
     "bionetgen": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc651261553b9bc253e98",
-        "download": "https://api.biosimulations.org/results/674dc651261553b9bc253e98/download",
-        "logs": "https://api.biosimulations.org/logs/674dc651261553b9bc253e98?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675999ec707aa64104620d7c",
+        "download": "https://api.biosimulations.org/results/675999ec707aa64104620d7c/download",
+        "logs": "https://api.biosimulations.org/logs/675999ec707aa64104620d7c?includeOutput=true",
         "log_yml": {
-            "duration": 0.246259,
+            "duration": 0.25008,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -658,11 +658,11 @@
     },
     "boolnet": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc653ef911d5d45259ac2",
-        "download": "https://api.biosimulations.org/results/674dc653ef911d5d45259ac2/download",
-        "logs": "https://api.biosimulations.org/logs/674dc653ef911d5d45259ac2?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675999eec3054f763d585992",
+        "download": "https://api.biosimulations.org/results/675999eec3054f763d585992/download",
+        "logs": "https://api.biosimulations.org/logs/675999eec3054f763d585992?includeOutput=true",
         "log_yml": {
-            "duration": 0.301955,
+            "duration": 0.264474,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -675,11 +675,11 @@
     },
     "cbmpy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc655261553b9bc253e9b",
-        "download": "https://api.biosimulations.org/results/674dc655261553b9bc253e9b/download",
-        "logs": "https://api.biosimulations.org/logs/674dc655261553b9bc253e9b?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675999f0c3054f763d585995",
+        "download": "https://api.biosimulations.org/results/675999f0c3054f763d585995/download",
+        "logs": "https://api.biosimulations.org/logs/675999f0c3054f763d585995?includeOutput=true",
         "log_yml": {
-            "duration": 0.348016,
+            "duration": 0.350226,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -692,11 +692,11 @@
     },
     "cobrapy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc658261553b9bc253ea0",
-        "download": "https://api.biosimulations.org/results/674dc658261553b9bc253ea0/download",
-        "logs": "https://api.biosimulations.org/logs/674dc658261553b9bc253ea0?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675999f29fa297efdca4d39e",
+        "download": "https://api.biosimulations.org/results/675999f29fa297efdca4d39e/download",
+        "logs": "https://api.biosimulations.org/logs/675999f29fa297efdca4d39e?includeOutput=true",
         "log_yml": {
-            "duration": 0.254102,
+            "duration": 0.261318,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -709,16 +709,16 @@
     },
     "copasi": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc65aef911d5d45259acd",
-        "download": "https://api.biosimulations.org/results/674dc65aef911d5d45259acd/download",
-        "logs": "https://api.biosimulations.org/logs/674dc65aef911d5d45259acd?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675999f4c3054f763d58599e",
+        "download": "https://api.biosimulations.org/results/675999f4c3054f763d58599e/download",
+        "logs": "https://api.biosimulations.org/logs/675999f4c3054f763d58599e?includeOutput=true",
         "log_yml": {
-            "duration": 2.764347,
+            "duration": 2.715015,
             "exception": null,
             "output": "",
             "sedDocuments": [
                 {
-                    "duration": 2.259948,
+                    "duration": 2.186595,
                     "exception": null,
                     "location": "Theinmozhi_2018.sedml",
                     "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 2 tasks, 1 reports, and 5 plots:\r\n  Theinmozhi_2018.sedml:\r\n    Tasks (2):\r\n      task1\r\n      task2\r\n    Reports (1):\r\n      autogen_report_for_task2: 120 data sets\r\n    Plots (5):\r\n      plot_10_task2: 1 curves\r\n      plot_6_task2: 1 curves\r\n      plot_7_task2: 1 curves\r\n      plot_8_task2: 2 curves\r\n      plot_9_task2: 1 curves\r\n\r\nExecuting SED-ML file 1: Theinmozhi_2018.sedml ...\r\n  Found 1 tasks and 6 outputs:\r\n    Tasks:\r\n      `task2`\r\n    Outputs:\r\n      `autogen_report_for_task2`\r\n      `plot_10_task2`\r\n      `plot_6_task2`\r\n      `plot_7_task2`\r\n      `plot_8_task2`\r\n      `plot_9_task2`\r\n  Executing task 1: `task2`\r\n    Executing simulation ...woohoo!\r\nwoohoo!\r\n \u001b[34msucceeded\u001b[0m\r\n    Generating 6 outputs ...\r\n      Generating output 1: `plot_6_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `plot_7_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 3: `plot_8_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 4: `plot_9_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 5: `plot_10_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 6: `autogen_report_for_task2` ...",
@@ -730,7 +730,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.431834,
+                            "duration": 0.44773,
                             "exception": null,
                             "id": "plot_6_task2",
                             "output": "",
@@ -744,7 +744,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.144277,
+                            "duration": 0.125284,
                             "exception": null,
                             "id": "plot_7_task2",
                             "output": "",
@@ -762,7 +762,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.159484,
+                            "duration": 0.1364,
                             "exception": null,
                             "id": "plot_8_task2",
                             "output": "",
@@ -776,7 +776,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.131023,
+                            "duration": 0.118575,
                             "exception": null,
                             "id": "plot_9_task2",
                             "output": "",
@@ -790,7 +790,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.126484,
+                            "duration": 0.120286,
                             "exception": null,
                             "id": "plot_10_task2",
                             "output": "",
@@ -1280,7 +1280,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.210016,
+                            "duration": 0.204297,
                             "exception": null,
                             "id": "autogen_report_for_task2",
                             "output": "",
@@ -1293,7 +1293,7 @@
                     "tasks": [
                         {
                             "algorithm": null,
-                            "duration": 0.630906,
+                            "duration": 0.629107,
                             "exception": null,
                             "id": "task2",
                             "output": "",
@@ -1310,11 +1310,11 @@
     },
     "gillespy2": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc65c10bb4455d6187641",
-        "download": "https://api.biosimulations.org/results/674dc65c10bb4455d6187641/download",
-        "logs": "https://api.biosimulations.org/logs/674dc65c10bb4455d6187641?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675999f69fa297efdca4d3a4",
+        "download": "https://api.biosimulations.org/results/675999f69fa297efdca4d3a4/download",
+        "logs": "https://api.biosimulations.org/logs/675999f69fa297efdca4d3a4?includeOutput=true",
         "log_yml": {
-            "duration": 0.259848,
+            "duration": 0.256454,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -1327,11 +1327,11 @@
     },
     "ginsim": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc65e10bb4455d6187644",
-        "download": "https://api.biosimulations.org/results/674dc65e10bb4455d6187644/download",
-        "logs": "https://api.biosimulations.org/logs/674dc65e10bb4455d6187644?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675999f89fa297efdca4d3a9",
+        "download": "https://api.biosimulations.org/results/675999f89fa297efdca4d3a9/download",
+        "logs": "https://api.biosimulations.org/logs/675999f89fa297efdca4d3a9?includeOutput=true",
         "log_yml": {
-            "duration": 0.244446,
+            "duration": 0.25789,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -1344,11 +1344,11 @@
     },
     "libsbmlsim": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc66010bb4455d6187647",
-        "download": "https://api.biosimulations.org/results/674dc66010bb4455d6187647/download",
-        "logs": "https://api.biosimulations.org/logs/674dc66010bb4455d6187647?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675999fac3054f763d5859a8",
+        "download": "https://api.biosimulations.org/results/675999fac3054f763d5859a8/download",
+        "logs": "https://api.biosimulations.org/logs/675999fac3054f763d5859a8?includeOutput=true",
         "log_yml": {
-            "duration": 0.277522,
+            "duration": 0.248469,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -1361,11 +1361,11 @@
     },
     "masspy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc662261553b9bc253ea7",
-        "download": "https://api.biosimulations.org/results/674dc662261553b9bc253ea7/download",
-        "logs": "https://api.biosimulations.org/logs/674dc662261553b9bc253ea7?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675999fc707aa64104620d98",
+        "download": "https://api.biosimulations.org/results/675999fc707aa64104620d98/download",
+        "logs": "https://api.biosimulations.org/logs/675999fc707aa64104620d98?includeOutput=true",
         "log_yml": {
-            "duration": 3.670606,
+            "duration": 3.400673,
             "exception": {
                 "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Could not load MassModel '_30356330_Theinmozhi_PDL1_TCR_regulation'\n  \n    target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='LCK_switch'] cannot be changed by XML manipulation, as the target is not an attribute of a model element",
                 "type": "CombineArchiveExecutionError"
@@ -1373,7 +1373,7 @@
             "output": "",
             "sedDocuments": [
                 {
-                    "duration": 3.014484,
+                    "duration": 2.760737,
                     "exception": {
                         "message": "The SED document did not execute successfully:\n\n  Could not load MassModel '_30356330_Theinmozhi_PDL1_TCR_regulation'\n\n  target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='LCK_switch'] cannot be changed by XML manipulation, as the target is not an attribute of a model element",
                         "type": "SedmlExecutionError"
@@ -1388,7 +1388,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.279203,
+                            "duration": 0.24384,
                             "exception": null,
                             "id": "plot_6_task2",
                             "output": "",
@@ -1402,7 +1402,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.115149,
+                            "duration": 0.104923,
                             "exception": null,
                             "id": "plot_7_task2",
                             "output": "",
@@ -1420,7 +1420,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.119025,
+                            "duration": 0.10428,
                             "exception": null,
                             "id": "plot_8_task2",
                             "output": "",
@@ -1434,7 +1434,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.118494,
+                            "duration": 0.106551,
                             "exception": null,
                             "id": "plot_9_task2",
                             "output": "",
@@ -1448,7 +1448,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.11552,
+                            "duration": 0.1105,
                             "exception": null,
                             "id": "plot_10_task2",
                             "output": "",
@@ -1938,7 +1938,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.059872,
+                            "duration": 0.055107,
                             "exception": null,
                             "id": "autogen_report_for_task2",
                             "output": "",
@@ -1951,7 +1951,7 @@
                     "tasks": [
                         {
                             "algorithm": null,
-                            "duration": 0.504816,
+                            "duration": 0.46494,
                             "exception": {
                                 "message": "Could not load MassModel '_30356330_Theinmozhi_PDL1_TCR_regulation'",
                                 "type": "MassSimulationError"
@@ -1964,7 +1964,7 @@
                         },
                         {
                             "algorithm": null,
-                            "duration": 0.044124,
+                            "duration": 0.042945,
                             "exception": {
                                 "message": "target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='LCK_switch'] cannot be changed by XML manipulation, as the target is not an attribute of a model element",
                                 "type": "NotImplementedError"
@@ -1984,11 +1984,11 @@
     },
     "netpyne": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc664ef911d5d45259ad4",
-        "download": "https://api.biosimulations.org/results/674dc664ef911d5d45259ad4/download",
-        "logs": "https://api.biosimulations.org/logs/674dc664ef911d5d45259ad4?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675999fdc3054f763d5859af",
+        "download": "https://api.biosimulations.org/results/675999fdc3054f763d5859af/download",
+        "logs": "https://api.biosimulations.org/logs/675999fdc3054f763d5859af?includeOutput=true",
         "log_yml": {
-            "duration": 0.060705,
+            "duration": 0.077607,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -2001,11 +2001,11 @@
     },
     "neuron": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc665261553b9bc253eb4",
-        "download": "https://api.biosimulations.org/results/674dc665261553b9bc253eb4/download",
-        "logs": "https://api.biosimulations.org/logs/674dc665261553b9bc253eb4?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/675999ff707aa64104620db2",
+        "download": "https://api.biosimulations.org/results/675999ff707aa64104620db2/download",
+        "logs": "https://api.biosimulations.org/logs/675999ff707aa64104620db2?includeOutput=true",
         "log_yml": {
-            "duration": 0.061233,
+            "duration": 0.068771,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -2018,16 +2018,16 @@
     },
     "opencor": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc667ef911d5d45259ae3",
-        "download": "https://api.biosimulations.org/results/674dc667ef911d5d45259ae3/download",
-        "logs": "https://api.biosimulations.org/logs/674dc667ef911d5d45259ae3?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67599a019fa297efdca4d3dc",
+        "download": "https://api.biosimulations.org/results/67599a019fa297efdca4d3dc/download",
+        "logs": "https://api.biosimulations.org/logs/67599a019fa297efdca4d3dc?includeOutput=true",
         "log_yml": {
-            "duration": 0.070162,
+            "duration": 0.050691,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
             },
-            "output": "/home/opencor/OpenCOR/python/lib/python3.7/site-packages/biosimulators_utils/warnings.py:31: SedmlFeatureNotSupportedWarning: \u001b[33m`/tmp/tmpmn01a13j/./Theinmozhi_2018.sedml` is encoded using L1V4. Only features available in L1V3 are supported. Newer features such as simple repeated tasks are not yet supported.\u001b[0m\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\n",
+            "output": "/home/opencor/OpenCOR/python/lib/python3.7/site-packages/biosimulators_utils/warnings.py:31: SedmlFeatureNotSupportedWarning: \u001b[33m`/tmp/tmph4d09iiw/./Theinmozhi_2018.sedml` is encoded using L1V4. Only features available in L1V3 are supported. Newer features such as simple repeated tasks are not yet supported.\u001b[0m\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\n",
             "sedDocuments": [],
             "skipReason": null,
             "status": "FAILED"
@@ -2035,11 +2035,11 @@
     },
     "pyneuroml": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc66910bb4455d618766d",
-        "download": "https://api.biosimulations.org/results/674dc66910bb4455d618766d/download",
-        "logs": "https://api.biosimulations.org/logs/674dc66910bb4455d618766d?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67599a039fa297efdca4d3e7",
+        "download": "https://api.biosimulations.org/results/67599a039fa297efdca4d3e7/download",
+        "logs": "https://api.biosimulations.org/logs/67599a039fa297efdca4d3e7?includeOutput=true",
         "log_yml": {
-            "duration": 0.078418,
+            "duration": 0.061951,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -2052,19 +2052,19 @@
     },
     "pysces": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc66b10bb4455d6187671",
-        "download": "https://api.biosimulations.org/results/674dc66b10bb4455d6187671/download",
-        "logs": "https://api.biosimulations.org/logs/674dc66b10bb4455d6187671?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67599a059fa297efdca4d3ec",
+        "download": "https://api.biosimulations.org/results/67599a059fa297efdca4d3ec/download",
+        "logs": "https://api.biosimulations.org/logs/67599a059fa297efdca4d3ec?includeOutput=true",
         "log_yml": {
-            "duration": 5.360377,
+            "duration": 5.470218,
             "exception": null,
             "output": "libtk8.6.so: cannot open shared object file: No such file or directory\r\n\r\nPySCeS defaults to matplotlib's TKagg backend if not specified                          in the user configuration file, set \"matplotlib_backend = <backend>\" \r\nMatplotlib interface loaded (pysces.plt.m)\r\nPitcon routines available\r\nNLEQ2 routines available\r\nSBML support available\r\nYou are using NumPy (2.1.2) with SciPy (1.14.1)\r\nAssimulo CVode available\r\nRateChar is available\r\nParallel scanner is available\r\n\r\nPySCeS environment\r\n******************\r\npysces.model_dir = /home/FCAM/crbmapi/Pysces/psc\r\npysces.output_dir = /home/FCAM/crbmapi/Pysces\r\n\r\n\r\n***********************************************************************\r\n* Welcome to PySCeS (1.2.2) - Python Simulator for Cellular Systems   *\r\n*                http://pysces.sourceforge.net                        *\r\n* Copyright(C) B.G. Olivier, J.M. Rohwer, J.-H.S. Hofmeyr, 2004-2024  *\r\n* Triple-J Group for Molecular Cell Physiology                        *\r\n* Stellenbosch University, ZA and VU University Amsterdam, NL         *\r\n* PySCeS is distributed under the PySCeS (BSD style) licence, see     *\r\n* LICENCE.txt (supplied with this release) for details                *\r\n* Please cite PySCeS with: doi:10.1093/bioinformatics/bti046          *\r\n***********************************************************************\r\n",
             "sedDocuments": [
                 {
-                    "duration": 4.704026,
+                    "duration": 4.911505,
                     "exception": null,
                     "location": "Theinmozhi_2018.sedml",
-                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 2 tasks, 1 reports, and 5 plots:\r\n  Theinmozhi_2018.sedml:\r\n    Tasks (2):\r\n      task1\r\n      task2\r\n    Reports (1):\r\n      autogen_report_for_task2: 120 data sets\r\n    Plots (5):\r\n      plot_10_task2: 1 curves\r\n      plot_6_task2: 1 curves\r\n      plot_7_task2: 1 curves\r\n      plot_8_task2: 2 curves\r\n      plot_9_task2: 1 curves\r\n\r\nExecuting SED-ML file 1: Theinmozhi_2018.sedml ...\r\n  Found 1 tasks and 6 outputs:\r\n    Tasks:\r\n      `task2`\r\n    Outputs:\r\n      `autogen_report_for_task2`\r\n      `plot_10_task2`\r\n      `plot_6_task2`\r\n      `plot_7_task2`\r\n      `plot_8_task2`\r\n      `plot_9_task2`\r\n  Executing task 1: `task2`\r\n    Executing simulation ...Info: single compartment model: locating \"CP2_DP_CP1\" in default compartment\r\nInfo: single compartment model: locating \"CP1_Diss_PD1_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CD28i_P_CD28a\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_DP_CD28i\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_Bd_PI3K\" in default compartment\r\nInfo: single compartment model: locating \"CD3i_P_CD3a\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_DP_CD3i\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_Bd_ZAP70\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70i_P_ZAP70a1\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70a1_P_ZAP70a2\" in default compartment\r\nInfo: single compartment model: locating \"LATi_P_LATa\" in default compartment\r\nInfo: single compartment model: locating \"LATa_Bd_GADS\" in default compartment\r\nInfo: single compartment model: locating \"GADSa_Bd_SLP76\" in default compartment\r\nInfo: single compartment model: locating \"SLP76i_P_SLC76a\" in default compartment\r\nWriting file: /tmp/tmppsz5bkq_.psc\r\n\r\nSBML2PSC\r\nin : /tmp/tmpf_2pl9st.xml\r\nout: /tmp/tmppsz5bkq_.psc\r\nUsing model directory: /home/FCAM/crbmapi/Pysces/psc\r\n/tmp/tmppsz5bkq_.psc loading ..... \r\nParsing file: /tmp/tmppsz5bkq_.psc\r\nWarning: species \"LCKinactive\" (fixed) does not occur in any reaction\r\nWarning: species \"CD3t\" (fixed) does not occur in any reaction\r\nWarning: species \"SLP76t\" (fixed) does not occur in any reaction\r\nWarning: species \"GADSt\" (fixed) does not occur in any reaction\r\nWarning: species \"LATt\" (fixed) does not occur in any reaction\r\nWarning: species \"ZAP70t\" (fixed) does not occur in any reaction\r\nWarning: species \"PI3Kt\" (fixed) does not occur in any reaction\r\nWarning: species \"CD28t\" (fixed) does not occur in any reaction\r\nWarning: species \"CPactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKt\" (fixed) does not occur in any reaction\r\nInfo: \"CD28t\" has been initialised but does not occur in a rate equation\r\nInfo: \"PI3Kt\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LATt\" has been initialised but does not occur in a rate equation\r\nInfo: \"GADSt\" has been initialised but does not occur in a rate equation\r\nInfo: \"SLP76t\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCKinactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"Kdpa_yiya\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_bound\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3z_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD28_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_PI3K_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_ZAP70_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y315\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y93\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y505\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y394\" has been initialised but does not occur in a rate equation\r\nInfo: \"LAT_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_active\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_inactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_switch\" has been initialised but does not occur in a rate equation\r\nInfo: \"ModelValue_0\" has been initialised but does not occur in a rate equation\r\n \r\nCalculating L matrix . . . . . . . . .  done.\r\nCalculating K matrix . . . . . . . . . . .  done.\r\n \r\n\r\nAssignment rule(s) detected.\r\nINFO: Assignment Rules detected and Assimulo installed,\r\nswitching to CVODE (mod.mode_integrator='CVODE').\r\n\r\nCVODE time for 101 points: 0.15407371520996094\r\n \u001b[34msucceeded\u001b[0m\r\n    Generating 6 outputs ...\r\n      Generating output 1: `plot_6_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `plot_7_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 3: `plot_8_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 4: `plot_9_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 5: `plot_10_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 6: `autogen_report_for_task2` ...",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 2 tasks, 1 reports, and 5 plots:\r\n  Theinmozhi_2018.sedml:\r\n    Tasks (2):\r\n      task1\r\n      task2\r\n    Reports (1):\r\n      autogen_report_for_task2: 120 data sets\r\n    Plots (5):\r\n      plot_10_task2: 1 curves\r\n      plot_6_task2: 1 curves\r\n      plot_7_task2: 1 curves\r\n      plot_8_task2: 2 curves\r\n      plot_9_task2: 1 curves\r\n\r\nExecuting SED-ML file 1: Theinmozhi_2018.sedml ...\r\n  Found 1 tasks and 6 outputs:\r\n    Tasks:\r\n      `task2`\r\n    Outputs:\r\n      `autogen_report_for_task2`\r\n      `plot_10_task2`\r\n      `plot_6_task2`\r\n      `plot_7_task2`\r\n      `plot_8_task2`\r\n      `plot_9_task2`\r\n  Executing task 1: `task2`\r\n    Executing simulation ...Info: single compartment model: locating \"CP2_DP_CP1\" in default compartment\r\nInfo: single compartment model: locating \"CP1_Diss_PD1_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CD28i_P_CD28a\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_DP_CD28i\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_Bd_PI3K\" in default compartment\r\nInfo: single compartment model: locating \"CD3i_P_CD3a\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_DP_CD3i\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_Bd_ZAP70\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70i_P_ZAP70a1\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70a1_P_ZAP70a2\" in default compartment\r\nInfo: single compartment model: locating \"LATi_P_LATa\" in default compartment\r\nInfo: single compartment model: locating \"LATa_Bd_GADS\" in default compartment\r\nInfo: single compartment model: locating \"GADSa_Bd_SLP76\" in default compartment\r\nInfo: single compartment model: locating \"SLP76i_P_SLC76a\" in default compartment\r\nWriting file: /tmp/tmpa5k73wcn.psc\r\n\r\nSBML2PSC\r\nin : /tmp/tmpwxesupkw.xml\r\nout: /tmp/tmpa5k73wcn.psc\r\nUsing model directory: /home/FCAM/crbmapi/Pysces/psc\r\n/tmp/tmpa5k73wcn.psc loading ..... \r\nParsing file: /tmp/tmpa5k73wcn.psc\r\nWarning: species \"LCKinactive\" (fixed) does not occur in any reaction\r\nWarning: species \"CD3t\" (fixed) does not occur in any reaction\r\nWarning: species \"SLP76t\" (fixed) does not occur in any reaction\r\nWarning: species \"GADSt\" (fixed) does not occur in any reaction\r\nWarning: species \"LATt\" (fixed) does not occur in any reaction\r\nWarning: species \"ZAP70t\" (fixed) does not occur in any reaction\r\nWarning: species \"PI3Kt\" (fixed) does not occur in any reaction\r\nWarning: species \"CD28t\" (fixed) does not occur in any reaction\r\nWarning: species \"CPactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKt\" (fixed) does not occur in any reaction\r\nInfo: \"CD28t\" has been initialised but does not occur in a rate equation\r\nInfo: \"PI3Kt\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LATt\" has been initialised but does not occur in a rate equation\r\nInfo: \"GADSt\" has been initialised but does not occur in a rate equation\r\nInfo: \"SLP76t\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCKinactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"Kdpa_yiya\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_bound\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3z_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD28_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_PI3K_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_ZAP70_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y315\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y93\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y505\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y394\" has been initialised but does not occur in a rate equation\r\nInfo: \"LAT_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_active\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_inactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_switch\" has been initialised but does not occur in a rate equation\r\nInfo: \"ModelValue_0\" has been initialised but does not occur in a rate equation\r\n \r\nCalculating L matrix . . . . . . . . .  done.\r\nCalculating K matrix . . . . . . . . . . .  done.\r\n \r\n\r\nAssignment rule(s) detected.\r\nINFO: Assignment Rules detected and Assimulo installed,\r\nswitching to CVODE (mod.mode_integrator='CVODE').\r\n\r\nCVODE time for 101 points: 0.16897153854370117\r\n \u001b[34msucceeded\u001b[0m\r\n    Generating 6 outputs ...\r\n      Generating output 1: `plot_6_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `plot_7_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 3: `plot_8_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 4: `plot_9_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 5: `plot_10_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 6: `autogen_report_for_task2` ...",
                     "outputs": [
                         {
                             "curves": [
@@ -2073,7 +2073,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.31045,
+                            "duration": 0.32564,
                             "exception": null,
                             "id": "plot_6_task2",
                             "output": "",
@@ -2087,7 +2087,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.146464,
+                            "duration": 0.144236,
                             "exception": null,
                             "id": "plot_7_task2",
                             "output": "",
@@ -2105,7 +2105,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.17892,
+                            "duration": 0.153901,
                             "exception": null,
                             "id": "plot_8_task2",
                             "output": "",
@@ -2119,7 +2119,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.130808,
+                            "duration": 0.128691,
                             "exception": null,
                             "id": "plot_9_task2",
                             "output": "",
@@ -2133,7 +2133,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.127922,
+                            "duration": 0.134497,
                             "exception": null,
                             "id": "plot_10_task2",
                             "output": "",
@@ -2623,7 +2623,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.196404,
+                            "duration": 0.212811,
                             "exception": null,
                             "id": "autogen_report_for_task2",
                             "output": "",
@@ -2636,10 +2636,10 @@
                     "tasks": [
                         {
                             "algorithm": null,
-                            "duration": 3.152147,
+                            "duration": 3.218214,
                             "exception": null,
                             "id": "task2",
-                            "output": "Check SBML support is at action level 2\r\nSBML file is L2V4\r\n\r\n*******************************************************************\r\nIssues encountered in SBML translation (model processed anyway)\r\nSBML source: /tmp/tmphhfyi34z.xml\r\n*******************************************************************\r\n\r\nParameter units ignored for parameters:\r\n['Kdpa_yiya', 'Kdpi_yi', 'Kdpi_yiya', 'Kdpa_ya', 'Kdpa_pi', 'Kpi_i', 'Kpi_ya', 'Kpa_i', 'Kpa_yi', 'Kp_pd1', 'KMp_pd1', 'Ka_shp', 'Kd1_shp', 'Kd2_shp', 'Kdp_cp2', 'Kp_cd28', 'KMp_cd28', 'Kdp_cd28', 'KMdp_cd28', 'Ka_pi3k', 'Kd_pi3k', 'Kp_cd3', 'KMp_cd3', 'Kdp_cd3', 'KMdp_cd3', 'Ka_zap', 'Kd_zap', 'Kp1_zap', 'Kp2_zap', 'Kp_lat', 'Ka_gads', 'Kd_gads', 'Ka_slp', 'Kd_slp', 'Kp_slp', 'perc_SHP2_bound'] \r\n\r\n*******************************************************************\r\n\r\nInfo: single compartment model: locating \"LCK_P_LCKyi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCK_P_LCKya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_P_LCKyiya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_P_LCKpi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKya\" in default compartment\r\nInfo: single compartment model: locating \"LCKpi_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"PD1_P_PD1p1_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_P_PD1p2_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"PD1p2_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CP2_Diss_SHP2_PD1p1\" in default compartment\r\nInfo: single compartment model: locating \"CP2_DP_CP1\" in default compartment\r\nInfo: single compartment model: locating \"CP1_Diss_PD1_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CD28i_P_CD28a\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_DP_CD28i\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_Bd_PI3K\" in default compartment\r\nInfo: single compartment model: locating \"CD3i_P_CD3a\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_DP_CD3i\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_Bd_ZAP70\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70i_P_ZAP70a1\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70a1_P_ZAP70a2\" in default compartment\r\nInfo: single compartment model: locating \"LATi_P_LATa\" in default compartment\r\nInfo: single compartment model: locating \"LATa_Bd_GADS\" in default compartment\r\nInfo: single compartment model: locating \"GADSa_Bd_SLP76\" in default compartment\r\nInfo: single compartment model: locating \"SLP76i_P_SLC76a\" in default compartment\r\nWriting file: /tmp/tmpq4zmjtzv.psc\r\n\r\nSBML2PSC\r\nin : /tmp/tmphhfyi34z.xml\r\nout: /tmp/tmpq4zmjtzv.psc\r\nUsing model directory: /home/FCAM/crbmapi/Pysces/psc\r\n/tmp/tmpq4zmjtzv.psc loading ..... \r\nParsing file: /tmp/tmpq4zmjtzv.psc\r\nWarning: species \"LCKinactive\" (fixed) does not occur in any reaction\r\nWarning: species \"CD3t\" (fixed) does not occur in any reaction\r\nWarning: species \"SLP76t\" (fixed) does not occur in any reaction\r\nWarning: species \"GADSt\" (fixed) does not occur in any reaction\r\nWarning: species \"LATt\" (fixed) does not occur in any reaction\r\nWarning: species \"ZAP70t\" (fixed) does not occur in any reaction\r\nWarning: species \"PI3Kt\" (fixed) does not occur in any reaction\r\nWarning: species \"CD28t\" (fixed) does not occur in any reaction\r\nWarning: species \"CPactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKt\" (fixed) does not occur in any reaction\r\nInfo: \"CD28t\" has been initialised but does not occur in a rate equation\r\nInfo: \"PI3Kt\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LATt\" has been initialised but does not occur in a rate equation\r\nInfo: \"GADSt\" has been initialised but does not occur in a rate equation\r\nInfo: \"SLP76t\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCKinactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"Kdpa_yiya\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_bound\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3z_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD28_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_PI3K_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_ZAP70_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y315\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y93\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y505\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y394\" has been initialised but does not occur in a rate equation\r\nInfo: \"LAT_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_active\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_inactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_switch\" has been initialised but does not occur in a rate equation\r\nInfo: \"ModelValue_0\" has been initialised but does not occur in a rate equation\r\n \r\nCalculating L matrix . . . . . . . . .  done.\r\nCalculating K matrix . . . . . . . . . . .  done.\r\n \r\n\r\nAssignment rule(s) detected.\r\nINFO: Assignment Rules detected and Assimulo installed,\r\nswitching to CVODE (mod.mode_integrator='CVODE').\r\n\r\nCVODE time for 101 points: 0.17607879638671875\r\nCheck SBML support is at action level 2\r\nSBML file is L2V4\r\n\r\n*******************************************************************\r\nIssues encountered in SBML translation (model processed anyway)\r\nSBML source: /tmp/tmpf_2pl9st.xml\r\n*******************************************************************\r\n\r\nParameter units ignored for parameters:\r\n['Kdpa_yiya', 'Kdpi_yi', 'Kdpi_yiya', 'Kdpa_ya', 'Kdpa_pi', 'Kpi_i', 'Kpi_ya', 'Kpa_i', 'Kpa_yi', 'Kp_pd1', 'KMp_pd1', 'Ka_shp', 'Kd1_shp', 'Kd2_shp', 'Kdp_cp2', 'Kp_cd28', 'KMp_cd28', 'Kdp_cd28', 'KMdp_cd28', 'Ka_pi3k', 'Kd_pi3k', 'Kp_cd3', 'KMp_cd3', 'Kdp_cd3', 'KMdp_cd3', 'Ka_zap', 'Kd_zap', 'Kp1_zap', 'Kp2_zap', 'Kp_lat', 'Ka_gads', 'Kd_gads', 'Ka_slp', 'Kd_slp', 'Kp_slp', 'perc_SHP2_bound'] \r\n\r\n*******************************************************************\r\n\r\nInfo: single compartment model: locating \"LCK_P_LCKyi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCK_P_LCKya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_P_LCKyiya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_P_LCKpi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKya\" in default compartment\r\nInfo: single compartment model: locating \"LCKpi_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"PD1_P_PD1p1_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_P_PD1p2_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"PD1p2_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CP2_Diss_SHP2_PD1p1\" in default compartment\r\n",
+                            "output": "Check SBML support is at action level 2\r\nSBML file is L2V4\r\n\r\n*******************************************************************\r\nIssues encountered in SBML translation (model processed anyway)\r\nSBML source: /tmp/tmpuap7ro2k.xml\r\n*******************************************************************\r\n\r\nParameter units ignored for parameters:\r\n['Kdpa_yiya', 'Kdpi_yi', 'Kdpi_yiya', 'Kdpa_ya', 'Kdpa_pi', 'Kpi_i', 'Kpi_ya', 'Kpa_i', 'Kpa_yi', 'Kp_pd1', 'KMp_pd1', 'Ka_shp', 'Kd1_shp', 'Kd2_shp', 'Kdp_cp2', 'Kp_cd28', 'KMp_cd28', 'Kdp_cd28', 'KMdp_cd28', 'Ka_pi3k', 'Kd_pi3k', 'Kp_cd3', 'KMp_cd3', 'Kdp_cd3', 'KMdp_cd3', 'Ka_zap', 'Kd_zap', 'Kp1_zap', 'Kp2_zap', 'Kp_lat', 'Ka_gads', 'Kd_gads', 'Ka_slp', 'Kd_slp', 'Kp_slp', 'perc_SHP2_bound'] \r\n\r\n*******************************************************************\r\n\r\nInfo: single compartment model: locating \"LCK_P_LCKyi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCK_P_LCKya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_P_LCKyiya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_P_LCKpi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKya\" in default compartment\r\nInfo: single compartment model: locating \"LCKpi_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"PD1_P_PD1p1_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_P_PD1p2_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"PD1p2_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CP2_Diss_SHP2_PD1p1\" in default compartment\r\nInfo: single compartment model: locating \"CP2_DP_CP1\" in default compartment\r\nInfo: single compartment model: locating \"CP1_Diss_PD1_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CD28i_P_CD28a\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_DP_CD28i\" in default compartment\r\nInfo: single compartment model: locating \"CD28a_Bd_PI3K\" in default compartment\r\nInfo: single compartment model: locating \"CD3i_P_CD3a\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_DP_CD3i\" in default compartment\r\nInfo: single compartment model: locating \"CD3a_Bd_ZAP70\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70i_P_ZAP70a1\" in default compartment\r\nInfo: single compartment model: locating \"ZAP70a1_P_ZAP70a2\" in default compartment\r\nInfo: single compartment model: locating \"LATi_P_LATa\" in default compartment\r\nInfo: single compartment model: locating \"LATa_Bd_GADS\" in default compartment\r\nInfo: single compartment model: locating \"GADSa_Bd_SLP76\" in default compartment\r\nInfo: single compartment model: locating \"SLP76i_P_SLC76a\" in default compartment\r\nWriting file: /tmp/tmpym7tk6hm.psc\r\n\r\nSBML2PSC\r\nin : /tmp/tmpuap7ro2k.xml\r\nout: /tmp/tmpym7tk6hm.psc\r\nUsing model directory: /home/FCAM/crbmapi/Pysces/psc\r\n/tmp/tmpym7tk6hm.psc loading ..... \r\nParsing file: /tmp/tmpym7tk6hm.psc\r\nWarning: species \"LCKinactive\" (fixed) does not occur in any reaction\r\nWarning: species \"CD3t\" (fixed) does not occur in any reaction\r\nWarning: species \"SLP76t\" (fixed) does not occur in any reaction\r\nWarning: species \"GADSt\" (fixed) does not occur in any reaction\r\nWarning: species \"LATt\" (fixed) does not occur in any reaction\r\nWarning: species \"ZAP70t\" (fixed) does not occur in any reaction\r\nWarning: species \"PI3Kt\" (fixed) does not occur in any reaction\r\nWarning: species \"CD28t\" (fixed) does not occur in any reaction\r\nWarning: species \"CPactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKactive\" (fixed) does not occur in any reaction\r\nWarning: species \"LCKt\" (fixed) does not occur in any reaction\r\nInfo: \"CD28t\" has been initialised but does not occur in a rate equation\r\nInfo: \"PI3Kt\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LATt\" has been initialised but does not occur in a rate equation\r\nInfo: \"GADSt\" has been initialised but does not occur in a rate equation\r\nInfo: \"SLP76t\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3t\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCKinactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"Kdpa_yiya\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_bound\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD3z_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"CD28_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_SHP2_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_PI3K_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_ZAP70_free\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y315\" has been initialised but does not occur in a rate equation\r\nInfo: \"ZAP70_phos_Y93\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y505\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_phos_Y394\" has been initialised but does not occur in a rate equation\r\nInfo: \"LAT_phosphorylated\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_active\" has been initialised but does not occur in a rate equation\r\nInfo: \"perc_LCK_inactive\" has been initialised but does not occur in a rate equation\r\nInfo: \"LCK_switch\" has been initialised but does not occur in a rate equation\r\nInfo: \"ModelValue_0\" has been initialised but does not occur in a rate equation\r\n \r\nCalculating L matrix . . . . . . . . .  done.\r\nCalculating K matrix . . . . . . . . . . .  done.\r\n \r\n\r\nAssignment rule(s) detected.\r\nINFO: Assignment Rules detected and Assimulo installed,\r\nswitching to CVODE (mod.mode_integrator='CVODE').\r\n\r\nCVODE time for 101 points: 0.18651652336120605\r\nCheck SBML support is at action level 2\r\nSBML file is L2V4\r\n\r\n*******************************************************************\r\nIssues encountered in SBML translation (model processed anyway)\r\nSBML source: /tmp/tmpwxesupkw.xml\r\n*******************************************************************\r\n\r\nParameter units ignored for parameters:\r\n['Kdpa_yiya', 'Kdpi_yi', 'Kdpi_yiya', 'Kdpa_ya', 'Kdpa_pi', 'Kpi_i', 'Kpi_ya', 'Kpa_i', 'Kpa_yi', 'Kp_pd1', 'KMp_pd1', 'Ka_shp', 'Kd1_shp', 'Kd2_shp', 'Kdp_cp2', 'Kp_cd28', 'KMp_cd28', 'Kdp_cd28', 'KMdp_cd28', 'Ka_pi3k', 'Kd_pi3k', 'Kp_cd3', 'KMp_cd3', 'Kdp_cd3', 'KMdp_cd3', 'Ka_zap', 'Kd_zap', 'Kp1_zap', 'Kp2_zap', 'Kp_lat', 'Ka_gads', 'Kd_gads', 'Ka_slp', 'Kd_slp', 'Kp_slp', 'perc_SHP2_bound'] \r\n\r\n*******************************************************************\r\n\r\nInfo: single compartment model: locating \"LCK_P_LCKyi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCK_P_LCKya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_P_LCKyiya_act\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_P_LCKpi_inh\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"LCKya_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyi_DP_LCKi\" in default compartment\r\nInfo: single compartment model: locating \"LCKyiya_DP_LCKya\" in default compartment\r\nInfo: single compartment model: locating \"LCKpi_DP_LCKyi\" in default compartment\r\nInfo: single compartment model: locating \"PD1_P_PD1p1_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_P_PD1p2_act\" in default compartment\r\nInfo: single compartment model: locating \"PD1p1_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"PD1p2_Bd_SHP2\" in default compartment\r\nInfo: single compartment model: locating \"CP2_Diss_SHP2_PD1p1\" in default compartment\r\n",
                             "simulatorDetails": null,
                             "skipReason": null,
                             "status": "SUCCEEDED"
@@ -2653,11 +2653,11 @@
     },
     "rbapy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc66def911d5d45259af7",
-        "download": "https://api.biosimulations.org/results/674dc66def911d5d45259af7/download",
-        "logs": "https://api.biosimulations.org/logs/674dc66def911d5d45259af7?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67599a079fa297efdca4d3f3",
+        "download": "https://api.biosimulations.org/results/67599a079fa297efdca4d3f3/download",
+        "logs": "https://api.biosimulations.org/logs/67599a079fa297efdca4d3f3?includeOutput=true",
         "log_yml": {
-            "duration": 0.251659,
+            "duration": 0.269646,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Theinmozhi_2018.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -2670,11 +2670,11 @@
     },
     "smoldyn": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc66f10bb4455d6187678",
-        "download": "https://api.biosimulations.org/results/674dc66f10bb4455d6187678/download",
-        "logs": "https://api.biosimulations.org/logs/674dc66f10bb4455d6187678?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67599a09c3054f763d585a0e",
+        "download": "https://api.biosimulations.org/results/67599a09c3054f763d585a0e/download",
+        "logs": "https://api.biosimulations.org/logs/67599a09c3054f763d585a0e?includeOutput=true",
         "log_yml": {
-            "duration": 0.062385,
+            "duration": 0.059965,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -2687,16 +2687,16 @@
     },
     "tellurium": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc67110bb4455d6187681",
-        "download": "https://api.biosimulations.org/results/674dc67110bb4455d6187681/download",
-        "logs": "https://api.biosimulations.org/logs/674dc67110bb4455d6187681?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67599a0b707aa64104620de0",
+        "download": "https://api.biosimulations.org/results/67599a0b707aa64104620de0/download",
+        "logs": "https://api.biosimulations.org/logs/67599a0b707aa64104620de0?includeOutput=true",
         "log_yml": {
-            "duration": 3.978802,
+            "duration": 4.095218,
             "exception": null,
             "output": "",
             "sedDocuments": [
                 {
-                    "duration": 3.347017,
+                    "duration": 3.452619,
                     "exception": null,
                     "location": "Theinmozhi_2018.sedml",
                     "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 2 tasks, 1 reports, and 5 plots:\r\n  Theinmozhi_2018.sedml:\r\n    Tasks (2):\r\n      task1\r\n      task2\r\n    Reports (1):\r\n      autogen_report_for_task2: 120 data sets\r\n    Plots (5):\r\n      plot_10_task2: 1 curves\r\n      plot_6_task2: 1 curves\r\n      plot_7_task2: 1 curves\r\n      plot_8_task2: 2 curves\r\n      plot_9_task2: 1 curves\r\n\r\nExecuting SED-ML file 1: Theinmozhi_2018.sedml ...\r\n  Found 2 tasks and 6 outputs:\r\n    Tasks:\r\n      `task1`\r\n      `task2`\r\n    Outputs:\r\n      `autogen_report_for_task2`\r\n      `plot_10_task2`\r\n      `plot_6_task2`\r\n      `plot_7_task2`\r\n      `plot_8_task2`\r\n      `plot_9_task2`\r\n  Executing task 1: `task1`\r\n    Executing simulation ... \u001b[34msucceeded\u001b[0m\r\n    Generating 6 outputs ...\r\n      Generating output 1: `plot_6_task2` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `plot_7_task2` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 3: `plot_8_task2` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 4: `plot_9_task2` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 5: `plot_10_task2` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 6: `autogen_report_for_task2` ... \u001b[36mqueued\u001b[0m\r\n  Executing task 2: `task2`\r\n    Executing simulation ... \u001b[34msucceeded\u001b[0m\r\n    Generating 6 outputs ...\r\n      Generating output 1: `plot_6_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `plot_7_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 3: `plot_8_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 4: `plot_9_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 5: `plot_10_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 6: `autogen_report_for_task2` ...",
@@ -2708,7 +2708,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.139389,
+                            "duration": 0.145862,
                             "exception": null,
                             "id": "plot_6_task2",
                             "output": "",
@@ -2722,7 +2722,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.143154,
+                            "duration": 0.156146,
                             "exception": null,
                             "id": "plot_7_task2",
                             "output": "",
@@ -2740,7 +2740,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.148739,
+                            "duration": 0.163612,
                             "exception": null,
                             "id": "plot_8_task2",
                             "output": "",
@@ -2754,7 +2754,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.138961,
+                            "duration": 0.136252,
                             "exception": null,
                             "id": "plot_9_task2",
                             "output": "",
@@ -2768,7 +2768,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.144982,
+                            "duration": 0.143398,
                             "exception": null,
                             "id": "plot_10_task2",
                             "output": "",
@@ -3258,7 +3258,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.213115,
+                            "duration": 0.221477,
                             "exception": null,
                             "id": "autogen_report_for_task2",
                             "output": "",
@@ -3271,7 +3271,7 @@
                     "tasks": [
                         {
                             "algorithm": "KISAO_0000019",
-                            "duration": 0.377119,
+                            "duration": 0.386098,
                             "exception": null,
                             "id": "task1",
                             "output": "",
@@ -3338,7 +3338,7 @@
                         },
                         {
                             "algorithm": null,
-                            "duration": 0.322538,
+                            "duration": 0.335437,
                             "exception": null,
                             "id": "task2",
                             "output": "",
@@ -3355,9 +3355,9 @@
     },
     "vcell": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc674261553b9bc253ed9",
-        "download": "https://api.biosimulations.org/results/674dc674261553b9bc253ed9/download",
-        "logs": "https://api.biosimulations.org/logs/674dc674261553b9bc253ed9?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67599a0e9fa297efdca4d411",
+        "download": "https://api.biosimulations.org/results/67599a0e9fa297efdca4d411/download",
+        "logs": "https://api.biosimulations.org/logs/67599a0e9fa297efdca4d411?includeOutput=true",
         "log_yml": {
             "duration": 15,
             "exception": null,
@@ -3966,11 +3966,11 @@
     },
     "xpp": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc676ef911d5d45259b20",
-        "download": "https://api.biosimulations.org/results/674dc676ef911d5d45259b20/download",
-        "logs": "https://api.biosimulations.org/logs/674dc676ef911d5d45259b20?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67599a109fa297efdca4d41c",
+        "download": "https://api.biosimulations.org/results/67599a109fa297efdca4d41c/download",
+        "logs": "https://api.biosimulations.org/logs/67599a109fa297efdca4d41c?includeOutput=true",
         "log_yml": {
-            "duration": 0.060415,
+            "duration": 0.064887,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
