@@ -238,7 +238,7 @@ def get_remote_results_from_links(links_dict):
     return log_yml_dict
 
 
-def download_remote_test_suite_results(links_dict, refresh=True, limit=0):
+def download_remote_test_suite_results(links_dict, refresh=False, limit=0):
     """
     If refresh is True, download results even if a zip file is already present in the folder.
     limit is the number of subfolders to process, 0 means no limit.
@@ -250,7 +250,7 @@ def download_remote_test_suite_results(links_dict, refresh=True, limit=0):
         folder_dir = links["folder_dir"]
         links.pop("folder_dir")  # remove folder_dir key from links_dict
         subfolder_dict = {"folder_dir": folder_dir, "extract_dir": {}}
-        print(f"Downloading results for {subfolder} in {folder_dir}")
+
         for engine, engine_links in links.items():
             if engine in utils.ENGINES.keys() and "download" in engine_links:
                 os.chdir(folder_dir)
@@ -307,7 +307,7 @@ def create_log_yml_dict(extract_dir_dict):
 def process_log_yml_dict(log_yml_dict):
     results_remote = {}
     for subfolder in list(log_yml_dict.keys()):
-        print(subfolder)
+        print(f"Processing log yml file for {subfolder}")
         if subfolder in log_yml_dict:
             results_remote[subfolder] = {}
             for e in list(log_yml_dict[subfolder].keys()):
@@ -431,7 +431,6 @@ def process_cases(args):
                 f"Folder {subfolder} has no SBML or SED-ML files {args.sbml_level_version}"
             )
             continue
-        print(f"Processing {sbml_file_path} and {sedml_file_path}")
 
         # create table with results
         mtab.new_row()
@@ -448,9 +447,36 @@ def process_cases(args):
             [sbml_file_path], strict_units=True
         )
         mtab["valid_sedml"] = validate_sedml_files([sedml_file_path])
-        mtab["tellurium_outcome"] = utils.test_engine(
-            "tellurium", sedml_file_path
-        )  # run tellurium directly
+
+        # these give float errors when running the models in tellurium natively which leads to 'reset' errors in subsequent cases that would otherwise pass.
+        # For now these cases are skipped.
+        subfolders_float_errors = [
+            "00952",
+            "00953",
+            "00962",
+            "00963",
+            "00964",
+            "00965",
+            "00966",
+            "00967",
+            "01588",
+            "01590",
+            "01591",
+            "01599",
+            "01605",
+            "01627",
+        ]
+        if subfolder in subfolders_float_errors:
+            print(f"Skipping subfolder {subfolder} with float errors")
+            mtab["tellurium_outcome"] = (
+                "<details><summary>skipped</summary>Case is skipped because it leads to a float error when trying to run it in tellurium natively, which leads to reset errors in subsequent cases that would otherwise pass.</details>"
+            )
+
+        else:
+            mtab["tellurium_outcome"] = utils.test_engine(
+                "tellurium", sedml_file_path
+            )  # run tellurium directly
+
         sup.restore()
 
         mtab["xmlns_sbml_missing"] = utils.xmlns_sbml_attribute_missing(sedml_file_path)
@@ -513,7 +539,7 @@ def process_cases(args):
 
 
 def get_remote_results(
-    suite_path, sbml_level_version, subfolders, use_pickle=False, remove_output=False
+    suite_path, sbml_level_version, subfolders, use_pickle=True, remove_output=False
 ):
     """Run with directory pointing towards the location of the sedml and sbml files"""
 
@@ -551,21 +577,23 @@ def remove_all_pickles_in_dir(dir_path):
     return
 
 
-if __name__ == "__main__":
-    # download_test_suite(url="https://github.com/sbmlteam/sbml-test-suite/releases/download/3.4.0/semantic_tests_with_sedml_and_graphs.v3.4.0.zip")
-    args = parse_arguments()
-    suite_path = os.path.join(
-        os.path.dirname(os.path.realpath(__file__)), "SBML_test_suite", "semantic"
-    )
-    args.suite_path = suite_path
-    args.limit = 0
+def remove_all_pickles_in_folder(dir_path):
+    for file in os.listdir(dir_path):
+        if file.endswith(".p"):
+            os.remove(os.path.join(dir_path, file))
+    return
 
-    # args.cases = ["00918"]
-    # remove_all_pickles_in_dir(suite_path)
 
-    max_retries = 10
+def remove_certain_pickles_in_dir(dir_path, subfolders):
+    for subfolder in subfolders:
+        pickle_file_path = os.path.join(dir_path, subfolder)
+        remove_all_pickles_in_dir(pickle_file_path)
+    return
+
+
+def run_test_suite_with_retries(max_retries=10):
     retries = 0
-
+    time_out = 10
     while retries < max_retries:
         try:
             process_cases(args)
@@ -574,7 +602,25 @@ if __name__ == "__main__":
             print(f"Error processing cases: {e}")
             retries += 1
             if retries < max_retries:
-                print(f"Retrying in 10 seconds... (Attempt {retries}/{max_retries})")
-                time.sleep(10)
+                print(
+                    f"Retrying in {time_out} seconds... (Attempt {retries}/{max_retries})"
+                )
+                time.sleep(time_out)
             else:
                 print("Max retries exceeded. Exiting script.")
+
+
+if __name__ == "__main__":
+    refresh = False
+    if refresh:
+        download_test_suite(
+            url="https://github.com/sbmlteam/sbml-test-suite/releases/download/3.4.0/semantic_tests_with_sedml_and_graphs.v3.4.0.zip"
+        )
+
+    args = parse_arguments()
+    args.suite_path = os.path.join(
+        os.path.dirname(os.path.realpath(__file__)), "SBML_test_suite", "semantic"
+    )
+    args.limit = 0
+
+    run_test_suite_with_retries()

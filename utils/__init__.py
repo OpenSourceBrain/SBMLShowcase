@@ -857,6 +857,7 @@ def test_engine(engine, filename, error_categories=error_categories):
     unknown_engine = False
     try:
         if engine == "tellurium":
+            print(f"Running tellurium natively for {filename}", file=sys.__stdout__)
             tellurium.run_from_sedml_file([filename], ["-outputdir", "none"])
             return "pass"  # no errors
         # elif engine == "some_other_engine":
@@ -867,6 +868,7 @@ def test_engine(engine, filename, error_categories=error_categories):
     except Exception as e:
         # return error object
         error_str = safe_md_string(e)
+        print(error_str, file=sys.__stdout__)
 
     if unknown_engine:
         raise RuntimeError(f"unknown engine {engine}")
