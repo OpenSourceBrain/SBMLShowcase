@@ -30,7 +30,7 @@ jobs:
         pip install pyNeuroML[annotations]
         pip install python-libsedml
         pip install tellurium
-        sudo apt-get install libncurses5 --fix-missing
+        sudo apt-get install libncurses6 --fix-missing
         omv install jneuroml
         pip install "pymetadata>=0.4.2" docker "requests<2.32.0"
 
