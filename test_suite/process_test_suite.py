@@ -499,10 +499,16 @@ def process_cases(args):
                     info_submission = (
                         info_submission + f"<br><br>{error_message_string}"
                     )
-                # DEBUGGING (test display of table on github website)
-                mtab[mtab_remote_outcome_key] = (
-                    f'<details><summary>{remote_results[subfolder][e]["status"]}</summary>{info_submission}</details>'
+
+                remote_result_details = f'<details><summary>{remote_results[subfolder][e]["status"]}</summary>{info_submission}</details>'
+                # make safe for markdown
+                mtab[mtab_remote_outcome_key] = utils.safe_md_string(
+                    remote_result_details
                 )
+                # DEBUGGING (test display of table on github website)
+                # mtab[mtab_remote_outcome_key] = (
+                #     f'<details><summary>{remote_results[subfolder][e]["status"]}</summary>{info_submission}</details>'
+                # )
 
         matplotlib.pyplot.close("all")  # supresses error from building up plots
 
