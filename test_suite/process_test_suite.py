@@ -484,25 +484,20 @@ def process_cases(args):
         if subfolder in remote_results.keys():
             for e in list(remote_results[subfolder].keys()):
                 print(f"Processing remote results for {subfolder} with engine {e}")
-                mtab_remote_outcome_key = f"{e}_remote_outcome"
-                result = remote_results[subfolder][e]
-                links = remote_links[subfolder][e]
-                info_submission = (
-                    f'<details><summary>{result["status"]}</summary>'
-                    f'[Download]({links["download"]})<br>'
-                    f'[Logs]({links["logs"]})<br>'
-                    f'[View]({links["view"]})<br>'
-                    f'HTTP response: {str(links["response"])}</details>'
-                )
 
-                if result["error_message"]:
-                    error_message = utils.safe_md_string(result["error_message"])
-                    exception_type = utils.safe_md_string(result["exception_type"])
-                    info_submission += (
-                        f"<br><br>Error message: {error_message}<br>"
-                        f"Exception type: {exception_type}"
+                if remote_results[subfolder][e]["error_message"] != "":
+                    error_message = utils.safe_md_string(
+                        remote_results[subfolder][e]["error_message"]
                     )
+                    exception_type = utils.safe_md_string(
+                        remote_results[subfolder][e]["exception_type"]
+                    )
+                    error_message_string = f"Error message: {error_message}<br><br>Exception type: {exception_type}"
+                    info_submission = f'<details><summary>{remote_results[subfolder][e]["status"]}</summary>[Download]({remote_links[subfolder][e]["download"]})<br>[Logs]({remote_links[subfolder][e]["logs"]})<br>[View]({remote_links[subfolder][e]["view"]})<br><br>HTTP response: {str(remote_links[subfolder][e]["response"])}<br><br>{error_message_string}</details>'
+                else:
+                    info_submission = f'<details><summary>{remote_results[subfolder][e]["status"]}</summary>[Download]({remote_links[subfolder][e]["download"]})<br>[Logs]({remote_links[subfolder][e]["logs"]})<br>[View]({remote_links[subfolder][e]["view"]})<br><br>HTTP response: {str(remote_links[subfolder][e]["response"])}'
 
+                mtab_remote_outcome_key = f"{e}_remote_outcome"
                 mtab[mtab_remote_outcome_key] = info_submission
 
         matplotlib.pyplot.close("all")  # supresses error from building up plots
