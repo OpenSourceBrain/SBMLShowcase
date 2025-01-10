@@ -492,8 +492,8 @@ def process_cases(args):
                     exception_type = utils.safe_md_string(
                         remote_results[subfolder][e]["exception_type"]
                     )
-                    error_message_string = f"Error message: {error_message}<br><br>Exception type: {exception_type}"
-                    info_submission = f'<details><summary>{remote_results[subfolder][e]["status"]}</summary>[Download]({remote_links[subfolder][e]["download"]})<br>[Logs]({remote_links[subfolder][e]["logs"]})<br>[View]({remote_links[subfolder][e]["view"]})<br><br>HTTP response: {str(remote_links[subfolder][e]["response"])}<br><br>{error_message_string}</details>'
+                    error_message_string = f"Error message: ```{error_message}```<br><br>Exception type: ```{exception_type}```"
+                    info_submission = f'<details><summary>{remote_results[subfolder][e]["status"]}</summary>[Download]({remote_links[subfolder][e]["download"]})<br>[Logs]({remote_links[subfolder][e]["logs"]})<br>[View]({remote_links[subfolder][e]["view"]})<br><br>HTTP response: {str(remote_links[subfolder][e]["response"])}<br><br>{error_message_string}'
                 else:
                     info_submission = f'<details><summary>{remote_results[subfolder][e]["status"]}</summary>[Download]({remote_links[subfolder][e]["download"]})<br>[Logs]({remote_links[subfolder][e]["logs"]})<br>[View]({remote_links[subfolder][e]["view"]})<br><br>HTTP response: {str(remote_links[subfolder][e]["response"])}'
 
