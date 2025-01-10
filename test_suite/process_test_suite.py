@@ -58,7 +58,16 @@ def parse_arguments():
         nargs="+",
         type=str,
         default=[],
-        help="Limit to the cases listed in the file. Empty list means no limit",
+        help="Limit to the cases listed. No specific cases will be tested when an empty list is provided.",
+    )
+
+    parser.add_argument(
+        "--skip",
+        action="extend",
+        nargs="+",
+        type=str,
+        default=[],
+        help="Skip cases listed.",
     )
 
     parser.add_argument(
@@ -448,25 +457,7 @@ def process_cases(args):
         )
         mtab["valid_sedml"] = validate_sedml_files([sedml_file_path])
 
-        # these give float errors when running the models in tellurium natively which leads to 'reset' errors in subsequent cases that would otherwise pass.
-        # For now these cases are skipped.
-        subfolders_float_errors = [
-            "00952",
-            "00953",
-            "00962",
-            "00963",
-            "00964",
-            "00965",
-            "00966",
-            "00967",
-            "01588",
-            "01590",
-            "01591",
-            "01599",
-            "01605",
-            "01627",
-        ]
-        if subfolder in subfolders_float_errors:
+        if subfolder in args.skip:
             print(f"Skipping subfolder {subfolder} with float errors")
             mtab["tellurium_outcome"] = (
                 "<details><summary>skipped</summary>Case is skipped because it leads to a float error when trying to run it in tellurium natively, which leads to reset errors in subsequent cases that would otherwise pass.</details>"
@@ -619,5 +610,26 @@ if __name__ == "__main__":
         os.path.dirname(os.path.realpath(__file__)), "SBML_test_suite", "semantic"
     )
     args.limit = 0
+
+    # these give float errors when running the models in tellurium natively which leads to 'reset' errors in subsequent cases that would otherwise pass.
+    # For now these cases are skipped.
+    subfolders_float_errors = [
+        "00952",
+        "00953",
+        "00962",
+        "00963",
+        "00964",
+        "00965",
+        "00966",
+        "00967",
+        "01588",
+        "01590",
+        "01591",
+        "01599",
+        "01605",
+        "01627",
+    ]
+
+    args.skip = subfolders_float_errors
 
     run_test_suite_with_retries()
