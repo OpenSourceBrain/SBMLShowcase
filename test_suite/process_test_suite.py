@@ -484,7 +484,8 @@ def process_cases(args):
         if subfolder in remote_results.keys():
             for e in list(remote_results[subfolder].keys()):
                 print(f"Processing remote results for {subfolder} with engine {e}")
-                mtab_remote_outcome_key = f"{e}_remote_outcome"
+                # DEBUGGING (test display of table on github website)
+                # mtab_remote_outcome_key = f"{e}_remote_outcome"
                 info_submission = f"Download: {remote_links[subfolder][e]['download']}<br><br>Logs: {remote_links[subfolder][e]['logs']}<br><br>View: {remote_links[subfolder][e]['view']}<br><br>HTTP response: {str(remote_links[subfolder][e]['response'])}"
 
                 if remote_results[subfolder][e]["error_message"] != "":
@@ -498,10 +499,10 @@ def process_cases(args):
                     info_submission = (
                         info_submission + f"<br><br>{error_message_string}"
                     )
-
-                mtab[mtab_remote_outcome_key] = (
-                    f'<details><summary>{remote_results[subfolder][e]["status"]}</summary>{info_submission}</details>'
-                )
+                # DEBUGGING (test display of table on github website)
+                # mtab[mtab_remote_outcome_key] = (
+                #     f'<details><summary>{remote_results[subfolder][e]["status"]}</summary>{info_submission}</details>'
+                # )
 
         matplotlib.pyplot.close("all")  # supresses error from building up plots
 
@@ -514,13 +515,14 @@ def process_cases(args):
         mtab.add_count(key, lambda x: x is False, "n_fail={count}")
         mtab.transform_column(key, lambda x: "pass" if x else "FAIL")
 
-    for key in [
-        "tellurium_remote_outcome",
-        "copasi_remote_outcome",
-    ]:
-        mtab.add_count(
-            key, lambda x: "<details><summary>pass</summary>" in x, "pass={count}"
-        )
+    # DEBUGGING (test display of table on github website)
+    # for key in [
+    #     "tellurium_remote_outcome",
+    #     "copasi_remote_outcome",
+    # ]:
+    #     mtab.add_count(
+    #         key, lambda x: "<details><summary>pass</summary>" in x, "pass={count}"
+    #     )
 
     # add counts for cases and missing xmlns_sbml attributes
     mtab.add_count("case", lambda _: True, "n={count}")
