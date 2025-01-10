@@ -1248,6 +1248,7 @@ def safe_md_string(value):
         .replace("   ", " ")
         .replace("  ", " ")
         .replace("|", "<br>")
+        .replace("`", " ")
     )
 
 
