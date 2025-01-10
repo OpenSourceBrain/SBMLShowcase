@@ -486,7 +486,7 @@ def process_cases(args):
                 print(f"Processing remote results for {subfolder} with engine {e}")
                 # DEBUGGING (test display of table on github website)
                 mtab_remote_outcome_key = f"{e}_remote_outcome"
-                info_submission = f"Download: {remote_links[subfolder][e]['download']}<br><br>Logs: {remote_links[subfolder][e]['logs']}<br><br>View: {remote_links[subfolder][e]['view']}<br><br>HTTP response: {str(remote_links[subfolder][e]['response'])}"
+                info_submission = f"Download:{remote_links[subfolder][e]['download']}<br><br>Logs:{remote_links[subfolder][e]['logs']}<br><br>View:{remote_links[subfolder][e]['view']}<br><br>HTTP response: {str(remote_links[subfolder][e]['response'])}"
 
                 if remote_results[subfolder][e]["error_message"] != "":
                     error_message = utils.safe_md_string(
@@ -500,11 +500,15 @@ def process_cases(args):
                         info_submission + f"<br><br>{error_message_string}"
                     )
 
-                remote_result_details = f'<details><summary>{remote_results[subfolder][e]["status"]}</summary>{info_submission}</details>'
+                remote_result_details = f'<details><summary>{remote_results[subfolder][e]["status"]}</summary>```{info_submission}```</details>'
                 # make safe for markdown
-                # remove all <br> from remote_results_details and replace with ' '
-                remote_result_details = remote_result_details.replace("<br>", " ")
-                remote_result_details_safe = utils.safe_md_string(remote_result_details)
+                # remove <br>
+                remote_results_details_no_br = remote_result_details.replace(
+                    "<br>", "  "
+                )
+                remote_result_details_safe = utils.safe_md_string(
+                    remote_results_details_no_br
+                )
                 mtab[mtab_remote_outcome_key] = remote_result_details_safe
                 # DEBUGGING (test display of table on github website)
                 # mtab[mtab_remote_outcome_key] = (
