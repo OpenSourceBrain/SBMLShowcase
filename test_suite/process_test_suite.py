@@ -486,19 +486,19 @@ def process_cases(args):
                 print(f"Processing remote results for {subfolder} with engine {e}")
                 # DEBUGGING (test display of table on github website)
                 # mtab_remote_outcome_key = f"{e}_remote_outcome"
-                info_submission = f"Download: {remote_links[subfolder][e]['download']}<br><br>Logs: {remote_links[subfolder][e]['logs']}<br><br>View: {remote_links[subfolder][e]['view']}<br><br>HTTP response: {str(remote_links[subfolder][e]['response'])}"
+                # info_submission = f"Download: {remote_links[subfolder][e]['download']}<br><br>Logs: {remote_links[subfolder][e]['logs']}<br><br>View: {remote_links[subfolder][e]['view']}<br><br>HTTP response: {str(remote_links[subfolder][e]['response'])}"
 
-                if remote_results[subfolder][e]["error_message"] != "":
-                    error_message = utils.safe_md_string(
-                        remote_results[subfolder][e]["error_message"]
-                    )
-                    exception_type = utils.safe_md_string(
-                        remote_results[subfolder][e]["exception_type"]
-                    )
-                    error_message_string = f"Error message: {error_message}<br><br>Exception type: {exception_type}"
-                    info_submission = (
-                        info_submission + f"<br><br>{error_message_string}"
-                    )
+                # if remote_results[subfolder][e]["error_message"] != "":
+                #     error_message = utils.safe_md_string(
+                #         remote_results[subfolder][e]["error_message"]
+                #     )
+                #     exception_type = utils.safe_md_string(
+                #         remote_results[subfolder][e]["exception_type"]
+                #     )
+                #     error_message_string = f"Error message: {error_message}<br><br>Exception type: {exception_type}"
+                #     info_submission = (
+                #         info_submission + f"<br><br>{error_message_string}"
+                #     )
                 # DEBUGGING (test display of table on github website)
                 # mtab[mtab_remote_outcome_key] = (
                 #     f'<details><summary>{remote_results[subfolder][e]["status"]}</summary>{info_submission}</details>'
