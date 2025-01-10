@@ -502,9 +502,10 @@ def process_cases(args):
 
                 remote_result_details = f'<details><summary>{remote_results[subfolder][e]["status"]}</summary>{info_submission}</details>'
                 # make safe for markdown
-                mtab[mtab_remote_outcome_key] = utils.safe_md_string(
-                    remote_result_details
-                )
+                # remove all <br> from remote_results_details and replace with ' '
+                remote_result_details = remote_result_details.replace("<br>", " ")
+                remote_result_details_safe = utils.safe_md_string(remote_result_details)
+                mtab[mtab_remote_outcome_key] = remote_result_details_safe
                 # DEBUGGING (test display of table on github website)
                 # mtab[mtab_remote_outcome_key] = (
                 #     f'<details><summary>{remote_results[subfolder][e]["status"]}</summary>{info_submission}</details>'
