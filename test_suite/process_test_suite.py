@@ -609,6 +609,7 @@ if __name__ == "__main__":
     args.suite_path = os.path.join(
         os.path.dirname(os.path.realpath(__file__)), "SBML_test_suite", "semantic"
     )
+
     args.limit = 0
 
     # these give float errors when running the models in tellurium natively which leads to 'reset' errors in subsequent cases that would otherwise pass.
