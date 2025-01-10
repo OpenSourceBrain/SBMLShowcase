@@ -484,18 +484,22 @@ def process_cases(args):
         if subfolder in remote_results.keys():
             for e in list(remote_results[subfolder].keys()):
                 print(f"Processing remote results for {subfolder} with engine {e}")
+                result = remote_results[subfolder][e]
+                link = remote_links[subfolder][e]
 
-                if remote_results[subfolder][e]["error_message"] != "":
-                    error_message = utils.safe_md_string(
-                        remote_results[subfolder][e]["error_message"]
-                    )
-                    exception_type = utils.safe_md_string(
-                        remote_results[subfolder][e]["exception_type"]
-                    )
-                    error_message_string = f"Error message: ```{error_message}```<br><br>Exception type: ```{exception_type}```"
-                    info_submission = f'<details><summary>{remote_results[subfolder][e]["status"]}</summary>[Download]({remote_links[subfolder][e]["download"]})<br>[Logs]({remote_links[subfolder][e]["logs"]})<br>[View]({remote_links[subfolder][e]["view"]})<br><br>HTTP response: {str(remote_links[subfolder][e]["response"])}<br><br>{error_message_string}'
-                else:
-                    info_submission = f'<details><summary>{remote_results[subfolder][e]["status"]}</summary>[Download]({remote_links[subfolder][e]["download"]})<br>[Logs]({remote_links[subfolder][e]["logs"]})<br>[View]({remote_links[subfolder][e]["view"]})<br><br>HTTP response: {str(remote_links[subfolder][e]["response"])}'
+                error_message_string = ""
+                if result["error_message"]:
+                    error_message = utils.safe_md_string(result["error_message"])
+                    exception_type = utils.safe_md_string(result["exception_type"])
+                    error_message_string = f"<br><br>Error message: ```{error_message}```<br>Exception type: ```{exception_type}```"
+
+                info_submission = (
+                    f'<details><summary>{result["status"]}</summary>'
+                    f'[Download]({link["download"]})<br>'
+                    f'[Logs]({link["logs"]})<br>'
+                    f'[View]({link["view"]})<br>'
+                    f'HTTP response: {link["response"]}{error_message_string}'
+                )
 
                 mtab_remote_outcome_key = f"{e}_remote_outcome"
                 mtab[mtab_remote_outcome_key] = info_submission
@@ -511,14 +515,13 @@ def process_cases(args):
         mtab.add_count(key, lambda x: x is False, "n_fail={count}")
         mtab.transform_column(key, lambda x: "pass" if x else "FAIL")
 
-    # DEBUGGING (test display of table on github website)
-    # for key in [
-    #     "tellurium_remote_outcome",
-    #     "copasi_remote_outcome",
-    # ]:
-    #     mtab.add_count(
-    #         key, lambda x: "<details><summary>pass</summary>" in x, "pass={count}"
-    #     )
+    for key in [
+        "tellurium_remote_outcome",
+        "copasi_remote_outcome",
+    ]:
+        mtab.add_count(
+            key, lambda x: "<details><summary>pass</summary>" in x, "pass={count}"
+        )
 
     # add counts for cases and missing xmlns_sbml attributes
     mtab.add_count("case", lambda _: True, "n={count}")
