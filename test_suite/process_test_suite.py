@@ -510,7 +510,7 @@ def process_cases(args):
                 #     remote_results_details_no_br
                 # )
                 mtab[mtab_remote_outcome_key] = (
-                    f'<details><summary>{remote_results[subfolder][e]["status"]}</summary>[Download]({remote_links[subfolder][e]["download"]})</details>'
+                    f'<details><summary>{remote_results[subfolder][e]["status"]}</summary>[Download]({remote_links[subfolder][e]["download"]})<br>[Logs]({remote_links[subfolder][e]["logs"]})</details>'
                 )
 
         matplotlib.pyplot.close("all")  # supresses error from building up plots
