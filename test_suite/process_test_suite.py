@@ -26,7 +26,7 @@ sys.path.append("..")
 import utils
 
 md_description = """
-Markdown file description goes here.
+SBML Test Suite validation and simulation results using Tellurium installed natively and Tellurium and COPASI run remotely through BioSimulators.
 """
 
 tmp_dir = "tmplocalfiles"
@@ -169,7 +169,7 @@ def load_pickle(file_path):
         try:
             with open(file_path, "rb") as f:
                 return pickle.load(f)
-        except (EOFError, pickle.UnpicklingError) as e:
+        except Exception as e:
             print(f"Error loading pickle file {file_path}: {e}")
             return {}
     return {}
