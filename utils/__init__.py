@@ -696,7 +696,7 @@ def run_biosimulators_remote(engine, sedml_filepath, sbml_filepath):
     engine_version = biosimulations.get_simulator_versions(engine)
 
     sim_dict = {
-        "name": "test",
+        "name": omex_file_name,
         "simulator": engine,
         "simulatorVersion": engine_version[engine][-1],  # get the latest version
         "cpus": 1,
