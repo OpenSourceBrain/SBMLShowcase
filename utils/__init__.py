@@ -1608,7 +1608,7 @@ def create_combined_results_table(
 
     # Save the results to a Markdown file with utf-8 encoding
     path_to_results = os.path.join(
-        test_folder, "results_compatibility_biosimulators.md"
+        test_folder, f"results_{sedml_file_name.split('.')[0].replace(' ', '')}.md"
     )
     print("Saving results to:", path_to_results)
     with open(path_to_results, "w", encoding="utf-8") as f:
