@@ -165,7 +165,6 @@ def main():
         print(f"Changed to {new_directory}")
 
         engine_ids = list(engines.keys())
-        # engine_ids = engine_list if engine_list is not None else engine_ids
 
         test_folder = "tests"
         utils.run_biosimulators_remotely_and_locally(
@@ -181,7 +180,7 @@ def main():
 
 
 if __name__ == "__main__":
-    use_original_files = True
+    use_original_files = False
     biomodel_id_list = [
         "BIOMD0000000001",
         "BIOMD0000000138",

@@ -696,7 +696,7 @@ def run_biosimulators_remote(engine, sedml_filepath, sbml_filepath):
     engine_version = biosimulations.get_simulator_versions(engine)
 
     sim_dict = {
-        "name": "test",
+        "name": omex_file_name,
         "simulator": engine,
         "simulatorVersion": engine_version[engine][-1],  # get the latest version
         "cpus": 1,
@@ -723,6 +723,7 @@ def run_biosimulators_remote(engine, sedml_filepath, sbml_filepath):
             "logs": "",
             "exception": exception_message,
         }
+        return results_urls
 
     return results_urls
 
@@ -732,7 +733,6 @@ def get_remote_results(engine, download_link, output_dir="remote_results"):
     extract_dir = os.path.join(os.getcwd(), output_dir, engine)
     shutil.unpack_archive(filepath_results, extract_dir=extract_dir)
     os.remove(filepath_results)
-
     return extract_dir
 
 
@@ -786,6 +786,14 @@ def run_biosimulators_docker(
         if "RuntimeException" in detailed_error_log:
             detailed_error_log_dict["status"] = "FAIL"
             detailed_error_log_dict["error_message"] = "Runtime Exception"
+            return {
+                "exception_message": exception_message,
+                "log_yml": log_yml_dict,
+                "detailed_error_log": detailed_error_log_dict,
+            }
+        if "RuntimeException" in detailed_error_log:
+            detailed_error_log_dict["status"] = "FAIL"
+            detailed_error_log_dict["error_message"] = "Runtime Exception"
 
     return {
         "exception_message": exception_message,
@@ -829,6 +837,15 @@ def biosimulators_core(engine, omex_filepath, output_dir=None):
         command=f"-i '/root/in/{omex_file}' -o /root/out",
         auto_remove=True,
     )
+    client.containers.run(
+        f"ghcr.io/biosimulators/{engine}",
+        mounts=[mount_in, mount_out],
+        command=f"-i '/root/in/{omex_file}' -o /root/out",
+        auto_remove=True,
+    )
+
+    if os.path.exists(omex_filepath_no_spaces):
+        os.remove(omex_filepath_no_spaces)
 
 
 def test_engine(engine, filename, error_categories=error_categories):
@@ -840,6 +857,7 @@ def test_engine(engine, filename, error_categories=error_categories):
     unknown_engine = False
     try:
         if engine == "tellurium":
+            print(f"Running tellurium natively for {filename}", file=sys.__stdout__)
             tellurium.run_from_sedml_file([filename], ["-outputdir", "none"])
             return "pass"  # no errors
         # elif engine == "some_other_engine":
@@ -850,6 +868,7 @@ def test_engine(engine, filename, error_categories=error_categories):
     except Exception as e:
         # return error object
         error_str = safe_md_string(e)
+        print(error_str, file=sys.__stdout__)
 
     if unknown_engine:
         raise RuntimeError(f"unknown engine {engine}")
@@ -1197,7 +1216,7 @@ class MarkdownTable:
                     error_tag = error_categories[engine][pattern]
                     errors[error_tag] += 1
                     cell_text = self.make_fold(
-                        f"FAIL ({error_tag})", error_str, quote=True
+                        "FAIL ({error_tag})", error_str, quote=True
                     )
                     break
 
@@ -1228,6 +1247,8 @@ def safe_md_string(value):
         .replace("\t", " ")
         .replace("   ", " ")
         .replace("  ", " ")
+        .replace("|", "<br>")
+        .replace("`", " ")
     )
 
 
@@ -1375,7 +1396,7 @@ def create_results_table(results, sbml_filepath, sedml_filepath, output_dir):
 
         if (
             results_table.loc[results_table[ENGINE] == e, PASS_FAIL].values[0]
-            == f"{xfail_html}"
+            == "{xfail_html}"
         ):
             expected_fail = "EXPECTED FAIL<br><br>"
         if len(results_table.loc[results_table[ENGINE] == e, ERROR].values[0]) > 1:
@@ -1587,7 +1608,7 @@ def create_combined_results_table(
 
     # Save the results to a Markdown file with utf-8 encoding
     path_to_results = os.path.join(
-        test_folder, "results_compatibility_biosimulators.md"
+        test_folder, f"results_{sedml_file_name.split('.')[0].replace(' ', '')}.md"
     )
     print("Saving results to:", path_to_results)
     with open(path_to_results, "w", encoding="utf-8") as f:
