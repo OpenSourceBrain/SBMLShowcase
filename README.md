@@ -36,12 +36,16 @@ conda activate sbmlshowcase
 pip install -e .
 conda activate sbmlshowcase
 ```
-or for developers
+### for for developers
 ```
 conda create -n sbmlshowcase-dev -c conda-forge python=3.10
 conda activate sbmlshowcase-dev
 pip install -e .[dev]
 conda activate sbmlshowcase-dev
+```
+To install the pre-commit hooks
+```
+pre-commit install
 ```
 ## Main Folders
 
