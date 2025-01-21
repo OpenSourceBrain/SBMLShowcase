@@ -431,7 +431,7 @@ def process_cases(args):
             )
             sedml_file_path = (
                 glob.glob(sedml_file_name)[0]
-                if len(glob.glob(subfolder, sedml_file_name)) > 0
+                if len(glob.glob(sedml_file_name)) > 0
                 else []
             )
 
