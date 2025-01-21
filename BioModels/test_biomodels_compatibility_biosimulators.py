@@ -180,7 +180,7 @@ def main():
 
 
 if __name__ == "__main__":
-    use_original_files = False
+    use_original_files = False  # False allows you to tweak the SED-ML files before running. True overwrites the test files with the original BioModels files.
     biomodel_id_list = [
         "BIOMD0000000001",
         "BIOMD0000000138",
