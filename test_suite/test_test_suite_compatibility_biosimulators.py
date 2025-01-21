@@ -186,10 +186,11 @@ def process_cases(args):
 
 if __name__ == "__main__":
     args = parse_arguments()
-    args.cases = ["00001", "01186"]
-    args.sbml_level_version = "l3v2"
-    user_folder = os.path.expanduser("~")
+    if len(sys.argv) == 1:
+        # No command line arguments provided, set default values
+        args.cases = ["00001", "01186"]
+        args.sbml_level_version = "highest"
     args.suite_path = os.path.join(
-        user_folder, "Documents", "compbiolibs", "SBML_test_suite", "semantic"
+        os.path.dirname(os.path.realpath(__file__)), "SBML_test_suite", "semantic"
     )
     process_cases(args)

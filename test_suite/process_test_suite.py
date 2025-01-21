@@ -634,6 +634,7 @@ if __name__ == "__main__":
     args.suite_path = os.path.join(
         os.path.dirname(os.path.realpath(__file__)), "SBML_test_suite", "semantic"
     )
-    args.limit = 0
+    if len(sys.argv) == 1:
+        args.limit = 0
 
     run_test_suite_with_retries()
