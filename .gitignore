@@ -46,3 +46,4 @@ venv
 /SBML/.DS_Store
 /SBML/LEMS_NML2_Ex9_FN_missing_xmlns.omex
 /SBML/output
+*.egg-info
