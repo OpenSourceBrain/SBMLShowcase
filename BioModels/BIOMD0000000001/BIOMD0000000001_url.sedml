@@ -4,7 +4,7 @@
     <model id="BIOMD0000000001_url" language="urn:sedml:language:sbml" source="BIOMD0000000001_url.xml"/>
   </listOfModels>
   <listOfSimulations>
-    <uniformTimeCourse id="auto_ten_seconds" initialTime="0.001" outputStartTime="0.001" outputEndTime="10000" numberOfSteps="100000">
+    <uniformTimeCourse id="auto_ten_seconds" initialTime="0.1" outputStartTime="0.1" outputEndTime="10000" numberOfSteps="50000">
       <algorithm name="ODE solver" kisaoID="KISAO:0000694"/>
     </uniformTimeCourse>
   </listOfSimulations>
@@ -613,7 +613,7 @@
       </listOfDataSets>
     </report>
     <plot2D id="autogen_plot_for_task1" name="Auto-generated plot for task1, including all species.">
-      <xAxis name="Time" type="linear"/>
+      <xAxis name="Time" type="log10"/>
       <yAxis name="Species" type="linear"/>
       <listOfCurves>
         <curve id="autogen_curve_task1_BLL" name="BLL" logX="true" xDataReference="auto_time_for_task1" logY="false" yDataReference="auto_dg_for_task1_BLL"/>

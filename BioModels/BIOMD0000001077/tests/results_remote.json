@@ -1,11 +1,11 @@
 {
     "amici": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc70b10bb4455d618775b",
-        "download": "https://api.biosimulations.org/results/674dc70b10bb4455d618775b/download",
-        "logs": "https://api.biosimulations.org/logs/674dc70b10bb4455d618775b?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67864faa167dc18b5b2478d5",
+        "download": "https://api.biosimulations.org/results/67864faa167dc18b5b2478d5/download",
+        "logs": "https://api.biosimulations.org/logs/67864faa167dc18b5b2478d5?includeOutput=true",
         "log_yml": {
-            "duration": 33.984144,
+            "duration": 25.866522,
             "exception": {
                 "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='epo_level'] is not a valid XPath to an attribute of a model element",
                 "type": "CombineArchiveExecutionError"
@@ -13,7 +13,7 @@
             "output": "",
             "sedDocuments": [
                 {
-                    "duration": 33.443908,
+                    "duration": 25.453396,
                     "exception": {
                         "message": "The SED document did not execute successfully:\n\n  target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='epo_level'] is not a valid XPath to an attribute of a model element",
                         "type": "SedmlExecutionError"
@@ -32,7 +32,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.127863,
+                            "duration": 0.220631,
                             "exception": null,
                             "id": "plot_2_task2",
                             "output": "",
@@ -326,7 +326,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.075044,
+                            "duration": 0.048798,
                             "exception": null,
                             "id": "autogen_report_for_task2",
                             "output": "",
@@ -339,7 +339,7 @@
                     "tasks": [
                         {
                             "algorithm": "KISAO_0000496",
-                            "duration": 32.477096,
+                            "duration": 24.543269,
                             "exception": null,
                             "id": "task1",
                             "output": "",
@@ -362,7 +362,7 @@
                         },
                         {
                             "algorithm": null,
-                            "duration": 0.048865,
+                            "duration": 0.037726,
                             "exception": {
                                 "message": "target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='epo_level'] is not a valid XPath to an attribute of a model element",
                                 "type": "ValueError"
@@ -382,11 +382,11 @@
     },
     "brian2": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc70d261553b9bc253f76",
-        "download": "https://api.biosimulations.org/results/674dc70d261553b9bc253f76/download",
-        "logs": "https://api.biosimulations.org/logs/674dc70d261553b9bc253f76?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67864fac1f52f47f628b595c",
+        "download": "https://api.biosimulations.org/results/67864fac1f52f47f628b595c/download",
+        "logs": "https://api.biosimulations.org/logs/67864fac1f52f47f628b595c?includeOutput=true",
         "log_yml": {
-            "duration": 0.057394,
+            "duration": 0.056735,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -399,11 +399,11 @@
     },
     "bionetgen": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc70fef911d5d45259b93",
-        "download": "https://api.biosimulations.org/results/674dc70fef911d5d45259b93/download",
-        "logs": "https://api.biosimulations.org/logs/674dc70fef911d5d45259b93?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67864fadba5a3f02b9f2f3c5",
+        "download": "https://api.biosimulations.org/results/67864fadba5a3f02b9f2f3c5/download",
+        "logs": "https://api.biosimulations.org/logs/67864fadba5a3f02b9f2f3c5?includeOutput=true",
         "log_yml": {
-            "duration": 0.203972,
+            "duration": 0.19595,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Adlung2021 _model_jakstat_pa.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -416,11 +416,11 @@
     },
     "boolnet": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc711ef911d5d45259b96",
-        "download": "https://api.biosimulations.org/results/674dc711ef911d5d45259b96/download",
-        "logs": "https://api.biosimulations.org/logs/674dc711ef911d5d45259b96?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67864fafba5a3f02b9f2f3c8",
+        "download": "https://api.biosimulations.org/results/67864fafba5a3f02b9f2f3c8/download",
+        "logs": "https://api.biosimulations.org/logs/67864fafba5a3f02b9f2f3c8?includeOutput=true",
         "log_yml": {
-            "duration": 0.225376,
+            "duration": 0.194237,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Adlung2021 _model_jakstat_pa.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -433,11 +433,11 @@
     },
     "cbmpy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc713261553b9bc253f79",
-        "download": "https://api.biosimulations.org/results/674dc713261553b9bc253f79/download",
-        "logs": "https://api.biosimulations.org/logs/674dc713261553b9bc253f79?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67864fb1167dc18b5b2478dc",
+        "download": "https://api.biosimulations.org/results/67864fb1167dc18b5b2478dc/download",
+        "logs": "https://api.biosimulations.org/logs/67864fb1167dc18b5b2478dc?includeOutput=true",
         "log_yml": {
-            "duration": 0.289755,
+            "duration": 0.280652,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Adlung2021 _model_jakstat_pa.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -450,11 +450,11 @@
     },
     "cobrapy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc71510bb4455d6187760",
-        "download": "https://api.biosimulations.org/results/674dc71510bb4455d6187760/download",
-        "logs": "https://api.biosimulations.org/logs/674dc71510bb4455d6187760?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67864fb31f52f47f628b5962",
+        "download": "https://api.biosimulations.org/results/67864fb31f52f47f628b5962/download",
+        "logs": "https://api.biosimulations.org/logs/67864fb31f52f47f628b5962?includeOutput=true",
         "log_yml": {
-            "duration": 0.211138,
+            "duration": 0.192863,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Adlung2021 _model_jakstat_pa.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -467,16 +467,16 @@
     },
     "copasi": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc717ef911d5d45259b9d",
-        "download": "https://api.biosimulations.org/results/674dc717ef911d5d45259b9d/download",
-        "logs": "https://api.biosimulations.org/logs/674dc717ef911d5d45259b9d?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67864fb51f52f47f628b5965",
+        "download": "https://api.biosimulations.org/results/67864fb51f52f47f628b5965/download",
+        "logs": "https://api.biosimulations.org/logs/67864fb51f52f47f628b5965?includeOutput=true",
         "log_yml": {
-            "duration": 1.641921,
+            "duration": 1.725625,
             "exception": null,
             "output": "",
             "sedDocuments": [
                 {
-                    "duration": 1.288502,
+                    "duration": 1.332249,
                     "exception": null,
                     "location": "Adlung2021 _model_jakstat_pa.sedml",
                     "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 2 tasks, 1 reports, and 1 plots:\r\n  Adlung2021 _model_jakstat_pa.sedml:\r\n    Tasks (2):\r\n      task1\r\n      task2\r\n    Reports (1):\r\n      autogen_report_for_task2: 71 data sets\r\n    Plots (1):\r\n      plot_2_task2: 2 curves\r\n\r\nExecuting SED-ML file 1: Adlung2021 _model_jakstat_pa.sedml ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task2`\r\n    Outputs:\r\n      `autogen_report_for_task2`\r\n      `plot_2_task2`\r\n  Executing task 1: `task2`\r\n    Executing simulation ...woohoo!\r\nwoohoo!\r\n \u001b[34msucceeded\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `plot_2_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `autogen_report_for_task2` ...",
@@ -492,7 +492,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.425806,
+                            "duration": 0.429027,
                             "exception": null,
                             "id": "plot_2_task2",
                             "output": "",
@@ -786,7 +786,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.283452,
+                            "duration": 0.327593,
                             "exception": null,
                             "id": "autogen_report_for_task2",
                             "output": "",
@@ -799,7 +799,7 @@
                     "tasks": [
                         {
                             "algorithm": null,
-                            "duration": 0.405635,
+                            "duration": 0.406749,
                             "exception": null,
                             "id": "task2",
                             "output": "",
@@ -816,11 +816,11 @@
     },
     "gillespy2": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc71910bb4455d6187768",
-        "download": "https://api.biosimulations.org/results/674dc71910bb4455d6187768/download",
-        "logs": "https://api.biosimulations.org/logs/674dc71910bb4455d6187768?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67864fb7ba5a3f02b9f2f3ce",
+        "download": "https://api.biosimulations.org/results/67864fb7ba5a3f02b9f2f3ce/download",
+        "logs": "https://api.biosimulations.org/logs/67864fb7ba5a3f02b9f2f3ce?includeOutput=true",
         "log_yml": {
-            "duration": 0.222051,
+            "duration": 0.202093,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Adlung2021 _model_jakstat_pa.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -833,11 +833,11 @@
     },
     "ginsim": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc71cef911d5d45259ba4",
-        "download": "https://api.biosimulations.org/results/674dc71cef911d5d45259ba4/download",
-        "logs": "https://api.biosimulations.org/logs/674dc71cef911d5d45259ba4?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67864fb91f52f47f628b596b",
+        "download": "https://api.biosimulations.org/results/67864fb91f52f47f628b596b/download",
+        "logs": "https://api.biosimulations.org/logs/67864fb91f52f47f628b596b?includeOutput=true",
         "log_yml": {
-            "duration": 0.208914,
+            "duration": 0.187235,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Adlung2021 _model_jakstat_pa.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -850,11 +850,11 @@
     },
     "libsbmlsim": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc71fef911d5d45259bab",
-        "download": "https://api.biosimulations.org/results/674dc71fef911d5d45259bab/download",
-        "logs": "https://api.biosimulations.org/logs/674dc71fef911d5d45259bab?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67864fbb1f52f47f628b596e",
+        "download": "https://api.biosimulations.org/results/67864fbb1f52f47f628b596e/download",
+        "logs": "https://api.biosimulations.org/logs/67864fbb1f52f47f628b596e?includeOutput=true",
         "log_yml": {
-            "duration": 0.224391,
+            "duration": 0.189568,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Adlung2021 _model_jakstat_pa.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -867,11 +867,11 @@
     },
     "masspy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc72110bb4455d6187776",
-        "download": "https://api.biosimulations.org/results/674dc72110bb4455d6187776/download",
-        "logs": "https://api.biosimulations.org/logs/674dc72110bb4455d6187776?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67864fbdba5a3f02b9f2f3d7",
+        "download": "https://api.biosimulations.org/results/67864fbdba5a3f02b9f2f3d7/download",
+        "logs": "https://api.biosimulations.org/logs/67864fbdba5a3f02b9f2f3d7?includeOutput=true",
         "log_yml": {
-            "duration": 1.749095,
+            "duration": 1.559867,
             "exception": {
                 "message": "The COMBINE/OMEX did not execute successfully:\n\n  The SED document did not execute successfully:\n  \n    Could not load MassModel 'Adlung2021___Cell_to_cell_variability_in_JAK2_STAT5_pathway'\n  \n    target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='epo_level'] cannot be changed by XML manipulation, as the target is not an attribute of a model element",
                 "type": "CombineArchiveExecutionError"
@@ -879,7 +879,7 @@
             "output": "",
             "sedDocuments": [
                 {
-                    "duration": 1.203443,
+                    "duration": 1.060146,
                     "exception": {
                         "message": "The SED document did not execute successfully:\n\n  Could not load MassModel 'Adlung2021___Cell_to_cell_variability_in_JAK2_STAT5_pathway'\n\n  target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='epo_level'] cannot be changed by XML manipulation, as the target is not an attribute of a model element",
                         "type": "SedmlExecutionError"
@@ -898,7 +898,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.114936,
+                            "duration": 0.101407,
                             "exception": null,
                             "id": "plot_2_task2",
                             "output": "",
@@ -1192,7 +1192,7 @@
                                     "status": "SKIPPED"
                                 }
                             ],
-                            "duration": 0.054385,
+                            "duration": 0.047828,
                             "exception": null,
                             "id": "autogen_report_for_task2",
                             "output": "",
@@ -1205,7 +1205,7 @@
                     "tasks": [
                         {
                             "algorithm": null,
-                            "duration": 0.299056,
+                            "duration": 0.27758,
                             "exception": {
                                 "message": "Could not load MassModel 'Adlung2021___Cell_to_cell_variability_in_JAK2_STAT5_pathway'",
                                 "type": "MassSimulationError"
@@ -1218,7 +1218,7 @@
                         },
                         {
                             "algorithm": null,
-                            "duration": 0.039305,
+                            "duration": 0.036698,
                             "exception": {
                                 "message": "target /sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='epo_level'] cannot be changed by XML manipulation, as the target is not an attribute of a model element",
                                 "type": "NotImplementedError"
@@ -1238,11 +1238,11 @@
     },
     "netpyne": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc723261553b9bc253f8b",
-        "download": "https://api.biosimulations.org/results/674dc723261553b9bc253f8b/download",
-        "logs": "https://api.biosimulations.org/logs/674dc723261553b9bc253f8b?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67864fbf1f52f47f628b5975",
+        "download": "https://api.biosimulations.org/results/67864fbf1f52f47f628b5975/download",
+        "logs": "https://api.biosimulations.org/logs/67864fbf1f52f47f628b5975?includeOutput=true",
         "log_yml": {
-            "duration": 0.077495,
+            "duration": 0.057351,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -1255,11 +1255,11 @@
     },
     "neuron": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc724ef911d5d45259bb4",
-        "download": "https://api.biosimulations.org/results/674dc724ef911d5d45259bb4/download",
-        "logs": "https://api.biosimulations.org/logs/674dc724ef911d5d45259bb4?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67864fc01f52f47f628b599a",
+        "download": "https://api.biosimulations.org/results/67864fc01f52f47f628b599a/download",
+        "logs": "https://api.biosimulations.org/logs/67864fc01f52f47f628b599a?includeOutput=true",
         "log_yml": {
-            "duration": 0.07574,
+            "duration": 0.10428,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -1272,16 +1272,16 @@
     },
     "opencor": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc726261553b9bc253f92",
-        "download": "https://api.biosimulations.org/results/674dc726261553b9bc253f92/download",
-        "logs": "https://api.biosimulations.org/logs/674dc726261553b9bc253f92?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67864fc2ba5a3f02b9f2f3eb",
+        "download": "https://api.biosimulations.org/results/67864fc2ba5a3f02b9f2f3eb/download",
+        "logs": "https://api.biosimulations.org/logs/67864fc2ba5a3f02b9f2f3eb?includeOutput=true",
         "log_yml": {
-            "duration": 0.036584,
+            "duration": 0.03535,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
             },
-            "output": "/home/opencor/OpenCOR/python/lib/python3.7/site-packages/biosimulators_utils/warnings.py:31: SedmlFeatureNotSupportedWarning: \u001b[33m`/tmp/tmp12_0bvak/./Adlung2021 _model_jakstat_pa.sedml` is encoded using L1V4. Only features available in L1V3 are supported. Newer features such as simple repeated tasks are not yet supported.\u001b[0m\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\n",
+            "output": "/home/opencor/OpenCOR/python/lib/python3.7/site-packages/biosimulators_utils/warnings.py:31: SedmlFeatureNotSupportedWarning: \u001b[33m`/tmp/tmpofnddlgu/./Adlung2021 _model_jakstat_pa.sedml` is encoded using L1V4. Only features available in L1V3 are supported. Newer features such as simple repeated tasks are not yet supported.\u001b[0m\n  warnings.warn(termcolor.colored(message, Colors.warning.value), category)\n",
             "sedDocuments": [],
             "skipReason": null,
             "status": "FAILED"
@@ -1289,11 +1289,11 @@
     },
     "pyneuroml": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc728ef911d5d45259bc1",
-        "download": "https://api.biosimulations.org/results/674dc728ef911d5d45259bc1/download",
-        "logs": "https://api.biosimulations.org/logs/674dc728ef911d5d45259bc1?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67864fc3167dc18b5b247904",
+        "download": "https://api.biosimulations.org/results/67864fc3167dc18b5b247904/download",
+        "logs": "https://api.biosimulations.org/logs/67864fc3167dc18b5b247904?includeOutput=true",
         "log_yml": {
-            "duration": 0.053923,
+            "duration": 0.051503,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -1306,19 +1306,19 @@
     },
     "pysces": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc72b10bb4455d6187792",
-        "download": "https://api.biosimulations.org/results/674dc72b10bb4455d6187792/download",
-        "logs": "https://api.biosimulations.org/logs/674dc72b10bb4455d6187792?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67864fc5167dc18b5b247911",
+        "download": "https://api.biosimulations.org/results/67864fc5167dc18b5b247911/download",
+        "logs": "https://api.biosimulations.org/logs/67864fc5167dc18b5b247911?includeOutput=true",
         "log_yml": {
-            "duration": 1.953334,
+            "duration": 1.877943,
             "exception": null,
             "output": "libtk8.6.so: cannot open shared object file: No such file or directory\r\n\r\nPySCeS defaults to matplotlib's TKagg backend if not specified                          in the user configuration file, set \"matplotlib_backend = <backend>\" \r\nMatplotlib interface loaded (pysces.plt.m)\r\nPitcon routines available\r\nNLEQ2 routines available\r\nSBML support available\r\nYou are using NumPy (2.1.2) with SciPy (1.14.1)\r\nAssimulo CVode available\r\nRateChar is available\r\nParallel scanner is available\r\n\r\nPySCeS environment\r\n******************\r\npysces.model_dir = /home/FCAM/crbmapi/Pysces/psc\r\npysces.output_dir = /home/FCAM/crbmapi/Pysces\r\n\r\n\r\n***********************************************************************\r\n* Welcome to PySCeS (1.2.2) - Python Simulator for Cellular Systems   *\r\n*                http://pysces.sourceforge.net                        *\r\n* Copyright(C) B.G. Olivier, J.M. Rohwer, J.-H.S. Hofmeyr, 2004-2024  *\r\n* Triple-J Group for Molecular Cell Physiology                        *\r\n* Stellenbosch University, ZA and VU University Amsterdam, NL         *\r\n* PySCeS is distributed under the PySCeS (BSD style) licence, see     *\r\n* LICENCE.txt (supplied with this release) for details                *\r\n* Please cite PySCeS with: doi:10.1093/bioinformatics/bti046          *\r\n***********************************************************************\r\n",
             "sedDocuments": [
                 {
-                    "duration": 1.562623,
+                    "duration": 1.513974,
                     "exception": null,
                     "location": "Adlung2021 _model_jakstat_pa.sedml",
-                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 2 tasks, 1 reports, and 1 plots:\r\n  Adlung2021 _model_jakstat_pa.sedml:\r\n    Tasks (2):\r\n      task1\r\n      task2\r\n    Reports (1):\r\n      autogen_report_for_task2: 71 data sets\r\n    Plots (1):\r\n      plot_2_task2: 2 curves\r\n\r\nExecuting SED-ML file 1: Adlung2021 _model_jakstat_pa.sedml ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task2`\r\n    Outputs:\r\n      `autogen_report_for_task2`\r\n      `plot_2_task2`\r\n  Executing task 1: `task2`\r\n    Executing simulation ...Check SBML support is at action level 2\r\nSBML file is L2V4\r\nInfo: multiple compartments defined but reaction v1_v_0 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v2_v_1 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v3_v_2 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v4_v_3 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v5_v_4 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v6_v_5 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v7_v_6 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v8_v_7 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v9_v_8 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v12_v_11 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v13_v_12 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v14_v_13 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v15_v_14 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v16_v_15 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v17_v_16 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v18_v_17 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v19_v_18 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v20_v_19 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v21_v_20 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v22_v_21 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v23_v_22 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v24_v_23 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v25_v_24 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v26_v_25 is not located in any of them.\r\nWriting file: /tmp/tmpy900as0i.psc\r\n\r\nSBML2PSC\r\nin : /tmp/tmp6gzqmdi2.xml\r\nout: /tmp/tmpy900as0i.psc\r\nUsing model directory: /home/FCAM/crbmapi/Pysces/psc\r\n/tmp/tmpy900as0i.psc loading ..... \r\nParsing file: /tmp/tmpy900as0i.psc\r\nInfo: No reagents have been fixed\r\nInfo: \"epo_level\" has been initialised but does not occur in a rate equation\r\nInfo: \"init_EpoRJAK2\" has been initialised but does not occur in a rate equation\r\nInfo: \"init_SHP1\" has been initialised but does not occur in a rate equation\r\nInfo: \"init_STAT5\" has been initialised but does not occur in a rate equation\r\nInfo: \"Total_STAT5\" has been initialised but does not occur in a rate equation\r\nInfo: \"measuralbe_pSTAT5\" has been initialised but does not occur in a rate equation\r\nInfo: \"_pSTAT5_Total_STAT5\" has been initialised but does not occur in a rate equation\r\n \r\nCalculating L matrix . . . . . . . . .  done.\r\nCalculating K matrix . . . . . . . . . . .  done.\r\n \r\n\r\nAssignment rule(s) detected.\r\nINFO: Assignment Rules detected and Assimulo installed,\r\nswitching to CVODE (mod.mode_integrator='CVODE').\r\n\r\nCVODE time for 301 points: 0.10260415077209473\r\nCheck SBML support is at action level 2\r\nSBML file is L2V4\r\nInfo: multiple compartments defined but reaction v1_v_0 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v2_v_1 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v3_v_2 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v4_v_3 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v5_v_4 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v6_v_5 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v7_v_6 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v8_v_7 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v9_v_8 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v12_v_11 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v13_v_12 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v14_v_13 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v15_v_14 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v16_v_15 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v17_v_16 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v18_v_17 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v19_v_18 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v20_v_19 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v21_v_20 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v22_v_21 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v23_v_22 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v24_v_23 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v25_v_24 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v26_v_25 is not located in any of them.\r\nWriting file: /tmp/tmpbpvx7xp9.psc\r\n\r\nSBML2PSC\r\nin : /tmp/tmpmmgnw416.xml\r\nout: /tmp/tmpbpvx7xp9.psc\r\nUsing model directory: /home/FCAM/crbmapi/Pysces/psc\r\n/tmp/tmpbpvx7xp9.psc loading ..... \r\nParsing file: /tmp/tmpbpvx7xp9.psc\r\nInfo: No reagents have been fixed\r\nInfo: \"epo_level\" has been initialised but does not occur in a rate equation\r\nInfo: \"init_EpoRJAK2\" has been initialised but does not occur in a rate equation\r\nInfo: \"init_SHP1\" has been initialised but does not occur in a rate equation\r\nInfo: \"init_STAT5\" has been initialised but does not occur in a rate equation\r\nInfo: \"Total_STAT5\" has been initialised but does not occur in a rate equation\r\nInfo: \"measuralbe_pSTAT5\" has been initialised but does not occur in a rate equation\r\nInfo: \"_pSTAT5_Total_STAT5\" has been initialised but does not occur in a rate equation\r\n \r\nCalculating L matrix . . . . . . . . .  done.\r\nCalculating K matrix . . . . . . . . . . .  done.\r\n \r\n\r\nAssignment rule(s) detected.\r\nINFO: Assignment Rules detected and Assimulo installed,\r\nswitching to CVODE (mod.mode_integrator='CVODE').\r\n\r\nCVODE time for 301 points: 0.03392362594604492\r\n \u001b[34msucceeded\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `plot_2_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `autogen_report_for_task2` ...",
+                    "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 2 tasks, 1 reports, and 1 plots:\r\n  Adlung2021 _model_jakstat_pa.sedml:\r\n    Tasks (2):\r\n      task1\r\n      task2\r\n    Reports (1):\r\n      autogen_report_for_task2: 71 data sets\r\n    Plots (1):\r\n      plot_2_task2: 2 curves\r\n\r\nExecuting SED-ML file 1: Adlung2021 _model_jakstat_pa.sedml ...\r\n  Found 1 tasks and 2 outputs:\r\n    Tasks:\r\n      `task2`\r\n    Outputs:\r\n      `autogen_report_for_task2`\r\n      `plot_2_task2`\r\n  Executing task 1: `task2`\r\n    Executing simulation ...Check SBML support is at action level 2\r\nSBML file is L2V4\r\nInfo: multiple compartments defined but reaction v1_v_0 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v2_v_1 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v3_v_2 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v4_v_3 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v5_v_4 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v6_v_5 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v7_v_6 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v8_v_7 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v9_v_8 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v12_v_11 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v13_v_12 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v14_v_13 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v15_v_14 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v16_v_15 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v17_v_16 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v18_v_17 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v19_v_18 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v20_v_19 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v21_v_20 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v22_v_21 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v23_v_22 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v24_v_23 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v25_v_24 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v26_v_25 is not located in any of them.\r\nWriting file: /tmp/tmpxstw78ty.psc\r\n\r\nSBML2PSC\r\nin : /tmp/tmpx_lr7g_4.xml\r\nout: /tmp/tmpxstw78ty.psc\r\nUsing model directory: /home/FCAM/crbmapi/Pysces/psc\r\n/tmp/tmpxstw78ty.psc loading ..... \r\nParsing file: /tmp/tmpxstw78ty.psc\r\nInfo: No reagents have been fixed\r\nInfo: \"epo_level\" has been initialised but does not occur in a rate equation\r\nInfo: \"init_EpoRJAK2\" has been initialised but does not occur in a rate equation\r\nInfo: \"init_SHP1\" has been initialised but does not occur in a rate equation\r\nInfo: \"init_STAT5\" has been initialised but does not occur in a rate equation\r\nInfo: \"Total_STAT5\" has been initialised but does not occur in a rate equation\r\nInfo: \"measuralbe_pSTAT5\" has been initialised but does not occur in a rate equation\r\nInfo: \"_pSTAT5_Total_STAT5\" has been initialised but does not occur in a rate equation\r\n \r\nCalculating L matrix . . . . . . . . .  done.\r\nCalculating K matrix . . . . . . . . . . .  done.\r\n \r\n\r\nAssignment rule(s) detected.\r\nINFO: Assignment Rules detected and Assimulo installed,\r\nswitching to CVODE (mod.mode_integrator='CVODE').\r\n\r\nCVODE time for 301 points: 0.10404205322265625\r\nCheck SBML support is at action level 2\r\nSBML file is L2V4\r\nInfo: multiple compartments defined but reaction v1_v_0 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v2_v_1 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v3_v_2 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v4_v_3 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v5_v_4 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v6_v_5 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v7_v_6 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v8_v_7 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v9_v_8 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v12_v_11 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v13_v_12 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v14_v_13 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v15_v_14 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v16_v_15 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v17_v_16 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v18_v_17 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v19_v_18 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v20_v_19 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v21_v_20 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v22_v_21 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v23_v_22 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v24_v_23 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v25_v_24 is not located in any of them.\r\nInfo: multiple compartments defined but reaction v26_v_25 is not located in any of them.\r\nWriting file: /tmp/tmp7g8p1g12.psc\r\n\r\nSBML2PSC\r\nin : /tmp/tmpgr_2odvi.xml\r\nout: /tmp/tmp7g8p1g12.psc\r\nUsing model directory: /home/FCAM/crbmapi/Pysces/psc\r\n/tmp/tmp7g8p1g12.psc loading ..... \r\nParsing file: /tmp/tmp7g8p1g12.psc\r\nInfo: No reagents have been fixed\r\nInfo: \"epo_level\" has been initialised but does not occur in a rate equation\r\nInfo: \"init_EpoRJAK2\" has been initialised but does not occur in a rate equation\r\nInfo: \"init_SHP1\" has been initialised but does not occur in a rate equation\r\nInfo: \"init_STAT5\" has been initialised but does not occur in a rate equation\r\nInfo: \"Total_STAT5\" has been initialised but does not occur in a rate equation\r\nInfo: \"measuralbe_pSTAT5\" has been initialised but does not occur in a rate equation\r\nInfo: \"_pSTAT5_Total_STAT5\" has been initialised but does not occur in a rate equation\r\n \r\nCalculating L matrix . . . . . . . . .  done.\r\nCalculating K matrix . . . . . . . . . . .  done.\r\n \r\n\r\nAssignment rule(s) detected.\r\nINFO: Assignment Rules detected and Assimulo installed,\r\nswitching to CVODE (mod.mode_integrator='CVODE').\r\n\r\nCVODE time for 301 points: 0.03676605224609375\r\n \u001b[34msucceeded\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `plot_2_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `autogen_report_for_task2` ...",
                     "outputs": [
                         {
                             "curves": [
@@ -1331,7 +1331,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.32812,
+                            "duration": 0.321344,
                             "exception": null,
                             "id": "plot_2_task2",
                             "output": "",
@@ -1625,7 +1625,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.281397,
+                            "duration": 0.264701,
                             "exception": null,
                             "id": "autogen_report_for_task2",
                             "output": "",
@@ -1638,7 +1638,7 @@
                     "tasks": [
                         {
                             "algorithm": null,
-                            "duration": 0.770676,
+                            "duration": 0.770728,
                             "exception": null,
                             "id": "task2",
                             "output": "",
@@ -1655,11 +1655,11 @@
     },
     "rbapy": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc72cef911d5d45259bdc",
-        "download": "https://api.biosimulations.org/results/674dc72cef911d5d45259bdc/download",
-        "logs": "https://api.biosimulations.org/logs/674dc72cef911d5d45259bdc?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67864fc6ba5a3f02b9f2f410",
+        "download": "https://api.biosimulations.org/results/67864fc6ba5a3f02b9f2f410/download",
+        "logs": "https://api.biosimulations.org/logs/67864fc6ba5a3f02b9f2f410?includeOutput=true",
         "log_yml": {
-            "duration": 0.19761,
+            "duration": 0.200788,
             "exception": {
                 "message": "`/root/archive.omex` is not a valid COMBINE/OMEX archive.\n  - The SED-ML file at location `./Adlung2021 _model_jakstat_pa.sedml` is invalid.\n    - Simulation `sim1` is invalid.\n      - Algorithm has an invalid KiSAO id `KISAO_0000694`.",
                 "type": "ValueError"
@@ -1672,11 +1672,11 @@
     },
     "smoldyn": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc72eef911d5d45259bf2",
-        "download": "https://api.biosimulations.org/results/674dc72eef911d5d45259bf2/download",
-        "logs": "https://api.biosimulations.org/logs/674dc72eef911d5d45259bf2?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67864fc81f52f47f628b59c8",
+        "download": "https://api.biosimulations.org/results/67864fc81f52f47f628b59c8/download",
+        "logs": "https://api.biosimulations.org/logs/67864fc81f52f47f628b59c8?includeOutput=true",
         "log_yml": {
-            "duration": 0.052547,
+            "duration": 0.050565,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
@@ -1689,16 +1689,16 @@
     },
     "tellurium": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc73010bb4455d61877b0",
-        "download": "https://api.biosimulations.org/results/674dc73010bb4455d61877b0/download",
-        "logs": "https://api.biosimulations.org/logs/674dc73010bb4455d61877b0?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67864fca167dc18b5b247934",
+        "download": "https://api.biosimulations.org/results/67864fca167dc18b5b247934/download",
+        "logs": "https://api.biosimulations.org/logs/67864fca167dc18b5b247934?includeOutput=true",
         "log_yml": {
-            "duration": 2.003138,
+            "duration": 1.90943,
             "exception": null,
             "output": "",
             "sedDocuments": [
                 {
-                    "duration": 1.536872,
+                    "duration": 1.436238,
                     "exception": null,
                     "location": "Adlung2021 _model_jakstat_pa.sedml",
                     "output": "Archive contains 1 SED-ML documents with 1 models, 1 simulations, 2 tasks, 1 reports, and 1 plots:\r\n  Adlung2021 _model_jakstat_pa.sedml:\r\n    Tasks (2):\r\n      task1\r\n      task2\r\n    Reports (1):\r\n      autogen_report_for_task2: 71 data sets\r\n    Plots (1):\r\n      plot_2_task2: 2 curves\r\n\r\nExecuting SED-ML file 1: Adlung2021 _model_jakstat_pa.sedml ...\r\n  Found 2 tasks and 2 outputs:\r\n    Tasks:\r\n      `task1`\r\n      `task2`\r\n    Outputs:\r\n      `autogen_report_for_task2`\r\n      `plot_2_task2`\r\n  Executing task 1: `task1`\r\n    Executing simulation ... \u001b[34msucceeded\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `plot_2_task2` ... \u001b[36mqueued\u001b[0m\r\n      Generating output 2: `autogen_report_for_task2` ... \u001b[36mqueued\u001b[0m\r\n  Executing task 2: `task2`\r\n    Executing simulation ... \u001b[34msucceeded\u001b[0m\r\n    Generating 2 outputs ...\r\n      Generating output 1: `plot_2_task2` ... \u001b[34msucceeded\u001b[0m\r\n      Generating output 2: `autogen_report_for_task2` ...",
@@ -1714,7 +1714,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.171614,
+                            "duration": 0.143698,
                             "exception": null,
                             "id": "plot_2_task2",
                             "output": "",
@@ -2008,7 +2008,7 @@
                                     "status": "SUCCEEDED"
                                 }
                             ],
-                            "duration": 0.310442,
+                            "duration": 0.266575,
                             "exception": null,
                             "id": "autogen_report_for_task2",
                             "output": "",
@@ -2021,7 +2021,7 @@
                     "tasks": [
                         {
                             "algorithm": "KISAO_0000019",
-                            "duration": 0.242318,
+                            "duration": 0.237241,
                             "exception": null,
                             "id": "task1",
                             "output": "",
@@ -2088,7 +2088,7 @@
                         },
                         {
                             "algorithm": null,
-                            "duration": 0.173827,
+                            "duration": 0.17253,
                             "exception": null,
                             "id": "task2",
                             "output": "",
@@ -2105,11 +2105,11 @@
     },
     "vcell": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc733ef911d5d45259bfd",
-        "download": "https://api.biosimulations.org/results/674dc733ef911d5d45259bfd/download",
-        "logs": "https://api.biosimulations.org/logs/674dc733ef911d5d45259bfd?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67864fcd1f52f47f628b59e2",
+        "download": "https://api.biosimulations.org/results/67864fcd1f52f47f628b59e2/download",
+        "logs": "https://api.biosimulations.org/logs/67864fcd1f52f47f628b59e2?includeOutput=true",
         "log_yml": {
-            "duration": 10,
+            "duration": 9,
             "exception": null,
             "output": "Processing Adlung2021 _model_jakstat_pa.sedml.  Done",
             "sedDocuments": [
@@ -2464,11 +2464,11 @@
     },
     "xpp": {
         "response": 201,
-        "view": "https://api.biosimulations.org/runs/674dc73510bb4455d61877b9",
-        "download": "https://api.biosimulations.org/results/674dc73510bb4455d61877b9/download",
-        "logs": "https://api.biosimulations.org/logs/674dc73510bb4455d61877b9?includeOutput=true",
+        "view": "https://api.biosimulations.org/runs/67864fcf167dc18b5b247948",
+        "download": "https://api.biosimulations.org/results/67864fcf167dc18b5b247948/download",
+        "logs": "https://api.biosimulations.org/logs/67864fcf167dc18b5b247948?includeOutput=true",
         "log_yml": {
-            "duration": 0.073538,
+            "duration": 0.048144,
             "exception": {
                 "message": "No module named 'libsbml'",
                 "type": "ModuleNotFoundError"
