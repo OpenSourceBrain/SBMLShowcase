@@ -1,9 +1,13 @@
 # SBML Showcase
 [![Continuous build using OMV](https://github.com/OpenSourceBrain/SBMLShowcase/actions/workflows/omv-ci.yml/badge.svg)](https://github.com/OpenSourceBrain/SBMLShowcase/actions/workflows/omv-ci.yml) [![Testing non OMV scripts](https://github.com/OpenSourceBrain/SBMLShowcase/actions/workflows/non-omv.yml/badge.svg)](https://github.com/OpenSourceBrain/SBMLShowcase/actions/workflows/non-omv.yml)
 
-This repository contains files and instructions for testing validity of Systems Biology Markup Language (SBML) and Simulation Experiment Description Markup Language (SED-ML) files, and their compatibility with different simulations engines. 
+This repository is intended to highlight and show examples of interactions between the Systems Biology Markup Language (SBML) and Simulation Experiment Description Markup Language (SED-ML) and NeuroML/Open Source Brain. 
 
-## Results tables
+The repository contains files and instructions for testing validity of Systems Biology Markup Language (SBML) and Simulation Experiment Description Markup Language (SED-ML) files, and their compatibility with different simulations engines. Much of this functionality has been embedded in [pyNeuroML](https://docs.neuroml.org/Userdocs/Software/pyNeuroML.html).
+
+## Testing validity of SBML/SEDML and compatability with simulation engines
+
+The tables below show the results of some automated simulation pipelines for testing SBML/SEDML files.
 
 ### SBML
 - [LEMS_NML2_Ex9_FN](SBML/tests/results_compatibility_biosimulators.md)
