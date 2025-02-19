@@ -26,19 +26,19 @@ jobs:
         run: |
           pip install git+https://github.com/OpenSourceBrain/osb-model-validation
 
-      - name: Run tests
+      - name: Install dependencies
         run: |
-          omv install jneuroml
+          pip install .
+
 
       - name: Test tellurium
         run: |
-          pip install tellurium
           sudo apt-get install libncurses6 --fix-missing
           cd tellurium
           python simple.py -nogui
 
           cd ../SBML/tests
-          pip install python-libsedml
+          
           python ./test_tellurium.py
 
       - name: Test validity of files
