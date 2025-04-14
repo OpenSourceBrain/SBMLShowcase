@@ -1,0 +1,50 @@
+# Formatting shouldn't be applied to auto generated files,
+# or files taken verbatim from external resources.
+exclude: |-
+  (?x)^(
+      LEMS/.*|
+      Brian/.*|
+      NEURON/.*|
+      NeuroML2/.*|
+      tellurium/simple.py*|
+      .*\.xml$|
+      .*\.sedml$|
+      .*\.sbml$|
+      .*\.omex$|
+      .*\.json$|
+      .*\.md$|
+  )$
+
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.8.1
+    hooks:
+      - id: ruff
+      - id: ruff-format
+  - repo: https://github.com/pappasam/toml-sort
+    rev: v0.24.2
+    hooks:
+      - id: toml-sort-fix
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.1.0
+    hooks:
+      - id: prettier
+        args:
+          - --quote-props=as-needed
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-case-conflict
+      - id: check-docstring-first
+      - id: check-merge-conflict
+      - id: check-toml
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args:
+          - --fix=lf
+      - id: trailing-whitespace
+
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: v5.10.1
+    hooks:
+      - id: isort
