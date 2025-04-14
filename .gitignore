@@ -47,3 +47,8 @@ venv
 /SBML/LEMS_NML2_Ex9_FN_missing_xmlns.omex
 /SBML/output
 *.egg-info
+/SBML/tests/local_results/amici
+/SBML/tests/local_results/bionetgen
+/SBML/tests/local_results/boolnet
+/SBML/tests/local_results/brian2
+/SBML/tests/local_results/cbmpy 

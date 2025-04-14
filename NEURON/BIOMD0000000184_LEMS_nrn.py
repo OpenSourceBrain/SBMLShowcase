@@ -59,7 +59,7 @@ class NeuronSimulation():
         h(" objectvar m_Lavrentovich2008_Ca_Oscillations_0_population_null[1] ")
 
         for i in range(int(h.n_population_null)):
-            h.population_null[i](0.5).cm = 318.31
+            h.population_null[i](0.5).cm = 318.31 # See https://github.com/NeuroML/org.neuroml.export/issues/60
             h.population_null[i].L = 10.0               # length to use for section in Neuron
             h.population_null[i](0.5).diam = 10.0       # diameter to use for section in Neuron
             h.population_null[i].push()
