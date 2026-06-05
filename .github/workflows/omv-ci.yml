@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.10", "3.11"]
+        python-version: ["3.12"]
         engine:
           [
             jLEMS,
@@ -36,6 +36,7 @@ jobs:
 
       - name: Install OMV
         run: |
+          pip install setuptools==80 # needed for eden on Python 3.12...
           pip install git+https://github.com/OpenSourceBrain/osb-model-validation
           pip install scipy sympy matplotlib cython pandas tables
 
